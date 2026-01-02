@@ -43,15 +43,24 @@ export default function Hero() {
           </p>
 
           {/* Search Bar */}
-          <div className="flex items-center gap-2 w-[500px] px-4 py-3 rounded-full bg-white/30 backdrop-blur-md border border-white/20 shadow-md hover:border-[#bef264] transition-colors">
-            <input
-              type="text"
-              placeholder="Search here"
-              className="w-full bg-transparent outline-none text-gray-600 placeholder-gray-400"
-            />
+         {/* Search Bar */}
+<div className="flex items-center gap-2 w-full sm:max-w-[420px] md:max-w-[500px]
+px-4 sm:px-5 py-2.5 sm:py-3
+rounded-full bg-white/30 backdrop-blur-md
+border border-white/20 shadow-md
+hover:border-[#bef264] transition-colors">
 
-            <CiSearch className="text-gray-500 text-xl cursor-pointer" />
-          </div>
+  <input
+    type="text"
+    placeholder="Search here"
+    className="w-full bg-transparent outline-none
+    text-sm sm:text-base
+    text-gray-600 placeholder-gray-400"
+  />
+
+  <CiSearch className="text-gray-500 text-lg sm:text-xl cursor-pointer shrink-0" />
+</div>
+
 
           {/* Tags/Pills */}
           <div className="flex flex-wrap gap-3 mt-5">

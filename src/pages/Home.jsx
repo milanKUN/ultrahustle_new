@@ -138,19 +138,7 @@ export default function Home() {
 
   return (
     <div
-     className="
-  min-h-screen 
-  relative 
-  overflow-hidden 
-  bg-cover 
-  bg-center 
-  bg-no-repeat 
-  bg-fixed
-  bg-gradient-to-br from-[#cfd3d6] via-[#d9dcde] to-[#e6e8e9]
-"
-
-      style={{  }}
-    >
+     className="  min-h-screen  relative  overflow-hidden  bg-cover bg-center  bg-no-repeat bg-fixed bg-gradient-to-br from-[#cfd3d6] via-[#d9dcde] to-[#e6e8e9]" style={{  }}>
       {/* NOTE: glow appended to document.body by effect above */}
       <div className="relative z-30">
         <Navbar />
