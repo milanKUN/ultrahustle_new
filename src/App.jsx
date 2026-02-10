@@ -88,8 +88,7 @@ export default function App() {
           <Route path="/solo-contracts-listing" element={<SoloContractListing theme={theme} setTheme={setTheme} />} />
           <Route path="/milestones" element={<MilestonesPage theme={theme} setTheme={setTheme} />} />
           <Route path="/solo-milestones" element={<SoloMilestonesPage theme={theme} setTheme={setTheme} />} />
-
-
+          
         </Routes>
       </div>
     </Router>
