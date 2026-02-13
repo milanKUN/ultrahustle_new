@@ -420,59 +420,57 @@
 }
 
 /* ================================
-   Mobile Responsive (Signup Card) - FULL
-   - Mobile center
-   - Mobile bg image remove
-   - Mobile clean background
+   Mobile Responsive (Signup Card)
+   - Below 900px: Centered / Mobile mode
+   - Above 900px: Right-aligned / Desktop mode
 ================================== */
 
-/* Tablets / small laptops */
-@media (max-width: 1024px) {
-  .signup-card-glass {
-    width: 420px !important;
-    max-height: 90vh;
-    padding: 16px 22px !important;
-  }
-}
+@media (max-width: 900px) {
 
-/* Mobile */
-@media (max-width: 768px) {
-
-  /* ✅ Remove BG image ONLY on mobile */
+  /* Hide BG image */
   .desktop-login-bg {
     display: none !important;
   }
 
-  /* ✅ Clean mobile background + center layout */
-  .desktop-login-container {
-    background: linear-gradient(135deg, #D9D9D9, #A6A6A6);
-    justify-content: center;
-    align-items: center;
-    padding: 18px 14px;
-    min-height: 100vh;
+  /* Center container */
+  .desktop-login-container,
+  .desktop-login-container.signup-mode {
+    background: linear-gradient(135deg, #D9D9D9, #A6A6A6) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 18px 14px !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: auto !important;
   }
 
-  /* ✅ Center content wrapper */
-  .desktop-login-content {
-    width: 100%;
-    margin-top: 0 !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* Center content */
+  .desktop-login-content,
+  .desktop-login-container.signup-mode .desktop-login-content {
+    width: 100% !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
-  .signup-card-glass {
+  /* Fluid Card */
+  .signup-card-glass,
+  .desktop-login-container.signup-mode .signup-card-glass {
     width: 92% !important;
     max-width: 420px !important;
-
-    /* ✅ center card (no top margin push) */
     margin: 0 auto !important;
-
     padding: 16px 18px !important;
+    height: auto !important;
+    max-height: 88vh !important;
+    overflow: hidden !important;
+    border-radius: 18px !important;
+  }
 
-    max-height: 88vh;
-    overflow-y: auto;
-    border-radius: 18px;
+  .signup-card-glass form,
+  .desktop-login-container.signup-mode .signup-card-glass form {
+    max-height: 45vh !important;
+    overflow-y: auto !important;
   }
 
   /* Inputs + Select */
@@ -480,7 +478,6 @@
   .signup-card-glass .form-select-desktop {
     font-size: 12px !important;
     padding: 9px 12px !important;
-    padding-right: 34px !important;
   }
 
   /* Labels */
@@ -497,7 +494,6 @@
   /* Tabs */
   .signup-card-glass .tab-btn {
     font-size: 11px !important;
-    padding: 6px 8px !important;
   }
 
   /* Social buttons wrap */
@@ -509,101 +505,21 @@
   .signup-card-glass .social-btn {
     flex: 1;
     min-width: 140px;
-    padding: 8px !important;
     font-size: 10px !important;
   }
 
-  /* Tooltip center for mobile */
+  /* Tooltip */
   .desktop-password-tooltip {
     width: 92vw;
     max-width: 280px;
   }
 }
 
-/* Small Mobile */
 @media (max-width: 480px) {
-  .signup-card-glass {
-    width: 94% !important;
-    padding: 14px 14px !important;
-    max-height: 86vh;
-  }
 
-  .signup-card-glass .form-group {
-    margin-bottom: 7px !important;
-  }
-
-  .signup-card-glass .desktop-login-btn {
-    font-size: 12.5px !important;
-    padding: 10px !important;
-  }
-
-  .signup-card-glass .social-btn {
-    min-width: 100%;
-  }
-
-  .desktop-password-tooltip {
-    max-width: 260px;
-    padding: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-
-  /* ✅ BG hide */
-  .desktop-login-container.signup-mode .desktop-login-bg {
-    display: none !important;
-  }
-
-  /* ✅ IMPORTANT: override desktop signup-mode rules */
-  .desktop-login-container.signup-mode {
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow: auto !important;
-
-    justify-content: center !important;
-    align-items: center !important;
-
-    padding: 18px 14px !important;
-    background: linear-gradient(135deg, #D9D9D9, #A6A6A6) !important;
-
-  }
-
-  .desktop-login-container.signup-mode .desktop-login-content {
-    width: 100% !important;
-    margin: 0 !important;
-
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-
-  .desktop-login-container.signup-mode .signup-card-glass {
-    width: 92% !important;
-    max-width: 420px !important;
-
-    margin: 0 auto !important;
-    padding: 16px 18px !important;
-
-    height: auto !important;
-    /* ✅ desktop fixed height kill */
-    max-height: 88vh !important;
-
-    overflow: hidden !important;
-    /* card nahi scroll */
-    border-radius: 18px !important;
-  }
-
-  .desktop-login-container.signup-mode .signup-card-glass form {
-    max-height: 36vh !important;
-    overflow-y: auto !important;
-    /* ✅ only form scroll */
-  }
-}
-
-@media (max-width: 480px) {
+  .signup-card-glass,
   .desktop-login-container.signup-mode .signup-card-glass {
     width: 100% !important;
-    max-width: 420px !important;
     padding: 14px 14px !important;
     max-height: 86vh !important;
   }

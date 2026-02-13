@@ -25,7 +25,7 @@ export default function GoalsSelection() {
     { id: "explore-ai", label: "Explore creators with Ai", icon: Sparkles },
     { id: "take-course", label: "Take Course", icon: GraduationCap },
     { id: "manage-products", label: "Manage multiple products smoothly", icon: Layers },
-   
+
   ];
 
   const toggleGoal = (id) => {
@@ -118,9 +118,8 @@ export default function GoalsSelection() {
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
+                  }`}
               />
             ))}
           </div>
@@ -132,37 +131,15 @@ export default function GoalsSelection() {
         {/* Animated Glows - Desktop Only */}
         <div
           className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.4) 0%, rgba(195, 255, 0, 0.15) 40%, transparent 70%)",
-            bottom: "-15%",
-            left: "-15%",
-            filter: "blur(60px)",
-            animation: "glow-bottomleft-center-right 8s ease-in-out infinite",
-          }}
+
         />
         <div
           className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.35) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)",
-            top: "-10%",
-            right: "-10%",
-            filter: "blur(50px)",
-            animation: "glow-center-topright 8s ease-in-out infinite",
-          }}
+
         />
         <div
           className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.3) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)",
-            top: "40%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            filter: "blur(50px)",
-            animation: "glow-rotate 6s steps(3) infinite",
-          }}
+
         />
 
         {/* ✅ MOBILE (screenshot-like) */}
@@ -233,10 +210,9 @@ export default function GoalsSelection() {
                     onClick={() => toggleGoal(goal.id)}
                     className={`
                       flex items-center gap-4 px-6 py-4 rounded-xl cursor-pointer border-2 backdrop-blur-sm
-                      ${
-                        isSelected
-                          ? "bg-[#CEFF1B] border-black shadow-lg scale-105"
-                          : "bg-white/20 border-black/10 hover:bg-white/30 hover:border-black/30"
+                      ${isSelected
+                        ? "bg-[#CEFF1B] border-black shadow-lg scale-105"
+                        : "bg-white/20 border-black/10 hover:bg-white/30 hover:border-black/30"
                       }
                     `}
                   >
@@ -245,9 +221,8 @@ export default function GoalsSelection() {
                     </div>
 
                     <span
-                      className={`font-semibold text-lg ${
-                        isSelected ? "text-black" : "text-gray-800"
-                      }`}
+                      className={`font-semibold text-lg ${isSelected ? "text-black" : "text-gray-800"
+                        }`}
                     >
                       {goal.label}
                     </span>
@@ -278,11 +253,10 @@ export default function GoalsSelection() {
               <button
                 onClick={handleContinue}
                 disabled={!canContinue}
-                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${
-                  canContinue
+                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${canContinue
                     ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
                     : "bg-[#CEFF1B]/50 border border-[#2B2B2B] text-gray-500 cursor-not-allowed"
-                }`}
+                  }`}
               >
                 Continue
               </button>

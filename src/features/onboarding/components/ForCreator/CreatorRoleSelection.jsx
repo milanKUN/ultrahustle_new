@@ -52,8 +52,9 @@ export default function CreatorRoleSelection() {
           {/* Question */}
           <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-center md:items-start text-center md:text-left px-2 sm:px-4 md:px-0">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
-              How will you be using Ultra Hustle?
+              How will you be using
             </h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black" >Ultra Hustle?</h2>
             <p className="text-black/60 text-sm sm:text-base md:text-xl mt-2 sm:mt-3 md:mt-6">
               This helps us tailor your dashboard
             </p>
@@ -212,13 +213,13 @@ export default function CreatorRoleSelection() {
           <div
             onClick={() => setSelectedRole("creator")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "creator"
-              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+              ? "bg-[#CEFF1B]  shadow-lg"
               : "bg-white/40 border border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "creator"
+                className={`inline-block px-5 py-2 rounded-lg border-1 font-semibold text-lg ${selectedRole === "creator"
                   ? "border-black bg-[#C3FF00]/10"
                   : "border-gray-400 bg-white"
                   }`}
@@ -241,13 +242,13 @@ export default function CreatorRoleSelection() {
           <div
             onClick={() => setSelectedRole("client")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "client"
-              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+              ? "bg-[#CEFF1B]  shadow-lg"
               : "bg-white/40 border border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "client"
+                className={`inline-block px-5 py-2 rounded-lg border-1 font-semibold text-lg ${selectedRole === "client"
                   ? "border-black bg-[#C3FF00]/10"
                   : "border-gray-400 bg-white"
                   }`}

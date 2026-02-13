@@ -98,9 +98,8 @@ export default function RoleSelection() {
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
+                  }`}
               />
             ))}
           </div>
@@ -112,37 +111,15 @@ export default function RoleSelection() {
         {/* Animated Gradient Glows - Desktop Only */}
         <div
           className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.4) 0%, rgba(195, 255, 0, 0.15) 40%, transparent 70%)",
-            bottom: "-15%",
-            left: "-15%",
-            filter: "blur(60px)",
-            animation: "glow-bottomleft-center-right 8s ease-in-out infinite",
-          }}
+
         />
         <div
           className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.35) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)",
-            top: "-10%",
-            right: "-10%",
-            filter: "blur(50px)",
-            animation: "glow-center-topright 8s ease-in-out infinite",
-          }}
+
         />
         <div
           className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.3) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)",
-            top: "40%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            filter: "blur(50px)",
-            animation: "glow-rotate 6s steps(3) infinite",
-          }}
+
         />
 
         {/* ✅ MOBILE (screenshot-like) */}
@@ -216,19 +193,17 @@ export default function RoleSelection() {
         <div className="hidden md:flex flex-col md:flex-row gap-6 justify-between items-stretch relative z-10 w-full px-4">
           <div
             onClick={() => setSelectedRole("creator")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-              selectedRole === "creator"
+            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "creator"
                 ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
                 : "bg-white/40 border border-[#CEFF1B] hover:bg-white/20"
-            }`}
+              }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
-                  selectedRole === "creator"
+                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "creator"
                     ? "border-black bg-[#C3FF00]/10"
                     : "border-gray-400 bg-white"
-                }`}
+                  }`}
               >
                 Creator
               </span>
@@ -247,19 +222,17 @@ export default function RoleSelection() {
 
           <div
             onClick={() => setSelectedRole("client")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-              selectedRole === "client"
+            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "client"
                 ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
                 : "bg-white/40 border border-[#CEFF1B] hover:bg-white/20"
-            }`}
+              }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
-                  selectedRole === "client"
+                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "client"
                     ? "border-black bg-[#C3FF00]/10"
                     : "border-gray-400 bg-white"
-                }`}
+                  }`}
               >
                 Client
               </span>
@@ -296,11 +269,10 @@ export default function RoleSelection() {
               <button
                 onClick={handleContinue}
                 disabled={!selectedRole}
-                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${
-                  selectedRole
+                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${selectedRole
                     ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
                     : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
-                }`}
+                  }`}
               >
                 Continue
               </button>

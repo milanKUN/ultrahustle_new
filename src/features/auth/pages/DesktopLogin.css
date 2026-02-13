@@ -274,45 +274,18 @@
 
 /* =========================================
    Mobile / Tablet Responsive - DesktopLogin
-   - Form/Card perfectly centered on mobile
-   - Keeps desktop exact sizes untouched
+   - Below 900px: Centered / Mobile mode
+   - Above 900px: Right-aligned / Desktop mode
 ========================================= */
 
-/* Tablets */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .desktop-login-container {
     justify-content: center;
     align-items: center;
-    /* ✅ center on tablet too */
-    padding: 0 24px;
-  }
-
-  .desktop-login-content {
-    margin-top: 0;
-    /* remove -100px on smaller screens */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-
-  .login-card-glass,
-  .signup-card-glass {
-    width: 440px !important;
-  }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .desktop-login-container {
-    justify-content: center;
-    align-items: center;
-    /* ✅ center vertically */
     padding: 18px 14px;
     min-height: 100vh;
   }
 
-  /* Background fit better on mobile */
   .desktop-login-bg {
     display: none !important;
   }
@@ -327,27 +300,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* ✅ center safety */
   }
 
-  /* Cards become fluid */
   .login-card-glass,
   .signup-card-glass {
     width: 100% !important;
     max-width: 420px !important;
-
     height: auto !important;
-    /* ✅ remove fixed height */
     max-height: 92vh;
-    /* ✅ viewport safe */
     overflow-y: auto;
-    /* ✅ scroll if needed */
-
     padding: 18px 16px 16px !important;
     border-radius: 20px;
   }
 
-  /* Tabs */
   .desktop-tab-switcher {
     padding: 4px;
     gap: 6px;
@@ -360,7 +325,6 @@
     border-radius: 10px;
   }
 
-  /* Labels + inputs slightly smaller */
   .form-group {
     margin-bottom: 8px;
   }
@@ -377,13 +341,11 @@
     padding: 0 44px 0 12px;
   }
 
-  /* Forgot link */
   .forgot-password-link {
     font-size: 12px;
     margin-top: 6px;
   }
 
-  /* Main button */
   .desktop-login-btn {
     height: 48px;
     font-size: 14px;
@@ -392,7 +354,6 @@
     border-radius: 12px;
   }
 
-  /* Divider */
   .desktop-divider {
     margin-bottom: 12px;
   }
@@ -402,7 +363,6 @@
     padding: 0 10px;
   }
 
-  /* Social buttons wrap */
   .desktop-social-buttons {
     flex-wrap: wrap;
     gap: 10px;

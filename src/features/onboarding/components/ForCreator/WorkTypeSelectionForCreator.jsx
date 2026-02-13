@@ -286,13 +286,13 @@ export default function WorkTypeSelectionForCreator() {
           <div
             onClick={() => setSelectedType("solo")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "solo"
-              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+              ? "bg-[#CEFF1B]  shadow-lg"
               : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedType === "solo"
+                className={`inline-block px-3 py-2 rounded-lg border-1 font-medium text-lg ${selectedType === "solo"
                   ? "border-black bg-[#FEFEFE]/66"
                   : "border-gray-900 bg-[#FEFEFE]/66"
                   }`}
@@ -302,11 +302,11 @@ export default function WorkTypeSelectionForCreator() {
             </div>
             <ul className="text-gray-700 text-base space-y-3">
               <li className="flex items-start gap-2">
-                <span className="text-gray-500">•</span>
+                <span className="text-[#2B2B2B]">•</span>
                 <span>I work individually</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-500">•</span>
+                <span className="text-[#2B2B2B]">•</span>
                 <span>I manage my own tasks and deliveries</span>
               </li>
             </ul>
@@ -316,13 +316,13 @@ export default function WorkTypeSelectionForCreator() {
           <div
             onClick={() => setSelectedType("team")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "team"
-              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+              ? "bg-[#CEFF1B]  shadow-lg"
               : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedType === "team"
+                className={`inline-block px-3 py-2 rounded-lg border-1 font-medium text-lg ${selectedType === "team"
                   ? "border-black bg-[#FEFEFE]/66"
                   : "border-gray-900 bg-[#FEFEFE]/66"
                   }`}
@@ -332,11 +332,11 @@ export default function WorkTypeSelectionForCreator() {
             </div>
             <ul className="text-gray-700 text-base space-y-3">
               <li className="flex items-start gap-2">
-                <span className="text-gray-500">•</span>
+                <span className="text-[#2B2B2B]">•</span>
                 <span>We have a team</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-gray-500">•</span>
+                <span className="text-[#2B2B2B]">•</span>
                 <span>Multiple people handle projects</span>
               </li>
             </ul>
@@ -353,14 +353,15 @@ export default function WorkTypeSelectionForCreator() {
               <select
                 value={teamSize}
                 onChange={(e) => setTeamSize(e.target.value)}
-                className="w-full p-4 rounded-xl border-2 border-gray-300 bg-gray-100/80 text-gray-700 focus:border-black focus:outline-none transition-all appearance-none cursor-pointer"
+                className="w-full h-[41px] px-4 pr-10 rounded-xl border-2 border-gray-300 bg-gray-100/80 text-gray-700 focus:border-black focus:outline-none transition-all appearance-none cursor-pointer"
                 style={{
                   backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
                   backgroundPosition: `right 1rem center`,
                   backgroundRepeat: `no-repeat`,
-                  backgroundSize: `1.5em 1.5em`,
+                  backgroundSize: `1.2em 1.2em`,
                 }}
               >
+
                 <option value="" disabled>
                   Select one
                 </option>
@@ -401,7 +402,7 @@ export default function WorkTypeSelectionForCreator() {
           <div className="flex justify-between items-center">
             <button
               onClick={handleReset}
-              className="px-8 py-3 rounded-lg border-2 border-black text-gray-600 font-medium text-lg hover:bg-gray-100 transition-all -ml-24"
+              className="px-8 py-3 rounded-lg border-1 border-black text-gray-600 font-medium text-lg hover:bg-gray-100 transition-all -ml-24"
             >
               Reset
             </button>
@@ -409,7 +410,7 @@ export default function WorkTypeSelectionForCreator() {
             <div className="flex gap-4">
               <button
                 onClick={handleBack}
-                className="px-10 py-3 rounded-lg border-2 border-black text-gray-700 font-medium text-lg hover:bg-gray-100 transition-all"
+                className="px-10 py-3 rounded-lg border-1 border-black text-gray-700 font-medium text-lg hover:bg-gray-100 transition-all"
               >
                 Back
               </button>
@@ -422,7 +423,7 @@ export default function WorkTypeSelectionForCreator() {
                 className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${selectedType &&
                   (selectedType !== "team" || (teamSize && buildTeamPlan))
                   ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
-                  : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
+                  : "bg-gray-200 border-1 border-black text-gray-700 cursor-not-allowed"
                   }`}
               >
                 Continue
