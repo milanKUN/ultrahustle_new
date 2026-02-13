@@ -17,7 +17,7 @@ export default function CreatorOnboarding() {
   return (
     <div className="min-h-screen w-full flex flex-col md:flex-row">
       {/* Character Image - Top on mobile, Left side on desktop */}
-      <div className="w-full md:w-[30%] relative overflow-hidden flex items-center justify-center h-[50vh] md:h-auto">
+      <div className="w-full md:w-[46%] relative overflow-hidden flex items-center justify-center h-[50vh] md:h-auto">
         <div className="absolute inset-0 bg-gradient-to-b from-[#E8E8E8] via-[#E0E0E0] to-[#D8D8D8]"></div>
         <img
           src="/onboarding-character.png"
