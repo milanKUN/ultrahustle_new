@@ -141,9 +141,8 @@ export default function CreatorNeeds() {
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
+                  }`}
               />
             ))}
           </div>
@@ -155,37 +154,15 @@ export default function CreatorNeeds() {
         {/* Animated Gradient Glows - Desktop Only */}
         <div
           className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.4) 0%, rgba(195, 255, 0, 0.15) 40%, transparent 70%)",
-            bottom: "-15%",
-            left: "-15%",
-            filter: "blur(60px)",
-            animation: "glow-bottomleft-center-right 8s ease-in-out infinite",
-          }}
+
         />
         <div
           className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.35) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)",
-            top: "-10%",
-            right: "-10%",
-            filter: "blur(50px)",
-            animation: "glow-center-topright 8s ease-in-out infinite",
-          }}
+
         />
         <div
           className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.3) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)",
-            top: "40%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            filter: "blur(50px)",
-            animation: "glow-rotate 6s steps(3) infinite",
-          }}
+
         />
 
         <div className="relative z-10 w-full max-w-[900px]">
@@ -353,24 +330,21 @@ export default function CreatorNeeds() {
                             className={`
                               flex items-center gap-3.5 px-6 py-3.5 rounded-2xl cursor-pointer border-2 transition-all duration-300 backdrop-blur-sm justify-center whitespace-nowrap
                               ${rowIndex === 0 ? "flex-1" : "w-full md:w-[24%]"}
-                              ${
-                                isSelected
-                                  ? "bg-[#CEFF1B] border-black/50 shadow-md scale-105"
-                                  : "bg-transparent border-gray-400 hover:bg-white/10"
+                              ${isSelected
+                                ? "bg-[#CEFF1B] border-black/50 shadow-md scale-105"
+                                : "bg-transparent border-gray-400 hover:bg-white/10"
                               }
                             `}
                           >
                             <div
-                              className={`p-1.5 rounded-xl flex items-center justify-center shrink-0 ${
-                                isSelected ? "bg-white" : "bg-[#CEFF1B]"
-                              }`}
+                              className={`p-1.5 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? "bg-white" : "bg-[#CEFF1B]"
+                                }`}
                             >
                               <Icon size={22} className="text-black" strokeWidth={2} />
                             </div>
                             <span
-                              className={`font-bold text-lg ${
-                                isSelected ? "text-black" : "text-gray-800"
-                              }`}
+                              className={`font-bold text-lg ${isSelected ? "text-black" : "text-gray-800"
+                                }`}
                             >
                               {category.label}
                             </span>
@@ -459,11 +433,10 @@ export default function CreatorNeeds() {
                     <button
                       key={opt}
                       onClick={() => setHasPortfolio(opt.toLowerCase())}
-                      className={`flex-1 p-2 md:py-3 rounded-md md:rounded-xl border font-medium transition-all text-xs md:text-base ${
-                        hasPortfolio === opt.toLowerCase()
-                          ? "bg-[#CEFF1B] border-black text-black"
-                          : "bg-transparent border-gray-400 text-gray-600"
-                      }`}
+                      className={`flex-1 p-2 md:py-3 rounded-md md:rounded-xl border font-medium transition-all text-xs md:text-base ${hasPortfolio === opt.toLowerCase()
+                        ? "bg-[#CEFF1B] border-black text-black"
+                        : "bg-transparent border-gray-400 text-gray-600"
+                        }`}
                     >
                       {opt}
                     </button>
@@ -509,11 +482,10 @@ export default function CreatorNeeds() {
                   <button
                     onClick={handleContinue}
                     disabled={!isContinueEnabled}
-                    className={`px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg font-medium text-xs md:text-lg transition-all whitespace-nowrap ${
-                      isContinueEnabled
-                        ? "bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]"
-                        : "bg-lime-200 border border-black text-black cursor-not-allowed"
-                    }`}
+                    className={`px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg font-medium text-xs md:text-lg transition-all whitespace-nowrap ${isContinueEnabled
+                      ? "bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]"
+                      : "bg-lime-200 border border-black text-black cursor-not-allowed"
+                      }`}
                   >
                     Continue
                   </button>

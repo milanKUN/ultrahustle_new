@@ -112,37 +112,15 @@ export default function WorkTypeSelection() {
         {/* Animated Gradient Glows - Desktop Only */}
         <div
           className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.4) 0%, rgba(195, 255, 0, 0.15) 40%, transparent 70%)",
-            bottom: "-15%",
-            left: "-15%",
-            filter: "blur(60px)",
-            animation: "glow-bottomleft-center-right 8s ease-in-out infinite",
-          }}
+
         />
         <div
           className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.35) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)",
-            top: "-10%",
-            right: "-10%",
-            filter: "blur(50px)",
-            animation: "glow-center-topright 8s ease-in-out infinite",
-          }}
+
         />
         <div
           className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.3) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)",
-            top: "40%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            filter: "blur(50px)",
-            animation: "glow-rotate 6s steps(3) infinite",
-          }}
+
         />
 
         {/* ✅ MOBILE (fixed, screenshot-like) */}
@@ -262,7 +240,7 @@ export default function WorkTypeSelection() {
             onClick={() => setSelectedType("solo")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "solo"
               ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">
@@ -292,7 +270,7 @@ export default function WorkTypeSelection() {
             onClick={() => setSelectedType("team")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "team"
               ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">

@@ -32,37 +32,15 @@ export default function CreatorProfileSetup() {
         {/* Animated Gradient Glows - Desktop only */}
         <div
           className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.4) 0%, rgba(195, 255, 0, 0.15) 40%, transparent 70%)",
-            bottom: "-15%",
-            left: "-15%",
-            filter: "blur(60px)",
-            animation: "glow-bottomleft-center-right 8s ease-in-out infinite",
-          }}
+
         />
         <div
           className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.35) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)",
-            top: "-10%",
-            right: "-10%",
-            filter: "blur(50px)",
-            animation: "glow-center-topright 8s ease-in-out infinite",
-          }}
+
         />
         <div
           className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(195, 255, 0, 0.3) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)",
-            top: "40%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            filter: "blur(50px)",
-            animation: "glow-rotate 6s steps(3) infinite",
-          }}
+
         />
 
         {/* ✅ MOBILE (screenshot-style) */}
@@ -150,11 +128,10 @@ export default function CreatorProfileSetup() {
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
-                className={`w-3 h-3 md:w-4 md:h-4 rounded-full transition-all duration-300 ${
-                  index === currentStep
-                    ? "bg-[#C3FF00]"
-                    : "bg-gray-500 md:bg-gray-600 hover:bg-gray-400"
-                }`}
+                className={`w-3 h-3 md:w-4 md:h-4 rounded-full transition-all duration-300 ${index === currentStep
+                  ? "bg-[#C3FF00]"
+                  : "bg-gray-500 md:bg-gray-600 hover:bg-gray-400"
+                  }`}
               />
             ))}
           </div>

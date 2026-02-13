@@ -1,5 +1,33 @@
 @import "./DesktopLogin.css";
 
+/* ✅ Global Neon Theme for Signup */
+.desktop-login-container.signup-mode * {
+  scrollbar-width: thin;
+  scrollbar-color: #CEFF1B rgba(0, 0, 0, 0.05);
+}
+
+.desktop-login-container.signup-mode ::selection {
+  background: #CEFF1B !important;
+  color: #1a1a1a !important;
+}
+
+/* ✅ Webkit scrollbar (Chrome/Edge/Safari) */
+.desktop-login-container.signup-mode ::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+.desktop-login-container.signup-mode ::-webkit-scrollbar-thumb {
+  background: #CEFF1B !important;
+  border-radius: 10px !important;
+  border: 2px solid transparent !important;
+  background-clip: padding-box !important;
+}
+
+.desktop-login-container.signup-mode ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-radius: 10px !important;
+}
+
 /* ================================
    Desktop Signup - FULL FIX
    - Card auto height (content visible)
@@ -11,24 +39,40 @@
 .signup-card-glass {
   width: 481px !important;
   /* ✅ Match Login Card */
+  height: 553px !important;
+  /* ✅ Match Login Card Exact Height */
   padding: 26px 28px 22px !important;
   /* ✅ Match Login Card Padding */
   margin: 0 !important;
-
-  /* Height / visibility */
-  min-height: fit-content;
-  height: auto !important;
-  max-height: 90vh;
-  overflow-y: auto;
+  overflow: hidden !important;
+  /* ✅ Card itself doesn't scroll */
 
   display: flex;
   flex-direction: column;
 }
 
+/* ✅ Only the form inside scrolls */
+.signup-card-glass form {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+  /* Space for scrollbar */
+}
+
 /* Right-alignment overrides for Signup mode */
 .desktop-login-container.signup-mode {
+  height: 100vh !important;
+  /* ✅ Prevent page scroll */
+  overflow: hidden !important;
+  /* ✅ Only card scrolls */
   justify-content: flex-end !important;
   padding: 0 70px !important;
+}
+
+.desktop-login-container.signup-mode .desktop-login-bg img {
+  object-position: left center !important;
+  /* ✅ Match Login Exactly */
 }
 
 .desktop-login-container.signup-mode .desktop-login-content {
@@ -81,10 +125,97 @@
 }
 
 .form-select-desktop:focus {
-  outline: none;
+  outline: none !important;
   background-color: rgba(235, 235, 235, 0.9);
-  border-color: #CEFF1B;
+  border-color: #CEFF1B !important;
+  box-shadow: 0 0 0 4px rgba(206, 255, 27, 0.25) !important;
+
 }
+
+/* ===== Custom Role Select ===== */
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.selected-option {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 14px;
+  border-radius: 12px;
+
+  background: rgba(235, 235, 235, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #2b2b2b;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+
+
+
+
+.arrow {
+  font-size: 12px;
+  color: #2b2b2b;
+  transition: 0.25s ease;
+}
+
+.selected-option.open .arrow {
+  transform: rotate(180deg);
+  color: #CEFF1B;
+  text-shadow: 0 0 6px rgba(206, 255, 27, 0.8);
+}
+
+/* Dropdown */
+.options-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  background: #F2F2F2;
+  border: 1px solid rgba(206, 255, 27, 0.35);
+  border-radius: 0px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+}
+
+.selected-option {
+  font-size: 12px;
+}
+
+.options-list {
+  font-size: 12px;
+}
+
+.options-list li {
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  color: #111;
+}
+
+.options-list li:hover {
+  background: #CEFF1B;
+  box-shadow: 0 0 0 3px rgba(206, 255, 27, 0.18);
+}
+
+.options-list li.active {
+  background: #CEFF1B;
+  font-weight: 600;
+}
+
+
+
 
 /* ===== Checkbox ===== */
 .checkbox-group {
@@ -273,17 +404,19 @@
 }
 
 /* ===== Optional: Nice compact scrollbar (Chrome/Edge) ===== */
-.signup-card-glass::-webkit-scrollbar {
-  width: 6px;
+/* ✅ Form custom scrollbar - ensure it shows */
+.signup-card-glass form::-webkit-scrollbar {
+  width: 8px !important;
 }
 
-.signup-card-glass::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.18);
-  border-radius: 8px;
+.signup-card-glass form::-webkit-scrollbar-thumb {
+  background: #CEFF1B !important;
+  border-radius: 10px !important;
 }
 
-.signup-card-glass::-webkit-scrollbar-track {
-  background: transparent;
+.signup-card-glass form::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border-radius: 10px !important;
 }
 
 /* ================================
