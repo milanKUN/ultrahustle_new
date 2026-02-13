@@ -171,7 +171,7 @@ export default function Sidebar({
           <aside
             className={`
       relative
-      ${isMobile ? "fixed top-0 left-0 h-screen w-[289px] z-[9999]" : "relative"
+      ${isMobile ? "fixed top-0 left-0 h-screen w-[289px] z-[9999]" : "relative w-[289px] min-w-[289px] min-h-[calc(100vh-85px)]"
               }
       px-6 py-6 flex flex-col
     `}
@@ -257,15 +257,7 @@ export default function Sidebar({
               ))}
             </nav>
 
-            <div
-              className="w-full px-4 pb-4 mt-2 ml-2"
-              style={{
-                position: window.innerWidth >= 768 ? "absolute" : "static",
-                bottom: window.innerWidth >= 768 ? 0 : undefined,
-                left: window.innerWidth >= 768 ? 0 : undefined,
-                right: window.innerWidth >= 768 ? 0 : undefined,
-              }}
-            >
+            <div className="w-full px-4 pb-4 mt-auto ml-2">
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 className="

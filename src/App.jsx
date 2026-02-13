@@ -32,6 +32,7 @@ import SoloContractListing from "./features/marketplace/pages/SoloContractListin
 
 import MilestonesPage from "./features/marketplace/pages/MilestonesPage";
 import SoloMilestonesPage from "./features/marketplace/pages/SoloMilestonesPage";
+import CreateServiceListing from "./features/marketplace/pages/CreateServiceListing";
 
 
 export default function App() {
@@ -88,6 +89,7 @@ export default function App() {
           <Route path="/solo-contracts-listing" element={<SoloContractListing theme={theme} setTheme={setTheme} />} />
           <Route path="/milestones" element={<MilestonesPage theme={theme} setTheme={setTheme} />} />
           <Route path="/solo-milestones" element={<SoloMilestonesPage theme={theme} setTheme={setTheme} />} />
+          <Route path="/create-service-listing" element={<CreateServiceListing theme={theme} setTheme={setTheme} />} />
           
         </Routes>
       </div>

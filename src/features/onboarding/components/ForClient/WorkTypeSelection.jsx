@@ -99,9 +99,8 @@ export default function WorkTypeSelection() {
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
+                  }`}
               />
             ))}
           </div>
@@ -261,19 +260,17 @@ export default function WorkTypeSelection() {
           {/* Solo Card */}
           <div
             onClick={() => setSelectedType("solo")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-              selectedType === "solo"
-                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                : "bg-white/40 border border-[#CEFF1B] hover:bg-white/20"
-            }`}
+            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "solo"
+              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
-                  selectedType === "solo"
-                    ? "border-black bg-[#C3FF00]/10"
-                    : "border-gray-400 bg-white"
-                }`}
+                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedType === "solo"
+                  ? "border-black bg-[#FEFEFE]/66"
+                  : "border-gray-400 bg-[#FEFEFE]/66"
+                  }`}
               >
                 Solo Creator / Solo Professional
               </span>
@@ -293,19 +290,17 @@ export default function WorkTypeSelection() {
           {/* Team Card */}
           <div
             onClick={() => setSelectedType("team")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-              selectedType === "team"
-                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                : "bg-white/40 border border-[#CEFF1B] hover:bg-white/20"
-            }`}
+            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "team"
+              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
-                  selectedType === "team"
-                    ? "border-black bg-[#C3FF00]/10"
-                    : "border-gray-400 bg-white"
-                }`}
+                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedType === "team"
+                  ? "border-black bg-[#FEFEFE]/66 "
+                  : "border-gray-400 bg-[#FEFEFE]/66"
+                  }`}
               >
                 Team / Organization
               </span>
@@ -362,11 +357,10 @@ export default function WorkTypeSelection() {
                     key={option}
                     type="button"
                     onClick={() => setBuildTeamPlan(option.toLowerCase())}
-                    className={`flex-1 py-3 px-4 rounded-xl border-2 font-medium transition-all ${
-                      buildTeamPlan === option.toLowerCase()
-                        ? "bg-[#CEFF1B] border-black text-black"
-                        : "bg-white/50 border-[#2B2B2B] text-[#2B2B2B] hover:bg-white/80"
-                    }`}
+                    className={`flex-1 py-3 px-4 rounded-xl border-2 font-medium transition-all ${buildTeamPlan === option.toLowerCase()
+                      ? "bg-[#CEFF1B] border-black text-black"
+                      : "bg-white/50 border-[#2B2B2B] text-[#2B2B2B] hover:bg-white/80"
+                      }`}
                   >
                     {option}
                   </button>
@@ -399,11 +393,10 @@ export default function WorkTypeSelection() {
               <button
                 onClick={handleContinue}
                 disabled={!canContinue}
-                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${
-                  canContinue
-                    ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
-                    : "bg-[#CEFF1B]/50 border border-[#2B2B2B] text-[#2B2B2B] cursor-not-allowed"
-                }`}
+                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${canContinue
+                  ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
+                  : "bg-[#CEFF1B]/50 border border-[#2B2B2B] text-[#2B2B2B] cursor-not-allowed"
+                  }`}
               >
                 Continue
               </button>

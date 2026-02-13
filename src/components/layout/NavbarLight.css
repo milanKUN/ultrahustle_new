@@ -245,14 +245,15 @@
 
 
 .search-result-title {
-  font-size: 15px !important; 
+  font-size: 15px !important;
   font-weight: 500;
-  
+
   color: #2B2B2B;
 }
 
 .search-result-description {
-  font-size: 13px !important;         /* ✅ smaller */
+  font-size: 13px !important;
+  /* ✅ smaller */
   line-height: 1.15;
   color: rgba(92, 92, 92, 0.77);
   font-weight: 400;
@@ -313,7 +314,7 @@
 
 /* base */
 .search-result-item {
-  
+
   border: none !important;
   border-radius: 10px;
   transition: all 0.25s ease;
@@ -574,13 +575,13 @@
 }
 
 .message-name {
-  font-size: 15px !important; 
+  font-size: 15px !important;
   font-weight: 300;
   color: #000000;
 }
 
 .message-text {
-  font-size: 13px !important; 
+  font-size: 13px !important;
   font-weight: 400;
   color: #000000;
   white-space: nowrap;
@@ -739,7 +740,7 @@
 }
 
 .notification-text {
-  font-size: 15px !important; 
+  font-size: 15px !important;
   font-weight: 400;
   color: #000000;
 }
@@ -849,7 +850,8 @@
 
   /* ✅ FORCE CENTER NOTIFICATION DROPDOWN */
   .notifications-wrapper {
-    position: static !important; /* avoid weird right offset from parent */
+    position: static !important;
+    /* avoid weird right offset from parent */
   }
 
   .notifications-dropdown {
@@ -859,8 +861,10 @@
     transform: translateX(-50%) !important;
     right: auto !important;
 
-    width: calc(100vw - 20px) !important;   /* 10px gap left+right */
-    max-width: 520px !important;           /* optional: desktop-like max */
+    width: calc(100vw - 20px) !important;
+    /* 10px gap left+right */
+    max-width: 520px !important;
+    /* optional: desktop-like max */
     border-radius: 12px !important;
 
     z-index: 9999 !important;
@@ -869,7 +873,7 @@
   /* ✅ Arrow (triangle) center */
   .notifications-dropdown::before {
     right: auto !important;
-    left:92% !important;
+    left: 92% !important;
     transform: translateX(-50%) !important;
   }
 }
@@ -903,6 +907,7 @@
 .inreview-header.dark .notification-item:hover {
   background: #3a3a3a !important;
 }
+
 /* ✅ DARK MODE: Messages list rows always visible */
 .inreview-header.dark .message-item,
 .inreview-header.dark .message-item:nth-child(even),

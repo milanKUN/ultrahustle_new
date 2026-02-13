@@ -31,38 +31,19 @@ export default function CreatorOnboarding() {
         {/* Animated Gradient Glow - Bottom Left */}
         <div
           className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
-          style={{
-            background: 'radial-gradient(circle, rgba(195, 255, 0, 0.4) 0%, rgba(195, 255, 0, 0.15) 40%, transparent 70%)',
-            bottom: '-15%',
-            left: '-15%',
-            filter: 'blur(60px)',
-            animation: 'glow-bottomleft-center-right 8s ease-in-out infinite',
-          }}
+
         ></div>
 
         {/* Animated Gradient Glow - Top Right */}
         <div
           className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
-          style={{
-            background: 'radial-gradient(circle, rgba(195, 255, 0, 0.35) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)',
-            top: '-10%',
-            right: '-10%',
-            filter: 'blur(50px)',
-            animation: 'glow-center-topright 8s ease-in-out infinite',
-          }}
+
         ></div>
 
         {/* Animated Gradient Glow - Center */}
         <div
           className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
-          style={{
-            background: 'radial-gradient(circle, rgba(195, 255, 0, 0.3) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)',
-            top: '40%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            filter: 'blur(50px)',
-            animation: 'glow-rotate 6s steps(3) infinite',
-          }}
+
         ></div>
 
         {/* Content Card Container */}
@@ -102,8 +83,8 @@ export default function CreatorOnboarding() {
                 <div
                   key={index}
                   className={`w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full transition-all duration-300 ${index === currentStep
-                      ? 'bg-[#C3FF00] w-3.5 h-3.5 md:w-5 md:h-5 shadow-md shadow-[#C3FF00]/40'
-                      : 'bg-[#5C5C5C] hover:bg-gray-400'
+                    ? 'bg-[#C3FF00] w-3.5 h-3.5 md:w-5 md:h-5 shadow-md shadow-[#C3FF00]/40'
+                    : 'bg-[#5C5C5C] hover:bg-gray-400'
                     }`}
                 />
               ))}
