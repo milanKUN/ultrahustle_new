@@ -565,7 +565,7 @@
 
     padding: 18px 14px !important;
     background: linear-gradient(135deg, #D9D9D9, #A6A6A6) !important;
-    margin-top: 20px !important;
+
   }
 
   .desktop-login-container.signup-mode .desktop-login-content {
@@ -594,7 +594,7 @@
   }
 
   .desktop-login-container.signup-mode .signup-card-glass form {
-    max-height: 40.5vh !important;
+    max-height: 36vh !important;
     overflow-y: auto !important;
     /* ✅ only form scroll */
   }
