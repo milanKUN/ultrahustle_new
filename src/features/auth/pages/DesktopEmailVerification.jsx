@@ -75,16 +75,16 @@ const DesktopEmailVerification = () => {
 
             {/* Main Content Area */}
             <div className="desktop-login-content">
-                
+
                 {/* Verification Card */}
                 <div className="login-card-glass email-verification-card">
-                    
+
                     {step === 'input' ? (
                         <>
                             <div className="verification-header">
                                 <h2>Email Verification</h2>
                                 <p className="verification-desc">
-                                    We sent a reset code to <strong>dev@gmail.com</strong><br/>
+                                    We sent a reset code to <strong>dev@gmail.com</strong><br />
                                     Enter the 6 digit code below to activate your account
                                 </p>
                             </div>
@@ -112,11 +112,11 @@ const DesktopEmailVerification = () => {
 
                             <div className="resend-text-desktop">
                                 {error ? (
-                                     <span className="resend-code-error">
-                                         <button className="resend-link-desktop" disabled={timer > 0} onClick={handleResend}>
+                                    <span className="resend-code-error">
+                                        <button className="resend-link-desktop" disabled={timer > 0} onClick={handleResend}>
                                             Resend Code
-                                         </button> in {timer > 0 ? `${timer} seconds` : '0 seconds'}
-                                     </span>
+                                        </button> in {timer > 0 ? `${timer} seconds` : '0 seconds'}
+                                    </span>
                                 ) : (
                                     <>
                                         Haven't got the sms yet? <button className="resend-link-desktop" disabled={timer > 0} onClick={handleResend}>Resend Code</button>
@@ -126,7 +126,7 @@ const DesktopEmailVerification = () => {
                             </div>
 
                             <div className="back-to-login">
-                                <button type="button" onClick={() => navigate('/desktop-login')}>
+                                <button type="button" onClick={() => navigate('/login')}>
                                     ← Back to log in
                                 </button>
                             </div>
@@ -135,14 +135,14 @@ const DesktopEmailVerification = () => {
                         <div className="success-container-desktop">
                             <div className="success-icon-desktop">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 32 32" fill="none">
-                                    <path d="M24.5998 3.89597C22.1055 1.96752 18.9766 0.820068 15.5798 0.820068C7.4281 0.820068 0.819824 7.42835 0.819824 15.5801C0.819824 23.7318 7.4281 30.3401 15.5798 30.3401C23.7315 30.3401 30.3398 23.7318 30.3398 15.5801C30.3398 13.5442 29.9276 11.6045 29.1821 9.84007" stroke="#CEFF1B" strokeWidth="1.64" strokeLinecap="round"/>
-                                    <path d="M9.02002 13.5073L14.8847 19.372" stroke="#CEFF1B" strokeWidth="1.64" strokeLinecap="round"/>
-                                    <path d="M15.3618 19.0198L29.4615 4.92008" stroke="#CEFF1B" strokeWidth="1.64" strokeLinecap="round"/>
+                                    <path d="M24.5998 3.89597C22.1055 1.96752 18.9766 0.820068 15.5798 0.820068C7.4281 0.820068 0.819824 7.42835 0.819824 15.5801C0.819824 23.7318 7.4281 30.3401 15.5798 30.3401C23.7315 30.3401 30.3398 23.7318 30.3398 15.5801C30.3398 13.5442 29.9276 11.6045 29.1821 9.84007" stroke="#CEFF1B" strokeWidth="1.64" strokeLinecap="round" />
+                                    <path d="M9.02002 13.5073L14.8847 19.372" stroke="#CEFF1B" strokeWidth="1.64" strokeLinecap="round" />
+                                    <path d="M15.3618 19.0198L29.4615 4.92008" stroke="#CEFF1B" strokeWidth="1.64" strokeLinecap="round" />
                                 </svg>
                             </div>
                             <h3 className="success-header">Verification Successful</h3>
                             <p className="success-text">
-                                You're good to go. Let's start building<br/>
+                                You're good to go. Let's start building<br />
                                 something extraordinary.
                             </p>
                             <button className="desktop-login-btn primary-lime" onClick={() => navigate('/create-team')}>
