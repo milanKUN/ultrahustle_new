@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../OnboardingSelect.css";
 import {
   Palette,
   Code,
@@ -19,6 +20,21 @@ export default function ClientNeeds() {
   const [hiringForTeam, setHiringForTeam] = useState(null); // 'yes', 'no'
   const [businessName, setBusinessName] = useState("");
   const [role, setRole] = useState("");
+
+  // Custom Dropdown State
+  const [isRoleOpen, setIsRoleOpen] = useState(false);
+  const roleRef = useRef(null);
+
+  // Handle click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (roleRef.current && !roleRef.current.contains(event.target)) {
+        setIsRoleOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const currentStep = 4;
   const totalSteps = 8;
@@ -40,7 +56,7 @@ export default function ClientNeeds() {
     );
   };
 
-  const handleBack = () => navigate("/goals-selection");
+  const handleBack = () => navigate("/client-goals-selection");
 
   const handleReset = () => {
     setSelectedCategories([]);
@@ -59,7 +75,7 @@ export default function ClientNeeds() {
     (hiringForTeam === "no" || (hiringForTeam === "yes" && businessName && role));
 
   const handleContinue = () => {
-    if (isContinueEnabled) navigate("/business-details");
+    if (isContinueEnabled) navigate("/client-business-details");
   };
 
   // ✅ Mobile chip (screenshot-style)
@@ -267,18 +283,38 @@ export default function ClientNeeds() {
                   <label className="block text-[11px] font-semibold text-black/70 mb-2">
                     Role
                   </label>
-                  <select
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:border-black"
-                  >
-                    <option value="" disabled>
-                      Select
-                    </option>
-                    <option value="Manager">Manager</option>
-                    <option value="Founder">Founder</option>
-                    <option value="HR">HR</option>
-                  </select>
+                  <div className="onboarding-custom-select" ref={roleRef}>
+                    <div
+                      className={`onboarding-selected-option ${isRoleOpen ? "open" : ""}`}
+                      onClick={() => setIsRoleOpen(!isRoleOpen)}
+                    >
+                      <span>{role || "Select"}</span>
+                      <span className="onboarding-arrow">▼</span>
+                    </div>
+
+                    {isRoleOpen && (
+                      <ul className="onboarding-options-list">
+                        <li
+                          className="text-gray-400 cursor-not-allowed"
+                          style={{ pointerEvents: "none" }}
+                        >
+                          Select
+                        </li>
+                        {["Manager", "Founder", "HR"].map((opt) => (
+                          <li
+                            key={opt}
+                            className={role === opt ? "active" : ""}
+                            onClick={() => {
+                              setRole(opt);
+                              setIsRoleOpen(false);
+                            }}
+                          >
+                            {opt}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -397,8 +433,8 @@ export default function ClientNeeds() {
                       key={opt}
                       onClick={() => setFrequency(opt.toLowerCase())}
                       className={`flex-1 py-1.5 md:py-3 px-2 rounded-md md:rounded-xl border border-black font-medium transition-all text-xs md:text-base ${frequency === opt.toLowerCase()
-                          ? "bg-[#CEFF1B] border-black text-black"
-                          : "bg-transparent border-[#2B2B2B] text-gray-900"
+                        ? "bg-[#CEFF1B] border-black text-black"
+                        : "bg-transparent border-[#2B2B2B] text-gray-900"
                         }`}
                     >
                       {opt}
@@ -418,8 +454,8 @@ export default function ClientNeeds() {
                     key={opt}
                     onClick={() => setHiringForTeam(opt.toLowerCase())}
                     className={`px-6 py-2 md:px-8 md:py-3 border border-black rounded-md md:rounded-xl border font-medium transition-all text-xs md:text-base ${hiringForTeam === opt.toLowerCase()
-                        ? "bg-[#CEFF1B] border-black text-black"
-                        : "bg-transparent border-[#2B2B2B] text-gray-600"
+                      ? "bg-[#CEFF1B] border-black text-black"
+                      : "bg-transparent border-[#2B2B2B] text-gray-600"
                       }`}
                   >
                     {opt}
@@ -446,35 +482,37 @@ export default function ClientNeeds() {
                   <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
                     Role
                   </label>
-                  <div className="relative">
-                    <select
-                      value={role}
-                      onChange={(e) => setRole(e.target.value)}
-                      className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 focus:border-black focus:outline-none transition-all font-medium text-xs md:text-base appearance-none pr-8"
+                  <div className="onboarding-custom-select" ref={roleRef}>
+                    <div
+                      className={`onboarding-selected-option ${isRoleOpen ? "open" : ""}`}
+                      onClick={() => setIsRoleOpen(!isRoleOpen)}
                     >
-                      <option value="" disabled>
-                        Type here
-                      </option>
-                      <option value="Manager">Manager</option>
-                      <option value="Founder">Founder</option>
-                      <option value="HR">HR</option>
-                    </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                      <svg
-                        className="w-3 h-3 text-gray-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 9l-7 7-7-7"
-                        ></path>
-                      </svg>
+                      <span>{role || "Type here"}</span>
+                      <span className="onboarding-arrow">▼</span>
                     </div>
+
+                    {isRoleOpen && (
+                      <ul className="onboarding-options-list">
+                        <li
+                          className="text-gray-400 cursor-not-allowed"
+                          style={{ pointerEvents: "none" }}
+                        >
+                          Type here
+                        </li>
+                        {["Manager", "Founder", "HR"].map((opt) => (
+                          <li
+                            key={opt}
+                            className={role === opt ? "active" : ""}
+                            onClick={() => {
+                              setRole(opt);
+                              setIsRoleOpen(false);
+                            }}
+                          >
+                            {opt}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
               </div>
@@ -500,8 +538,8 @@ export default function ClientNeeds() {
                     onClick={handleContinue}
                     disabled={!isContinueEnabled}
                     className={`px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg font-medium text-xs md:text-lg transition-all whitespace-nowrap ${isContinueEnabled
-                        ? "bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]"
-                        : "bg-lime-200 border border-[#2B2B2B] text-gray-400 cursor-not-allowed"
+                      ? "bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]"
+                      : "bg-lime-200 border border-[#2B2B2B] text-gray-400 cursor-not-allowed"
                       }`}
                   >
                     Continue

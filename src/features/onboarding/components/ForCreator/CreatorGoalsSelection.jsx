@@ -25,12 +25,16 @@ export default function CreatorGoalsSelection() {
     { id: "build-team", label: "Build a team", icon: Users },
     { id: "promote-listings", label: "Promote my listings", icon: FileText },
     { id: "build-client-base", label: "Build a client base", icon: TrendingUp },
-    { id: "ai-match", label: "Get discovered faster (AI Match)", icon: Sparkles },
+    {
+      id: "ai-match",
+      label: "Get discovered faster (AI Match)",
+      icon: Sparkles,
+    },
   ];
 
   const toggleGoal = (id) => {
     setSelectedGoals((prev) =>
-      prev.includes(id) ? prev.filter((g) => g !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((g) => g !== id) : [...prev, id],
     );
   };
 
@@ -54,7 +58,9 @@ export default function CreatorGoalsSelection() {
         onClick={() => toggleGoal(goal.id)}
         className={[
           "flex items-center gap-2 px-3 py-2 rounded-xl border transition-all",
-          active ? "bg-[#CEFF1B] border-black shadow-sm" : "bg-white border-[#CEFF1B]",
+          active
+            ? "bg-[#CEFF1B] border-black shadow-sm"
+            : "bg-white border-[#CEFF1B]",
         ].join(" ")}
       >
         <span
@@ -106,11 +112,16 @@ export default function CreatorGoalsSelection() {
           </button>
 
           {/* Question */}
-          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-center md:items-start text-center md:text-left px-4 md:px-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-2 md:mb-4">
-              What do you want to achieve?
+          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-center md:items-start text-center md:text-left px-2 sm:px-4 md:px-0">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
+              What do you want
             </h2>
-            <p className="text-black/60 text-xl md:text-xl">Select multiple</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
+              to achieve?
+            </h2>
+            <p className="text-black/60 text-sm sm:text-base md:text-xl mt-2 sm:mt-3 md:mt-6">
+              Select multiple
+            </p>
           </div>
 
           {/* Step Indicators - Desktop Only */}
@@ -118,8 +129,9 @@ export default function CreatorGoalsSelection() {
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                  }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentStep ? "bg-black w-4 h-4" : "bg-white"
+                }`}
               />
             ))}
           </div>
@@ -129,18 +141,9 @@ export default function CreatorGoalsSelection() {
       {/* Bottom Section */}
       <div className="w-full md:w-[70%] bg-[#E0E0E0] md:bg-gradient-to-br md:from-[#E8E8E8] md:via-[#E0E0E0] md:to-[#D8D8D8] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 px-3 py-6 md:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
         {/* Animated Gradient Glows - Desktop Only */}
-        <div
-          className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
-
-        />
-        <div
-          className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
-
-        />
-        <div
-          className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
-
-        />
+        <div className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0" />
+        <div className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0" />
+        <div className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0" />
 
         {/* ✅ MOBILE (screenshot-like) */}
         <div className="md:hidden w-full max-w-[420px] relative z-10">
@@ -198,7 +201,7 @@ export default function CreatorGoalsSelection() {
 
         {/* ✅ DESKTOP (unchanged) */}
         <div className="hidden md:block relative z-10 w-full max-w-[900px]">
-          <div className="-mt-6 bg-white/40 backdrop-blur-md border border-[#CEFF1B] rounded-[30px] p-8 md:p-12 shadow-xl min-h-[500px]">
+          <div className="-mt-6  border border-[#CEFF1B] rounded-[30px] p-8 md:p-12  min-h-[500px]">
             <div className="flex flex-wrap gap-4 justify-center md:justify-start mt-6">
               {goals.map((goal) => {
                 const Icon = goal.icon;
@@ -210,18 +213,22 @@ export default function CreatorGoalsSelection() {
                     onClick={() => toggleGoal(goal.id)}
                     className={`
                       flex items-center gap-4 px-6 py-4 rounded-xl cursor-pointer border-2 transition-all duration-300 backdrop-blur-sm
-                      ${isSelected
-                        ? "bg-[#CEFF1B] border-black shadow-lg scale-105"
-                        : "bg-white/20 border-black/10 hover:bg-white/30 hover:border-black/30"
+                      ${
+                        isSelected
+                          ? "bg-[#CEFF1B] border-[0.6px] border-[#2B2B2B] scale-105"
+                          : "bg-white/20 border-[#2B2B2B] hover:border-black/30"
                       }
                     `}
                   >
+
+                    
                     <div className="bg-[#CEFF1B] p-2 rounded-lg flex items-center justify-center shrink-0">
                       <Icon size={20} className="text-black" strokeWidth={2} />
                     </div>
                     <span
-                      className={`font-semibold text-lg ${isSelected ? "text-black" : "text-gray-800"
-                        }`}
+                      className={`font-semibold text-lg ${
+                        isSelected ? "text-black" : "text-gray-800"
+                      }`}
                     >
                       {goal.label}
                     </span>
@@ -236,26 +243,28 @@ export default function CreatorGoalsSelection() {
         <div className="hidden md:block mt-16 relative z-10 w-full max-w-[900px]">
           <div className="flex justify-between items-center">
             <button
-              onClick={handleReset}
-              className="px-8 py-3 rounded-lg border border-black text-black font-medium text-lg hover:bg-gray-100 transition-all"
-            >
-              Reset
-            </button>
+                onClick={handleReset}
+                className="h-10 px-5 rounded-lg border border-black bg-white text-black text-sm"
+              >
+                Reset
+              </button>
 
             <div className="flex gap-4">
-              <button
+               <button
                 onClick={handleBack}
-                className="px-10 py-3 rounded-lg border border-black text-black font-medium text-lg hover:bg-gray-100 transition-all"
+                className="h-10 px-6 rounded-lg border border-black bg-white text-black text-sm"
               >
                 Discard
               </button>
               <button
                 onClick={handleContinue}
                 disabled={!canContinue}
-                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${canContinue
-                    ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
-                    : "bg-gray-200 border border-black text-black cursor-not-allowed"
-                  }`}
+                className={[
+                  "h-10 px-6 rounded-lg text-sm font-medium border transition-all",
+                  canContinue
+                    ? "bg-[#CEFF1B]  border-black text-black"
+                    : "bg-gray-200  border-black text-black"
+                ].join(" ")}
               >
                 Continue
               </button>

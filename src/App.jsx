@@ -69,14 +69,14 @@ export default function App() {
           <Route path="/login" element={<DesktopLogin />} />
           <Route path="/signup" element={<DesktopSignup />} />
           <Route path="/client-onboarding" element={<ClientOnboarding />} />
-          <Route path="/creator-onboarding" element={<CreatorOnboarding />} />
+          <Route path="/onboarding" element={<CreatorOnboarding />} />
           <Route path="/role-selection" element={<RoleSelection />} />
-          <Route path="/work-type-selection" element={<WorkTypeSelection />} />
-          <Route path="/goals-selection" element={<GoalsSelection />} />
+          <Route path="/client-work-type-selection" element={<WorkTypeSelection />} />
+          <Route path="/client-goals-selection" element={<GoalsSelection />} />
           <Route path="/client-needs" element={<ClientNeeds />} />
-          <Route path="/business-details" element={<BusinessDetails />} />
-          <Route path="/setup-workspace" element={<SetupWorkspace />} />
-          <Route path="/creator-role-selection" element={<CreatorRoleSelection />} />
+          <Route path="/client-business-details" element={<BusinessDetails />} />
+          <Route path="/client-setup-workspace" element={<SetupWorkspace />} />
+          <Route path="/client-role-selection" element={<CreatorRoleSelection />} />
           <Route path="/creator-work-type-selection" element={<WorkTypeSelectionForCreator />} />
           <Route path="/creator-goals-selection" element={<CreatorGoalsSelection />} />
           <Route path="/creator-needs" element={<CreatorNeeds />} />

@@ -10,9 +10,16 @@ export default function RoleSelection() {
 
   const handleBack = () => navigate("/client-onboarding");
 
-  const handleContinue = () => {
-    if (selectedRole) navigate("/work-type-selection");
-  };
+const handleContinue = () => {
+  if (!selectedRole) return;
+
+  if (selectedRole === "client") {
+    navigate("/client-work-type-selection"); // ✅ your client onboarding next page
+  } else if (selectedRole === "creator") {
+    navigate("/creator-work-type-selection"); // ✅ your creator onboarding next page
+  }
+};
+
 
   const handleReset = () => setSelectedRole(null);
 

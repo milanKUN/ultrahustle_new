@@ -1,0 +1,91 @@
+/* Custom Select for Onboarding */
+.onboarding-custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.onboarding-selected-option {
+  height: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: #f3f4f6;
+  /* Solid background instead of transparent */
+  border: 2px solid #D1D5DB;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.onboarding-selected-option:hover {
+  border-color: #9CA3AF;
+}
+
+.onboarding-selected-option.open {
+  border-color: #000;
+  background: #fff;
+}
+
+.onboarding-arrow {
+  font-size: 10px;
+  color: #6b7280;
+  transition: transform 0.2s ease;
+}
+
+.onboarding-selected-option.open .onboarding-arrow {
+  transform: rotate(180deg);
+}
+
+.onboarding-options-list {
+
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  background: #ffffff !important;
+  border: 2px solid #000;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  z-index: 99999 !important;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.onboarding-options-list li {
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  color: #374151;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.onboarding-options-list li:hover {
+  background: #CEFF1B;
+  color: #000;
+}
+
+.onboarding-options-list li.active {
+  background: #CEFF1B;
+  color: #000;
+  font-weight: 600;
+}
+
+/* Scrollbar for options list */
+.onboarding-options-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.onboarding-options-list::-webkit-scrollbar-thumb {
+  background: #CEFF1B;
+  border-radius: 10px;
+}
+
+.onboarding-options-list::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../OnboardingSelect.css";
 import {
   Palette,
   Code,
@@ -19,6 +20,31 @@ export default function CreatorNeeds() {
   const [rateRange, setRateRange] = useState("");
   const [hasPortfolio, setHasPortfolio] = useState(null); // 'yes', 'no'
   const [portfolioLinks, setPortfolioLinks] = useState("");
+
+  // Custom Dropdown State
+  const [isExperienceOpen, setIsExperienceOpen] = useState(false);
+  const experienceRef = useRef(null);
+
+  const experienceOptions = [
+    { value: "beginner", label: "Beginner" },
+    { value: "intermediate", label: "Intermediate" },
+    { value: "pro", label: "Pro" },
+    { value: "expert", label: "Expert" },
+  ];
+
+  const selectedExperienceLabel =
+    experienceOptions.find((opt) => opt.value === experienceLevel)?.label || "Select";
+
+  // Handle click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (experienceRef.current && !experienceRef.current.contains(event.target)) {
+        setIsExperienceOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const currentStep = 4;
   const totalSteps = 8;
@@ -195,19 +221,38 @@ export default function CreatorNeeds() {
                   <label className="block text-[11px] font-semibold text-black/70 mb-2">
                     Experience level
                   </label>
-                  <select
-                    value={experienceLevel}
-                    onChange={(e) => setExperienceLevel(e.target.value)}
-                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:border-black"
-                  >
-                    <option value="" disabled>
-                      Select
-                    </option>
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="pro">Pro</option>
-                    <option value="expert">Expert</option>
-                  </select>
+                  <div className="onboarding-custom-select" ref={experienceRef}>
+                    <div
+                      className={`onboarding-selected-option ${isExperienceOpen ? "open" : ""}`}
+                      onClick={() => setIsExperienceOpen(!isExperienceOpen)}
+                    >
+                      <span>{selectedExperienceLabel}</span>
+                      <span className="onboarding-arrow">▼</span>
+                    </div>
+
+                    {isExperienceOpen && (
+                      <ul className="onboarding-options-list">
+                        <li
+                          className="text-gray-400 cursor-not-allowed"
+                          style={{ pointerEvents: "none" }}
+                        >
+                          Select
+                        </li>
+                        {experienceOptions.map((opt) => (
+                          <li
+                            key={opt.value}
+                            className={experienceLevel === opt.value ? "active" : ""}
+                            onClick={() => {
+                              setExperienceLevel(opt.value);
+                              setIsExperienceOpen(false);
+                            }}
+                          >
+                            {opt.label}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
 
                 <div className="col-span-2">
@@ -315,7 +360,7 @@ export default function CreatorNeeds() {
           {/* ✅ DESKTOP (unchanged as your existing) */}
           <div className="hidden md:block">
             {/* Creator Categories - Desktop Container */}
-            <div className="bg-transparent md:bg-white/40 backdrop-blur-md border-[#CEFF1B] md:border md:border-[#CEFF1B] rounded-[24px] md:rounded-[30px] p-4 md:p-8 shadow-xl mb-6 md:mb-8 flex flex-col justify-center gap-4">
+            <div className="bg-[#FEFEFE]/40 md:bg-white/40 backdrop-blur-md border-[#CEFF1B] md:border md:border-[#CEFF1B] rounded-[24px] md:rounded-[30px] p-4 md:p-8 shadow-xl mb-6 md:mb-8 flex flex-col justify-center gap-4">
               <div className="hidden md:flex flex-col gap-4">
                 {[categories.slice(0, 4), categories.slice(4, 7), categories.slice(7)].map(
                   (row, rowIndex) => (
@@ -331,8 +376,8 @@ export default function CreatorNeeds() {
                               flex items-center gap-3.5 px-6 py-3.5 rounded-2xl cursor-pointer border-2 transition-all duration-300 backdrop-blur-sm justify-center whitespace-nowrap
                               ${rowIndex === 0 ? "flex-1" : "w-full md:w-[24%]"}
                               ${isSelected
-                                ? "bg-[#CEFF1B] border-black/50 shadow-md scale-105"
-                                : "bg-transparent border-gray-400 hover:bg-white/10"
+                                ? "bg-[#CEFF1B] border-[0.6px] border-[#2B2B2B] shadow-md scale-105"
+                                : "bg-transparent border-[#2B2B2B] hover:bg-white/10"
                               }
                             `}
                           >
@@ -370,44 +415,45 @@ export default function CreatorNeeds() {
                   value={primarySkill}
                   onChange={(e) => setPrimarySkill(e.target.value)}
                   placeholder="Skill/niche"
-                  className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-gray-900 bg-transparent md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:border-black focus:outline-none transition-all font-medium text-xs md:text-base bg-[#F0F0F0]/50"
+                  className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-black bg-transparent md:bg-gray-100 text-gray-800 placeholder-gray-500   font-medium text-xs md:text-base"
                 />
               </div>
 
               <div>
-                <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
+                <label className="block text-gray-800  font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
                   Experience level
                 </label>
-                <div className="relative">
-                  <select
-                    value={experienceLevel}
-                    onChange={(e) => setExperienceLevel(e.target.value)}
-                    className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-gray-900 bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 focus:border-black focus:outline-none transition-all font-medium text-xs md:text-base appearance-none pr-8"
+                <div className="onboarding-custom-select" ref={experienceRef}>
+                  <div
+                    className={`onboarding-selected-option ${isExperienceOpen ? "open" : ""}`}
+                    onClick={() => setIsExperienceOpen(!isExperienceOpen)}
                   >
-                    <option value="" disabled>
-                      Experience level
-                    </option>
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="pro">Pro</option>
-                    <option value="expert">Expert</option>
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    <svg
-                      className="w-3 h-3 text-gray-500"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      ></path>
-                    </svg>
+                    <span>{selectedExperienceLabel === "Select" ? "Experience level" : selectedExperienceLabel}</span>
+                    <span className="onboarding-arrow">▼</span>
                   </div>
+
+                  {isExperienceOpen && (
+                    <ul className="onboarding-options-list">
+                      <li
+                        className="text-gray-400 cursor-not-allowed"
+                        style={{ pointerEvents: "none" }}
+                      >
+                        Experience level
+                      </li>
+                      {experienceOptions.map((opt) => (
+                        <li
+                          key={opt.value}
+                          className={experienceLevel === opt.value ? "active" : ""}
+                          onClick={() => {
+                            setExperienceLevel(opt.value);
+                            setIsExperienceOpen(false);
+                          }}
+                        >
+                          {opt.label}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </div>
 
@@ -420,7 +466,7 @@ export default function CreatorNeeds() {
                   value={rateRange}
                   onChange={(e) => setRateRange(e.target.value)}
                   placeholder="Hourly/project range"
-                  className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-gray-900 bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:border-black focus:outline-none transition-all font-medium text-xs md:text-base"
+                  className="w-full p-2 md:p-3 bg-transparent rounded-md md:rounded-xl border border-black bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:border-black focus:outline-none transition-all font-medium text-xs md:text-base"
                 />
               </div>
 
@@ -433,15 +479,19 @@ export default function CreatorNeeds() {
                     <button
                       key={opt}
                       onClick={() => setHasPortfolio(opt.toLowerCase())}
-                      className={`flex-1 p-2 md:py-3 rounded-md md:rounded-xl border font-medium transition-all text-xs md:text-base ${hasPortfolio === opt.toLowerCase()
-                        ? "bg-[#CEFF1B] border-black text-black"
-                        : "bg-transparent border-gray-400 text-gray-600"
+                      className={`flex-1 p-2 md:py-3 rounded-md md:rounded-xl font-medium transition-all text-xs md:text-base ${hasPortfolio === opt.toLowerCase()
+                          ? "bg-[#CEFF1B] text-black"
+                          : "bg-transparent text-gray-600"
                         }`}
+                      style={{
+                        border: "0.6px solid #000",
+                      }}
                     >
                       {opt}
                     </button>
                   ))}
                 </div>
+
               </div>
             </div>
 
@@ -456,7 +506,7 @@ export default function CreatorNeeds() {
                     value={portfolioLinks}
                     onChange={(e) => setPortfolioLinks(e.target.value)}
                     placeholder="Paste here"
-                    className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-gray-400 bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:border-black focus:outline-none transition-all font-medium text-xs md:text-base"
+                    className="w-[49%] bg-transparent p-2 md:p-3 rounded-md md:rounded-xl border border-black bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:border-black focus:outline-none transition-all font-medium text-xs md:text-base"
                   />
                 </div>
               </div>
@@ -467,7 +517,7 @@ export default function CreatorNeeds() {
               <div className="flex justify-between items-center gap-2 md:gap-4">
                 <button
                   onClick={handleReset}
-                  className="px-4 py-2 md:px-8 md:py-3 rounded-md md:rounded-lg border border-black text-gray-600 font-medium text-xs md:text-lg hover:bg-gray-100 transition-all"
+                  className="px-4 py-2 md:px-8 md:py-3 rounded-md md:rounded-lg border border-black text-black font-medium text-xs md:text-lg hover:bg-gray-100 transition-all"
                 >
                   Reset
                 </button>
@@ -475,7 +525,7 @@ export default function CreatorNeeds() {
                 <div className="flex gap-2 md:gap-4">
                   <button
                     onClick={handleBack}
-                    className="px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg border border-black text-gray-700 font-medium text-xs md:text-lg hover:bg-gray-100 transition-all"
+                    className="px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg border border-black text-black font-medium text-xs md:text-lg hover:bg-gray-100 transition-all"
                   >
                     Discard
                   </button>

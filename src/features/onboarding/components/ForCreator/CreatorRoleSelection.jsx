@@ -214,7 +214,7 @@ export default function CreatorRoleSelection() {
             onClick={() => setSelectedRole("creator")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "creator"
               ? "bg-[#CEFF1B]  shadow-lg"
-              : "bg-white/40 border border-[#CEFF1B] hover:bg-white/20"
+              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">
@@ -243,7 +243,7 @@ export default function CreatorRoleSelection() {
             onClick={() => setSelectedRole("client")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "client"
               ? "bg-[#CEFF1B]  shadow-lg"
-              : "bg-white/40 border border-[#CEFF1B] hover:bg-white/20"
+              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">

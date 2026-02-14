@@ -165,7 +165,7 @@ const DesktopForgotPassword = () => {
               </p>
               <button
                 className="desktop-login-btn primary-lime"
-                onClick={() => navigate('/client-onboarding')}
+                onClick={() => navigate('/onboarding')}
               >
                 Continue
               </button>

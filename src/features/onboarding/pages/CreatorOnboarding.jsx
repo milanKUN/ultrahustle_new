@@ -7,7 +7,7 @@ export default function CreatorOnboarding() {
   const totalSteps = 8;
 
   const handleGetStarted = () => {
-    navigate('/creator-role-selection');
+    navigate('/role-selection');
   };
 
   const handleSkip = () => {

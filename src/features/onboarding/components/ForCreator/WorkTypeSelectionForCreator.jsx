@@ -1,11 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../OnboardingSelect.css";
 
 export default function WorkTypeSelectionForCreator() {
   const navigate = useNavigate();
   const [selectedType, setSelectedType] = useState(null);
   const [teamSize, setTeamSize] = useState("");
   const [buildTeamPlan, setBuildTeamPlan] = useState(null);
+
+  // Custom Dropdown State
+  const [isTeamSizeOpen, setIsTeamSizeOpen] = useState(false);
+  const teamSizeRef = useRef(null);
+
+  const teamSizeOptions = [
+    { value: "2-5", label: "2-5 people" },
+    { value: "6-10", label: "6-10 people" },
+    { value: "11-25", label: "11-25 people" },
+    { value: "26-50", label: "26-50 people" },
+    { value: "50+", label: "50+ people" },
+  ];
+
+  const selectedTeamSizeLabel =
+    teamSizeOptions.find((opt) => opt.value === teamSize)?.label || "Select one";
+
+  // Handle click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (teamSizeRef.current && !teamSizeRef.current.contains(event.target)) {
+        setIsTeamSizeOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const currentStep = 2;
   const totalSteps = 8;
@@ -169,38 +196,37 @@ export default function WorkTypeSelectionForCreator() {
                   Team Size
                 </label>
 
-                <div className="relative">
-                  <select
-                    value={teamSize}
-                    onChange={(e) => setTeamSize(e.target.value)}
-                    className="w-full h-11 px-3 rounded-lg border border-black/30 bg-white text-black/70 text-sm focus:border-black focus:outline-none appearance-none pr-9"
+                <div className="onboarding-custom-select" ref={teamSizeRef}>
+                  <div
+                    className={`onboarding-selected-option ${isTeamSizeOpen ? "open" : ""}`}
+                    onClick={() => setIsTeamSizeOpen(!isTeamSizeOpen)}
                   >
-                    <option value="" disabled>
-                      Select one
-                    </option>
-                    <option value="2-5">2-5 people</option>
-                    <option value="6-10">6-10 people</option>
-                    <option value="11-25">11-25 people</option>
-                    <option value="26-50">26-50 people</option>
-                    <option value="50+">50+ people</option>
-                  </select>
-
-                  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <svg
-                      className="w-4 h-4 text-black/50"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
+                    <span>{selectedTeamSizeLabel}</span>
+                    <span className="onboarding-arrow">▼</span>
                   </div>
+
+                  {isTeamSizeOpen && (
+                    <ul className="onboarding-options-list">
+                      <li
+                        className="text-gray-400 cursor-not-allowed"
+                        style={{ pointerEvents: "none" }}
+                      >
+                        Select one
+                      </li>
+                      {teamSizeOptions.map((opt) => (
+                        <li
+                          key={opt.value}
+                          className={teamSize === opt.value ? "active" : ""}
+                          onClick={() => {
+                            setTeamSize(opt.value);
+                            setIsTeamSizeOpen(false);
+                          }}
+                        >
+                          {opt.label}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
 
                 <label className="block text-black font-semibold mb-2 mt-4 text-sm text-center">
@@ -350,48 +376,63 @@ export default function WorkTypeSelectionForCreator() {
               <label className="block text-gray-800 font-semibold mb-3 text-lg">
                 Team Size
               </label>
-              <select
-                value={teamSize}
-                onChange={(e) => setTeamSize(e.target.value)}
-                className="w-full h-[41px] px-4 pr-10 rounded-xl border-2 border-gray-300 bg-gray-100/80 text-gray-700 focus:border-black focus:outline-none transition-all appearance-none cursor-pointer"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
-                  backgroundPosition: `right 1rem center`,
-                  backgroundRepeat: `no-repeat`,
-                  backgroundSize: `1.2em 1.2em`,
-                }}
-              >
+              <div className="onboarding-custom-select" ref={teamSizeRef}>
+                <div
+                  className={`onboarding-selected-option ${isTeamSizeOpen ? "open" : ""}`}
+                  onClick={() => setIsTeamSizeOpen(!isTeamSizeOpen)}
+                >
+                  <span>{selectedTeamSizeLabel}</span>
+                  <span className="onboarding-arrow">▼</span>
+                </div>
 
-                <option value="" disabled>
-                  Select one
-                </option>
-                <option value="2-5">2-5 people</option>
-                <option value="6-10">6-10 people</option>
-                <option value="11-25">11-25 people</option>
-                <option value="26-50">26-50 people</option>
-                <option value="50+">50+ people</option>
-              </select>
+                {isTeamSizeOpen && (
+                  <ul className="onboarding-options-list">
+                    <li
+                      className="text-gray-400 cursor-not-allowed"
+                      style={{ pointerEvents: "none" }}
+                    >
+                      Select one
+                    </li>
+                    {teamSizeOptions.map((opt) => (
+                      <li
+                        key={opt.value}
+                        className={teamSize === opt.value ? "active" : ""}
+                        onClick={() => {
+                          setTeamSize(opt.value);
+                          setIsTeamSizeOpen(false);
+                        }}
+                      >
+                        {opt.label}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </div>
 
             <div className="flex-1 w-full max-w-[450px]">
               <label className="block text-gray-800 font-semibold mb-3 text-lg">
                 Do you plan to build teams on Ultra Hustle?
               </label>
+
               <div className="flex gap-4">
                 {["Yes", "No", "Maybe Later"].map((option) => (
                   <button
                     key={option}
                     onClick={() => setBuildTeamPlan(option.toLowerCase())}
-                    className={`flex-1 py-3 px-4 rounded-xl border-2 font-medium transition-all ${buildTeamPlan === option.toLowerCase()
-                      ? "bg-[#CEFF1B] border-black text-black"
-                      : "bg-white/50 border-gray-200 text-gray-500 hover:bg-white/80"
+                    className={`${option === "Maybe Later" ? "w-[172px]" : "w-[104px]"
+                      } h-[50px] rounded-[6px] border border-black font-medium transition-all flex items-center justify-center ${buildTeamPlan === option.toLowerCase()
+                        ? "bg-[#CEFF1B] border-black text-black"
+                        : "bg-white/50 border-gray-200 text-gray-500 hover:bg-white/80"
                       }`}
                   >
                     {option}
                   </button>
                 ))}
               </div>
+
             </div>
+
           </div>
         )}
 

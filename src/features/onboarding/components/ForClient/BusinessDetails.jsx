@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../OnboardingSelect.css';
 
 export default function BusinessDetails() {
   const navigate = useNavigate();
@@ -18,6 +19,21 @@ export default function BusinessDetails() {
   });
 
   const [isPersonalAccount, setIsPersonalAccount] = useState(false);
+
+  // Custom Dropdown State
+  const [isIndustryOpen, setIsIndustryOpen] = useState(false);
+  const industryRef = useRef(null);
+
+  // Handle click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (industryRef.current && !industryRef.current.contains(event.target)) {
+        setIsIndustryOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const currentStep = 5; // Step 5 (0-indexed was 4 previously)
   const totalSteps = 8;
@@ -56,7 +72,7 @@ export default function BusinessDetails() {
   const handleContinue = () => {
     // Navigate to next step
     if (isFormValid()) {
-      navigate('/setup-workspace');
+      navigate('/client-setup-workspace');
     }
   };
 
@@ -209,21 +225,37 @@ export default function BusinessDetails() {
                 {/* Industry */}
                 <div>
                   <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">Industry</label>
-                  <div className="relative">
-                    <select
-                      name="industry"
-                      value={formData.industry}
-                      onChange={handleInputChange}
-                      className="w-full p-2.5 md:p-3 rounded-lg md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-transparent text-gray-800 focus:border-black focus:outline-none transition-all appearance-none cursor-pointer text-base md:text-base font-medium"
+                  <div className="onboarding-custom-select" ref={industryRef}>
+                    <div
+                      className={`onboarding-selected-option ${isIndustryOpen ? "open" : ""}`}
+                      onClick={() => setIsIndustryOpen(!isIndustryOpen)}
                     >
-                      <option value="" disabled>Type here</option>
-                      {industries.map(ind => (
-                        <option key={ind} value={ind}>{ind}</option>
-                      ))}
-                    </select>
-                    <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-gray-500">
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                      <span>{formData.industry || "Type here"}</span>
+                      <span className="onboarding-arrow">▼</span>
                     </div>
+
+                    {isIndustryOpen && (
+                      <ul className="onboarding-options-list">
+                        <li
+                          className="text-gray-400 cursor-not-allowed"
+                          style={{ pointerEvents: "none" }}
+                        >
+                          Type here
+                        </li>
+                        {industries.map((ind) => (
+                          <li
+                            key={ind}
+                            className={formData.industry === ind ? "active" : ""}
+                            onClick={() => {
+                              setFormData(prev => ({ ...prev, industry: ind }));
+                              setIsIndustryOpen(false);
+                            }}
+                          >
+                            {ind}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
 

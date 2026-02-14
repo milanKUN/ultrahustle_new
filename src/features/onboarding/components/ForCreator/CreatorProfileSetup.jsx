@@ -18,12 +18,12 @@ export default function CreatorProfileSetup() {
   return (
     <div className="min-h-screen w-full flex flex-col md:flex-row bg-[#E8E8E8]">
       {/* Top (Mobile) / Left (Desktop) - Character Image */}
-      <div className="w-full md:w-[30%] relative overflow-hidden flex items-center justify-center min-h-[45vh] md:min-h-screen z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#E8E8E8] via-[#E0E0E0] to-[#D8D8D8]" />
+      <div className="w-full md:w-[46%] relative overflow-hidden flex items-start md:items-center justify-center min-h-[45vh] md:min-h-screen z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#E8E8E8] via-[#E0E0E0] to-[#D8D8D8]"></div>
         <img
           src="/onboarding-character.png"
           alt="Ultra Hustle Character"
-          className="relative z-10 h-[90%] w-auto object-contain md:object-cover md:w-full md:h-full md:object-top mt-4 md:mt-0"
+          className="relative z-10 h-full w-full object-cover object-top md:object-cover md:w-full md:h-full md:object-top"
         />
       </div>
 
