@@ -2,32 +2,40 @@
 .onboarding-custom-select {
   position: relative;
   width: 100%;
+  z-index: 10;
+}
+
+.onboarding-custom-select.active {
+  z-index: 9999;
 }
 
 .onboarding-selected-option {
-  height: 41px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   border-radius: 12px;
-  background: #f3f4f6;
-  /* Solid background instead of transparent */
-  border: 2px solid #D1D5DB;
-  color: #374151;
+  background: transparent;
+  border: 1px solid black;
+  color: #000000b3;
+  /* black/70 */
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 14px;
 }
 
+
 .onboarding-selected-option:hover {
-  border-color: #9CA3AF;
+  background: #e5e7eb;
 }
 
 .onboarding-selected-option.open {
-  border-color: #000;
-  background: #fff;
+  background: transparent;
+  border-color: transparent !important;
+  box-shadow: 0 0 15px #CEFF1B !important;
 }
+
 
 .onboarding-arrow {
   font-size: 10px;
@@ -40,7 +48,7 @@
 }
 
 .onboarding-options-list {
-
+  position: absolute;
   top: calc(100% + 4px);
   left: 0;
   width: 100%;
@@ -48,11 +56,11 @@
   margin: 0;
   padding: 4px;
   background: #ffffff !important;
-  border: 2px solid #000;
-  border-radius: 12px;
+  border: none;
+  border-radius: 0px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
   z-index: 99999 !important;
-  max-height: 250px;
+  max-height: 210px;
   overflow-y: auto;
 }
 
@@ -61,7 +69,7 @@
   cursor: pointer;
   transition: background 0.2s ease;
   color: #374151;
-  border-radius: 8px;
+  border-radius: 0px;
   font-size: 14px;
 }
 
@@ -88,4 +96,8 @@
 
 .onboarding-options-list::-webkit-scrollbar-track {
   background: transparent;
+}
+/* Role dropdown specific - show only 2 items */
+.role-dropdown-small {
+  max-height: 88px !important;
 }

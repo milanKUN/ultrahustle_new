@@ -29,6 +29,7 @@ import CreateTeam from "./features/dashboard/pages/CreateTeam";
 import TeamProfileLight from "./features/dashboard/pages/TeamProfileLight";
 import UserProfile from "./features/dashboard/pages/UserProfile";
 import SoloContractListing from "./features/marketplace/pages/SoloContractListing";
+import Dashboard from "./features/dashboard/pages/Dashboard";
 
 import MilestonesPage from "./features/marketplace/pages/MilestonesPage";
 import SoloMilestonesPage from "./features/marketplace/pages/SoloMilestonesPage";
@@ -90,7 +91,8 @@ export default function App() {
           <Route path="/milestones" element={<MilestonesPage theme={theme} setTheme={setTheme} />} />
           <Route path="/solo-milestones" element={<SoloMilestonesPage theme={theme} setTheme={setTheme} />} />
           <Route path="/create-service-listing" element={<CreateServiceListing theme={theme} setTheme={setTheme} />} />
-          
+          <Route path="/dashboard" element={<Dashboard theme={theme} setTheme={setTheme} />} />
+
         </Routes>
       </div>
     </Router>

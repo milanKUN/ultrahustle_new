@@ -140,7 +140,7 @@ export default function BusinessDetails() {
               Business Details
             </h2>
             <h2 className="hidden md:block text-black text-3xl font-bold">
-              (Optional)
+
             </h2>
           </div>
 
@@ -160,33 +160,12 @@ export default function BusinessDetails() {
       </div>
 
       {/* Bottom Section on Mobile / Right Side on Desktop - Content */}
-      <div className="w-full md:w-[70%] bg-[#E0E0E0] md:bg-gradient-to-br md:from-[#E8E8E8] md:via-[#E0E0E0] md:to-[#D8D8D8] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 px-3 py-6 md:p-12 flex flex-col justify-start md:pt-32 items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
-        {/* Animated Gradient Glows - Desktop Only -> Now Mobile too */}
-        <div
-          className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full pointer-events-none z-0"
-          style={{
-            background: 'radial-gradient(circle, rgba(195, 255, 0, 0.4) 0%, rgba(195, 255, 0, 0.15) 40%, transparent 70%)',
-            bottom: '-15%',
-            left: '-15%',
-            filter: 'blur(60px)',
-            animation: 'glow-bottomleft-center-right 8s ease-in-out infinite',
-          }}
-        ></div>
-        <div
-          className="absolute w-[250px] h-[250px] md:w-[400px] md:h-[400px] rounded-full pointer-events-none z-0"
-          style={{
-            background: 'radial-gradient(circle, rgba(195, 255, 0, 0.35) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)',
-            top: '-10%',
-            right: '-10%',
-            filter: 'blur(50px)',
-            animation: 'glow-center-topright 8s ease-in-out infinite',
-          }}
-        ></div>
+      <div className="w-full md:w-[70%] bg-[#E0E0E0] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 px-3 py-6 md:p-12 flex flex-col justify-start md:pt-32 items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
 
         {/* Main Content Area */}
         <div className="relative z-10 w-full max-w-[1200px]">
           {/* Main Card */}
-          <div className={`bg-white/40 md:bg-white/40 backdrop-blur-md border border-[#CEFF1B] md:border md:border-[#CEFF1B] rounded-[24px] md:rounded-[30px] p-4 md:p-8 shadow-xl mb-6 md:mb-8 flex flex-col transition-all duration-300`}>
+          <div className={`bg-white/40 md:bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] md:border md:border-[#CEFF1B] rounded-[24px] md:rounded-[30px] p-4 md:p-8 shadow-xl mb-6 md:mb-8 flex flex-col transition-all duration-300`}>
 
             {isPersonalAccount ? (
               /* Personal Account View */
@@ -195,7 +174,7 @@ export default function BusinessDetails() {
               </div>
             ) : (
               /* Business Details Form */
-              <div className="w-full grid grid-cols-2 gap-3 md:gap-x-8 md:gap-y-6 animate-fade-in-up">
+              <div className="w-full grid grid-cols-2 gap-3 md:gap-x-8 md:gap-y-6 animate-fade-in-up relative z-20">
                 {/* Business Name */}
                 <div>
                   <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">Business / Brand Name</label>
@@ -205,7 +184,7 @@ export default function BusinessDetails() {
                     value={formData.businessName}
                     onChange={handleInputChange}
                     placeholder="Type here"
-                    className="w-full p-2.5 md:p-3 rounded-lg md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-transparent text-gray-800 focus:border-black focus:outline-none transition-all text-base md:text-base font-medium"
+                    className="w-full h-10 rounded-xl border border-black bg-transparent px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
 
@@ -218,30 +197,28 @@ export default function BusinessDetails() {
                     value={formData.employees}
                     onChange={handleInputChange}
                     placeholder="Type here (only numeric)"
-                    className="w-full p-2.5 md:p-3 rounded-lg md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-transparent text-gray-800 focus:border-black focus:outline-none transition-all text-base md:text-base font-medium"
+                    className="w-full h-10 rounded-xl border border-black bg-transparent px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
 
                 {/* Industry */}
                 <div>
                   <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">Industry</label>
-                  <div className="onboarding-custom-select" ref={industryRef}>
+                  <div className={`onboarding-custom-select ${isIndustryOpen ? "active" : ""}`} ref={industryRef}>
                     <div
                       className={`onboarding-selected-option ${isIndustryOpen ? "open" : ""}`}
                       onClick={() => setIsIndustryOpen(!isIndustryOpen)}
                     >
-                      <span>{formData.industry || "Type here"}</span>
+                      <span className={!formData.industry ? "opacity-70" : ""}>
+                        {formData.industry || "Type here"}
+                      </span>
                       <span className="onboarding-arrow">▼</span>
                     </div>
 
+
                     {isIndustryOpen && (
                       <ul className="onboarding-options-list">
-                        <li
-                          className="text-gray-400 cursor-not-allowed"
-                          style={{ pointerEvents: "none" }}
-                        >
-                          Type here
-                        </li>
+
                         {industries.map((ind) => (
                           <li
                             key={ind}
@@ -269,7 +246,7 @@ export default function BusinessDetails() {
                       value={formData.otherIndustry}
                       onChange={handleInputChange}
                       placeholder="Type your industry"
-                      className="w-full p-2.5 md:p-3 rounded-lg md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-transparent text-gray-800 focus:border-black focus:outline-none transition-all text-base md:text-base font-medium"
+                      className="w-full h-10 rounded-xl border border-black bg-transparent px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                     />
                   </div>
                 ) : (
@@ -282,7 +259,7 @@ export default function BusinessDetails() {
                       value={formData.website}
                       onChange={handleInputChange}
                       placeholder="Type here"
-                      className="w-full p-2.5 md:p-3 rounded-lg md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-transparent text-gray-800 focus:border-black focus:outline-none transition-all text-base md:text-base font-medium"
+                      className="w-full h-10 rounded-xl border border-black bg-transparent px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                     />
                   </div>
                 )}
@@ -297,7 +274,7 @@ export default function BusinessDetails() {
                       value={formData.website}
                       onChange={handleInputChange}
                       placeholder="Type here"
-                      className="w-full p-2.5 md:p-3 rounded-lg md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-transparent text-gray-800 focus:border-black focus:outline-none transition-all text-base md:text-base font-medium"
+                      className="w-full h-10 rounded-xl border border-black bg-transparent px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                     />
                   </div>
                 )}
@@ -311,7 +288,7 @@ export default function BusinessDetails() {
                     value={formData.taxId}
                     onChange={handleInputChange}
                     placeholder="Type here"
-                    className="w-full p-2.5 md:p-3 rounded-lg md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-transparent text-gray-800 focus:border-black focus:outline-none transition-all text-base md:text-base font-medium"
+                    className="w-full h-10 rounded-xl border border-black bg-transparent px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
 
@@ -324,7 +301,7 @@ export default function BusinessDetails() {
                     value={formData.country}
                     onChange={handleInputChange}
                     placeholder="Type here"
-                    className="w-full p-2.5 md:p-3 rounded-lg md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-transparent text-gray-800 focus:border-black focus:outline-none transition-all text-base md:text-base font-medium"
+                    className="w-full h-10 rounded-xl border border-black bg-transparent px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
 
@@ -337,7 +314,7 @@ export default function BusinessDetails() {
                     value={formData.state}
                     onChange={handleInputChange}
                     placeholder="Type here"
-                    className="w-full p-2.5 md:p-3 rounded-lg md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-transparent text-gray-800 focus:border-black focus:outline-none transition-all text-base md:text-base font-medium"
+                    className="w-full h-10 rounded-xl border border-black bg-transparent px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
 
@@ -350,7 +327,7 @@ export default function BusinessDetails() {
                     value={formData.city}
                     onChange={handleInputChange}
                     placeholder="Type here"
-                    className="w-full p-2.5 md:p-3 rounded-lg md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-transparent text-gray-800 focus:border-black focus:outline-none transition-all text-base md:text-base font-medium"
+                    className="w-full h-10 rounded-xl border border-black bg-transparent px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
               </div>
@@ -377,7 +354,7 @@ export default function BusinessDetails() {
           <div className="flex justify-between items-center w-full gap-4">
             <button
               onClick={handleReset}
-              className="px-4 py-2 md:px-8 md:py-3 rounded-md md:rounded-lg border border-[#2B2B2B] text-gray-600 font-medium text-lg md:text-lg hover:bg-gray-100 transition-all"
+              className="px-4 py-2 md:px-8 md:py-3 rounded-md md:rounded-lg border-1 border-[#2B2B2B] text-gray-600 font-medium text-lg md:text-lg hover:bg-gray-100 transition-all"
             >
               Reset
             </button>
@@ -385,7 +362,7 @@ export default function BusinessDetails() {
             <div className="flex gap-2 md:gap-4">
               <button
                 onClick={handleBack}
-                className="px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg border border-[#2B2B2B] text-gray-700 font-medium text-lg md:text-lg hover:bg-gray-100 transition-all"
+                className="px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg border-1 border-[#2B2B2B] text-gray-700 font-medium text-lg md:text-lg hover:bg-gray-100 transition-all"
               >
                 Discard
               </button>
@@ -394,7 +371,7 @@ export default function BusinessDetails() {
                 disabled={!isFormValid()}
                 className={`px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg font-medium text-lg md:text-lg transition-all whitespace-nowrap ${isFormValid()
                   ? 'bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]'
-                  : 'bg-[#CEFF1B]/50 border border-[#2B2B2B] text-gray-400 cursor-not-allowed'
+                  : 'bg-[#CEFF1B]/50 border-1 border-[#2B2B2B] text-gray-400 cursor-not-allowed'
                   }`}
               >
                 Continue

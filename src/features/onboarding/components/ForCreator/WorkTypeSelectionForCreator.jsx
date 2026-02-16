@@ -191,12 +191,12 @@ export default function WorkTypeSelectionForCreator() {
 
             {/* Team options (mobile) */}
             {selectedType === "team" && (
-              <div className="mt-4">
+              <div className="mt-4 relative z-20">
                 <label className="block text-black font-semibold mb-2 text-sm text-center">
                   Team Size
                 </label>
 
-                <div className="onboarding-custom-select" ref={teamSizeRef}>
+                <div className={`onboarding-custom-select ${isTeamSizeOpen ? "active" : ""}`} ref={teamSizeRef}>
                   <div
                     className={`onboarding-selected-option ${isTeamSizeOpen ? "open" : ""}`}
                     onClick={() => setIsTeamSizeOpen(!isTeamSizeOpen)}
@@ -211,7 +211,7 @@ export default function WorkTypeSelectionForCreator() {
                         className="text-gray-400 cursor-not-allowed"
                         style={{ pointerEvents: "none" }}
                       >
-                        Select one
+
                       </li>
                       {teamSizeOptions.map((opt) => (
                         <li
@@ -371,7 +371,7 @@ export default function WorkTypeSelectionForCreator() {
 
         {/* Extra Options for Team Selection - Desktop (unchanged) */}
         {selectedType === "team" && (
-          <div className="hidden md:flex mt-8 flex-col md:flex-row gap-8 justify-between items-start w-full px-4 relative z-10 animate-fade-in-up">
+          <div className="hidden md:flex mt-8 flex-col md:flex-row gap-8 justify-between items-start w-full px-4 relative z-20 animate-fade-in-up">
             <div className="flex-1 w-full max-w-[450px]">
               <label className="block text-gray-800 font-semibold mb-3 text-lg">
                 Team Size
@@ -387,12 +387,7 @@ export default function WorkTypeSelectionForCreator() {
 
                 {isTeamSizeOpen && (
                   <ul className="onboarding-options-list">
-                    <li
-                      className="text-gray-400 cursor-not-allowed"
-                      style={{ pointerEvents: "none" }}
-                    >
-                      Select one
-                    </li>
+
                     {teamSizeOptions.map((opt) => (
                       <li
                         key={opt.value}

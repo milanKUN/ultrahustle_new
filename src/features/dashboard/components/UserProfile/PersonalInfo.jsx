@@ -23,14 +23,14 @@ export default function PersonalInformation() {
   const stateOptions =
     country === "India"
       ? [
-          "Maharashtra",
-          "Delhi",
-          "Gujarat",
-          "Karnataka",
-          "Tamil Nadu",
-          "Uttar Pradesh",
-          "West Bengal",
-        ]
+        "Maharashtra",
+        "Delhi",
+        "Gujarat",
+        "Karnataka",
+        "Tamil Nadu",
+        "Uttar Pradesh",
+        "West Bengal",
+      ]
       : country === "United States"
         ? ["California", "Texas", "New York", "Florida"]
         : [];
@@ -67,6 +67,8 @@ export default function PersonalInformation() {
   const [openCalendar, setOpenCalendar] = useState(false);
 
   /* ---------- TAG INPUT HANDLERS ---------- */
+  const [focusedId, setFocusedId] = useState(null);
+
   const handleAddTag = (e, list, setList) => {
     if (e.key === "Enter" && e.target.value.trim()) {
       e.preventDefault();
@@ -91,12 +93,17 @@ export default function PersonalInformation() {
             {/* USERNAME */}
             <div>
               <Label>User Name</Label>
-              <div className="flex items-center w-full border border-black rounded-md px-3 py-2 text-sm">
+              <div
+                className={`flex items-center w-full border border-black rounded-md px-3 py-2 text-sm transition-shadow ${focusedId === "username" ? "shadow-[0_0_15px_#CEFF1B] !border-transparent" : ""
+                  }`}
+              >
                 <span className="text-gray-400 mr-1 select-none">@</span>
                 <input
                   type="text"
                   placeholder="username"
-                  className="flex-1 bg-transparent outline-none focus:shadow-none focus:border-transparent focus:outline-none"
+                  onFocus={() => setFocusedId("username")}
+                  onBlur={() => setFocusedId(null)}
+                  className="flex-1 bg-transparent border-none outline-none focus:outline-none focus:ring-0"
                 />
               </div>
             </div>
@@ -111,7 +118,7 @@ export default function PersonalInformation() {
                   placeholder="DD-MM-YYYY"
                   value={dob}
                   readOnly
-                  className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm outline-none"
+                  className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                 />
 
                 <span
@@ -143,14 +150,19 @@ export default function PersonalInformation() {
             {/* PHONE */}
             <div>
               <Label>Phone Number</Label>
-              <div className="flex items-center border border-black rounded-md px-3 py-2 gap-2">
+              <div
+                className={`flex items-center border border-black rounded-md px-3 py-2 gap-2 transition-shadow ${focusedId === "phone" ? "shadow-[0_0_15px_#CEFF1B] !border-transparent" : ""
+                  }`}
+              >
                 <span className="text-sm text-gray-700">India</span>
                 <span className="text-gray-400">|</span>
                 <span className="text-sm text-gray-700">+91</span>
                 <input
                   type="tel"
                   placeholder="XXXXXXXXXX"
-                  className="flex-1 outline-none bg-transparent text-sm pl-2 focus:shadow-none focus:border-transparent focus:outline-none"
+                  onFocus={() => setFocusedId("phone")}
+                  onBlur={() => setFocusedId(null)}
+                  className="flex-1 outline-none border-none bg-transparent text-sm pl-2 focus:outline-none focus:ring-0"
                 />
               </div>
             </div>
@@ -173,15 +185,14 @@ export default function PersonalInformation() {
                   value={country}
                   placeholder="Select country"
                   onClick={() => setOpenCountry(!openCountry)}
-                  className="w-full h-[41px] cursor-pointer bg-transparent border border-black rounded-md pl-3 pr-10 text-sm outline-none"
+                  className="w-full h-[41px] cursor-pointer bg-transparent border border-black rounded-md pl-3 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                 />
 
                 <img
                   src="/Polygon.svg"
                   alt="dropdown"
-                  className={`absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 transition-transform ${
-                    openCountry ? "rotate-180" : ""
-                  }`}
+                  className={`absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 transition-transform ${openCountry ? "rotate-180" : ""
+                    }`}
                 />
 
                 {openCountry && (
@@ -215,15 +226,14 @@ export default function PersonalInformation() {
                     country ? "Select state" : "Select country first"
                   }
                   onClick={() => country && setOpenState(!openState)}
-                  className="w-full h-[41px] cursor-pointer bg-transparent border border-black rounded-md pl-3 pr-10 text-sm outline-none"
+                  className="w-full h-[41px] cursor-pointer bg-transparent border border-black rounded-md pl-3 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                 />
 
                 <img
                   src="/Polygon.svg"
                   alt="dropdown"
-                  className={`absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 transition-transform ${
-                    openState ? "rotate-180" : ""
-                  }`}
+                  className={`absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 transition-transform ${openState ? "rotate-180" : ""
+                    }`}
                 />
 
                 {openState && (
@@ -261,7 +271,7 @@ export default function PersonalInformation() {
                 onChange={(e) => setTitle(e.target.value.slice(0, TITLE_LIMIT))}
                 rows={3}
                 className="w-full bg-transparent border border-black rounded-md p-3 text-sm
-                   outline-none resize-none placeholder:text-gray-400"
+                   outline-none resize-none placeholder:text-gray-400 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
               />
               <p className="text-xs text-red-500 mt-1">
                 {title.length}/{TITLE_LIMIT} characters
@@ -279,7 +289,7 @@ export default function PersonalInformation() {
                 }
                 rows={3}
                 className="w-full bg-transparent border border-black rounded-md p-3 text-sm
-                   outline-none resize-none placeholder:text-gray-400"
+                   outline-none resize-none placeholder:text-gray-400 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
               />
               <p className="text-xs text-red-500 mt-1">
                 {shortBio.length}/{BIO_LIMIT} characters
@@ -296,7 +306,7 @@ export default function PersonalInformation() {
             value={about}
             onChange={(e) => setAbout(e.target.value.slice(0, ABOUT_LIMIT))}
             className="w-full bg-transparent border border-black rounded-md p-3 text-sm
-               outline-none resize-none placeholder:text-gray-400"
+               outline-none resize-none placeholder:text-gray-400 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
           />
           <p className="text-xs text-red-500 mt-1">
             {about.length}/{ABOUT_LIMIT} characters
@@ -345,7 +355,7 @@ export default function PersonalInformation() {
               className="w-full h-[41px] cursor-pointer
       bg-transparent
       border border-black dark:border-white
-      rounded-md px-3 text-sm outline-none
+      rounded-md px-3 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]
       text-black dark:text-white"
             />
 
@@ -374,11 +384,10 @@ export default function PersonalInformation() {
                         setOpen(false);
                       }}
                       className={`block w-fit rounded-md border px-3 py-1 text-sm transition
-            ${
-              availability === item
-                ? "border-black dark:border-white bg-white dark:bg-[#2B2B2B]"
-                : "border-gray-300 dark:border-gray-600  hover:dark:text-white"
-            }
+            ${availability === item
+                          ? "border-black dark:border-white bg-white dark:bg-[#2B2B2B]"
+                          : "border-gray-300 dark:border-gray-600  hover:dark:text-white"
+                        }
             text-black dark:text-white`}
                     >
                       {item}
@@ -507,11 +516,10 @@ function Calendar({ onClose, onSelect }) {
                       setYear(y);
                       setOpenYear(false);
                     }}
-                    className={`px-3 py-1 text-sm cursor-pointer ${
-                      y === year
+                    className={`px-3 py-1 text-sm cursor-pointer ${y === year
                         ? "bg-[#CEFF1B] text-black font-semibold"
                         : "hover:bg-gray-100 dark:hover:bg-[#CEFF1B]"
-                    }`}
+                      }`}
                   >
                     {y}
                   </div>
@@ -574,10 +582,9 @@ function Calendar({ onClose, onSelect }) {
                     onSelect(formatted);
                   }}
                   className={`mx-auto w-7 h-7 rounded-full flex items-center justify-center cursor-pointer transition
-                    ${
-                      isSelected
-                        ? "bg-[#CEFF1B] text-black font-bold"
-                        : "hover:bg-[#CEFF1B] hover:text-black"
+                    ${isSelected
+                      ? "bg-[#CEFF1B] text-black font-bold"
+                      : "hover:bg-[#CEFF1B] hover:text-black"
                     }`}
                 >
                   {day}
@@ -622,7 +629,7 @@ function Input({ label, placeholder }) {
       <input
         // this is for the upper
         placeholder={placeholder}
-        className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none"
+        className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
       />
     </div>
   );
@@ -637,7 +644,7 @@ function TagInput({ placeholder, tags, setTags, onKeyDown, onRemove }) {
       <input
         placeholder={placeholder}
         onKeyDown={(e) => onKeyDown(e, tags, setTags)}
-        className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none"
+        className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
       />
 
       {/* CHIP CONTAINER (input-style) */}
@@ -693,16 +700,15 @@ function TagSelect({ options, tags, setTags, onRemove }) {
           readOnly
           placeholder="Select languages"
           onClick={() => setOpen(!open)}
-          className="w-full h-[41px] cursor-pointer bg-transparent border border-black rounded-md pl-3 pr-10 text-sm outline-none"
+          className="w-full h-[41px] cursor-pointer bg-transparent border border-black rounded-md pl-3 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
         />
 
         {/* Right polygon icon (local svg) */}
         <img
           src="/Polygon.svg"
           alt="dropdown"
-          className={`absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 pointer-events-none transition-transform ${
-            open ? "rotate-180" : ""
-          }`}
+          className={`absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 pointer-events-none transition-transform ${open ? "rotate-180" : ""
+            }`}
         />
 
         {/* Dropdown */}
@@ -714,10 +720,9 @@ function TagSelect({ options, tags, setTags, onRemove }) {
                 onClick={() => addTag(lang)}
                 disabled={tags.includes(lang)}
                 className={`block w-fit rounded-md border px-3 py-1 text-sm transition
-                  ${
-                    tags.includes(lang)
-                      ? "border-black bg-white opacity-50 cursor-not-allowed"
-                      : "border-gray-300 "
+                  ${tags.includes(lang)
+                    ? "border-black bg-white opacity-50 cursor-not-allowed"
+                    : "border-gray-300 "
                   }`}
               >
                 {lang}

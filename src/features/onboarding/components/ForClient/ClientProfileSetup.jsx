@@ -31,38 +31,10 @@ export default function ClientProfileSetup() {
       {/* Bottom (Mobile) / Right (Desktop) - Content */}
       <div className="w-full md:w-[70%] bg-[#E0E0E0] md:bg-gradient-to-br md:from-[#E8E8E8] md:via-[#E0E0E0] md:to-[#D8D8D8] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 p-6 md:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[55vh] md:min-h-screen z-20">
         {/* Animated Gradient Glows */}
-        <div
-          className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
-          style={{
-            background: 'radial-gradient(circle, rgba(195, 255, 0, 0.4) 0%, rgba(195, 255, 0, 0.15) 40%, transparent 70%)',
-            bottom: '-15%',
-            left: '-15%',
-            filter: 'blur(60px)',
-            animation: 'glow-bottomleft-center-right 8s ease-in-out infinite',
-          }}
-        ></div>
-        <div
-          className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
-          style={{
-            background: 'radial-gradient(circle, rgba(195, 255, 0, 0.35) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)',
-            top: '-10%',
-            right: '-10%',
-            filter: 'blur(50px)',
-            animation: 'glow-center-topright 8s ease-in-out infinite',
-          }}
-        ></div>
+        
+        
 
-        <div
-          className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
-          style={{
-            background: 'radial-gradient(circle, rgba(195, 255, 0, 0.3) 0%, rgba(195, 255, 0, 0.1) 40%, transparent 70%)',
-            top: '40%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            filter: 'blur(50px)',
-            animation: 'glow-rotate 6s steps(3) infinite',
-          }}
-        ></div>
+       
 
         {/* Content Card Container */}
         <div className="bg-white/40 md:bg-white/40 backdrop-blur-xl rounded-[30px] shadow-xl p-6 md:p-16 w-full max-w-[500px] md:max-w-none md:w-[95%] md:h-[90%] relative z-10 border border-[#CEFF1B] md:border md:border-[#CEFF1B] flex flex-col justify-center items-center text-center">
@@ -91,7 +63,7 @@ export default function ClientProfileSetup() {
             </button>
             <button
               onClick={handleSkip}
-              className="px-6 py-3 md:px-12 md:py-4 rounded-lg md:rounded-xl bg-[#CEFF1B] border border-[#2B2B2B] text-black font-semibold text-sm md:text-xl hover:bg-white hover:border-black transition-all hover:shadow-[0_0_15px_#CEFF1B] flex-1 md:flex-none whitespace-nowrap"
+              className="px-6 py-3 md:px-12 md:py-4 rounded-lg md:rounded-xl bg-[#CEFF1B] border border-black text-black font-semibold text-sm md:text-xl hover:bg-white hover:text-gray-900 transition-all shadow-sm hover:shadow-[0_0_15px_#CEFF1B] flex-1 md:flex-none whitespace-nowrap"
             >
               Skip for now
             </button>

@@ -66,7 +66,7 @@ export default function CreatorGoalsSelection() {
         <span
           className={[
             "w-6 h-6 rounded-lg flex items-center justify-center shrink-0",
-            active ? "bg-white border border-black/20" : "bg-[#CEFF1B]",
+            "bg-[#CEFF1B]",
           ].join(" ")}
         >
           <Icon size={14} className="text-black" strokeWidth={2} />
@@ -129,9 +129,8 @@ export default function CreatorGoalsSelection() {
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
+                  }`}
               />
             ))}
           </div>
@@ -201,7 +200,7 @@ export default function CreatorGoalsSelection() {
 
         {/* ✅ DESKTOP (unchanged) */}
         <div className="hidden md:block relative z-10 w-full max-w-[900px]">
-          <div className="-mt-6  border border-[#CEFF1B] rounded-[30px] p-8 md:p-12  min-h-[500px]">
+          <div className="-mt-6 bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] rounded-[30px] p-8 md:p-12 shadow-xl min-h-[500px]">
             <div className="flex flex-wrap gap-4 justify-center md:justify-start mt-6">
               {goals.map((goal) => {
                 const Icon = goal.icon;
@@ -213,22 +212,20 @@ export default function CreatorGoalsSelection() {
                     onClick={() => toggleGoal(goal.id)}
                     className={`
                       flex items-center gap-4 px-6 py-4 rounded-xl cursor-pointer border-2 transition-all duration-300 backdrop-blur-sm
-                      ${
-                        isSelected
-                          ? "bg-[#CEFF1B] border-[0.6px] border-[#2B2B2B] scale-105"
-                          : "bg-white/20 border-[#2B2B2B] hover:border-black/30"
+                      ${isSelected
+                        ? "bg-[#CEFF1B] border-black shadow-lg scale-105"
+                        : "bg-white/20 border-[#2B2B2B]  "
                       }
                     `}
                   >
 
-                    
+
                     <div className="bg-[#CEFF1B] p-2 rounded-lg flex items-center justify-center shrink-0">
                       <Icon size={20} className="text-black" strokeWidth={2} />
                     </div>
                     <span
-                      className={`font-semibold text-lg ${
-                        isSelected ? "text-black" : "text-gray-800"
-                      }`}
+                      className={`font-[500] text-lg ${isSelected ? "text-black" : "text-gray-800"
+                        }`}
                     >
                       {goal.label}
                     </span>
@@ -243,14 +240,14 @@ export default function CreatorGoalsSelection() {
         <div className="hidden md:block mt-16 relative z-10 w-full max-w-[900px]">
           <div className="flex justify-between items-center">
             <button
-                onClick={handleReset}
-                className="h-10 px-5 rounded-lg border border-black bg-white text-black text-sm"
-              >
-                Reset
-              </button>
+              onClick={handleReset}
+              className="h-10 px-5 rounded-lg border border-black bg-white text-black text-sm"
+            >
+              Reset
+            </button>
 
             <div className="flex gap-4">
-               <button
+              <button
                 onClick={handleBack}
                 className="h-10 px-6 rounded-lg border border-black bg-white text-black text-sm"
               >

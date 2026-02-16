@@ -117,7 +117,7 @@ export default function CreatorProfileSetup() {
             </button>
             <button
               onClick={handleSkip}
-              className="px-6 py-3 md:px-12 md:py-4 rounded-lg md:rounded-xl bg-[#CEFF1B] border border-gray-900 text-gray-900 font-semibold text-sm md:text-xl hover:bg-white hover:border-black transition-all hover:shadow-[0_0_15px_#CEFF1B] flex-1 md:flex-none whitespace-nowrap"
+              className="px-6 py-3 md:px-12 md:py-4 rounded-lg md:rounded-xl bg-[#CEFF1B] border border-black text-black font-semibold text-sm md:text-xl hover:bg-white hover:text-gray-900 transition-all shadow-sm hover:shadow-[0_0_15px_#CEFF1B] flex-1 md:flex-none whitespace-nowrap"
             >
               Skip for now
             </button>

@@ -95,7 +95,7 @@ export default function ClientNeeds() {
         <span
           className={[
             "w-6 h-6 rounded-lg flex items-center justify-center",
-            isSelected ? "bg-white border border-black/20" : "bg-[#CEFF1B]",
+            "bg-[#CEFF1B]",
           ].join(" ")}
         >
           <Icon size={14} className="text-black" strokeWidth={2} />
@@ -140,15 +140,16 @@ export default function ClientNeeds() {
           </button>
 
           {/* Question */}
-          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-center md:items-start text-center md:text-left px-4 md:px-0">
-            <h2 className="text-4xl md:text-4xl font-bold text-black mb-2 md:mb-4 leading-tight">
+          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-start text-left px-4 md:px-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
               Tell us more
-              <br />
-              about your needs
             </h2>
-            <p className="text-black/70 text-xl md:text-xl md:leading-normal leading-tight">
-              What type of creators do
-              <br className="md:hidden" /> you hire?
+
+            <h2 className="text-3xl md:text-4xl font-bold text-black -mt-1 leading-tight">
+              about what your needs            </h2>
+
+            <p className="text-black/60 text-base md:text-xl mt-4 md:mt-6 max-w-md">
+              What type of creators do you hire?
             </p>
           </div>
 
@@ -165,22 +166,8 @@ export default function ClientNeeds() {
         </div>
       </div>
 
-      {/* Bottom Section on Mobile / Right Side on Desktop - Content */}
-      <div className="w-full md:w-[70%] bg-[#E0E0E0] md:bg-gradient-to-br md:from-[#E8E8E8] md:via-[#E0E0E0] md:to-[#D8D8D8] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 px-4 py-8 md:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
-        {/* Animated Gradient Glows - Desktop Only */}
-        <div
-          className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
-
-        />
-        <div
-          className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
-
-        />
-        <div
-          className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
-
-        />
-
+      {/* Bottom Section on Mobile      {/* Right Section - Settings/Information */}
+      <div className="w-full md:w-[70%] bg-[#E0E0E0] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 px-3 py-6 md:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
         {/* Main Content Area */}
         <div className="relative z-10 w-full max-w-[900px]">
           {/* ✅ MOBILE (screenshot-style layout) */}
@@ -203,7 +190,7 @@ export default function ClientNeeds() {
                   value={budget}
                   onChange={(e) => setBudget(e.target.value)}
                   placeholder="$2K - $4K"
-                  className="w-full h-10 rounded-xl border-1 border-black bg-white px-3 text-sm text-black/70 focus:outline-none focus:border-black"
+                  className="w-full h-10 rounded-xl border border-black bg-white px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                 />
               </div>
 
@@ -275,7 +262,7 @@ export default function ClientNeeds() {
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
                     placeholder="Type here"
-                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:border-black"
+                    className="w-full h-10 rounded-xl bg-transparent border-1 border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
 
@@ -283,7 +270,7 @@ export default function ClientNeeds() {
                   <label className="block text-[11px] font-semibold text-black/70 mb-2">
                     Role
                   </label>
-                  <div className="onboarding-custom-select" ref={roleRef}>
+                  <div className={`onboarding-custom-select ${isRoleOpen ? "active" : ""}`} ref={roleRef}>
                     <div
                       className={`onboarding-selected-option ${isRoleOpen ? "open" : ""}`}
                       onClick={() => setIsRoleOpen(!isRoleOpen)}
@@ -293,14 +280,14 @@ export default function ClientNeeds() {
                     </div>
 
                     {isRoleOpen && (
-                      <ul className="onboarding-options-list">
+                      <ul className="onboarding-options-list role-dropdown-small">
                         <li
                           className="text-gray-400 cursor-not-allowed"
                           style={{ pointerEvents: "none" }}
                         >
                           Select
                         </li>
-                        {["Manager", "Founder", "HR"].map((opt) => (
+                        {["Manager", "Founder", "HR", "Director", "Other"].map((opt) => (
                           <li
                             key={opt}
                             className={role === opt ? "active" : ""}
@@ -366,7 +353,7 @@ export default function ClientNeeds() {
           {/* ✅ DESKTOP (your original layout 그대로) */}
           <div className="hidden md:block">
             {/* Creator Categories - Desktop Container */}
-            <div className="bg-white/40 md:bg-white/40 backdrop-blur-md border border-[#CEFF1B] md:border md:border-[#CEFF1B] rounded-[24px] md:rounded-[30px] p-4 md:p-8 shadow-xl mb-6 md:mb-8 flex flex-col justify-center gap-4">
+            <div className="bg-white/40 md:bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] md:border md:border-[#CEFF1B] rounded-[24px] md:rounded-[30px] p-4 md:p-8 shadow-xl mb-6 md:mb-8 flex flex-col justify-center gap-4">
               <div className="hidden md:flex flex-col gap-4">
                 {[categories.slice(0, 4), categories.slice(4, 7), categories.slice(7)].map(
                   (row, rowIndex) => (
@@ -383,18 +370,17 @@ export default function ClientNeeds() {
                               ${rowIndex === 0 ? "flex-1" : "w-full md:w-[24%]"}
                               ${isSelected
                                 ? "bg-[#CEFF1B] border-black/50 shadow-md scale-105"
-                                : "bg-transparent border-gray-400 hover:bg-white/10"
+                                : "bg-transparent border-[#2B2B2B] "
                               }
                             `}
                           >
                             <div
-                              className={`p-1.5 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? "bg-white" : "bg-[#CEFF1B]"
-                                }`}
+                              className={`p-1.5 rounded-xl flex items-center justify-center shrink-0 bg-[#CEFF1B]`}
                             >
                               <Icon size={22} className="text-black" strokeWidth={2} />
                             </div>
                             <span
-                              className={`font-bold text-lg ${isSelected ? "text-black" : "text-gray-800"
+                              className={`font-[500] text-lg ${isSelected ? "text-black" : "text-gray-800"
                                 }`}
                             >
                               {category.label}
@@ -409,7 +395,7 @@ export default function ClientNeeds() {
             </div>
 
             {/* Desktop form fields (original) */}
-            <div className="grid grid-cols-2 gap-3 md:gap-8 mb-6 items-end">
+            <div className="grid grid-cols-2 gap-3 md:gap-8 mb-6 items-end relative z-20">
               <div>
                 <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
                   Average project budget
@@ -419,7 +405,7 @@ export default function ClientNeeds() {
                   value={budget}
                   onChange={(e) => setBudget(e.target.value)}
                   placeholder="$2K - $4K"
-                  className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-black bg-transparent md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:border-black focus:outline-none transition-all font-medium text-xs md:text-base bg-[#F0F0F0]/50"
+                  className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-black bg-transparent md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:!border-transparent focus:outline-none transition-all font-medium text-xs md:text-base bg-[#F0F0F0]/50 focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B]"
                 />
               </div>
 
@@ -475,31 +461,29 @@ export default function ClientNeeds() {
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
                     placeholder="Type here"
-                    className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-[#2B2B2B] bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:border-black focus:outline-none transition-all font-medium text-xs md:text-base"
+                    className="w-full p-2 md:p-3 rounded-md md:rounded-xl border-1 border-[#2B2B2B] bg-transparent md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:!border-transparent focus:outline-none transition-all font-medium text-xs md:text-base focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B]"
                   />
                 </div>
                 <div>
                   <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
                     Role
                   </label>
-                  <div className="onboarding-custom-select" ref={roleRef}>
+                  <div className={`onboarding-custom-select ${isRoleOpen ? "active" : ""}`} ref={roleRef}>
                     <div
                       className={`onboarding-selected-option ${isRoleOpen ? "open" : ""}`}
                       onClick={() => setIsRoleOpen(!isRoleOpen)}
                     >
-                      <span>{role || "Type here"}</span>
+                      <span className={!role ? "opacity-70" : ""}>
+                        {role || "Type here"}
+                      </span>
                       <span className="onboarding-arrow">▼</span>
                     </div>
 
+
                     {isRoleOpen && (
-                      <ul className="onboarding-options-list">
-                        <li
-                          className="text-gray-400 cursor-not-allowed"
-                          style={{ pointerEvents: "none" }}
-                        >
-                          Type here
-                        </li>
-                        {["Manager", "Founder", "HR"].map((opt) => (
+                      <ul className="onboarding-options-list role-dropdown-small">
+
+                        {["Manager", "Founder", "HR", "Director", "Other"].map((opt) => (
                           <li
                             key={opt}
                             className={role === opt ? "active" : ""}

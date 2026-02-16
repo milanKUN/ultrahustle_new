@@ -10,16 +10,15 @@ export default function RoleSelection() {
 
   const handleBack = () => navigate("/client-onboarding");
 
-const handleContinue = () => {
-  if (!selectedRole) return;
+  const handleContinue = () => {
+    if (!selectedRole) return;
 
-  if (selectedRole === "client") {
-    navigate("/client-work-type-selection"); // ✅ your client onboarding next page
-  } else if (selectedRole === "creator") {
-    navigate("/creator-work-type-selection"); // ✅ your creator onboarding next page
-  }
-};
-
+    if (selectedRole === "client") {
+      navigate("/client-work-type-selection"); // ✅ your client onboarding next page
+    } else if (selectedRole === "creator") {
+      navigate("/creator-work-type-selection"); // ✅ your creator onboarding next page
+    }
+  };
 
   const handleReset = () => setSelectedRole(null);
 
@@ -91,11 +90,16 @@ const handleContinue = () => {
           </button>
 
           {/* Question */}
-          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-center md:items-start text-center md:text-left px-4 md:px-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black">
-              How will you be using Ultra Hustle?
+          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-start text-left px-4 md:px-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
+              How will you be
             </h2>
-            <p className="text-black/60 text-base md:text-xl mt-4 md:mt-6">
+
+            <h2 className="text-3xl md:text-4xl font-bold text-black -mt-1 leading-tight">
+              using Ultra Hustle?
+            </h2>
+
+            <p className="text-black/60 text-base md:text-xl mt-4 md:mt-6 max-w-md">
               This helps us tailor your dashboard
             </p>
           </div>
@@ -105,8 +109,9 @@ const handleContinue = () => {
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                  }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentStep ? "bg-black w-4 h-4" : "bg-white"
+                }`}
               />
             ))}
           </div>
@@ -116,18 +121,9 @@ const handleContinue = () => {
       {/* Bottom Section on Mobile / Right Side on Desktop - Content */}
       <div className="w-full md:w-[70%] bg-[#E0E0E0] md:bg-gradient-to-br md:from-[#E8E8E8] md:via-[#E0E0E0] md:to-[#D8D8D8] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 p-6 pt-8 md:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
         {/* Animated Gradient Glows - Desktop Only */}
-        <div
-          className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
-
-        />
-        <div
-          className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
-
-        />
-        <div
-          className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
-
-        />
+        <div className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0" />
+        <div className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0" />
+        <div className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0" />
 
         {/* ✅ MOBILE (screenshot-like) */}
         <div className="md:hidden  w-full max-w-[420px] relative z-10">
@@ -200,17 +196,19 @@ const handleContinue = () => {
         <div className="hidden md:flex flex-col md:flex-row gap-6 justify-between items-stretch relative z-10 w-full px-4">
           <div
             onClick={() => setSelectedRole("creator")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "creator"
+            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
+              selectedRole === "creator"
                 ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                : "bg-white/40 border border-[#CEFF1B] hover:bg-white/20"
-              }`}
+                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+            }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "creator"
+                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
+                  selectedRole === "creator"
                     ? "border-black bg-[#C3FF00]/10"
                     : "border-gray-400 bg-white"
-                  }`}
+                }`}
               >
                 Creator
               </span>
@@ -229,17 +227,19 @@ const handleContinue = () => {
 
           <div
             onClick={() => setSelectedRole("client")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "client"
+            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
+              selectedRole === "client"
                 ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                : "bg-white/40 border border-[#CEFF1B] hover:bg-white/20"
-              }`}
+                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+            }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "client"
+                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
+                  selectedRole === "client"
                     ? "border-black bg-[#C3FF00]/10"
                     : "border-gray-400 bg-white"
-                  }`}
+                }`}
               >
                 Client
               </span>
@@ -247,7 +247,9 @@ const handleContinue = () => {
             <ul className="text-gray-700 text-base space-y-3">
               <li className="flex items-start gap-2">
                 <span className="text-gray-500">•</span>
-                <span>I want to hire creators and purchase products/courses</span>
+                <span>
+                  I want to hire creators and purchase products/courses
+                </span>
               </li>
             </ul>
           </div>
@@ -276,10 +278,11 @@ const handleContinue = () => {
               <button
                 onClick={handleContinue}
                 disabled={!selectedRole}
-                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${selectedRole
+                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${
+                  selectedRole
                     ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
                     : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
-                  }`}
+                }`}
               >
                 Continue
               </button>

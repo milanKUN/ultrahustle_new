@@ -105,7 +105,7 @@ export default function CreatorNeeds() {
         <span
           className={[
             "w-6 h-6 rounded-lg flex items-center justify-center shrink-0",
-            active ? "bg-white border border-black/20" : "bg-[#CEFF1B]",
+            "bg-[#CEFF1B]",
           ].join(" ")}
         >
           <Icon size={14} className="text-black" strokeWidth={2} />
@@ -150,15 +150,17 @@ export default function CreatorNeeds() {
           </button>
 
           {/* Question */}
-          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-center md:items-start text-center md:text-left px-4 md:px-0">
-            <h2 className="text-4xl md:text-4xl font-bold text-black mb-2 md:mb-4 leading-tight">
-              Tell us more
-              <br />
-              about your skills
+       <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-start text-left px-4 md:px-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
+              Tell us more about
             </h2>
-            <p className="text-black/70 text-xl md:text-xl md:leading-normal leading-tight">
-              What services do
-              <br className="md:hidden" /> you offer?
+
+            <h2 className="text-3xl md:text-4xl font-bold text-black -mt-1 leading-tight">
+              your skills 
+            </h2>
+
+            <p className="text-black/60 text-base md:text-xl mt-4 md:mt-6 max-w-md">
+              What service do you offer
             </p>
           </div>
 
@@ -176,21 +178,7 @@ export default function CreatorNeeds() {
       </div>
 
       {/* Bottom Section */}
-      <div className="w-full md:w-[70%] bg-[#E0E0E0] md:bg-gradient-to-br md:from-[#E8E8E8] md:via-[#E0E0E0] md:to-[#D8D8D8] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 px-4 py-8 md:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
-        {/* Animated Gradient Glows - Desktop Only */}
-        <div
-          className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
-
-        />
-        <div
-          className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
-
-        />
-        <div
-          className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
-
-        />
-
+      <div className="w-full md:w-[70%] bg-[#E0E0E0] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 px-4 py-8 md:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
         <div className="relative z-10 w-full max-w-[900px]">
           {/* ✅ MOBILE (screenshot-style) */}
           <div className="md:hidden w-full max-w-[420px] mx-auto">
@@ -203,7 +191,7 @@ export default function CreatorNeeds() {
               </div>
 
               {/* fields */}
-              <div className="mt-5 grid grid-cols-2 gap-3 items-end">
+              <div className="mt-5 grid grid-cols-2 gap-3 items-end relative z-20">
                 <div>
                   <label className="block text-[11px] font-semibold text-black/70 mb-2">
                     Primary skill / niche
@@ -213,7 +201,7 @@ export default function CreatorNeeds() {
                     value={primarySkill}
                     onChange={(e) => setPrimarySkill(e.target.value)}
                     placeholder="Skill/niche"
-                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:border-black"
+                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
 
@@ -221,7 +209,7 @@ export default function CreatorNeeds() {
                   <label className="block text-[11px] font-semibold text-black/70 mb-2">
                     Experience level
                   </label>
-                  <div className="onboarding-custom-select" ref={experienceRef}>
+                  <div className={`onboarding-custom-select ${isExperienceOpen ? "active" : ""}`} ref={experienceRef}>
                     <div
                       className={`onboarding-selected-option ${isExperienceOpen ? "open" : ""}`}
                       onClick={() => setIsExperienceOpen(!isExperienceOpen)}
@@ -264,7 +252,7 @@ export default function CreatorNeeds() {
                     value={rateRange}
                     onChange={(e) => setRateRange(e.target.value)}
                     placeholder="Hourly/project range"
-                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:border-black"
+                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
 
@@ -307,7 +295,7 @@ export default function CreatorNeeds() {
                     value={portfolioLinks}
                     onChange={(e) => setPortfolioLinks(e.target.value)}
                     placeholder="Paste here"
-                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:border-black"
+                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
               )}
@@ -382,13 +370,12 @@ export default function CreatorNeeds() {
                             `}
                           >
                             <div
-                              className={`p-1.5 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? "bg-white" : "bg-[#CEFF1B]"
-                                }`}
+                              className={`p-1.5 rounded-xl flex items-center justify-center shrink-0 bg-[#CEFF1B]`}
                             >
                               <Icon size={22} className="text-black" strokeWidth={2} />
                             </div>
                             <span
-                              className={`font-bold text-lg ${isSelected ? "text-black" : "text-gray-800"
+                              className={`font-[500] text-lg ${isSelected ? "text-black" : "text-gray-800"
                                 }`}
                             >
                               {category.label}
@@ -405,7 +392,7 @@ export default function CreatorNeeds() {
             </div>
 
             {/* Desktop fields (original) */}
-            <div className="grid grid-cols-2 gap-3 md:gap-8 mb-6 items-end">
+            <div className="grid grid-cols-2 gap-3 md:gap-8 mb-6 items-end relative z-20">
               <div>
                 <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
                   Primary skill / niche
@@ -415,7 +402,7 @@ export default function CreatorNeeds() {
                   value={primarySkill}
                   onChange={(e) => setPrimarySkill(e.target.value)}
                   placeholder="Skill/niche"
-                  className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-black bg-transparent md:bg-gray-100 text-gray-800 placeholder-gray-500   font-medium text-xs md:text-base"
+                  className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-black bg-transparent md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B] font-medium text-xs md:text-base"
                 />
               </div>
 
@@ -423,7 +410,7 @@ export default function CreatorNeeds() {
                 <label className="block text-gray-800  font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
                   Experience level
                 </label>
-                <div className="onboarding-custom-select" ref={experienceRef}>
+                <div className={`onboarding-custom-select ${isExperienceOpen ? "active" : ""}`} ref={experienceRef}>
                   <div
                     className={`onboarding-selected-option ${isExperienceOpen ? "open" : ""}`}
                     onClick={() => setIsExperienceOpen(!isExperienceOpen)}
@@ -434,12 +421,7 @@ export default function CreatorNeeds() {
 
                   {isExperienceOpen && (
                     <ul className="onboarding-options-list">
-                      <li
-                        className="text-gray-400 cursor-not-allowed"
-                        style={{ pointerEvents: "none" }}
-                      >
-                        Experience level
-                      </li>
+
                       {experienceOptions.map((opt) => (
                         <li
                           key={opt.value}
@@ -459,14 +441,14 @@ export default function CreatorNeeds() {
 
               <div>
                 <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
-                  Your hourly / project range (optional)
+                  Your hourly / project range
                 </label>
                 <input
                   type="text"
                   value={rateRange}
                   onChange={(e) => setRateRange(e.target.value)}
                   placeholder="Hourly/project range"
-                  className="w-full p-2 md:p-3 bg-transparent rounded-md md:rounded-xl border border-black bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:border-black focus:outline-none transition-all font-medium text-xs md:text-base"
+                  className="w-full p-2 md:p-3 bg-transparent rounded-md md:rounded-xl border border-black bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B] transition-all font-medium text-xs md:text-base"
                 />
               </div>
 
@@ -480,8 +462,8 @@ export default function CreatorNeeds() {
                       key={opt}
                       onClick={() => setHasPortfolio(opt.toLowerCase())}
                       className={`flex-1 p-2 md:py-3 rounded-md md:rounded-xl font-medium transition-all text-xs md:text-base ${hasPortfolio === opt.toLowerCase()
-                          ? "bg-[#CEFF1B] text-black"
-                          : "bg-transparent text-gray-600"
+                        ? "bg-[#CEFF1B] text-black"
+                        : "bg-transparent text-gray-600"
                         }`}
                       style={{
                         border: "0.6px solid #000",
@@ -506,7 +488,7 @@ export default function CreatorNeeds() {
                     value={portfolioLinks}
                     onChange={(e) => setPortfolioLinks(e.target.value)}
                     placeholder="Paste here"
-                    className="w-[49%] bg-transparent p-2 md:p-3 rounded-md md:rounded-xl border border-black bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:border-black focus:outline-none transition-all font-medium text-xs md:text-base"
+                    className="w-[49%] bg-transparent p-2 md:p-3 rounded-md md:rounded-xl border border-black bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B] transition-all font-medium text-xs md:text-base"
                   />
                 </div>
               </div>

@@ -60,7 +60,7 @@ export default function GoalsSelection() {
         <span
           className={[
             "w-6 h-6 rounded-lg flex items-center justify-center shrink-0",
-            active ? "bg-white border border-black/20" : "bg-[#CEFF1B]",
+            "bg-[#CEFF1B]",
           ].join(" ")}
         >
           <Icon size={14} className="text-black" strokeWidth={2} />
@@ -106,11 +106,18 @@ export default function GoalsSelection() {
           </button>
 
           {/* Question */}
-          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-center md:items-start text-center md:text-left px-4 md:px-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-2 md:mb-4">
-              What do you want to achieve?
+         <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-start text-left px-4 md:px-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
+              What do you 
             </h2>
-            <p className="text-black/60 text-xl md:text-xl">Select multiple</p>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-black -mt-1 leading-tight">
+              want to achieve
+            </h2>
+
+            <p className="text-black/60 text-base md:text-xl mt-4 md:mt-6 max-w-md">
+              Select multiple
+            </p>
           </div>
 
           {/* Step Indicators - Desktop Only */}
@@ -198,7 +205,7 @@ export default function GoalsSelection() {
 
         {/* ✅ DESKTOP (unchanged) */}
         <div className="hidden md:block relative z-10 w-full max-w-[900px]">
-          <div className="-mt-6 bg-white/40 backdrop-blur-md border border-[#CEFF1B] rounded-[30px] p-8 md:p-12 shadow-xl min-h-[500px]">
+          <div className="-mt-6 bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] rounded-[30px] p-8 md:p-12 shadow-xl min-h-[500px]">
             <div className="flex flex-wrap gap-4 justify-center md:justify-start mt-6">
               {goals.map((goal) => {
                 const Icon = goal.icon;
@@ -212,7 +219,7 @@ export default function GoalsSelection() {
                       flex items-center gap-4 px-6 py-4 rounded-xl cursor-pointer border-2 backdrop-blur-sm
                       ${isSelected
                         ? "bg-[#CEFF1B] border-black shadow-lg scale-105"
-                        : "bg-white/20 border-black/10 hover:bg-white/30 hover:border-black/30"
+                        : "bg-white/20 border-[#2B2B2B] "
                       }
                     `}
                   >
@@ -221,7 +228,7 @@ export default function GoalsSelection() {
                     </div>
 
                     <span
-                      className={`font-semibold text-lg ${isSelected ? "text-black" : "text-gray-800"
+                      className={`font-[500] text-lg ${isSelected ? "text-black" : "text-gray-800"
                         }`}
                     >
                       {goal.label}
@@ -254,8 +261,8 @@ export default function GoalsSelection() {
                 onClick={handleContinue}
                 disabled={!canContinue}
                 className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${canContinue
-                    ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
-                    : "bg-[#CEFF1B]/50 border border-[#2B2B2B] text-gray-500 cursor-not-allowed"
+                  ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
+                  : "bg-[#CEFF1B]/50 border border-[#2B2B2B] text-gray-500 cursor-not-allowed"
                   }`}
               >
                 Continue
