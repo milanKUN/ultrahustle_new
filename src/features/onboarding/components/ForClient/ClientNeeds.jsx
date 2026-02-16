@@ -32,8 +32,8 @@ export default function ClientNeeds() {
         setIsRoleOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   const currentStep = 4;
@@ -108,14 +108,14 @@ export default function ClientNeeds() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row">
+    <div className="min-h-screen w-full flex flex-col min-[950px]:flex-row">
       {/* Top Section on Mobile / Left Side on Desktop - Acid Green Panel */}
-      <div className="w-full md:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] md:min-h-screen">
-        <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-10">
+      <div className="w-full min-[950px]:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] min-[950px]:min-h-screen">
+        <div className="absolute inset-0 flex flex-col justify-between p-6 min-[950px]:p-10">
           {/* Back Button - Mobile Only */}
           <button
             onClick={handleBack}
-            className="md:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
+            className="min-[950px]:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
             style={{
               background: "linear-gradient(180deg, #FFFFFF, #9C9C9C)",
               padding: "2px",
@@ -140,21 +140,21 @@ export default function ClientNeeds() {
           </button>
 
           {/* Question */}
-          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-start text-left px-4 md:px-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-32 items-start text-left px-4 min-[950px]:px-0">
+            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black leading-tight">
               Tell us more
             </h2>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-black -mt-1 leading-tight">
+            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black -mt-1 leading-tight">
               about what your needs            </h2>
 
-            <p className="text-black/60 text-base md:text-xl mt-4 md:mt-6 max-w-md">
+            <p className="text-black/60 text-base min-[950px]:text-xl mt-4 min-[950px]:mt-6 max-w-md">
               What type of creators do you hire?
             </p>
           </div>
 
           {/* Step Indicators - Desktop Only */}
-          <div className="hidden md:flex items-center gap-3 ml-12">
+          <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
@@ -167,11 +167,11 @@ export default function ClientNeeds() {
       </div>
 
       {/* Bottom Section on Mobile      {/* Right Section - Settings/Information */}
-      <div className="w-full md:w-[70%] bg-[#E0E0E0] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 px-3 py-6 md:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
+      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 px-3 py-6 min-[950px]:p-12 flex flex-col justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
         {/* Main Content Area */}
         <div className="relative z-10 w-full max-w-[900px]">
           {/* ✅ MOBILE (screenshot-style layout) */}
-          <div className="md:hidden bg-transparent   py-4 border  ">
+          <div className="min-[950px]:hidden bg-transparent   py-4 border  ">
             {/* Categories chips */}
             <div className="flex flex-wrap gap-2">
               {categories.map((c) => (
@@ -273,7 +273,10 @@ export default function ClientNeeds() {
                   <div className={`onboarding-custom-select ${isRoleOpen ? "active" : ""}`} ref={roleRef}>
                     <div
                       className={`onboarding-selected-option ${isRoleOpen ? "open" : ""}`}
-                      onClick={() => setIsRoleOpen(!isRoleOpen)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsRoleOpen(!isRoleOpen);
+                      }}
                     >
                       <span>{role || "Select"}</span>
                       <span className="onboarding-arrow">▼</span>
@@ -351,13 +354,13 @@ export default function ClientNeeds() {
           </div>
 
           {/* ✅ DESKTOP (your original layout 그대로) */}
-          <div className="hidden md:block">
+          <div className="hidden min-[950px]:block">
             {/* Creator Categories - Desktop Container */}
-            <div className="bg-white/40 md:bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] md:border md:border-[#CEFF1B] rounded-[24px] md:rounded-[30px] p-4 md:p-8 shadow-xl mb-6 md:mb-8 flex flex-col justify-center gap-4">
-              <div className="hidden md:flex flex-col gap-4">
+            <div className="bg-white/40 min-[950px]:bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] rounded-[24px] min-[950px]:rounded-[30px] p-4 min-[950px]:p-8 shadow-xl mb-6 min-[950px]:mb-8 flex flex-col justify-center gap-4">
+              <div className="hidden min-[950px]:flex flex-col gap-4">
                 {[categories.slice(0, 4), categories.slice(4, 7), categories.slice(7)].map(
                   (row, rowIndex) => (
-                    <div key={rowIndex} className="flex flex-wrap md:flex-nowrap gap-4 w-full">
+                    <div key={rowIndex} className="flex flex-wrap min-[950px]:flex-nowrap gap-4 w-full">
                       {row.map((category) => {
                         const Icon = category.icon;
                         const isSelected = selectedCategories.includes(category.id);
@@ -367,7 +370,7 @@ export default function ClientNeeds() {
                             onClick={() => toggleCategory(category.id)}
                             className={`
                               flex items-center gap-3.5 px-6 py-3.5 rounded-2xl cursor-pointer border-2 transition-all duration-300 backdrop-blur-sm justify-center whitespace-nowrap
-                              ${rowIndex === 0 ? "flex-1" : "w-full md:w-[24%]"}
+                              ${rowIndex === 0 ? "flex-1" : "w-full min-[950px]:w-[24%]"}
                               ${isSelected
                                 ? "bg-[#CEFF1B] border-black/50 shadow-md scale-105"
                                 : "bg-transparent border-[#2B2B2B] "
@@ -395,9 +398,9 @@ export default function ClientNeeds() {
             </div>
 
             {/* Desktop form fields (original) */}
-            <div className="grid grid-cols-2 gap-3 md:gap-8 mb-6 items-end relative z-20">
+            <div className="grid grid-cols-2 gap-3 min-[950px]:gap-8 mb-6 items-end relative z-20">
               <div>
-                <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
+                <label className="block text-gray-800 font-semibold font-roboto mb-2 min-[950px]:mb-3 text-[9px] min-[950px]:text-lg whitespace-nowrap">
                   Average project budget
                 </label>
                 <input
@@ -405,12 +408,12 @@ export default function ClientNeeds() {
                   value={budget}
                   onChange={(e) => setBudget(e.target.value)}
                   placeholder="$2K - $4K"
-                  className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-black bg-transparent md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:!border-transparent focus:outline-none transition-all font-medium text-xs md:text-base bg-[#F0F0F0]/50 focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B]"
+                  className="w-full p-2 min-[950px]:p-3 rounded-md min-[950px]:rounded-xl border border-black bg-transparent min-[950px]:bg-gray-100 text-gray-800 placeholder-gray-500 focus:!border-transparent focus:outline-none transition-all font-medium text-xs min-[950px]:text-base bg-[#F0F0F0]/50 focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B]"
                 />
               </div>
 
               <div>
-                <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
+                <label className="block text-gray-800 font-semibold font-roboto mb-2 min-[950px]:mb-3 text-[9px] min-[950px]:text-lg whitespace-nowrap">
                   Expected project frequency
                 </label>
                 <div className="flex gap-2">
@@ -418,7 +421,7 @@ export default function ClientNeeds() {
                     <button
                       key={opt}
                       onClick={() => setFrequency(opt.toLowerCase())}
-                      className={`flex-1 py-1.5 md:py-3 px-2 rounded-md md:rounded-xl border border-black font-medium transition-all text-xs md:text-base ${frequency === opt.toLowerCase()
+                      className={`flex-1 py-1.5 min-[950px]:py-3 px-2 rounded-md min-[950px]:rounded-xl border border-black font-medium transition-all text-xs min-[950px]:text-base ${frequency === opt.toLowerCase()
                         ? "bg-[#CEFF1B] border-black text-black"
                         : "bg-transparent border-[#2B2B2B] text-gray-900"
                         }`}
@@ -431,7 +434,7 @@ export default function ClientNeeds() {
             </div>
 
             <div className="mb-6">
-              <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
+              <label className="block text-gray-800 font-semibold font-roboto mb-2 min-[950px]:mb-3 text-[9px] min-[950px]:text-lg whitespace-nowrap">
                 Are you hiring for your business/team?
               </label>
               <div className="flex gap-2 w-fit">
@@ -439,7 +442,7 @@ export default function ClientNeeds() {
                   <button
                     key={opt}
                     onClick={() => setHiringForTeam(opt.toLowerCase())}
-                    className={`px-6 py-2 md:px-8 md:py-3 border border-black rounded-md md:rounded-xl border font-medium transition-all text-xs md:text-base ${hiringForTeam === opt.toLowerCase()
+                    className={`px-6 py-2 min-[950px]:px-8 min-[950px]:py-3 border border-black rounded-md min-[950px]:rounded-xl border font-medium transition-all text-xs min-[950px]:text-base ${hiringForTeam === opt.toLowerCase()
                       ? "bg-[#CEFF1B] border-black text-black"
                       : "bg-transparent border-[#2B2B2B] text-gray-600"
                       }`}
@@ -451,9 +454,9 @@ export default function ClientNeeds() {
             </div>
 
             {hiringForTeam === "yes" && (
-              <div className="grid grid-cols-2 gap-3 md:gap-8 mb-6 animate-fade-in-up items-end">
+              <div className="grid grid-cols-2 gap-3 min-[950px]:gap-8 mb-6 animate-fade-in-up items-end">
                 <div>
-                  <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
+                  <label className="block text-gray-800 font-semibold font-roboto mb-2 min-[950px]:mb-3 text-[9px] min-[950px]:text-lg whitespace-nowrap">
                     Business Name
                   </label>
                   <input
@@ -461,17 +464,20 @@ export default function ClientNeeds() {
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
                     placeholder="Type here"
-                    className="w-full p-2 md:p-3 rounded-md md:rounded-xl border-1 border-[#2B2B2B] bg-transparent md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:!border-transparent focus:outline-none transition-all font-medium text-xs md:text-base focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B]"
+                    className="w-full p-2 min-[950px]:p-3 rounded-md min-[950px]:rounded-xl border-1 border-[#2B2B2B] bg-transparent min-[950px]:bg-gray-100 text-gray-800 placeholder-gray-500 focus:!border-transparent focus:outline-none transition-all font-medium text-xs min-[950px]:text-base focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B]"
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
+                  <label className="block text-gray-800 font-semibold font-roboto mb-2 min-[950px]:mb-3 text-[9px] min-[950px]:text-lg whitespace-nowrap">
                     Role
                   </label>
                   <div className={`onboarding-custom-select ${isRoleOpen ? "active" : ""}`} ref={roleRef}>
                     <div
                       className={`onboarding-selected-option ${isRoleOpen ? "open" : ""}`}
-                      onClick={() => setIsRoleOpen(!isRoleOpen)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsRoleOpen(!isRoleOpen);
+                      }}
                     >
                       <span className={!role ? "opacity-70" : ""}>
                         {role || "Type here"}
@@ -502,26 +508,26 @@ export default function ClientNeeds() {
               </div>
             )}
 
-            <div className="mt-4 md:mt-8 relative z-10 w-full">
-              <div className="flex justify-between items-center gap-2 md:gap-4">
+            <div className="mt-4 min-[950px]:mt-8 relative z-10 w-full">
+              <div className="flex justify-between items-center gap-2 min-[950px]:gap-4">
                 <button
                   onClick={handleReset}
-                  className="px-4 py-2 md:px-8 md:py-3 rounded-md md:rounded-lg border border-black text-gray-600 font-medium text-xs md:text-lg hover:bg-gray-100 transition-all"
+                  className="px-4 py-2 min-[950px]:px-8 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg border border-black text-gray-600 font-medium text-xs min-[950px]:text-lg hover:bg-gray-100 transition-all"
                 >
                   Reset
                 </button>
 
-                <div className="flex gap-2 md:gap-4">
+                <div className="flex gap-2 min-[950px]:gap-4">
                   <button
                     onClick={handleBack}
-                    className="px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg border border-black text-gray-700 font-medium text-xs md:text-lg hover:bg-gray-100 transition-all"
+                    className="px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg border border-black text-gray-700 font-medium text-xs min-[950px]:text-lg hover:bg-gray-100 transition-all"
                   >
                     Discard
                   </button>
                   <button
                     onClick={handleContinue}
                     disabled={!isContinueEnabled}
-                    className={`px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg font-medium text-xs md:text-lg transition-all whitespace-nowrap ${isContinueEnabled
+                    className={`px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg font-medium text-xs min-[950px]:text-lg transition-all whitespace-nowrap ${isContinueEnabled
                       ? "bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]"
                       : "bg-lime-200 border border-[#2B2B2B] text-gray-400 cursor-not-allowed"
                       }`}

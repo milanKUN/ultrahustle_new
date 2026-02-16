@@ -42,8 +42,8 @@ export default function CreatorNeeds() {
         setIsExperienceOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   const currentStep = 4;
@@ -118,14 +118,14 @@ export default function CreatorNeeds() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row">
+    <div className="min-h-screen w-full flex flex-col min-[950px]:flex-row">
       {/* Top Section */}
-      <div className="w-full md:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] md:min-h-screen">
-        <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-10">
+      <div className="w-full min-[950px]:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] min-[950px]:min-h-screen">
+        <div className="absolute inset-0 flex flex-col justify-between p-6 min-[950px]:p-10">
           {/* Back Button - Mobile Only */}
           <button
             onClick={handleBack}
-            className="md:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
+            className="min-[950px]:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
             style={{
               background: "linear-gradient(180deg, #FFFFFF, #9C9C9C)",
               padding: "2px",
@@ -150,22 +150,22 @@ export default function CreatorNeeds() {
           </button>
 
           {/* Question */}
-       <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-start text-left px-4 md:px-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-32 items-start text-left px-4 min-[950px]:px-0">
+            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black leading-tight">
               Tell us more about
             </h2>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-black -mt-1 leading-tight">
-              your skills 
+            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black -mt-1 leading-tight">
+              your skills
             </h2>
 
-            <p className="text-black/60 text-base md:text-xl mt-4 md:mt-6 max-w-md">
+            <p className="text-black/60 text-base min-[950px]:text-xl mt-4 min-[950px]:mt-6 max-w-md">
               What service do you offer
             </p>
           </div>
 
           {/* Step Indicators - Desktop Only */}
-          <div className="hidden md:flex items-center gap-3 ml-12">
+          <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
@@ -178,10 +178,10 @@ export default function CreatorNeeds() {
       </div>
 
       {/* Bottom Section */}
-      <div className="w-full md:w-[70%] bg-[#E0E0E0] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 px-4 py-8 md:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
+      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 px-3 py-6 min-[950px]:p-12 flex flex-col justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
         <div className="relative z-10 w-full max-w-[900px]">
           {/* ✅ MOBILE (screenshot-style) */}
-          <div className="md:hidden w-full max-w-[420px] mx-auto">
+          <div className="min-[950px]:hidden w-full max-w-[420px] mx-auto">
             <div className="bg-transparent rounded-[26px] px-2 py-4 border ">
               {/* category chips */}
               <div className="flex flex-wrap gap-2">
@@ -212,7 +212,10 @@ export default function CreatorNeeds() {
                   <div className={`onboarding-custom-select ${isExperienceOpen ? "active" : ""}`} ref={experienceRef}>
                     <div
                       className={`onboarding-selected-option ${isExperienceOpen ? "open" : ""}`}
-                      onClick={() => setIsExperienceOpen(!isExperienceOpen)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsExperienceOpen(!isExperienceOpen);
+                      }}
                     >
                       <span>{selectedExperienceLabel}</span>
                       <span className="onboarding-arrow">▼</span>
@@ -346,13 +349,13 @@ export default function CreatorNeeds() {
           </div>
 
           {/* ✅ DESKTOP (unchanged as your existing) */}
-          <div className="hidden md:block">
+          <div className="hidden min-[950px]:block">
             {/* Creator Categories - Desktop Container */}
-            <div className="bg-[#FEFEFE]/40 md:bg-white/40 backdrop-blur-md border-[#CEFF1B] md:border md:border-[#CEFF1B] rounded-[24px] md:rounded-[30px] p-4 md:p-8 shadow-xl mb-6 md:mb-8 flex flex-col justify-center gap-4">
-              <div className="hidden md:flex flex-col gap-4">
+            <div className="bg-[#FEFEFE]/40 min-[950px]:bg-white/40 backdrop-blur-md border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] rounded-[24px] min-[950px]:rounded-[30px] p-4 min-[950px]:p-8 shadow-xl mb-6 min-[950px]:mb-8 flex flex-col justify-center gap-4">
+              <div className="hidden min-[950px]:flex flex-col gap-4">
                 {[categories.slice(0, 4), categories.slice(4, 7), categories.slice(7)].map(
                   (row, rowIndex) => (
-                    <div key={rowIndex} className="flex flex-wrap md:flex-nowrap gap-4 w-full">
+                    <div key={rowIndex} className="flex flex-wrap min-[950px]:flex-nowrap gap-4 w-full">
                       {row.map((category) => {
                         const Icon = category.icon;
                         const isSelected = selectedCategories.includes(category.id);
@@ -362,7 +365,7 @@ export default function CreatorNeeds() {
                             onClick={() => toggleCategory(category.id)}
                             className={`
                               flex items-center gap-3.5 px-6 py-3.5 rounded-2xl cursor-pointer border-2 transition-all duration-300 backdrop-blur-sm justify-center whitespace-nowrap
-                              ${rowIndex === 0 ? "flex-1" : "w-full md:w-[24%]"}
+                              ${rowIndex === 0 ? "flex-1" : "w-full min-[950px]:w-[24%]"}
                               ${isSelected
                                 ? "bg-[#CEFF1B] border-[0.6px] border-[#2B2B2B] shadow-md scale-105"
                                 : "bg-transparent border-[#2B2B2B] hover:bg-white/10"
@@ -392,9 +395,9 @@ export default function CreatorNeeds() {
             </div>
 
             {/* Desktop fields (original) */}
-            <div className="grid grid-cols-2 gap-3 md:gap-8 mb-6 items-end relative z-20">
+            <div className="grid grid-cols-2 gap-3 min-[950px]:gap-8 mb-6 items-end relative z-20">
               <div>
-                <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
+                <label className="block text-gray-800 font-semibold font-roboto mb-2 min-[950px]:mb-3 text-[9px] min-[950px]:text-lg whitespace-nowrap">
                   Primary skill / niche
                 </label>
                 <input
@@ -402,18 +405,21 @@ export default function CreatorNeeds() {
                   value={primarySkill}
                   onChange={(e) => setPrimarySkill(e.target.value)}
                   placeholder="Skill/niche"
-                  className="w-full p-2 md:p-3 rounded-md md:rounded-xl border border-black bg-transparent md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B] font-medium text-xs md:text-base"
+                  className="w-full p-2 min-[950px]:p-3 rounded-md min-[950px]:rounded-xl border border-black bg-transparent min-[950px]:bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B] font-medium text-xs min-[950px]:text-base"
                 />
               </div>
 
               <div>
-                <label className="block text-gray-800  font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
+                <label className="block text-gray-800  font-semibold font-roboto mb-2 min-[950px]:mb-3 text-[9px] min-[950px]:text-lg whitespace-nowrap">
                   Experience level
                 </label>
                 <div className={`onboarding-custom-select ${isExperienceOpen ? "active" : ""}`} ref={experienceRef}>
                   <div
                     className={`onboarding-selected-option ${isExperienceOpen ? "open" : ""}`}
-                    onClick={() => setIsExperienceOpen(!isExperienceOpen)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsExperienceOpen(!isExperienceOpen);
+                    }}
                   >
                     <span>{selectedExperienceLabel === "Select" ? "Experience level" : selectedExperienceLabel}</span>
                     <span className="onboarding-arrow">▼</span>
@@ -440,7 +446,7 @@ export default function CreatorNeeds() {
               </div>
 
               <div>
-                <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
+                <label className="block text-gray-800 font-semibold font-roboto mb-2 min-[950px]:mb-3 text-[9px] min-[950px]:text-lg whitespace-nowrap">
                   Your hourly / project range
                 </label>
                 <input
@@ -448,12 +454,12 @@ export default function CreatorNeeds() {
                   value={rateRange}
                   onChange={(e) => setRateRange(e.target.value)}
                   placeholder="Hourly/project range"
-                  className="w-full p-2 md:p-3 bg-transparent rounded-md md:rounded-xl border border-black bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B] transition-all font-medium text-xs md:text-base"
+                  className="w-full p-2 min-[950px]:p-3 bg-transparent rounded-md min-[950px]:rounded-xl border border-black bg-[#F0F0F0]/50 min-[950px]:bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B] transition-all font-medium text-xs min-[950px]:text-base"
                 />
               </div>
 
               <div>
-                <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
+                <label className="block text-gray-800 font-semibold font-roboto mb-2 min-[950px]:mb-3 text-[9px] min-[950px]:text-lg whitespace-nowrap">
                   Do you already have a portfolio?
                 </label>
                 <div className="flex gap-2">
@@ -461,7 +467,7 @@ export default function CreatorNeeds() {
                     <button
                       key={opt}
                       onClick={() => setHasPortfolio(opt.toLowerCase())}
-                      className={`flex-1 p-2 md:py-3 rounded-md md:rounded-xl font-medium transition-all text-xs md:text-base ${hasPortfolio === opt.toLowerCase()
+                      className={`flex-1 p-2 min-[950px]:py-3 rounded-md min-[950px]:rounded-xl font-medium transition-all text-xs min-[950px]:text-base ${hasPortfolio === opt.toLowerCase()
                         ? "bg-[#CEFF1B] text-black"
                         : "bg-transparent text-gray-600"
                         }`}
@@ -478,9 +484,9 @@ export default function CreatorNeeds() {
             </div>
 
             {hasPortfolio === "yes" && (
-              <div className="grid grid-cols-1 gap-3 md:gap-8 mb-6 animate-fade-in-up">
+              <div className="grid grid-cols-1 gap-3 min-[950px]:gap-8 mb-6 animate-fade-in-up">
                 <div>
-                  <label className="block text-gray-800 font-semibold font-roboto mb-2 md:mb-3 text-[9px] md:text-lg whitespace-nowrap">
+                  <label className="block text-gray-800 font-semibold font-roboto mb-2 min-[950px]:mb-3 text-[9px] min-[950px]:text-lg whitespace-nowrap">
                     Upload links (IG, Behance, Portfolio, Drive)
                   </label>
                   <input
@@ -488,33 +494,33 @@ export default function CreatorNeeds() {
                     value={portfolioLinks}
                     onChange={(e) => setPortfolioLinks(e.target.value)}
                     placeholder="Paste here"
-                    className="w-[49%] bg-transparent p-2 md:p-3 rounded-md md:rounded-xl border border-black bg-[#F0F0F0]/50 md:bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B] transition-all font-medium text-xs md:text-base"
+                    className="w-[49%] bg-transparent p-2 min-[950px]:p-3 rounded-md min-[950px]:rounded-xl border border-black bg-[#F0F0F0]/50 min-[950px]:bg-gray-100 text-gray-800 placeholder-gray-500 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B] transition-all font-medium text-xs min-[950px]:text-base"
                   />
                 </div>
               </div>
             )}
 
             {/* Desktop footer (original) */}
-            <div className="mt-4 md:mt-8 relative z-10 w-full">
-              <div className="flex justify-between items-center gap-2 md:gap-4">
+            <div className="mt-4 min-[950px]:mt-8 relative z-10 w-full">
+              <div className="flex justify-between items-center gap-2 min-[950px]:gap-4">
                 <button
                   onClick={handleReset}
-                  className="px-4 py-2 md:px-8 md:py-3 rounded-md md:rounded-lg border border-black text-black font-medium text-xs md:text-lg hover:bg-gray-100 transition-all"
+                  className="px-4 py-2 min-[950px]:px-8 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg border border-black text-black font-medium text-xs min-[950px]:text-lg hover:bg-gray-100 transition-all"
                 >
                   Reset
                 </button>
 
-                <div className="flex gap-2 md:gap-4">
+                <div className="flex gap-2 min-[950px]:gap-4">
                   <button
                     onClick={handleBack}
-                    className="px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg border border-black text-black font-medium text-xs md:text-lg hover:bg-gray-100 transition-all"
+                    className="px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg border border-black text-black font-medium text-xs min-[950px]:text-lg hover:bg-gray-100 transition-all"
                   >
                     Discard
                   </button>
                   <button
                     onClick={handleContinue}
                     disabled={!isContinueEnabled}
-                    className={`px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg font-medium text-xs md:text-lg transition-all whitespace-nowrap ${isContinueEnabled
+                    className={`px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg font-medium text-xs min-[950px]:text-lg transition-all whitespace-nowrap ${isContinueEnabled
                       ? "bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]"
                       : "bg-lime-200 border border-black text-black cursor-not-allowed"
                       }`}

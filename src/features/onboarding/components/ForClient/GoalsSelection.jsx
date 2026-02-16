@@ -34,7 +34,7 @@ export default function GoalsSelection() {
     );
   };
 
-  const handleBack = () => navigate("/work-type-selection");
+  const handleBack = () => navigate("/client-work-type-selection");
 
   const canContinue = selectedGoals.length > 0;
 
@@ -74,14 +74,14 @@ export default function GoalsSelection() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row">
+    <div className="min-h-screen w-full flex flex-col min-[950px]:flex-row">
       {/* Top Section */}
-      <div className="w-full md:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] md:min-h-screen">
-        <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-10">
+      <div className="w-full min-[950px]:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] min-[950px]:min-h-screen">
+        <div className="absolute inset-0 flex flex-col justify-between p-6 min-[950px]:p-10">
           {/* Back Button - Mobile Only */}
           <button
             onClick={handleBack}
-            className="md:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
+            className="min-[950px]:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
             style={{
               background: "linear-gradient(180deg, #FFFFFF, #9C9C9C)",
               padding: "2px",
@@ -106,22 +106,22 @@ export default function GoalsSelection() {
           </button>
 
           {/* Question */}
-         <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-start text-left px-4 md:px-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
-              What do you 
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-32 items-start text-left px-4 min-[950px]:px-0">
+            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black leading-tight">
+              What do you
             </h2>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-black -mt-1 leading-tight">
+            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black -mt-1 leading-tight">
               want to achieve
             </h2>
 
-            <p className="text-black/60 text-base md:text-xl mt-4 md:mt-6 max-w-md">
+            <p className="text-black/60 text-base min-[950px]:text-xl mt-4 min-[950px]:mt-6 max-w-md">
               Select multiple
             </p>
           </div>
 
           {/* Step Indicators - Desktop Only */}
-          <div className="hidden md:flex items-center gap-3 ml-12">
+          <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
@@ -134,23 +134,23 @@ export default function GoalsSelection() {
       </div>
 
       {/* Bottom Section */}
-      <div className="w-full md:w-[70%] bg-[#E0E0E0] md:bg-gradient-to-br md:from-[#E8E8E8] md:via-[#E0E0E0] md:to-[#D8D8D8] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 px-3 py-6 md:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
+      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 px-3 py-6 min-[950px]:p-12 flex flex-col justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
         {/* Animated Glows - Desktop Only */}
         <div
-          className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
+          className="hidden min-[950px]:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
 
         />
         <div
-          className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
+          className="hidden min-[950px]:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
 
         />
         <div
-          className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
+          className="hidden min-[950px]:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
 
         />
 
         {/* ✅ MOBILE (screenshot-like) */}
-        <div className="md:hidden w-full max-w-[420px] relative z-10">
+        <div className="min-[950px]:hidden w-full max-w-[420px] relative z-10">
           <div className="px-0 py-0 bg-transparent border-none rounded-none shadow-none">
             <div className="flex flex-wrap gap-2">
               {goals.map((goal) => (
@@ -204,9 +204,9 @@ export default function GoalsSelection() {
         </div>
 
         {/* ✅ DESKTOP (unchanged) */}
-        <div className="hidden md:block relative z-10 w-full max-w-[900px]">
-          <div className="-mt-6 bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] rounded-[30px] p-8 md:p-12 shadow-xl min-h-[500px]">
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start mt-6">
+        <div className="hidden min-[950px]:block relative z-10 w-full max-w-[900px]">
+          <div className="-mt-6 bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] rounded-[30px] p-8 min-[950px]:p-12 shadow-xl min-h-[500px]">
+            <div className="flex flex-wrap gap-4 justify-center min-[950px]:justify-start mt-6">
               {goals.map((goal) => {
                 const Icon = goal.icon;
                 const isSelected = selectedGoals.includes(goal.id);
@@ -241,7 +241,7 @@ export default function GoalsSelection() {
         </div>
 
         {/* Desktop Footer */}
-        <div className="hidden md:block mt-16 relative z-10 w-full max-w-[900px]">
+        <div className="hidden min-[950px]:block mt-16 relative z-10 w-full max-w-[900px]">
           <div className="flex justify-between items-center">
             <button
               onClick={handleReset}

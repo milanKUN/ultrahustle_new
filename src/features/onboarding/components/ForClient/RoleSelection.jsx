@@ -31,15 +31,15 @@ export default function RoleSelection() {
         onClick={() => setSelectedRole(role)}
         className={[
           "flex-1 text-left rounded-2xl p-4 transition-all",
-          "border bg-white",
-          active ? "border-black shadow-md" : "border-[#CEFF1B] shadow-sm",
+          "border",
+          active ? "bg-[#CEFF1B] border-black shadow-md" : "bg-white border-[#CEFF1B] shadow-sm",
         ].join(" ")}
       >
         <span
           className={[
             "inline-flex items-center px-3 py-1 rounded-md text-xs font-medium",
             "border",
-            active ? "border-black bg-white" : "border-black/70 bg-white",
+            active ? "border-black bg-[#FEFEFE]/66" : "border-black/70 bg-white",
           ].join(" ")}
         >
           {title}
@@ -58,14 +58,14 @@ export default function RoleSelection() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row">
+    <div className="min-h-screen w-full flex flex-col min-[950px]:flex-row">
       {/* Top Section on Mobile / Left Side on Desktop - Acid Green Panel */}
-      <div className="w-full md:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] md:min-h-screen">
-        <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-10">
+      <div className="w-full min-[950px]:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] min-[950px]:min-h-screen">
+        <div className="absolute inset-0 flex flex-col justify-between p-6 min-[950px]:p-10">
           {/* Back Button - Mobile Only */}
           <button
             onClick={handleBack}
-            className="md:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
+            className="min-[950px]:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
             style={{
               background: "linear-gradient(180deg, #FFFFFF, #9C9C9C)",
               padding: "2px",
@@ -90,28 +90,27 @@ export default function RoleSelection() {
           </button>
 
           {/* Question */}
-          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-start text-left px-4 md:px-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-32 items-start text-left px-4 min-[950px]:px-0">
+            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black leading-tight">
               How will you be
             </h2>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-black -mt-1 leading-tight">
+            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black -mt-1 leading-tight">
               using Ultra Hustle?
             </h2>
 
-            <p className="text-black/60 text-base md:text-xl mt-4 md:mt-6 max-w-md">
+            <p className="text-black/60 text-base min-[950px]:text-xl mt-4 min-[950px]:mt-6 max-w-md">
               This helps us tailor your dashboard
             </p>
           </div>
 
           {/* Step Indicators - Desktop Only */}
-          <div className="hidden md:flex items-center gap-3 ml-12">
+          <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
+                  }`}
               />
             ))}
           </div>
@@ -119,14 +118,14 @@ export default function RoleSelection() {
       </div>
 
       {/* Bottom Section on Mobile / Right Side on Desktop - Content */}
-      <div className="w-full md:w-[70%] bg-[#E0E0E0] md:bg-gradient-to-br md:from-[#E8E8E8] md:via-[#E0E0E0] md:to-[#D8D8D8] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 p-6 pt-8 md:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
+      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 p-6 pt-8 min-[950px]:p-12 flex flex-col justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
         {/* Animated Gradient Glows - Desktop Only */}
-        <div className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0" />
-        <div className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0" />
-        <div className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0" />
+        <div className="hidden min-[950px]:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0" />
+        <div className="hidden min-[950px]:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0" />
+        <div className="hidden min-[950px]:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0" />
 
         {/* ✅ MOBILE (screenshot-like) */}
-        <div className="md:hidden  w-full max-w-[420px] relative z-10">
+        <div className="min-[950px]:hidden  w-full max-w-[420px] relative z-10">
           {/* role cards row */}
           <div className="flex gap-3">
             <RoleCard
@@ -193,22 +192,20 @@ export default function RoleSelection() {
         </div>
 
         {/* ✅ DESKTOP (unchanged as you had) */}
-        <div className="hidden md:flex flex-col md:flex-row gap-6 justify-between items-stretch relative z-10 w-full px-4">
+        <div className="hidden min-[950px]:flex flex-col min-[950px]:flex-row gap-6 justify-between items-stretch relative z-10 w-full px-4">
           <div
             onClick={() => setSelectedRole("creator")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-              selectedRole === "creator"
-                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
-            }`}
+            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "creator"
+              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
-                  selectedRole === "creator"
-                    ? "border-black bg-[#C3FF00]/10"
-                    : "border-gray-400 bg-white"
-                }`}
+                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "creator"
+                  ? "border-black bg-[#C3FF00]/10"
+                  : "border-gray-400 bg-white"
+                  }`}
               >
                 Creator
               </span>
@@ -227,19 +224,17 @@ export default function RoleSelection() {
 
           <div
             onClick={() => setSelectedRole("client")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-              selectedRole === "client"
-                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
-            }`}
+            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "client"
+              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
-                  selectedRole === "client"
-                    ? "border-black bg-[#C3FF00]/10"
-                    : "border-gray-400 bg-white"
-                }`}
+                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "client"
+                  ? "border-black bg-[#C3FF00]/10"
+                  : "border-gray-400 bg-white"
+                  }`}
               >
                 Client
               </span>
@@ -255,15 +250,15 @@ export default function RoleSelection() {
           </div>
         </div>
 
-        <div className="hidden md:block mt-6 relative z-10 w-full max-w-[750px]">
-          <p className="text-left text-gray-600 text-lg mb-8 -ml-24">
+        <div className="hidden min-[950px]:block mt-6 relative z-10 w-full max-w-[750px]">
+          <p className="text-left text-gray-600 text-lg mb-8 min-[950px]:-ml-24">
             You can switch or use both roles anytime.
           </p>
 
           <div className="flex justify-between items-center">
             <button
               onClick={handleReset}
-              className="px-8 py-3 rounded-lg border-2 border-black text-gray-600 font-medium text-lg hover:bg-gray-100 transition-all -ml-24"
+              className="px-8 py-3 rounded-lg border-2 border-black text-gray-600 font-medium text-lg hover:bg-gray-100 transition-all min-[950px]:-ml-24"
             >
               Reset
             </button>
@@ -278,11 +273,10 @@ export default function RoleSelection() {
               <button
                 onClick={handleContinue}
                 disabled={!selectedRole}
-                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${
-                  selectedRole
-                    ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
-                    : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
-                }`}
+                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${selectedRole
+                  ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
+                  : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
+                  }`}
               >
                 Continue
               </button>

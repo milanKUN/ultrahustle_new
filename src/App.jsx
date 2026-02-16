@@ -77,7 +77,7 @@ export default function App() {
           <Route path="/client-needs" element={<ClientNeeds />} />
           <Route path="/client-business-details" element={<BusinessDetails />} />
           <Route path="/client-setup-workspace" element={<SetupWorkspace />} />
-          <Route path="/client-role-selection" element={<CreatorRoleSelection />} />
+          <Route path="/client-role-selection" element={<RoleSelection />} />
           <Route path="/creator-work-type-selection" element={<WorkTypeSelectionForCreator />} />
           <Route path="/creator-goals-selection" element={<CreatorGoalsSelection />} />
           <Route path="/creator-needs" element={<CreatorNeeds />} />

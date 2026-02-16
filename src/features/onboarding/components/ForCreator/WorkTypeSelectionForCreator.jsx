@@ -30,14 +30,14 @@ export default function WorkTypeSelectionForCreator() {
         setIsTeamSizeOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   const currentStep = 2;
   const totalSteps = 8;
 
-  const handleBack = () => navigate("/creator-role-selection");
+  const handleBack = () => navigate("/role-selection");
 
   const handleContinue = () => {
     if (selectedType) navigate("/creator-goals-selection");
@@ -50,14 +50,14 @@ export default function WorkTypeSelectionForCreator() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row">
+    <div className="min-h-screen w-full flex flex-col min-[950px]:flex-row">
       {/* Left Panel */}
-      <div className="w-full md:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] md:min-h-screen">
-        <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-10">
+      <div className="w-full min-[950px]:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] min-[950px]:min-h-screen">
+        <div className="absolute inset-0 flex flex-col justify-between p-6 min-[950px]:p-10">
           {/* Back Button - Mobile Only */}
           <button
             onClick={handleBack}
-            className="md:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
+            className="min-[950px]:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
             style={{
               background: "linear-gradient(180deg, #FFFFFF, #9C9C9C)",
               padding: "2px",
@@ -82,14 +82,14 @@ export default function WorkTypeSelectionForCreator() {
             </span>
           </button>
 
-          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-center md:items-start text-center md:text-left px-4 md:px-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-32 items-center min-[950px]:items-start text-center min-[950px]:text-left px-4 min-[950px]:px-0">
+            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black">
               How do you work?
             </h2>
           </div>
 
           {/* Step Indicators - Desktop Only */}
-          <div className="hidden md:flex items-center gap-3 ml-12">
+          <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
@@ -102,23 +102,23 @@ export default function WorkTypeSelectionForCreator() {
       </div>
 
       {/* Right / Content */}
-      <div className="w-full md:w-[70%] bg-[#E0E0E0] md:bg-gradient-to-br md:from-[#E8E8E8] md:via-[#E0E0E0] md:to-[#D8D8D8] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 p-6 pt-8 md:p-12 flex flex-col justify-start md:justify-center items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
+      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 p-6 pt-8 min-[950px]:p-12 flex flex-col justify-start min-[950px]:justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
         {/* Desktop glows (unchanged) */}
         <div
-          className="hidden md:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
+          className="hidden min-[950px]:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
 
         />
         <div
-          className="hidden md:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
+          className="hidden min-[950px]:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
 
         />
         <div
-          className="hidden md:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
+          className="hidden min-[950px]:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
 
         />
 
         {/* ✅ MOBILE (screenshot-style) */}
-        <div className="md:hidden w-full max-w-[420px] relative z-10">
+        <div className="min-[950px]:hidden w-full max-w-[420px] relative z-10">
           <div className="px-0 py-0 bg-transparent border-none rounded-none shadow-none">
             {/* Cards row */}
             <div className="grid grid-cols-2 gap-3">
@@ -126,10 +126,10 @@ export default function WorkTypeSelectionForCreator() {
                 type="button"
                 onClick={() => setSelectedType("solo")}
                 className={[
-                  "text-left rounded-2xl p-4 transition-all border bg-white",
+                  "text-left rounded-2xl p-4 transition-all border",
                   selectedType === "solo"
-                    ? "border-black shadow-sm"
-                    : "border-[#CEFF1B]",
+                    ? "bg-[#CEFF1B] border-black shadow-sm"
+                    : "bg-white border-[#CEFF1B]",
                 ].join(" ")}
               >
                 <span
@@ -159,17 +159,17 @@ export default function WorkTypeSelectionForCreator() {
                 type="button"
                 onClick={() => setSelectedType("team")}
                 className={[
-                  "text-left rounded-2xl p-4 transition-all border bg-white",
+                  "text-left rounded-2xl p-4 transition-all border",
                   selectedType === "team"
-                    ? "border-black shadow-sm"
-                    : "border-[#CEFF1B]",
+                    ? "bg-[#CEFF1B] border-black shadow-sm"
+                    : "bg-white border-[#CEFF1B]",
                 ].join(" ")}
               >
                 <span
                   className={[
                     "inline-flex items-center px-2 py-1 rounded-md text-[10px] font-medium border",
                     selectedType === "team"
-                      ? "border-black bg-white"
+                      ? "border-black bg-[#FEFEFE]/66"
                       : "border-black/40 bg-white",
                   ].join(" ")}
                 >
@@ -199,7 +199,10 @@ export default function WorkTypeSelectionForCreator() {
                 <div className={`onboarding-custom-select ${isTeamSizeOpen ? "active" : ""}`} ref={teamSizeRef}>
                   <div
                     className={`onboarding-selected-option ${isTeamSizeOpen ? "open" : ""}`}
-                    onClick={() => setIsTeamSizeOpen(!isTeamSizeOpen)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsTeamSizeOpen(!isTeamSizeOpen);
+                    }}
                   >
                     <span>{selectedTeamSizeLabel}</span>
                     <span className="onboarding-arrow">▼</span>
@@ -207,12 +210,6 @@ export default function WorkTypeSelectionForCreator() {
 
                   {isTeamSizeOpen && (
                     <ul className="onboarding-options-list">
-                      <li
-                        className="text-gray-400 cursor-not-allowed"
-                        style={{ pointerEvents: "none" }}
-                      >
-
-                      </li>
                       {teamSizeOptions.map((opt) => (
                         <li
                           key={opt.value}
@@ -307,7 +304,7 @@ export default function WorkTypeSelectionForCreator() {
         </div>
 
         {/* ✅ DESKTOP (unchanged) */}
-        <div className="hidden md:flex flex-col md:flex-row gap-6 justify-between items-stretch relative z-10 w-full px-4">
+        <div className="hidden min-[950px]:flex flex-col min-[950px]:flex-row gap-6 justify-between items-stretch relative z-10 w-full px-4">
           {/* Solo Card */}
           <div
             onClick={() => setSelectedType("solo")}
@@ -371,7 +368,7 @@ export default function WorkTypeSelectionForCreator() {
 
         {/* Extra Options for Team Selection - Desktop (unchanged) */}
         {selectedType === "team" && (
-          <div className="hidden md:flex mt-8 flex-col md:flex-row gap-8 justify-between items-start w-full px-4 relative z-20 animate-fade-in-up">
+          <div className="hidden min-[950px]:flex mt-8 flex-col min-[950px]:flex-row gap-8 justify-between items-start w-full px-4 relative z-20 animate-fade-in-up">
             <div className="flex-1 w-full max-w-[450px]">
               <label className="block text-gray-800 font-semibold mb-3 text-lg">
                 Team Size
@@ -379,7 +376,10 @@ export default function WorkTypeSelectionForCreator() {
               <div className="onboarding-custom-select" ref={teamSizeRef}>
                 <div
                   className={`onboarding-selected-option ${isTeamSizeOpen ? "open" : ""}`}
-                  onClick={() => setIsTeamSizeOpen(!isTeamSizeOpen)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsTeamSizeOpen(!isTeamSizeOpen);
+                  }}
                 >
                   <span>{selectedTeamSizeLabel}</span>
                   <span className="onboarding-arrow">▼</span>
@@ -432,7 +432,7 @@ export default function WorkTypeSelectionForCreator() {
         )}
 
         {/* Desktop Footer (unchanged) */}
-        <div className="hidden md:block mt-6 relative z-10 w-full max-w-[750px]">
+        <div className="hidden min-[950px]:block mt-6 relative z-10 w-full max-w-[750px]">
           {selectedType !== "team" && <div className="h-14 mb-8"></div>}
 
           <div className="flex justify-between items-center">

@@ -31,8 +31,8 @@ export default function BusinessDetails() {
         setIsIndustryOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   const currentStep = 5; // Step 5 (0-indexed was 4 previously)
@@ -109,14 +109,14 @@ export default function BusinessDetails() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row">
+    <div className="min-h-screen w-full flex flex-col min-[950px]:flex-row">
       {/* Top Section on Mobile / Left Side on Desktop - Acid Green Panel */}
-      <div className="w-full md:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[30vh] md:min-h-screen">
-        <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-10">
+      <div className="w-full min-[950px]:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[30vh] min-[950px]:min-h-screen">
+        <div className="absolute inset-0 flex flex-col justify-between p-6 min-[950px]:p-10">
           {/* Back Button - Mobile Only */}
           <button
             onClick={handleBack}
-            className="md:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
+            className="min-[950px]:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
             style={{
               background: 'linear-gradient(180deg, #FFFFFF, #9C9C9C)',
               padding: '2px',
@@ -132,20 +132,20 @@ export default function BusinessDetails() {
           </button>
 
           {/* Title */}
-          <div className="flex-1 flex flex-col justify-center md:justify-start md:pt-32 items-center md:items-start text-center md:text-left px-4 md:px-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-1 leading-tight">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-32 items-center min-[950px]:items-start text-center min-[950px]:text-left px-4 min-[950px]:px-0">
+            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black mb-1 leading-tight">
               Organization &
             </h2>
-            <h2 className="text-4xl md:text-4xl font-bold text-black mb-4 leading-tight">
+            <h2 className="text-4xl min-[950px]:text-4xl font-bold text-black mb-4 leading-tight">
               Business Details
             </h2>
-            <h2 className="hidden md:block text-black text-3xl font-bold">
+            <h2 className="hidden min-[950px]:block text-black text-3xl font-bold">
 
             </h2>
           </div>
 
           {/* Step Indicators - Desktop Only */}
-          <div className="hidden md:flex items-center gap-3 ml-12">
+          <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}
@@ -160,24 +160,24 @@ export default function BusinessDetails() {
       </div>
 
       {/* Bottom Section on Mobile / Right Side on Desktop - Content */}
-      <div className="w-full md:w-[70%] bg-[#E0E0E0] rounded-t-[50px] md:rounded-none -mt-12 md:mt-0 px-3 py-6 md:p-12 flex flex-col justify-start md:pt-32 items-center relative overflow-hidden min-h-[60vh] md:min-h-screen z-20">
+      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 px-3 py-6 min-[950px]:p-12 flex flex-col justify-start min-[950px]:pt-32 items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
 
         {/* Main Content Area */}
         <div className="relative z-10 w-full max-w-[1200px]">
           {/* Main Card */}
-          <div className={`bg-white/40 md:bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] md:border md:border-[#CEFF1B] rounded-[24px] md:rounded-[30px] p-4 md:p-8 shadow-xl mb-6 md:mb-8 flex flex-col transition-all duration-300`}>
+          <div className={`bg-white/40 min-[950px]:bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] rounded-[24px] min-[950px]:rounded-[30px] p-4 min-[950px]:p-8 shadow-xl mb-6 min-[950px]:mb-8 flex flex-col transition-all duration-300`}>
 
             {isPersonalAccount ? (
               /* Personal Account View */
-              <div className="text-center animate-fade-in-up w-full py-10 md:py-0">
-                <h3 className="text-xl md:text-2xl font-bold text-gray-700">No business details required</h3>
+              <div className="text-center animate-fade-in-up w-full py-10 min-[950px]:py-0">
+                <h3 className="text-xl min-[950px]:text-2xl font-bold text-gray-700">No business details required</h3>
               </div>
             ) : (
               /* Business Details Form */
-              <div className="w-full grid grid-cols-2 gap-3 md:gap-x-8 md:gap-y-6 animate-fade-in-up relative z-20">
+              <div className="w-full grid grid-cols-2 gap-3 min-[950px]:gap-x-8 min-[950px]:gap-y-6 animate-fade-in-up relative z-20">
                 {/* Business Name */}
                 <div>
-                  <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">Business / Brand Name</label>
+                  <label className="block text-gray-800 font-bold mb-1 min-[950px]:mb-2 text-sm min-[950px]:text-base">Business / Brand Name</label>
                   <input
                     type="text"
                     name="businessName"
@@ -190,7 +190,7 @@ export default function BusinessDetails() {
 
                 {/* Number of Employees */}
                 <div>
-                  <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">Number of Employees</label>
+                  <label className="block text-gray-800 font-bold mb-1 min-[950px]:mb-2 text-sm min-[950px]:text-base">Number of Employees</label>
                   <input
                     type="text"
                     name="employees"
@@ -203,11 +203,14 @@ export default function BusinessDetails() {
 
                 {/* Industry */}
                 <div>
-                  <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">Industry</label>
+                  <label className="block text-gray-800 font-bold mb-1 min-[950px]:mb-2 text-sm min-[950px]:text-base">Industry</label>
                   <div className={`onboarding-custom-select ${isIndustryOpen ? "active" : ""}`} ref={industryRef}>
                     <div
                       className={`onboarding-selected-option ${isIndustryOpen ? "open" : ""}`}
-                      onClick={() => setIsIndustryOpen(!isIndustryOpen)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsIndustryOpen(!isIndustryOpen);
+                      }}
                     >
                       <span className={!formData.industry ? "opacity-70" : ""}>
                         {formData.industry || "Type here"}
@@ -239,7 +242,7 @@ export default function BusinessDetails() {
                 {/* Other Industry - shows when Other is selected */}
                 {formData.industry === 'Other' ? (
                   <div>
-                    <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">Industry</label>
+                    <label className="block text-gray-800 font-bold mb-1 min-[950px]:mb-2 text-sm min-[950px]:text-base">Industry</label>
                     <input
                       type="text"
                       name="otherIndustry"
@@ -252,7 +255,7 @@ export default function BusinessDetails() {
                 ) : (
                   /* Website - shows when Other is NOT selected */
                   <div>
-                    <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">Website (optional)</label>
+                    <label className="block text-gray-800 font-bold mb-1 min-[950px]:mb-2 text-sm min-[950px]:text-base">Website (optional)</label>
                     <input
                       type="text"
                       name="website"
@@ -267,7 +270,7 @@ export default function BusinessDetails() {
                 {/* Website - always shows */}
                 {formData.industry === 'Other' && (
                   <div>
-                    <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">Website (optional)</label>
+                    <label className="block text-gray-800 font-bold mb-1 min-[950px]:mb-2 text-sm min-[950px]:text-base">Website (optional)</label>
                     <input
                       type="text"
                       name="website"
@@ -281,7 +284,7 @@ export default function BusinessDetails() {
 
                 {/* GST */}
                 <div>
-                  <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">GST / VAT / Tax ID (optional)</label>
+                  <label className="block text-gray-800 font-bold mb-1 min-[950px]:mb-2 text-sm min-[950px]:text-base">GST / VAT / Tax ID (optional)</label>
                   <input
                     type="text"
                     name="taxId"
@@ -294,7 +297,7 @@ export default function BusinessDetails() {
 
                 {/* Country */}
                 <div>
-                  <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">Country</label>
+                  <label className="block text-gray-800 font-bold mb-1 min-[950px]:mb-2 text-sm min-[950px]:text-base">Country</label>
                   <input
                     type="text"
                     name="country"
@@ -307,7 +310,7 @@ export default function BusinessDetails() {
 
                 {/* State */}
                 <div>
-                  <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">State</label>
+                  <label className="block text-gray-800 font-bold mb-1 min-[950px]:mb-2 text-sm min-[950px]:text-base">State</label>
                   <input
                     type="text"
                     name="state"
@@ -320,7 +323,7 @@ export default function BusinessDetails() {
 
                 {/* City */}
                 <div>
-                  <label className="block text-gray-800 font-bold mb-1 md:mb-2 text-sm md:text-base">City</label>
+                  <label className="block text-gray-800 font-bold mb-1 min-[950px]:mb-2 text-sm min-[950px]:text-base">City</label>
                   <input
                     type="text"
                     name="city"
@@ -335,41 +338,41 @@ export default function BusinessDetails() {
           </div>
 
           {/* Toggle - outside container */}
-          <div className="flex items-center gap-3 md:gap-4 mb-6">
+          <div className="flex items-center gap-3 min-[950px]:gap-4 mb-6">
             <button
               onClick={() => setIsPersonalAccount(!isPersonalAccount)}
-              className={`w-12 h-6 md:w-16 md:h-8 rounded-full p-0.5 md:p-1 transition-all duration-300 border ${isPersonalAccount
+              className={`w-12 h-6 min-[950px]:w-16 min-[950px]:h-8 rounded-full p-0.5 min-[950px]:p-1 transition-all duration-300 border ${isPersonalAccount
                 ? 'bg-black border-black'
                 : 'bg-white border-[#2B2B2B]'
                 }`}
             >
-              <div className={`w-5 h-5 md:w-6 md:h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 ${isPersonalAccount ? 'translate-x-6 md:translate-x-8' : 'translate-x-0 bg-[#F0F0F0]'
+              <div className={`w-5 h-5 min-[950px]:w-6 min-[950px]:h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 ${isPersonalAccount ? 'translate-x-6 min-[950px]:translate-x-8' : 'translate-x-0 bg-[#F0F0F0]'
                 }`} >
                 {!isPersonalAccount && <div className="w-full h-full bg-[#2B2B2B] rounded-full" />}
               </div>
             </button>
-            <span className="text-sm md:text-xl text-gray-600 font-medium">This is a personal account</span>
+            <span className="text-sm min-[950px]:text-xl text-gray-600 font-medium">This is a personal account</span>
           </div>
 
           <div className="flex justify-between items-center w-full gap-4">
             <button
               onClick={handleReset}
-              className="px-4 py-2 md:px-8 md:py-3 rounded-md md:rounded-lg border-1 border-[#2B2B2B] text-gray-600 font-medium text-lg md:text-lg hover:bg-gray-100 transition-all"
+              className="px-4 py-2 min-[950px]:px-8 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg border-1 border-[#2B2B2B] text-gray-600 font-medium text-lg min-[950px]:text-lg hover:bg-gray-100 transition-all"
             >
               Reset
             </button>
 
-            <div className="flex gap-2 md:gap-4">
+            <div className="flex gap-2 min-[950px]:gap-4">
               <button
                 onClick={handleBack}
-                className="px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg border-1 border-[#2B2B2B] text-gray-700 font-medium text-lg md:text-lg hover:bg-gray-100 transition-all"
+                className="px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg border-1 border-[#2B2B2B] text-gray-700 font-medium text-lg min-[950px]:text-lg hover:bg-gray-100 transition-all"
               >
                 Discard
               </button>
               <button
                 onClick={handleContinue}
                 disabled={!isFormValid()}
-                className={`px-4 py-2 md:px-10 md:py-3 rounded-md md:rounded-lg font-medium text-lg md:text-lg transition-all whitespace-nowrap ${isFormValid()
+                className={`px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg font-medium text-lg min-[950px]:text-lg transition-all whitespace-nowrap ${isFormValid()
                   ? 'bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]'
                   : 'bg-[#CEFF1B]/50 border-1 border-[#2B2B2B] text-gray-400 cursor-not-allowed'
                   }`}
@@ -380,7 +383,7 @@ export default function BusinessDetails() {
           </div>
 
           {/* Step Indicators - Mobile */}
-          <div className="flex justify-center items-center gap-2 mt-8 md:hidden">
+          <div className="flex justify-center items-center gap-2 mt-8 min-[950px]:hidden">
             {[...Array(totalSteps)].map((_, index) => (
               <div
                 key={index}

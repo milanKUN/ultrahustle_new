@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import MobileBottomNav from "./MobileBottomNav";
 
@@ -92,17 +93,49 @@ export default function Sidebar({
   theme,
   setTheme,
 }) {
+  const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(null);
   const [userType, setUserType] = useState("creator");
 
+  // ✅ ONLY for Dashboard & Messages neon
+  const [activeMain, setActiveMain] = useState("Dashboard");
+
   useEffect(() => {
-    if (forceClient) {
+    const path = window.location.pathname;
+
+    // Default values
+    let detectedMain = "Dashboard";
+    let detectedMenu = null;
+
+    if (path.includes("/dashboard")) {
+      detectedMain = "Dashboard";
+      detectedMenu = null;
+    } else if (path.includes("/setting")) {
+      detectedMain = "Setting";
+      detectedMenu = "Setting";
+    } else if (path.includes("/marketplace") || path.includes("/listing") || path.includes("/contracts") || path.includes("/milestones")) {
+      detectedMain = "Marketplace";
+      detectedMenu = "Marketplace";
+    } else if (path.includes("/team")) {
+      detectedMain = "My Team";
+      detectedMenu = "My Team";
+    } else if (path.includes("/messages")) {
+      detectedMain = "Messages";
+      detectedMenu = null;
+    } else if (path.includes("/project")) {
+      detectedMain = "My Projects";
+      detectedMenu = "My Projects";
+    }
+
+    setActiveMain(detectedMain);
+    setOpenMenu(detectedMenu);
+
+    if (path.includes("/setting") || forceClient) {
       setUserType("creator");
       setShowSettings(true);
       setExpanded(true);
-      setOpenMenu("Setting");
     }
-  }, [forceClient]);
+  }, [forceClient, setExpanded, setShowSettings]);
 
   const SIDEBAR_ITEMS = userType === "creator" ? CREATOR_ITEMS : CLIENT_ITEMS;
   const [isMobile, setIsMobile] = useState(false);
@@ -114,19 +147,24 @@ export default function Sidebar({
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
   useEffect(() => {
     if (isMobile) {
-      setExpanded(false); // 👈 mobile pe default CLOSED
+      setExpanded(false);
       setShowSettings(false);
     }
-  }, [isMobile]);
+  }, [isMobile, setExpanded, setShowSettings]);
+
+  // ✅ userType change handle
+  useEffect(() => {
+    if (userType === "client") {
+      setActiveMain("Dashboard");
+    }
+  }, [userType]);
 
   return (
     <>
-      {/* ================= MOBILE HAMBURGER ================= */}
-
       <div className="flex ">
-        {/* ================= ICON RAIL ================= */}
         {/* ================= ICON RAIL ================= */}
         {!isMobile && (
           <aside
@@ -143,42 +181,33 @@ export default function Sidebar({
 
             <div className="flex flex-col space-y-6">
               {SIDEBAR_ITEMS.map((item) => (
-                <item.icon
-                  key={item.label}
-                  size={18}
-                  style={{ color: "var(--text)" }}
-                />
+                <item.icon key={item.label} size={18} style={{ color: "var(--text)" }} />
               ))}
             </div>
           </aside>
         )}
 
-        {/* ================= MAIN SIDEBAR ================= */}
         {/* ===== BACKDROP BLUR (MOBILE ONLY) ===== */}
         {isMobile && expanded && (
           <div
-            className="
-      fixed inset-0
-      backdrop-blur-xl
-      bg-black/30
-      z-[9998]
-    "
+            className="fixed inset-0 backdrop-blur-xl bg-black/30 z-[9998]"
             onClick={() => setExpanded(false)}
           />
         )}
 
+        {/* ================= MAIN SIDEBAR ================= */}
         {expanded && (
           <aside
             className={`
-      relative
-      ${isMobile ? "fixed top-0 left-0 h-screen w-[289px] z-[9999]" : "relative w-[289px] min-w-[289px] min-h-[calc(100vh-85px)]"
+              relative
+              ${isMobile
+                ? "fixed top-0 left-0 h-screen w-[289px] z-[9999]"
+                : "relative w-[289px] min-w-[289px] min-h-[calc(100vh-85px)]"
               }
-      px-6 py-6 flex flex-col
-    `}
+              px-6 py-6 flex flex-col
+            `}
             style={{ backgroundColor: "var(--card)" }}
           >
-            {/* ---- rest of sidebar code ---- */}
-
             {/* CREATOR / CLIENT TOGGLE */}
             <div className="creator-client-toggle flex bg-[#CEFF1B] rounded-xl p-1 mb-8 mt-2">
               {["creator", "client"].map((t) => {
@@ -191,7 +220,7 @@ export default function Sidebar({
                     className="flex-1 py-2 rounded-xl text-sm font-semibold transition"
                     style={{
                       backgroundColor: isActive ? "#ffffff" : "transparent",
-                      color: "#000000", // ✅ FORCE BLACK (beats var(--text))
+                      color: "#000000",
                     }}
                   >
                     {t.charAt(0).toUpperCase() + t.slice(1)}
@@ -202,93 +231,109 @@ export default function Sidebar({
 
             {/* NAV */}
             <nav className="space-y-4">
-              {SIDEBAR_ITEMS.map((item) => (
-                <div key={item.label}>
-                  <button
-                    onClick={() =>
-                      setOpenMenu(openMenu === item.label ? null : item.label)
-                    }
-                    className="w-full flex items-center font-medium px-3 py-2 rounded-md transition"
-                    style={{
-                      backgroundColor:
-                        theme === "dark" && openMenu === item.label
-                          ? "#3A3A3A" // ✅ GREY (as image)
-                          : theme === "light" && openMenu === item.label
-                            ? "#E8E8E8"
-                            : "transparent",
-                      color: theme === "dark" ? "#FFFFFF" : "var(--text)",
-                    }}
-                  >
-                    <item.icon size={18} />
-                    <span className="ml-4">{item.label}</span>
+              {SIDEBAR_ITEMS.map((item) => {
+                const isDashboardOrMsg =
+                  item.label === "Dashboard" || item.label === "Messages";
 
-                    {item.children && (
-                      <ChevronDown
-                        size={14}
-                        className={`ml-auto transition-transform ${openMenu === item.label ? "rotate-180" : ""
-                          }`}
-                      />
+                // ✅ neon only for Dashboard & Messages (when selected)
+                const isNeon = isDashboardOrMsg && activeMain === item.label;
+
+                return (
+                  <div key={item.label}>
+                    <button
+                      onClick={() => {
+                        if (isDashboardOrMsg) {
+                          setActiveMain(item.label);
+                          if (item.label === "Dashboard") navigate("/dashboard");
+                        }
+                        // keep old behavior
+                        setOpenMenu(openMenu === item.label ? null : item.label);
+                      }}
+                      className="w-full flex items-center font-medium px-3 py-2 rounded-md transition"
+                      style={{
+                        // ✅ Neon highlights for Dashboard & Messages (single pages) OR active dropdown items
+                        backgroundColor: isNeon
+                          ? "#CEFF1B"
+                          : // ✅ Dropdown parent buttons stay grey when open
+                          (theme === "dark" && openMenu === item.label)
+                            ? "#3A3A3A"
+                            : (theme === "light" && openMenu === item.label)
+                              ? "#E8E8E8"
+                              : "transparent",
+
+                        color: isNeon ? "#000000" : theme === "dark" ? "#FFFFFF" : "var(--text)",
+                      }}
+                    >
+                      <item.icon size={18} />
+                      <span className="ml-4">{item.label}</span>
+
+                      {item.children && (
+                        <ChevronDown
+                          size={14}
+                          className={`ml-auto transition-transform ${openMenu === item.label ? "rotate-180" : ""
+                            }`}
+                        />
+                      )}
+                    </button>
+
+                    {item.children && openMenu === item.label && (
+                      <div className="ml-8 mt-2 space-y-1">
+                        {item.children.map((sub) => {
+                          const Icon = sub.icon;
+                          return (
+                            <div
+                              key={sub.label}
+                              className="flex items-center gap-3 text-sm px-3 py-2 rounded-md cursor-pointer transition"
+                              onClick={() => {
+                                // Navigate based on sub-label
+                                if (sub.label === "Profile and Setting") navigate("/setting");
+                                else if (sub.label === "Create Team") navigate("/create-team");
+                                else if (sub.label === "View Products") navigate("/solo-contracts-listing");
+                                else if (sub.label === "Contracts") navigate("/solo-contracts-listing");
+                                else if (sub.label === "Active Projects") navigate("/milestones");
+                              }}
+                              style={{
+                                backgroundColor: sub.highlight ? "#CEFF1B" : "transparent",
+                                color: sub.highlight ? "#000" : "var(--text)",
+                              }}
+                            >
+                              {Icon && <Icon size={16} />}
+                              <span>{sub.label}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
                     )}
-                  </button>
-
-                  {item.children && openMenu === item.label && (
-                    <div className="ml-8 mt-2 space-y-1">
-                      {item.children.map((sub) => {
-                        const Icon = sub.icon;
-                        return (
-                          <div
-                            key={sub.label}
-                            className="flex items-center gap-3 text-sm px-3 py-2 rounded-md cursor-pointer transition"
-                            style={{
-                              backgroundColor: sub.highlight
-                                ? "#CEFF1B"
-                                : "transparent",
-                              color: sub.highlight ? "#000" : "var(--text)",
-                            }}
-                          >
-                            {Icon && <Icon size={16} />}
-                            <span>{sub.label}</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              ))}
+                  </div>
+                );
+              })}
             </nav>
 
+            {/* THEME TOGGLE */}
             <div className="w-full px-4 pb-4 mt-auto ml-2">
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 className="
-                    relative
-                    w-[135px] h-[48px]
-                    bg-[#CEFF1B]
-                    rounded-full
-                    flex items-center
-                    transition
-                  "
+                  relative
+                  w-[135px] h-[48px]
+                  bg-[#CEFF1B]
+                  rounded-full
+                  flex items-center
+                  transition
+                "
               >
-                {/* SLIDER CIRCLE */}
                 <div
                   className={`
-                      absolute
-                      top-[9px]
-                      w-[33px] h-[33px]
-                      rounded-full
-                      flex items-center justify-center
-                      shadow-md shadow-black/30
-                      transition-all duration-300 ease-in-out
-
-                      ${theme === "dark"
-                      ? "left-[96px] bg-[#24272C]"
-                      : "left-[6px] bg-[#24272C]"
-                    }
-                    `}
+                    absolute top-[9px]
+                    w-[33px] h-[33px]
+                    rounded-full
+                    flex items-center justify-center
+                    shadow-md shadow-black/30
+                    transition-all duration-300 ease-in-out
+                    ${theme === "dark" ? "left-[96px] bg-[#24272C]" : "left-[6px] bg-[#24272C]"}
+                  `}
                 >
-                  {/* ICON */}
                   {theme === "dark" ? (
-                    /* MOON */
                     <svg
                       width="18"
                       height="18"
@@ -302,7 +347,6 @@ export default function Sidebar({
                       <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z" />
                     </svg>
                   ) : (
-                    /* SUN */
                     <svg
                       width="18"
                       height="18"
@@ -357,7 +401,7 @@ export default function Sidebar({
                         item === "delete"
                           ? "#ef4444"
                           : isActive
-                            ? "#000000" // ✅ FIX: active text always black
+                            ? "#000000"
                             : "var(--text)",
                     }}
                   >
@@ -369,12 +413,13 @@ export default function Sidebar({
           </aside>
         )}
       </div>
+
       {/* ================= MOBILE BOTTOM NAV ================= */}
       {isMobile && (
         <MobileBottomNav
           active={activeBottomTab}
           setActive={setActiveBottomTab}
-          theme={theme} // 👈 YE MISSING THA
+          theme={theme}
         />
       )}
     </>
