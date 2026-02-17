@@ -36,7 +36,7 @@ function User({ theme, setTheme }) {
 
   /* ---------- INIT ---------- */
   useEffect(() => {
-    setSidebarOpen(true);
+    setSidebarOpen(false);
     setShowSettings(true);
     setTimeout(() => handleScroll(), 0);
   }, []);

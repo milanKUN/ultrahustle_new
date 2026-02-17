@@ -458,7 +458,7 @@ export default function WorkTypeSelectionForCreator() {
           <div className="flex justify-between items-center">
             <button
               onClick={handleReset}
-              className="px-8 py-3 rounded-lg border-1 border-black text-gray-600 font-medium text-lg hover:bg-gray-100 transition-all -ml-24"
+              className="px-8 py-3 rounded-lg border-1 border-black text-gray-600 font-medium text-lg hover:bg-gray-100 transition-all"
             >
               Reset
             </button>

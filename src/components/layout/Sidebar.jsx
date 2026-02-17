@@ -9,6 +9,7 @@ import {
   Folder,
   Settings,
   ChevronDown,
+  ChevronLeft,
   Users,
   MessageCircle,
   TrendingUp,
@@ -133,7 +134,7 @@ export default function Sidebar({
     if (path.includes("/setting") || forceClient) {
       setUserType("creator");
       setShowSettings(true);
-      setExpanded(true);
+      // setExpanded(true); // Keep sidebar collapsed initially
     }
   }, [forceClient, setExpanded, setShowSettings]);
 
@@ -166,7 +167,7 @@ export default function Sidebar({
     <>
       <div className="flex ">
         {/* ================= ICON RAIL ================= */}
-        {!isMobile && (
+        {!isMobile && !expanded && (
           <aside
             className="sidebar w-14 flex flex-col items-center py-4"
             style={{ backgroundColor: "var(--card)" }}
@@ -208,25 +209,35 @@ export default function Sidebar({
             `}
             style={{ backgroundColor: "var(--card)" }}
           >
-            {/* CREATOR / CLIENT TOGGLE */}
-            <div className="creator-client-toggle flex bg-[#CEFF1B] rounded-xl p-1 mb-8 mt-2">
-              {["creator", "client"].map((t) => {
-                const isActive = userType === t;
+            {/* CREATOR / CLIENT TOGGLE & CLOSE BTN */}
+            <div className="flex items-center gap-2 mb-8 mt-2">
+              <div className="creator-client-toggle flex-1 flex bg-[#CEFF1B] rounded-xl p-1">
+                {["creator", "client"].map((t) => {
+                  const isActive = userType === t;
 
-                return (
-                  <button
-                    key={t}
-                    onClick={() => setUserType(t)}
-                    className="flex-1 py-2 rounded-xl text-sm font-semibold transition"
-                    style={{
-                      backgroundColor: isActive ? "#ffffff" : "transparent",
-                      color: "#000000",
-                    }}
-                  >
-                    {t.charAt(0).toUpperCase() + t.slice(1)}
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={t}
+                      onClick={() => setUserType(t)}
+                      className="flex-1 py-2 rounded-xl text-sm font-semibold transition"
+                      style={{
+                        backgroundColor: isActive ? "#ffffff" : "transparent",
+                        color: "#000000",
+                      }}
+                    >
+                      {t.charAt(0).toUpperCase() + t.slice(1)}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <button
+                onClick={() => setExpanded(false)}
+                className="p-2 rounded-xl bg-[#CEFF1B] text-[#CEFF1B] hover:text-[#bddd18]  transition"
+                title="Collapse Sidebar"
+              >
+                <ChevronLeft size={20} />
+              </button>
             </div>
 
             {/* NAV */}

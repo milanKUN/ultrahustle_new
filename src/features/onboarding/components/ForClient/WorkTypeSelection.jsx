@@ -5,29 +5,33 @@ import "../OnboardingSelect.css";
 export default function WorkTypeSelection() {
   const navigate = useNavigate();
   const [selectedType, setSelectedType] = useState(null);
-  const [teamSize, setTeamSize] = useState("");
+  const [industry, setIndustry] = useState("");
   const [buildTeamPlan, setBuildTeamPlan] = useState(null);
 
   // Custom Dropdown State
-  const [isTeamSizeOpen, setIsTeamSizeOpen] = useState(false);
-  const teamSizeRef = useRef(null);
+  const [isIndustryOpen, setIsIndustryOpen] = useState(false);
+  const industryRef = useRef(null);
 
-  const teamSizeOptions = [
-    { value: "2-5", label: "2-5 people" },
-    { value: "6-10", label: "6-10 people" },
-    { value: "11-25", label: "11-25 people" },
-    { value: "26-50", label: "26-50 people" },
-    { value: "50+", label: "50+ people" },
+  const industryOptions = [
+    { value: "technology", label: "Technology & IT" },
+    { value: "marketing", label: "Marketing & Advertising" },
+    { value: "design", label: "Design & Creative" },
+    { value: "education", label: "Education & E-learning" },
+    { value: "healthcare", label: "Healthcare" },
+    { value: "finance", label: "Finance & Consulting" },
+    { value: "ecommerce", label: "E-commerce & Retail" },
+    { value: "media", label: "Media & Entertainment" },
+    { value: "other", label: "Other" },
   ];
 
-  const selectedTeamSizeLabel =
-    teamSizeOptions.find((opt) => opt.value === teamSize)?.label || "Select one";
+  const selectedIndustryLabel =
+    industryOptions.find((opt) => opt.value === industry)?.label || "Select one";
 
   // Handle click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (teamSizeRef.current && !teamSizeRef.current.contains(event.target)) {
-        setIsTeamSizeOpen(false);
+      if (industryRef.current && !industryRef.current.contains(event.target)) {
+        setIsIndustryOpen(false);
       }
     };
     document.addEventListener("click", handleClickOutside);
@@ -182,7 +186,7 @@ export default function WorkTypeSelection() {
               >
                 <span
                   className={[
-                    "inline-flex items-center px-2 py-1 rounded-md text-[10px] font-medium border",
+                    "inline-flex items-center px-2 mb-4 py-1 rounded-md text-[10px] font-medium border",
                     selectedType === "team"
                       ? "border-black bg-[#FEFEFE]/66"
                       : "border-black/40 bg-white",
@@ -211,27 +215,27 @@ export default function WorkTypeSelection() {
                   Industry
                 </label>
 
-                <div className={`onboarding-custom-select ${isTeamSizeOpen ? "active" : ""}`} ref={teamSizeRef}>
+                <div className={`onboarding-custom-select ${isIndustryOpen ? "active" : ""}`} ref={industryRef}>
                   <div
-                    className={`onboarding-selected-option ${isTeamSizeOpen ? "open" : ""}`}
+                    className={`onboarding-selected-option ${isIndustryOpen ? "open" : ""}`}
                     onClick={(e) => {
                       e.stopPropagation();
-                      setIsTeamSizeOpen(!isTeamSizeOpen);
+                      setIsIndustryOpen(!isIndustryOpen);
                     }}
                   >
-                    <span>{selectedTeamSizeLabel}</span>
+                    <span>{selectedIndustryLabel}</span>
                     <span className="onboarding-arrow">▼</span>
                   </div>
 
-                  {isTeamSizeOpen && (
+                  {isIndustryOpen && (
                     <ul className="onboarding-options-list">
-                      {teamSizeOptions.map((opt) => (
+                      {industryOptions.map((opt) => (
                         <li
                           key={opt.value}
-                          className={teamSize === opt.value ? "active" : ""}
+                          className={industry === opt.value ? "active" : ""}
                           onClick={() => {
-                            setTeamSize(opt.value);
-                            setIsTeamSizeOpen(false);
+                            setIndustry(opt.value);
+                            setIsIndustryOpen(false);
                           }}
                         >
                           {opt.label}
@@ -289,12 +293,12 @@ export default function WorkTypeSelection() {
                 onClick={handleContinue}
                 disabled={
                   !selectedType ||
-                  (selectedType === "team" && (!teamSize || !buildTeamPlan))
+                  (selectedType === "team" && (!industry || !buildTeamPlan))
                 }
                 className={[
                   "h-10 px-6 rounded-lg text-sm font-medium border",
                   selectedType &&
-                    (selectedType !== "team" || (teamSize && buildTeamPlan))
+                    (selectedType !== "team" || (industry && buildTeamPlan))
                     ? "bg-[#CEFF1B] border-black text-black"
                     : "bg-[#DADADA] border-black/20 text-black/30",
                 ].join(" ")}
@@ -394,28 +398,28 @@ export default function WorkTypeSelection() {
               <label className="block text-gray-800 font-semibold mb-3 text-lg">
                 Industry
               </label>
-              <div className="onboarding-custom-select" ref={teamSizeRef}>
+              <div className="onboarding-custom-select" ref={industryRef}>
                 <div
-                  className={`onboarding-selected-option ${isTeamSizeOpen ? "open" : ""}`}
+                  className={`onboarding-selected-option ${isIndustryOpen ? "open" : ""}`}
                   onClick={(e) => {
                     e.stopPropagation();
-                    setIsTeamSizeOpen(!isTeamSizeOpen);
+                    setIsIndustryOpen(!isIndustryOpen);
                   }}
                 >
-                  <span>{selectedTeamSizeLabel}</span>
+                  <span>{selectedIndustryLabel}</span>
                   <span className="onboarding-arrow">▼</span>
                 </div>
 
-                {isTeamSizeOpen && (
+                {isIndustryOpen && (
                   <ul className="onboarding-options-list">
 
-                    {teamSizeOptions.map((opt) => (
+                    {industryOptions.map((opt) => (
                       <li
                         key={opt.value}
-                        className={teamSize === opt.value ? "active" : ""}
+                        className={industry === opt.value ? "active" : ""}
                         onClick={() => {
-                          setTeamSize(opt.value);
-                          setIsTeamSizeOpen(false);
+                          setIndustry(opt.value);
+                          setIsIndustryOpen(false);
                         }}
                       >
                         {opt.label}
@@ -456,7 +460,7 @@ export default function WorkTypeSelection() {
           <div className="flex justify-between items-center">
             <button
               onClick={handleReset}
-              className="px-8 py-3 rounded-lg border-1 border-black text-gray-600 font-medium text-lg hover:bg-gray-100 transition-all -ml-24"
+              className="px-8 py-3 rounded-lg border-1 border-black text-gray-600 font-medium text-lg hover:bg-gray-100 transition-all"
             >
               Reset
             </button>
@@ -472,10 +476,10 @@ export default function WorkTypeSelection() {
                 onClick={handleContinue}
                 disabled={
                   !selectedType ||
-                  (selectedType === "team" && (!teamSize || !buildTeamPlan))
+                  (selectedType === "team" && (!industry || !buildTeamPlan))
                 }
                 className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${selectedType &&
-                  (selectedType !== "team" || (teamSize && buildTeamPlan))
+                  (selectedType !== "team" || (industry && buildTeamPlan))
                   ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
                   : "bg-gray-200 border-1 border-black text-gray-700 cursor-not-allowed"
                   }`}

@@ -43,7 +43,7 @@ const UserProfile = (props) => {
   ]); // Sample activity dates in DD-MM-YYYY format
 
   // ✅ Sidebar state
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeSetting, setActiveSetting] = useState("basic");
 
   const contentRef = useRef(null);

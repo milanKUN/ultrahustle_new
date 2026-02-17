@@ -108,7 +108,7 @@ const CreateTeam = ({ theme, setTheme }) => {
   const [activeSetting, setActiveSetting] = useState("basic");
 
   React.useEffect(() => {
-    setSidebarOpen(true);
+    setSidebarOpen(false);
     setShowSettings(false);
   }, []);
 

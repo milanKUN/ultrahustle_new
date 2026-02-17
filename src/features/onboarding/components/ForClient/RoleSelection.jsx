@@ -41,8 +41,8 @@ export default function RoleSelection() {
         type="button"
         onClick={() => setSelectedRole(role)}
         className={[
-          // ✅ MOBILE: always 2 cards in one row
-          "w-full basis-1/2 min-w-0 flex-shrink-0",
+          // ✅ MOBILE: always 2 cards in one row with equal height
+          "w-full basis-1/2 min-w-0 flex-shrink-0 h-full",
           "text-left rounded-2xl p-4 transition-all",
           "border",
           active
@@ -127,8 +127,8 @@ export default function RoleSelection() {
                   key={index}
                   onClick={() => index < currentStep && navigate(stepPaths[index])}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep
-                      ? "bg-black w-4 h-4"
-                      : "bg-white cursor-pointer"
+                    ? "bg-black w-4 h-4"
+                    : "bg-white cursor-pointer"
                     }`}
                 />
               )
@@ -147,7 +147,7 @@ export default function RoleSelection() {
         {/* ✅ MOBILE */}
         <div className="min-[950px]:hidden w-full max-w-[420px] relative z-10">
           {/* ✅ FORCE SAME LINE (no wrap) */}
-          <div className="flex flex-nowrap gap-3 w-full">
+          <div className="flex flex-row items-stretch gap-3 w-full">
             <RoleCard
               role="creator"
               title="Creator"
@@ -156,12 +156,14 @@ export default function RoleSelection() {
                 "I want to run webinars and courses",
               ]}
             />
+
             <RoleCard
               role="client"
               title="Client"
               points={["I want to hire creators and purchase products/courses"]}
             />
           </div>
+
 
           <p className="text-center text-black/60 text-sm mt-4">
             You can switch or use both roles anytime
@@ -219,15 +221,15 @@ export default function RoleSelection() {
           <div
             onClick={() => setSelectedRole("creator")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "creator"
-                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">
               <span
                 className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "creator"
-                    ? "border-black bg-[#C3FF00]/10"
-                    : "border-gray-400 bg-white"
+                  ? "border-black bg-[#C3FF00]/10"
+                  : "border-gray-400 bg-white"
                   }`}
               >
                 Creator
@@ -248,15 +250,15 @@ export default function RoleSelection() {
           <div
             onClick={() => setSelectedRole("client")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "client"
-                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">
               <span
                 className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "client"
-                    ? "border-black bg-[#C3FF00]/10"
-                    : "border-gray-400 bg-white"
+                  ? "border-black bg-[#C3FF00]/10"
+                  : "border-gray-400 bg-white"
                   }`}
               >
                 Client
@@ -272,14 +274,14 @@ export default function RoleSelection() {
         </div>
 
         <div className="hidden min-[950px]:block mt-6 relative z-10 w-full max-w-[750px]">
-          <p className="text-left text-gray-600 text-lg mb-8 min-[950px]:-ml-24">
+          <p className="text-left text-gray-600 text-lg mb-8">
             You can switch or use both roles anytime.
           </p>
 
           <div className="flex justify-between items-center">
             <button
               onClick={handleReset}
-              className="px-8 py-3 rounded-lg border-2 border-black text-gray-600 font-medium text-lg hover:bg-gray-100 transition-all min-[950px]:-ml-24"
+              className="px-8 py-3 rounded-lg border-2 border-black text-gray-600 font-medium text-lg hover:bg-gray-100 transition-all"
             >
               Reset
             </button>
@@ -295,8 +297,8 @@ export default function RoleSelection() {
                 onClick={handleContinue}
                 disabled={!selectedRole}
                 className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${selectedRole
-                    ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
-                    : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
+                  ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
+                  : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
                   }`}
               >
                 Continue

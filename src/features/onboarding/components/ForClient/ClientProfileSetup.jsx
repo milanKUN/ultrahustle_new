@@ -18,13 +18,12 @@ export default function ClientProfileSetup() {
   ];
 
   const handleGetStarted = () => {
-    // Navigate to dashboard or profile creation - Placeholder
-    // navigate('/client-dashboard');
-    console.log("Navigate to client dashboard/profile setup");
+    // Navigate to dashboard
+    navigate('/dashboard');
   };
 
   const handleSkip = () => {
-    navigate('/');
+    navigate('/dashboard');
   };
 
   return (
