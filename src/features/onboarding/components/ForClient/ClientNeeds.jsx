@@ -39,6 +39,17 @@ export default function ClientNeeds() {
   const currentStep = 4;
   const totalSteps = 8;
 
+  const stepPaths = [
+    "/client-onboarding",
+    "/client-role-selection",
+    "/client-work-type-selection",
+    "/client-goals-selection",
+    "/client-needs",
+    "/client-business-details",
+    "/client-setup-workspace",
+    "/client-profile-setup"
+  ];
+
   const categories = [
     { id: "design", label: "Design", icon: Palette },
     { id: "development", label: "Development", icon: Code },
@@ -59,10 +70,7 @@ export default function ClientNeeds() {
   const handleBack = () => navigate("/client-goals-selection");
 
   const handleReset = () => {
-    setSelectedCategories([]);
-    setBudget("");
-    setFrequency(null);
-    setHiringForTeam(null);
+    navigate("/client-onboarding");
     setBusinessName("");
     setRole("");
   };
@@ -156,13 +164,19 @@ export default function ClientNeeds() {
           {/* Step Indicators - Desktop Only */}
           <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
+                    }`}
+                />
+              )
             ))}
           </div>
+
+
+
         </div>
       </div>
 
@@ -342,15 +356,21 @@ export default function ClientNeeds() {
             {/* step dots */}
             <div className="mt-6 flex justify-center items-center gap-2">
               {[...Array(totalSteps)].map((_, index) => (
-                <span
-                  key={index}
-                  className={[
-                    "w-2 h-2 rounded-full",
-                    index === currentStep ? "bg-black" : "bg-black/30",
-                  ].join(" ")}
-                />
+                index <= currentStep && (
+                  <span
+                    key={index}
+                    onClick={() => index < currentStep && navigate(stepPaths[index])}
+                    className={[
+                      "w-2 h-2 rounded-full",
+                      index === currentStep ? "bg-black" : "bg-black/30 cursor-pointer",
+                    ].join(" ")}
+                  />
+                )
               ))}
             </div>
+
+
+
           </div>
 
           {/* ✅ DESKTOP (your original layout 그대로) */}
@@ -480,7 +500,7 @@ export default function ClientNeeds() {
                       }}
                     >
                       <span className={!role ? "opacity-70" : ""}>
-                        {role || "Type here"}
+                        {role || "Role"}
                       </span>
                       <span className="onboarding-arrow">▼</span>
                     </div>

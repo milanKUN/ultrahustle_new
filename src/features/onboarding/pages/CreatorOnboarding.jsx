@@ -4,11 +4,23 @@ import { useNavigate } from 'react-router-dom';
 export default function CreatorOnboarding() {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
-  const totalSteps = 8;
+  const totalSteps = 7;
+
+  const stepPaths = [
+    "/onboarding",
+    "/role-selection",
+    "/creator-work-type-selection",
+    "/creator-goals-selection",
+    "/creator-needs",
+    "/creator-setup-workspace",
+    "/creator-profile-setup"
+  ];
+
 
   const handleGetStarted = () => {
     navigate('/role-selection');
   };
+
 
   const handleSkip = () => {
     navigate('/');
@@ -80,15 +92,21 @@ export default function CreatorOnboarding() {
             {/* Step Indicators */}
             <div className="flex justify-center items-center gap-2 min-[950px]:gap-3.5">
               {[...Array(totalSteps)].map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-2.5 h-2.5 min-[950px]:w-3.5 min-[950px]:h-3.5 rounded-full transition-all duration-300 ${index === currentStep
-                    ? 'bg-[#C3FF00] w-3.5 h-3.5 min-[950px]:w-5 min-[950px]:h-5 shadow-md shadow-[#C3FF00]/40'
-                    : 'bg-[#5C5C5C] hover:bg-gray-400'
-                    }`}
-                />
+                index <= currentStep && (
+                  <div
+                    key={index}
+                    onClick={() => index < currentStep && navigate(stepPaths[index])}
+                    className={`w-2.5 h-2.5 min-[950px]:w-3.5 min-[950px]:h-3.5 rounded-full transition-all duration-300 ${index === currentStep
+                      ? 'bg-[#C3FF00] w-3.5 h-3.5 min-[950px]:w-5 min-[950px]:h-5 shadow-md shadow-[#C3FF00]/40'
+                      : 'bg-[#5C5C5C] hover:bg-gray-400 cursor-pointer'
+                      }`}
+                  />
+                )
               ))}
             </div>
+
+
+
           </div>
         </div>
       </div>

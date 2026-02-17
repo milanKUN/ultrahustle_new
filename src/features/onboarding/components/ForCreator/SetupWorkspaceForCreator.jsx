@@ -5,7 +5,16 @@ import { ArrowRight } from 'lucide-react';
 export default function SetupWorkspaceForCreator() {
   const navigate = useNavigate();
   const currentStep = 5; // Step 6 visually (0-indexed is 5)
-  const totalSteps = 8;
+  const totalSteps = 7;
+  const stepPaths = [
+    "/onboarding",
+    "/creator-role-selection",
+    "/creator-work-type-selection",
+    "/creator-goals-selection",
+    "/creator-needs",
+    "/creator-setup-workspace",
+    "/creator-profile-setup"
+  ];
   const [activeStep, setActiveStep] = useState(0);
 
   // Auto-progress simulation logic
@@ -87,15 +96,21 @@ export default function SetupWorkspaceForCreator() {
           {/* Step Indicators */}
           <div className="flex justify-center items-center gap-3">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 min-[950px]:w-4 min-[950px]:h-4 rounded-full transition-all duration-300 ${index === currentStep
-                  ? 'bg-[#C3FF00]'
-                  : 'bg-gray-500 min-[950px]:bg-gray-600 hover:bg-gray-400'
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-3 h-3 min-[950px]:w-4 min-[950px]:h-4 rounded-full transition-all duration-300 ${index === currentStep
+                    ? 'bg-[#C3FF00]'
+                    : 'bg-gray-500 min-[950px]:bg-gray-600 hover:bg-gray-400 cursor-pointer'
+                    }`}
+                />
+              )
             ))}
           </div>
+
+
+
 
         </div>
       </div>

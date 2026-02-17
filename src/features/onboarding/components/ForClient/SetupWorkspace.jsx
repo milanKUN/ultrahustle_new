@@ -6,6 +6,17 @@ export default function SetupWorkspace() {
   const navigate = useNavigate();
   const currentStep = 6; // Step 7 visually (0-indexed is 6)
   const totalSteps = 8;
+
+  const stepPaths = [
+    "/client-onboarding",
+    "/client-role-selection",
+    "/client-work-type-selection",
+    "/client-goals-selection",
+    "/client-needs",
+    "/client-business-details",
+    "/client-setup-workspace",
+    "/client-profile-setup"
+  ];
   const [activeStep, setActiveStep] = useState(0);
 
   // Auto-progress simulation logic (optional, but implied by "We're configuring...")
@@ -87,15 +98,21 @@ export default function SetupWorkspace() {
           {/* Step Indicators */}
           <div className="flex justify-center items-center gap-3">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 min-[950px]:w-4 min-[950px]:h-4 rounded-full transition-all duration-300 ${index === currentStep
-                  ? 'bg-[#C3FF00]'
-                  : 'bg-gray-500 min-[950px]:bg-gray-600 hover:bg-gray-400'
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-3 h-3 min-[950px]:w-4 min-[950px]:h-4 rounded-full transition-all duration-300 ${index === currentStep
+                    ? 'bg-[#C3FF00]'
+                    : 'bg-gray-500 min-[950px]:bg-gray-600 hover:bg-gray-400 cursor-pointer'
+                    }`}
+                />
+              )
             ))}
           </div>
+
+
+
 
         </div>
       </div>

@@ -37,17 +37,26 @@ export default function WorkTypeSelection() {
   const currentStep = 2;
   const totalSteps = 8;
 
-  const handleBack = () => navigate("/role-selection");
+
+  const stepPaths = [
+    "/client-onboarding",
+    "/client-role-selection",
+    "/client-work-type-selection",
+    "/client-goals-selection",
+    "/client-needs",
+    "/client-business-details",
+    "/client-setup-workspace",
+    "/client-profile-setup"
+  ];
+
+  const handleBack = () => navigate(stepPaths[currentStep - 1]);
 
   const handleContinue = () => {
     if (selectedType) navigate("/client-goals-selection");
   };
 
-  const handleReset = () => {
-    setSelectedType(null);
-    setTeamSize("");
-    setBuildTeamPlan(null);
-  };
+  const handleReset = () => navigate("/client-onboarding");
+
 
   return (
     <div className="min-h-screen w-full flex flex-col min-[950px]:flex-row">
@@ -91,13 +100,19 @@ export default function WorkTypeSelection() {
           {/* Step Indicators - Desktop Only */}
           <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
+                    }`}
+                />
+              )
             ))}
           </div>
+
+
+
         </div>
       </div>
 
@@ -193,7 +208,7 @@ export default function WorkTypeSelection() {
             {selectedType === "team" && (
               <div className="mt-4 relative z-20">
                 <label className="block text-black font-semibold mb-2 text-sm text-center">
-                  Team Size
+                  Industry
                 </label>
 
                 <div className={`onboarding-custom-select ${isTeamSizeOpen ? "active" : ""}`} ref={teamSizeRef}>
@@ -291,15 +306,21 @@ export default function WorkTypeSelection() {
             {/* black dots */}
             <div className="mt-6 flex justify-center items-center gap-2">
               {[...Array(totalSteps)].map((_, index) => (
-                <span
-                  key={index}
-                  className={[
-                    "w-2 h-2 rounded-full",
-                    index === currentStep ? "bg-black" : "bg-black/30",
-                  ].join(" ")}
-                />
+                index <= currentStep && (
+                  <span
+                    key={index}
+                    onClick={() => index < currentStep && navigate(stepPaths[index])}
+                    className={[
+                      "w-2 h-2 rounded-full",
+                      index === currentStep ? "bg-black" : "bg-black/30 cursor-pointer",
+                    ].join(" ")}
+                  />
+                )
               ))}
             </div>
+
+
+
           </div>
         </div>
 
@@ -371,7 +392,7 @@ export default function WorkTypeSelection() {
           <div className="hidden min-[950px]:flex mt-8 flex-col min-[950px]:flex-row gap-8 justify-between items-start w-full px-4 relative z-20 animate-fade-in-up">
             <div className="flex-1 w-full max-w-[450px]">
               <label className="block text-gray-800 font-semibold mb-3 text-lg">
-                Team Size
+                Industry
               </label>
               <div className="onboarding-custom-select" ref={teamSizeRef}>
                 <div

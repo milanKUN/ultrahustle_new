@@ -47,7 +47,17 @@ export default function CreatorNeeds() {
   }, []);
 
   const currentStep = 4;
-  const totalSteps = 8;
+  const totalSteps = 7;
+
+  const stepPaths = [
+    "/onboarding",
+    "/creator-role-selection",
+    "/creator-work-type-selection",
+    "/creator-goals-selection",
+    "/creator-needs",
+    "/creator-setup-workspace",
+    "/creator-profile-setup"
+  ];
 
   const categories = [
     { id: "design", label: "Design", icon: Palette },
@@ -79,14 +89,7 @@ export default function CreatorNeeds() {
     if (isContinueEnabled) navigate("/creator-setup-workspace");
   };
 
-  const handleReset = () => {
-    setSelectedCategories([]);
-    setPrimarySkill("");
-    setExperienceLevel("");
-    setRateRange("");
-    setHasPortfolio(null);
-    setPortfolioLinks("");
-  };
+  const handleReset = () => navigate("/onboarding");
 
   // ✅ Mobile chip (white + lime border style)
   const MobileChip = ({ category }) => {
@@ -167,13 +170,19 @@ export default function CreatorNeeds() {
           {/* Step Indicators - Desktop Only */}
           <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
+                    }`}
+                />
+              )
             ))}
           </div>
+
+
+
         </div>
       </div>
 
@@ -336,15 +345,21 @@ export default function CreatorNeeds() {
               {/* step dots */}
               <div className="mt-6 flex justify-center items-center gap-2">
                 {[...Array(totalSteps)].map((_, index) => (
-                  <span
-                    key={index}
-                    className={[
-                      "w-2 h-2 rounded-full",
-                      index === currentStep ? "bg-black" : "bg-black/30",
-                    ].join(" ")}
-                  />
+                  index <= currentStep && (
+                    <span
+                      key={index}
+                      onClick={() => index < currentStep && navigate(stepPaths[index])}
+                      className={[
+                        "w-2 h-2 rounded-full",
+                        index === currentStep ? "bg-black" : "bg-black/30 cursor-pointer",
+                      ].join(" ")}
+                    />
+                  )
                 ))}
               </div>
+
+
+
             </div>
           </div>
 

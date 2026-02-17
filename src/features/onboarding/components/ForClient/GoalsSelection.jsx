@@ -17,6 +17,18 @@ export default function GoalsSelection() {
   const currentStep = 3;
   const totalSteps = 8;
 
+  const stepPaths = [
+    "/client-onboarding",
+    "/client-role-selection",
+    "/client-work-type-selection",
+    "/client-goals-selection",
+    "/client-needs",
+    "/client-business-details",
+    "/client-setup-workspace",
+    "/client-profile-setup"
+  ];
+
+
   const goals = [
     { id: "hire-talent", label: "Hire talent", icon: Briefcase },
     { id: "buy-products", label: "Buy digital products", icon: ShoppingBag },
@@ -42,7 +54,8 @@ export default function GoalsSelection() {
     if (canContinue) navigate("/client-needs");
   };
 
-  const handleReset = () => setSelectedGoals([]);
+  const handleReset = () => navigate("/client-onboarding");
+
 
   const MobileChip = ({ goal }) => {
     const Icon = goal.icon;
@@ -123,13 +136,19 @@ export default function GoalsSelection() {
           {/* Step Indicators - Desktop Only */}
           <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
+                    }`}
+                />
+              )
             ))}
           </div>
+
+
+
         </div>
       </div>
 
@@ -191,15 +210,21 @@ export default function GoalsSelection() {
             {/* Step dots */}
             <div className="mt-6 flex justify-center items-center gap-2">
               {[...Array(totalSteps)].map((_, index) => (
-                <span
-                  key={index}
-                  className={[
-                    "w-2 h-2 rounded-full",
-                    index === currentStep ? "bg-black" : "bg-black/30",
-                  ].join(" ")}
-                />
+                index <= currentStep && (
+                  <span
+                    key={index}
+                    onClick={() => index < currentStep && navigate(stepPaths[index])}
+                    className={[
+                      "w-2 h-2 rounded-full",
+                      index === currentStep ? "bg-black" : "bg-black/30 cursor-pointer",
+                    ].join(" ")}
+                  />
+                )
               ))}
             </div>
+
+
+
           </div>
         </div>
 

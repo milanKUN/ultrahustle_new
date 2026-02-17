@@ -8,7 +8,7 @@ import DesktopLogin from "./features/auth/pages/DesktopLogin";
 import DesktopSignup from "./features/auth/pages/DesktopSignup";
 import DesktopForgotPassword from "./features/auth/pages/DesktopForgotPassword";
 import DesktopEmailVerification from "./features/auth/pages/DesktopEmailVerification";
-import ClientOnboarding from "./features/onboarding/pages/ClientOnboarding";
+
 import CreatorOnboarding from "./features/onboarding/pages/CreatorOnboarding";
 
 /* ================ COMPONENTS ================= */
@@ -18,7 +18,7 @@ import GoalsSelection from "./features/onboarding/components/ForClient/GoalsSele
 import ClientNeeds from "./features/onboarding/components/ForClient/ClientNeeds";
 import BusinessDetails from "./features/onboarding/components/ForClient/BusinessDetails";
 import SetupWorkspace from "./features/onboarding/components/ForClient/SetupWorkspace";
-import CreatorRoleSelection from "./features/onboarding/components/ForCreator/CreatorRoleSelection";
+
 import WorkTypeSelectionForCreator from "./features/onboarding/components/ForCreator/WorkTypeSelectionForCreator";
 import CreatorGoalsSelection from "./features/onboarding/components/ForCreator/CreatorGoalsSelection";
 import CreatorNeeds from "./features/onboarding/components/ForCreator/CreatorNeeds";
@@ -69,7 +69,7 @@ export default function App() {
           <Route path="/desktop-email-verification" element={<DesktopEmailVerification />} />
           <Route path="/login" element={<DesktopLogin />} />
           <Route path="/signup" element={<DesktopSignup />} />
-          <Route path="/client-onboarding" element={<ClientOnboarding />} />
+
           <Route path="/onboarding" element={<CreatorOnboarding />} />
           <Route path="/role-selection" element={<RoleSelection />} />
           <Route path="/client-work-type-selection" element={<WorkTypeSelection />} />
@@ -78,6 +78,7 @@ export default function App() {
           <Route path="/client-business-details" element={<BusinessDetails />} />
           <Route path="/client-setup-workspace" element={<SetupWorkspace />} />
           <Route path="/client-role-selection" element={<RoleSelection />} />
+
           <Route path="/creator-work-type-selection" element={<WorkTypeSelectionForCreator />} />
           <Route path="/creator-goals-selection" element={<CreatorGoalsSelection />} />
           <Route path="/creator-needs" element={<CreatorNeeds />} />

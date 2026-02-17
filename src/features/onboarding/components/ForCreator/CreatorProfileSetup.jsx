@@ -4,7 +4,17 @@ import { useNavigate } from "react-router-dom";
 export default function CreatorProfileSetup() {
   const navigate = useNavigate();
   const currentStep = 6;
-  const totalSteps = 8;
+  const totalSteps = 7;
+
+  const stepPaths = [
+    "/onboarding",
+    "/creator-role-selection",
+    "/creator-work-type-selection",
+    "/creator-goals-selection",
+    "/creator-needs",
+    "/creator-setup-workspace",
+    "/creator-profile-setup"
+  ];
 
   const handleGetStarted = () => {
     // navigate('/creator-dashboard');
@@ -80,15 +90,21 @@ export default function CreatorProfileSetup() {
             {/* black dots like other screens */}
             <div className="mt-6 flex justify-center items-center gap-2">
               {[...Array(totalSteps)].map((_, index) => (
-                <span
-                  key={index}
-                  className={[
-                    "w-2 h-2 rounded-full",
-                    index === currentStep ? "bg-black" : "bg-black/30",
-                  ].join(" ")}
-                />
+                index <= currentStep && (
+                  <span
+                    key={index}
+                    onClick={() => index < currentStep && navigate(stepPaths[index])}
+                    className={[
+                      "w-2 h-2 rounded-full",
+                      index === currentStep ? "bg-black" : "bg-black/30 cursor-pointer",
+                    ].join(" ")}
+                  />
+                )
               ))}
             </div>
+
+
+
           </div>
         </div>
 
@@ -126,15 +142,21 @@ export default function CreatorProfileSetup() {
           {/* Step Indicators (desktop) */}
           <div className="flex justify-center items-center gap-3">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 min-[950px]:w-4 min-[950px]:h-4 rounded-full transition-all duration-300 ${index === currentStep
-                  ? "bg-[#C3FF00]"
-                  : "bg-gray-500 min-[950px]:bg-gray-600 hover:bg-gray-400"
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-3 h-3 min-[950px]:w-4 min-[950px]:h-4 rounded-full transition-all duration-300 ${index === currentStep
+                    ? "bg-[#C3FF00]"
+                    : "bg-gray-500 min-[950px]:bg-gray-600 hover:bg-gray-400 cursor-pointer"
+                    }`}
+                />
+              )
             ))}
           </div>
+
+
+
         </div>
       </div>
     </div>

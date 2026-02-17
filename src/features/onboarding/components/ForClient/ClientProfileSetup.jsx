@@ -6,9 +6,20 @@ export default function ClientProfileSetup() {
   const currentStep = 7; // Visual step index (8th step)
   const totalSteps = 8;
 
+  const stepPaths = [
+    "/client-onboarding",
+    "/client-role-selection",
+    "/client-work-type-selection",
+    "/client-goals-selection",
+    "/client-needs",
+    "/client-business-details",
+    "/client-setup-workspace",
+    "/client-profile-setup"
+  ];
+
   const handleGetStarted = () => {
     // Navigate to dashboard or profile creation - Placeholder
-    // navigate('/client-dashboard'); 
+    // navigate('/client-dashboard');
     console.log("Navigate to client dashboard/profile setup");
   };
 
@@ -73,15 +84,21 @@ export default function ClientProfileSetup() {
           {/* Step Indicators */}
           <div className="flex justify-center items-center gap-3">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 min-[950px]:w-4 min-[950px]:h-4 rounded-full transition-all duration-300 ${index === currentStep
-                  ? 'bg-[#C3FF00]'
-                  : 'bg-gray-500 min-[950px]:bg-gray-600 hover:bg-gray-400'
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-3 h-3 min-[950px]:w-4 min-[950px]:h-4 rounded-full transition-all duration-300 ${index === currentStep
+                    ? 'bg-[#C3FF00]'
+                    : 'bg-gray-500 min-[950px]:bg-gray-600 hover:bg-gray-400 cursor-pointer'
+                    }`}
+                />
+              )
             ))}
           </div>
+
+
+
 
         </div>
       </div>

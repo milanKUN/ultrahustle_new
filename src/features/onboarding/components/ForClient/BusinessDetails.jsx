@@ -37,6 +37,16 @@ export default function BusinessDetails() {
 
   const currentStep = 5; // Step 5 (0-indexed was 4 previously)
   const totalSteps = 8;
+  const stepPaths = [
+    "/client-onboarding",
+    "/client-role-selection",
+    "/client-work-type-selection",
+    "/client-goals-selection",
+    "/client-needs",
+    "/client-business-details",
+    "/client-setup-workspace",
+    "/client-profile-setup"
+  ];
 
   const industries = [
     'Technology',
@@ -76,20 +86,7 @@ export default function BusinessDetails() {
     }
   };
 
-  const handleReset = () => {
-    setFormData({
-      businessName: '',
-      employees: '',
-      industry: '',
-      otherIndustry: '',
-      website: '',
-      taxId: '',
-      country: '',
-      state: '',
-      city: ''
-    });
-    setIsPersonalAccount(false);
-  };
+  const handleReset = () => navigate("/client-onboarding");
 
   // Validation: 
   // If personal: always valid.
@@ -147,15 +144,19 @@ export default function BusinessDetails() {
           {/* Step Indicators - Desktop Only */}
           <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep
-                  ? 'bg-black w-4 h-4'
-                  : 'bg-white'
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
+                    }`}
+                />
+              )
             ))}
           </div>
+
+
+
         </div>
       </div>
 
@@ -385,15 +386,21 @@ export default function BusinessDetails() {
           {/* Step Indicators - Mobile */}
           <div className="flex justify-center items-center gap-2 mt-8 min-[950px]:hidden">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentStep
-                  ? 'bg-[#C3FF00] w-2.5 h-2.5 shadow-md shadow-[#C3FF00]/40'
-                  : 'bg-black/60'
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentStep
+                    ? 'bg-[#C3FF00] w-2.5 h-2.5 shadow-md shadow-[#C3FF00]/40'
+                    : 'bg-black/60 cursor-pointer'
+                    }`}
+                />
+              )
             ))}
           </div>
+
+
+
 
         </div>
       </div>

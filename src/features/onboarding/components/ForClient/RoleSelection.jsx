@@ -8,19 +8,30 @@ export default function RoleSelection() {
   const currentStep = 1;
   const totalSteps = 8;
 
-  const handleBack = () => navigate("/client-onboarding");
+  const handleBack = () => navigate("/onboarding");
+
+  const stepPaths = [
+    "/onboarding",
+    "/client-role-selection",
+    "/client-work-type-selection",
+    "/client-goals-selection",
+    "/client-needs",
+    "/client-business-details",
+    "/client-setup-workspace",
+    "/client-profile-setup",
+  ];
 
   const handleContinue = () => {
     if (!selectedRole) return;
 
     if (selectedRole === "client") {
-      navigate("/client-work-type-selection"); // ✅ your client onboarding next page
+      navigate("/client-work-type-selection");
     } else if (selectedRole === "creator") {
-      navigate("/creator-work-type-selection"); // ✅ your creator onboarding next page
+      navigate("/creator-work-type-selection");
     }
   };
 
-  const handleReset = () => setSelectedRole(null);
+  const handleReset = () => navigate("/onboarding");
 
   const RoleCard = ({ role, title, points }) => {
     const active = selectedRole === role;
@@ -30,9 +41,13 @@ export default function RoleSelection() {
         type="button"
         onClick={() => setSelectedRole(role)}
         className={[
-          "flex-1 text-left rounded-2xl p-4 transition-all",
+          // ✅ MOBILE: always 2 cards in one row
+          "w-full basis-1/2 min-w-0 flex-shrink-0",
+          "text-left rounded-2xl p-4 transition-all",
           "border",
-          active ? "bg-[#CEFF1B] border-black shadow-md" : "bg-white border-[#CEFF1B] shadow-sm",
+          active
+            ? "bg-[#CEFF1B] border-black shadow-md"
+            : "bg-white border-[#CEFF1B] shadow-sm",
         ].join(" ")}
       >
         <span
@@ -45,7 +60,7 @@ export default function RoleSelection() {
           {title}
         </span>
 
-        <ul className="mt-3 space-y-2 text-[12px] leading-4 text-black/70">
+        <ul className="mt-3 space-y-2 text-[12px] leading-4 text-black/70 break-words">
           {points.map((t, i) => (
             <li key={i} className="flex gap-2">
               <span className="mt-[2px]">•</span>
@@ -107,11 +122,16 @@ export default function RoleSelection() {
           {/* Step Indicators - Desktop Only */}
           <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep
+                      ? "bg-black w-4 h-4"
+                      : "bg-white cursor-pointer"
+                    }`}
+                />
+              )
             ))}
           </div>
         </div>
@@ -124,10 +144,10 @@ export default function RoleSelection() {
         <div className="hidden min-[950px]:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0" />
         <div className="hidden min-[950px]:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0" />
 
-        {/* ✅ MOBILE (screenshot-like) */}
-        <div className="min-[950px]:hidden  w-full max-w-[420px] relative z-10">
-          {/* role cards row */}
-          <div className="flex gap-3">
+        {/* ✅ MOBILE */}
+        <div className="min-[950px]:hidden w-full max-w-[420px] relative z-10">
+          {/* ✅ FORCE SAME LINE (no wrap) */}
+          <div className="flex flex-nowrap gap-3 w-full">
             <RoleCard
               role="creator"
               title="Creator"
@@ -177,34 +197,37 @@ export default function RoleSelection() {
             </button>
           </div>
 
-          {/* step dots */}
-          <div className="mt-6 flex justify-center items-center gap-2">
+          {/* Step Indicators - Mobile Only */}
+          <div className="mt-6 flex justify-center items-center gap-2 min-[950px]:hidden">
             {[...Array(totalSteps)].map((_, index) => (
-              <span
-                key={index}
-                className={[
-                  "w-2 h-2 rounded-full",
-                  index === currentStep ? "bg-black" : "bg-black/30",
-                ].join(" ")}
-              />
+              index <= currentStep && (
+                <span
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={[
+                    "w-2 h-2 rounded-full",
+                    index === currentStep ? "bg-black" : "bg-black/30 cursor-pointer",
+                  ].join(" ")}
+                />
+              )
             ))}
           </div>
         </div>
 
-        {/* ✅ DESKTOP (unchanged as you had) */}
+        {/* ✅ DESKTOP (unchanged) */}
         <div className="hidden min-[950px]:flex flex-col min-[950px]:flex-row gap-6 justify-between items-stretch relative z-10 w-full px-4">
           <div
             onClick={() => setSelectedRole("creator")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "creator"
-              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">
               <span
                 className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "creator"
-                  ? "border-black bg-[#C3FF00]/10"
-                  : "border-gray-400 bg-white"
+                    ? "border-black bg-[#C3FF00]/10"
+                    : "border-gray-400 bg-white"
                   }`}
               >
                 Creator
@@ -225,15 +248,15 @@ export default function RoleSelection() {
           <div
             onClick={() => setSelectedRole("client")}
             className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "client"
-              ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-              : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
           >
             <div className="mb-4">
               <span
                 className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "client"
-                  ? "border-black bg-[#C3FF00]/10"
-                  : "border-gray-400 bg-white"
+                    ? "border-black bg-[#C3FF00]/10"
+                    : "border-gray-400 bg-white"
                   }`}
               >
                 Client
@@ -242,9 +265,7 @@ export default function RoleSelection() {
             <ul className="text-gray-700 text-base space-y-3">
               <li className="flex items-start gap-2">
                 <span className="text-gray-500">•</span>
-                <span>
-                  I want to hire creators and purchase products/courses
-                </span>
+                <span>I want to hire creators and purchase products/courses</span>
               </li>
             </ul>
           </div>
@@ -274,8 +295,8 @@ export default function RoleSelection() {
                 onClick={handleContinue}
                 disabled={!selectedRole}
                 className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${selectedRole
-                  ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
-                  : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
+                    ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
+                    : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
                   }`}
               >
                 Continue

@@ -15,7 +15,18 @@ export default function CreatorGoalsSelection() {
   const navigate = useNavigate();
   const [selectedGoals, setSelectedGoals] = useState([]);
   const currentStep = 3;
-  const totalSteps = 8;
+  const totalSteps = 7;
+
+  const stepPaths = [
+    "/onboarding",
+    "/creator-role-selection",
+    "/creator-work-type-selection",
+    "/creator-goals-selection",
+    "/creator-needs",
+    "/creator-setup-workspace",
+    "/creator-profile-setup"
+  ];
+
 
   const goals = [
     { id: "earn-services", label: "Earn through services", icon: Briefcase },
@@ -46,7 +57,8 @@ export default function CreatorGoalsSelection() {
     if (canContinue) navigate("/creator-needs");
   };
 
-  const handleReset = () => setSelectedGoals([]);
+  const handleReset = () => navigate("/onboarding");
+
 
   const MobileChip = ({ goal }) => {
     const Icon = goal.icon;
@@ -127,13 +139,19 @@ export default function CreatorGoalsSelection() {
           {/* Step Indicators - Desktop Only */}
           <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
             {[...Array(totalSteps)].map((_, index) => (
-              <div
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white"
-                  }`}
-              />
+              index <= currentStep && (
+                <div
+                  key={index}
+                  onClick={() => index < currentStep && navigate(stepPaths[index])}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
+                    }`}
+                />
+              )
             ))}
           </div>
+
+
+
         </div>
       </div>
 
@@ -186,15 +204,21 @@ export default function CreatorGoalsSelection() {
             {/* Step Dots */}
             <div className="mt-6 flex justify-center items-center gap-2">
               {[...Array(totalSteps)].map((_, index) => (
-                <span
-                  key={index}
-                  className={[
-                    "w-2 h-2 rounded-full",
-                    index === currentStep ? "bg-black" : "bg-black/30",
-                  ].join(" ")}
-                />
+                index <= currentStep && (
+                  <span
+                    key={index}
+                    onClick={() => index < currentStep && navigate(stepPaths[index])}
+                    className={[
+                      "w-2 h-2 rounded-full",
+                      index === currentStep ? "bg-black" : "bg-black/30 cursor-pointer",
+                    ].join(" ")}
+                  />
+                )
               ))}
             </div>
+
+
+
           </div>
         </div>
 
