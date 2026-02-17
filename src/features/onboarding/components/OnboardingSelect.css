@@ -97,6 +97,7 @@
 .onboarding-options-list::-webkit-scrollbar-track {
   background: transparent;
 }
+
 /* Role dropdown specific - show only 2 items */
 .role-dropdown-small {
   max-height: 88px !important;

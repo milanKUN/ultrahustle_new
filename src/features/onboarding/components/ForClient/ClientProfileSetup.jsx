@@ -7,7 +7,7 @@ export default function ClientProfileSetup() {
   const totalSteps = 8;
 
   const stepPaths = [
-    "/client-onboarding",
+    "/onboarding",
     "/client-role-selection",
     "/client-work-type-selection",
     "/client-goals-selection",

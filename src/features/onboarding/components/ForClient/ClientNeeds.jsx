@@ -40,7 +40,7 @@ export default function ClientNeeds() {
   const totalSteps = 8;
 
   const stepPaths = [
-    "/client-onboarding",
+    "/onboarding",
     "/client-role-selection",
     "/client-work-type-selection",
     "/client-goals-selection",
@@ -70,7 +70,7 @@ export default function ClientNeeds() {
   const handleBack = () => navigate("/client-goals-selection");
 
   const handleReset = () => {
-    navigate("/client-onboarding");
+    navigate("/onboarding");
     setBusinessName("");
     setRole("");
   };

@@ -38,7 +38,7 @@ export default function BusinessDetails() {
   const currentStep = 5; // Step 5 (0-indexed was 4 previously)
   const totalSteps = 8;
   const stepPaths = [
-    "/client-onboarding",
+    "/onboarding",
     "/client-role-selection",
     "/client-work-type-selection",
     "/client-goals-selection",
@@ -86,7 +86,7 @@ export default function BusinessDetails() {
     }
   };
 
-  const handleReset = () => navigate("/client-onboarding");
+  const handleReset = () => navigate("/onboarding");
 
   // Validation: 
   // If personal: always valid.

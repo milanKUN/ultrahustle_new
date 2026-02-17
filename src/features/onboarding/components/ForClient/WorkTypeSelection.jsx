@@ -39,7 +39,7 @@ export default function WorkTypeSelection() {
 
 
   const stepPaths = [
-    "/client-onboarding",
+    "/onboarding",
     "/client-role-selection",
     "/client-work-type-selection",
     "/client-goals-selection",
@@ -55,7 +55,7 @@ export default function WorkTypeSelection() {
     if (selectedType) navigate("/client-goals-selection");
   };
 
-  const handleReset = () => navigate("/client-onboarding");
+  const handleReset = () => navigate("/onboarding");
 
 
   return (

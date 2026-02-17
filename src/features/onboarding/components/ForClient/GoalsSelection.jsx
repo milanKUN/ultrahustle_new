@@ -18,7 +18,7 @@ export default function GoalsSelection() {
   const totalSteps = 8;
 
   const stepPaths = [
-    "/client-onboarding",
+    "/onboarding",
     "/client-role-selection",
     "/client-work-type-selection",
     "/client-goals-selection",
@@ -54,7 +54,7 @@ export default function GoalsSelection() {
     if (canContinue) navigate("/client-needs");
   };
 
-  const handleReset = () => navigate("/client-onboarding");
+  const handleReset = () => navigate("/onboarding");
 
 
   const MobileChip = ({ goal }) => {
