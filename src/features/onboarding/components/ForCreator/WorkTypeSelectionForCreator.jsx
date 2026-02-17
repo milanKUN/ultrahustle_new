@@ -5,29 +5,33 @@ import "../OnboardingSelect.css";
 export default function WorkTypeSelectionForCreator() {
   const navigate = useNavigate();
   const [selectedType, setSelectedType] = useState(null);
-  const [teamSize, setTeamSize] = useState("");
+  const [industry, setIndustry] = useState("");
   const [buildTeamPlan, setBuildTeamPlan] = useState(null);
 
   // Custom Dropdown State
-  const [isTeamSizeOpen, setIsTeamSizeOpen] = useState(false);
-  const teamSizeRef = useRef(null);
+  const [isIndustryOpen, setIsIndustryOpen] = useState(false);
+  const industryRef = useRef(null);
 
-  const teamSizeOptions = [
-    { value: "2-5", label: "2-5 people" },
-    { value: "6-10", label: "6-10 people" },
-    { value: "11-25", label: "11-25 people" },
-    { value: "26-50", label: "26-50 people" },
-    { value: "50+", label: "50+ people" },
+  const industryOptions = [
+    { value: "technology", label: "Technology & IT" },
+    { value: "marketing", label: "Marketing & Advertising" },
+    { value: "design", label: "Design & Creative" },
+    { value: "education", label: "Education & E-learning" },
+    { value: "healthcare", label: "Healthcare" },
+    { value: "finance", label: "Finance & Consulting" },
+    { value: "ecommerce", label: "E-commerce & Retail" },
+    { value: "media", label: "Media & Entertainment" },
+    { value: "other", label: "Other" },
   ];
 
-  const selectedTeamSizeLabel =
-    teamSizeOptions.find((opt) => opt.value === teamSize)?.label || "Select one";
+  const selectedIndustryLabel =
+    industryOptions.find((opt) => opt.value === industry)?.label || "Select one";
 
   // Handle click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (teamSizeRef.current && !teamSizeRef.current.contains(event.target)) {
-        setIsTeamSizeOpen(false);
+      if (industryRef.current && !industryRef.current.contains(event.target)) {
+        setIsIndustryOpen(false);
       }
     };
     document.addEventListener("click", handleClickOutside);
@@ -90,7 +94,7 @@ export default function WorkTypeSelectionForCreator() {
             </span>
           </button>
 
-          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-32 items-center min-[950px]:items-start text-center min-[950px]:text-left px-4 min-[950px]:px-0">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-[clamp(40px,10vh,128px)] items-center min-[950px]:items-start text-center min-[950px]:text-left px-4 min-[950px]:px-0">
             <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black">
               How do you work?
             </h2>
@@ -116,7 +120,7 @@ export default function WorkTypeSelectionForCreator() {
       </div>
 
       {/* Right / Content */}
-      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 p-6 pt-8 min-[950px]:p-12 flex flex-col justify-start min-[950px]:justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
+      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 p-6 pt-8 min-[950px]:p-[clamp(24px,4vh,48px)] flex flex-col justify-start min-[950px]:justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
         {/* Desktop glows (unchanged) */}
         <div
           className="hidden min-[950px]:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
@@ -207,30 +211,30 @@ export default function WorkTypeSelectionForCreator() {
             {selectedType === "team" && (
               <div className="mt-4 relative z-20">
                 <label className="block text-black font-semibold mb-2 text-sm text-center">
-                  Team Size
+                  Industry
                 </label>
 
-                <div className={`onboarding-custom-select ${isTeamSizeOpen ? "active" : ""}`} ref={teamSizeRef}>
+                <div className={`onboarding-custom-select ${isIndustryOpen ? "active" : ""}`} ref={industryRef}>
                   <div
-                    className={`onboarding-selected-option ${isTeamSizeOpen ? "open" : ""}`}
+                    className={`onboarding-selected-option ${isIndustryOpen ? "open" : ""}`}
                     onClick={(e) => {
                       e.stopPropagation();
-                      setIsTeamSizeOpen(!isTeamSizeOpen);
+                      setIsIndustryOpen(!isIndustryOpen);
                     }}
                   >
-                    <span>{selectedTeamSizeLabel}</span>
+                    <span>{selectedIndustryLabel}</span>
                     <span className="onboarding-arrow">▼</span>
                   </div>
 
-                  {isTeamSizeOpen && (
+                  {isIndustryOpen && (
                     <ul className="onboarding-options-list">
-                      {teamSizeOptions.map((opt) => (
+                      {industryOptions.map((opt) => (
                         <li
                           key={opt.value}
-                          className={teamSize === opt.value ? "active" : ""}
+                          className={industry === opt.value ? "active" : ""}
                           onClick={() => {
-                            setTeamSize(opt.value);
-                            setIsTeamSizeOpen(false);
+                            setIndustry(opt.value);
+                            setIsIndustryOpen(false);
                           }}
                         >
                           {opt.label}
@@ -288,12 +292,12 @@ export default function WorkTypeSelectionForCreator() {
                 onClick={handleContinue}
                 disabled={
                   !selectedType ||
-                  (selectedType === "team" && (!teamSize || !buildTeamPlan))
+                  (selectedType === "team" && (!industry || !buildTeamPlan))
                 }
                 className={[
                   "h-10 px-6 rounded-lg text-sm font-medium border",
                   selectedType &&
-                    (selectedType !== "team" || (teamSize && buildTeamPlan))
+                    (selectedType !== "team" || (industry && buildTeamPlan))
                     ? "bg-[#CEFF1B] border-black text-black"
                     : "bg-[#DADADA] border-black/20 text-black/30",
                 ].join(" ")}
@@ -312,7 +316,7 @@ export default function WorkTypeSelectionForCreator() {
                     className={[
                       "w-2 h-2 rounded-full",
                       index === currentStep ? "bg-black" : "bg-black/30 cursor-pointer",
-                    ].join(" ")}
+                    ].join("")}
                   />
                 )
               ))}
@@ -328,7 +332,7 @@ export default function WorkTypeSelectionForCreator() {
           {/* Solo Card */}
           <div
             onClick={() => setSelectedType("solo")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "solo"
+            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "solo"
               ? "bg-[#CEFF1B]  shadow-lg"
               : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
@@ -358,7 +362,7 @@ export default function WorkTypeSelectionForCreator() {
           {/* Team Card */}
           <div
             onClick={() => setSelectedType("team")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "team"
+            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "team"
               ? "bg-[#CEFF1B]  shadow-lg"
               : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
@@ -388,33 +392,33 @@ export default function WorkTypeSelectionForCreator() {
 
         {/* Extra Options for Team Selection - Desktop (unchanged) */}
         {selectedType === "team" && (
-          <div className="hidden min-[950px]:flex mt-8 flex-col min-[950px]:flex-row gap-8 justify-between items-start w-full px-4 relative z-20 animate-fade-in-up">
+          <div className="hidden min-[950px]:flex mt-4 min-[950px]:mt-6 flex-col min-[950px]:flex-row gap-6 justify-between items-start w-full px-4 relative z-20 animate-fade-in-up">
             <div className="flex-1 w-full max-w-[450px]">
-              <label className="block text-gray-800 font-semibold mb-3 text-lg">
-                Team Size
+              <label className="block text-gray-800 font-semibold mb-2 text-lg">
+                Industry
               </label>
-              <div className="onboarding-custom-select" ref={teamSizeRef}>
+              <div className="onboarding-custom-select" ref={industryRef}>
                 <div
-                  className={`onboarding-selected-option ${isTeamSizeOpen ? "open" : ""}`}
+                  className={`onboarding-selected-option ${isIndustryOpen ? "open" : ""}`}
                   onClick={(e) => {
                     e.stopPropagation();
-                    setIsTeamSizeOpen(!isTeamSizeOpen);
+                    setIsIndustryOpen(!isIndustryOpen);
                   }}
                 >
-                  <span>{selectedTeamSizeLabel}</span>
+                  <span>{selectedIndustryLabel}</span>
                   <span className="onboarding-arrow">▼</span>
                 </div>
 
-                {isTeamSizeOpen && (
+                {isIndustryOpen && (
                   <ul className="onboarding-options-list">
 
-                    {teamSizeOptions.map((opt) => (
+                    {industryOptions.map((opt) => (
                       <li
                         key={opt.value}
-                        className={teamSize === opt.value ? "active" : ""}
+                        className={industry === opt.value ? "active" : ""}
                         onClick={() => {
-                          setTeamSize(opt.value);
-                          setIsTeamSizeOpen(false);
+                          setIndustry(opt.value);
+                          setIsIndustryOpen(false);
                         }}
                       >
                         {opt.label}
@@ -426,7 +430,7 @@ export default function WorkTypeSelectionForCreator() {
             </div>
 
             <div className="flex-1 w-full max-w-[450px]">
-              <label className="block text-gray-800 font-semibold mb-3 text-lg">
+              <label className="block text-gray-800 font-semibold mb-2 text-lg">
                 Do you plan to build teams on Ultra Hustle?
               </label>
 
@@ -452,8 +456,8 @@ export default function WorkTypeSelectionForCreator() {
         )}
 
         {/* Desktop Footer (unchanged) */}
-        <div className="hidden min-[950px]:block mt-6 relative z-10 w-full max-w-[750px]">
-          {selectedType !== "team" && <div className="h-14 mb-8"></div>}
+        <div className="hidden min-[950px]:block mt-4 min-[950px]:mt-6 relative z-10 w-full max-w-[750px]">
+          {selectedType !== "team" && <div className="h-8 mb-4"></div>}
 
           <div className="flex justify-between items-center">
             <button
@@ -474,10 +478,10 @@ export default function WorkTypeSelectionForCreator() {
                 onClick={handleContinue}
                 disabled={
                   !selectedType ||
-                  (selectedType === "team" && (!teamSize || !buildTeamPlan))
+                  (selectedType === "team" && (!industry || !buildTeamPlan))
                 }
                 className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${selectedType &&
-                  (selectedType !== "team" || (teamSize && buildTeamPlan))
+                  (selectedType !== "team" || (industry && buildTeamPlan))
                   ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
                   : "bg-gray-200 border-1 border-black text-gray-700 cursor-not-allowed"
                   }`}

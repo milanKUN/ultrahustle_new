@@ -119,7 +119,7 @@ export default function GoalsSelection() {
           </button>
 
           {/* Question */}
-          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-32 items-start text-left px-4 min-[950px]:px-0">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-[clamp(40px,10vh,128px)] items-start text-left px-4 min-[950px]:px-0">
             <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black leading-tight">
               What do you
             </h2>
@@ -128,7 +128,7 @@ export default function GoalsSelection() {
               want to achieve
             </h2>
 
-            <p className="text-black/60 text-base min-[950px]:text-xl mt-4 min-[950px]:mt-6 max-w-md">
+            <p className="text-black/60 text-base min-[950px]:text-xl mt-4 min-[950px]:mt-4 max-w-md">
               Select multiple
             </p>
           </div>
@@ -153,7 +153,7 @@ export default function GoalsSelection() {
       </div>
 
       {/* Bottom Section */}
-      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 px-3 py-6 min-[950px]:p-12 flex flex-col justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
+      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 px-3 py-6 min-[950px]:p-[clamp(24px,4vh,48px)] flex flex-col justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
         {/* Animated Glows - Desktop Only */}
         <div
           className="hidden min-[950px]:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
@@ -230,8 +230,8 @@ export default function GoalsSelection() {
 
         {/* ✅ DESKTOP (unchanged) */}
         <div className="hidden min-[950px]:block relative z-10 w-full max-w-[900px]">
-          <div className="-mt-6 bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] rounded-[30px] p-8 min-[950px]:p-12 shadow-xl min-h-[500px]">
-            <div className="flex flex-wrap gap-4 justify-center min-[950px]:justify-start mt-6">
+          <div className="-mt-6 bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] rounded-[30px] p-8 min-[950px]:p-[clamp(20px,3.5vh,48px)] shadow-xl min-h-[360px]">
+            <div className="flex flex-wrap gap-4 justify-center min-[950px]:justify-start mt-4 min-[950px]:mt-6">
               {goals.map((goal) => {
                 const Icon = goal.icon;
                 const isSelected = selectedGoals.includes(goal.id);
@@ -266,7 +266,7 @@ export default function GoalsSelection() {
         </div>
 
         {/* Desktop Footer */}
-        <div className="hidden min-[950px]:block mt-16 relative z-10 w-full max-w-[900px]">
+        <div className="hidden min-[950px]:block mt-4 min-[950px]:mt-8 relative z-10 w-full max-w-[900px]">
           <div className="flex justify-between items-center">
             <button
               onClick={handleReset}

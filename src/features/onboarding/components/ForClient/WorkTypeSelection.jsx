@@ -95,7 +95,7 @@ export default function WorkTypeSelection() {
             </span>
           </button>
 
-          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-32 items-center min-[950px]:items-start text-center min-[950px]:text-left px-4 min-[950px]:px-0">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-[clamp(40px,10vh,128px)] items-center min-[950px]:items-start text-center min-[950px]:text-left px-4 min-[950px]:px-0">
             <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black">
               How do you work?
             </h2>
@@ -121,7 +121,7 @@ export default function WorkTypeSelection() {
       </div>
 
       {/* Right / Content */}
-      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 p-6 pt-8 min-[950px]:p-12 flex flex-col justify-start min-[950px]:justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
+      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 p-6 pt-8 min-[950px]:p-[clamp(24px,4vh,48px)] flex flex-col justify-start min-[950px]:justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
         {/* Desktop glows (unchanged) */}
         <div
           className="hidden min-[950px]:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
@@ -333,7 +333,7 @@ export default function WorkTypeSelection() {
           {/* Solo Card */}
           <div
             onClick={() => setSelectedType("solo")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "solo"
+            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "solo"
               ? "bg-[#CEFF1B]  shadow-lg"
               : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
@@ -363,7 +363,7 @@ export default function WorkTypeSelection() {
           {/* Team Card */}
           <div
             onClick={() => setSelectedType("team")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "team"
+            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "team"
               ? "bg-[#CEFF1B]  shadow-lg"
               : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
@@ -393,9 +393,9 @@ export default function WorkTypeSelection() {
 
         {/* Extra Options for Team Selection - Desktop (unchanged) */}
         {selectedType === "team" && (
-          <div className="hidden min-[950px]:flex mt-8 flex-col min-[950px]:flex-row gap-8 justify-between items-start w-full px-4 relative z-20 animate-fade-in-up">
+          <div className="hidden min-[950px]:flex mt-4 min-[950px]:mt-6 flex-col min-[950px]:flex-row gap-6 justify-between items-start w-full px-4 relative z-20 animate-fade-in-up">
             <div className="flex-1 w-full max-w-[450px]">
-              <label className="block text-gray-800 font-semibold mb-3 text-lg">
+              <label className="block text-gray-800 font-semibold mb-2 text-lg">
                 Industry
               </label>
               <div className="onboarding-custom-select" ref={industryRef}>
@@ -431,7 +431,7 @@ export default function WorkTypeSelection() {
             </div>
 
             <div className="flex-1 w-full max-w-[450px]">
-              <label className="block text-gray-800 font-semibold mb-3 text-lg">
+              <label className="block text-gray-800 font-semibold mb-2 text-lg">
                 Do you plan to build teams on Ultra Hustle?
               </label>
               <div className="flex gap-4">
@@ -454,8 +454,8 @@ export default function WorkTypeSelection() {
         )}
 
         {/* Desktop Footer (unchanged) */}
-        <div className="hidden min-[950px]:block mt-6 relative z-10 w-full max-w-[750px]">
-          {selectedType !== "team" && <div className="h-14 mb-8"></div>}
+        <div className="hidden min-[950px]:block mt-4 min-[950px]:mt-6 relative z-10 w-full max-w-[750px]">
+          {selectedType !== "team" && <div className="h-8 mb-4"></div>}
 
           <div className="flex justify-between items-center">
             <button

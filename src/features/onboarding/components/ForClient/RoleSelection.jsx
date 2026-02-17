@@ -42,8 +42,8 @@ export default function RoleSelection() {
         onClick={() => setSelectedRole(role)}
         className={[
           // ✅ MOBILE: always 2 cards in one row with equal height
-          "w-full basis-1/2 min-w-0 flex-shrink-0 h-full",
-          "text-left rounded-2xl p-4 transition-all",
+          "flex-1 min-w-0 flex flex-col items-start",
+          "text-left rounded-2xl p-3 sm:p-4 transition-all",
           "border",
           active
             ? "bg-[#CEFF1B] border-black shadow-md"
@@ -52,7 +52,7 @@ export default function RoleSelection() {
       >
         <span
           className={[
-            "inline-flex items-center px-3 py-1 rounded-md text-xs font-medium",
+            "inline-flex shrink-0 items-center px-2 py-0.5 sm:px-3 sm:py-1 rounded-md text-[10px] sm:text-xs font-medium",
             "border",
             active ? "border-black bg-[#FEFEFE]/66" : "border-black/70 bg-white",
           ].join(" ")}
@@ -60,10 +60,10 @@ export default function RoleSelection() {
           {title}
         </span>
 
-        <ul className="mt-3 space-y-2 text-[12px] leading-4 text-black/70 break-words">
+        <ul className="mt-2 sm:mt-3 space-y-1.5 sm:space-y-2 text-[10px] sm:text-[12px] leading-tight sm:leading-4 text-black/70 break-words flex-1">
           {points.map((t, i) => (
-            <li key={i} className="flex gap-2">
-              <span className="mt-[2px]">•</span>
+            <li key={i} className="flex gap-1 sm:gap-2">
+              <span className="mt-[2px] shrink-0">•</span>
               <span>{t}</span>
             </li>
           ))}
@@ -105,7 +105,7 @@ export default function RoleSelection() {
           </button>
 
           {/* Question */}
-          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-32 items-start text-left px-4 min-[950px]:px-0">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-[clamp(40px,10vh,128px)] items-start text-left px-4 min-[950px]:px-0">
             <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black leading-tight">
               How will you be
             </h2>
@@ -138,16 +138,16 @@ export default function RoleSelection() {
       </div>
 
       {/* Bottom Section on Mobile / Right Side on Desktop - Content */}
-      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 p-6 pt-8 min-[950px]:p-12 flex flex-col justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
+      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 p-6 pt-8 min-[950px]:p-[clamp(24px,4vh,48px)] flex flex-col justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
         {/* Animated Gradient Glows - Desktop Only */}
         <div className="hidden min-[950px]:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0" />
         <div className="hidden min-[950px]:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0" />
         <div className="hidden min-[950px]:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0" />
 
         {/* ✅ MOBILE */}
-        <div className="min-[950px]:hidden w-full max-w-[420px] relative z-10">
-          {/* ✅ FORCE SAME LINE (no wrap) */}
-          <div className="flex flex-row items-stretch gap-3 w-full">
+        <div className="min-[950px]:hidden w-full max-w-[420px] relative z-10 px-2 sm:px-0">
+          {/* ✅ FORCE SAME LINE AND EQUAL HEIGHT (items-stretch) */}
+          <div className="flex flex-row items-stretch gap-2 sm:gap-3 w-full">
             <RoleCard
               role="creator"
               title="Creator"
@@ -220,7 +220,7 @@ export default function RoleSelection() {
         <div className="hidden min-[950px]:flex flex-col min-[950px]:flex-row gap-6 justify-between items-stretch relative z-10 w-full px-4">
           <div
             onClick={() => setSelectedRole("creator")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "creator"
+            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "creator"
               ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
               : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
@@ -249,7 +249,7 @@ export default function RoleSelection() {
 
           <div
             onClick={() => setSelectedRole("client")}
-            className={`flex-1 max-w-[450px] min-h-[200px] p-8 rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "client"
+            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "client"
               ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
               : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
               }`}
@@ -273,8 +273,8 @@ export default function RoleSelection() {
           </div>
         </div>
 
-        <div className="hidden min-[950px]:block mt-6 relative z-10 w-full max-w-[750px]">
-          <p className="text-left text-gray-600 text-lg mb-8">
+        <div className="hidden min-[950px]:block mt-4 min-[950px]:mt-6 relative z-10 w-full max-w-[750px]">
+          <p className="text-left text-gray-600 text-lg mb-4 min-[950px]:mb-6">
             You can switch or use both roles anytime.
           </p>
 

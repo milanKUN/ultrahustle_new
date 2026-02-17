@@ -148,7 +148,7 @@ export default function ClientNeeds() {
           </button>
 
           {/* Question */}
-          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-32 items-start text-left px-4 min-[950px]:px-0">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-[clamp(40px,10vh,128px)] items-start text-left px-4 min-[950px]:px-0">
             <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black leading-tight">
               Tell us more
             </h2>
@@ -156,7 +156,7 @@ export default function ClientNeeds() {
             <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black -mt-1 leading-tight">
               about what your needs            </h2>
 
-            <p className="text-black/60 text-base min-[950px]:text-xl mt-4 min-[950px]:mt-6 max-w-md">
+            <p className="text-black/60 text-base min-[950px]:text-xl mt-4 min-[950px]:mt-4 max-w-md">
               What type of creators do you hire?
             </p>
           </div>
@@ -181,7 +181,7 @@ export default function ClientNeeds() {
       </div>
 
       {/* Bottom Section on Mobile      {/* Right Section - Settings/Information */}
-      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 px-3 py-6 min-[950px]:p-12 flex flex-col justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
+      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 px-3 py-6 min-[950px]:p-[clamp(24px,4vh,48px)] flex flex-col justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
         {/* Main Content Area */}
         <div className="relative z-10 w-full max-w-[900px]">
           {/* ✅ MOBILE (screenshot-style layout) */}
@@ -376,9 +376,9 @@ export default function ClientNeeds() {
           {/* ✅ DESKTOP (your original layout 그대로) */}
           <div className="hidden min-[950px]:block">
             {/* Creator Categories - Desktop Container */}
-            <div className="bg-white/40 min-[950px]:bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] rounded-[24px] min-[950px]:rounded-[30px] p-4 min-[950px]:p-8 shadow-xl mb-6 min-[950px]:mb-8 flex flex-col justify-center gap-4">
+            <div className="bg-white/40 min-[950px]:bg-white/40 backdrop-blur-md border-1 border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] rounded-[24px] min-[950px]:rounded-[30px] p-4 min-[950px]:p-[clamp(16px,3vh,32px)] shadow-xl mb-4 min-[950px]:mb-6 flex flex-col justify-center gap-4">
               <div className="hidden min-[950px]:flex flex-col gap-4">
-                {[categories.slice(0, 4), categories.slice(4, 7), categories.slice(7)].map(
+                {[categories.slice(0, 3), categories.slice(3, 6), categories.slice(6)].map(
                   (row, rowIndex) => (
                     <div key={rowIndex} className="flex flex-wrap min-[950px]:flex-nowrap gap-4 w-full">
                       {row.map((category) => {
@@ -389,8 +389,7 @@ export default function ClientNeeds() {
                             key={category.id}
                             onClick={() => toggleCategory(category.id)}
                             className={`
-                              flex items-center gap-3.5 px-6 py-3.5 rounded-2xl cursor-pointer border-2 transition-all duration-300 backdrop-blur-sm justify-center whitespace-nowrap
-                              ${rowIndex === 0 ? "flex-1" : "w-full min-[950px]:w-[24%]"}
+                              flex items-center gap-3.5 px-[clamp(12px,2vw,24px)] py-[clamp(8px,1.5vh,14px)] rounded-2xl cursor-pointer border-2 transition-all duration-300 backdrop-blur-sm justify-center whitespace-nowrap flex-1
                               ${isSelected
                                 ? "bg-[#CEFF1B] border-black/50 shadow-md scale-105"
                                 : "bg-transparent border-[#2B2B2B] "
@@ -400,10 +399,10 @@ export default function ClientNeeds() {
                             <div
                               className={`p-1.5 rounded-xl flex items-center justify-center shrink-0 bg-[#CEFF1B]`}
                             >
-                              <Icon size={22} className="text-black" strokeWidth={2} />
+                              <Icon size={rowIndex === 0 ? 22 : 18} className="text-black" strokeWidth={2} />
                             </div>
                             <span
-                              className={`font-[500] text-lg ${isSelected ? "text-black" : "text-gray-800"
+                              className={`font-[500] text-[clamp(14px,1.2vw,18px)] ${isSelected ? "text-black" : "text-gray-800"
                                 }`}
                             >
                               {category.label}
@@ -428,7 +427,7 @@ export default function ClientNeeds() {
                   value={budget}
                   onChange={(e) => setBudget(e.target.value)}
                   placeholder="$2K - $4K"
-                  className="w-full p-2 min-[950px]:p-3 rounded-md min-[950px]:rounded-xl border border-black bg-transparent min-[950px]:bg-gray-100 text-gray-800 placeholder-gray-500 focus:!border-transparent focus:outline-none transition-all font-medium text-xs min-[950px]:text-base bg-[#F0F0F0]/50 focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B]"
+                  className="w-full p-2 min-[950px]:p-[clamp(10px,1.2vh,12px)] rounded-md min-[950px]:rounded-xl border border-black bg-transparent min-[950px]:bg-gray-100 text-gray-800 placeholder-gray-500 focus:!border-transparent focus:outline-none transition-all font-medium text-xs min-[950px]:text-base bg-[#F0F0F0]/50 focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B]"
                 />
               </div>
 
@@ -441,7 +440,7 @@ export default function ClientNeeds() {
                     <button
                       key={opt}
                       onClick={() => setFrequency(opt.toLowerCase())}
-                      className={`flex-1 py-1.5 min-[950px]:py-3 px-2 rounded-md min-[950px]:rounded-xl border border-black font-medium transition-all text-xs min-[950px]:text-base ${frequency === opt.toLowerCase()
+                      className={`flex-1 py-1.5 min-[950px]:py-[clamp(8px,1vh,12px)] px-2 rounded-md min-[950px]:rounded-xl border border-black font-medium transition-all text-xs min-[950px]:text-base ${frequency === opt.toLowerCase()
                         ? "bg-[#CEFF1B] border-black text-black"
                         : "bg-transparent border-[#2B2B2B] text-gray-900"
                         }`}
@@ -483,7 +482,7 @@ export default function ClientNeeds() {
                     type="text"
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
-                    placeholder="Type here"
+                    placeholder="Business Name"
                     className="w-full p-2 min-[950px]:p-3 rounded-md min-[950px]:rounded-xl border-1 border-[#2B2B2B] bg-transparent min-[950px]:bg-gray-100 text-gray-800 placeholder-gray-500 focus:!border-transparent focus:outline-none transition-all font-medium text-xs min-[950px]:text-base focus:ring-0 focus:shadow-[0_0_20px_#CEFF1B]"
                   />
                 </div>
@@ -528,7 +527,7 @@ export default function ClientNeeds() {
               </div>
             )}
 
-            <div className="mt-4 min-[950px]:mt-8 relative z-10 w-full">
+            <div className="mt-4 min-[950px]:mt-[clamp(16px,2vh,32px)] relative z-10 w-full">
               <div className="flex justify-between items-center gap-2 min-[950px]:gap-4">
                 <button
                   onClick={handleReset}

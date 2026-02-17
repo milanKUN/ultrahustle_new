@@ -76,22 +76,22 @@ export default function SetupWorkspace() {
         ></div>
 
         {/* Content Card Container */}
-        <div className="bg-white/40 min-[950px]:bg-white/40 backdrop-blur-xl rounded-[30px] shadow-xl p-8 min-[950px]:p-16 w-full max-w-[500px] min-[950px]:max-w-none min-[950px]:w-[95%] min-[950px]:h-[90%] relative z-10 border border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] flex flex-col justify-center items-center text-center">
+        <div className="bg-white/40 min-[950px]:bg-white/40 backdrop-blur-xl rounded-[30px] shadow-xl p-8 min-[950px]:p-12 w-full max-w-[500px] min-[950px]:max-w-none min-[950px]:w-[95%] min-[950px]:h-auto min-[950px]:min-h-[80%] relative z-10 border border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] flex flex-col justify-center items-center text-center">
 
           {/* Circle Arrow Icon */}
-          <div className="mb-8 min-[950px]:mb-20">
+          <div className="mb-6 min-[950px]:mb-12">
             <img
               src="/arrow-loader.png"
               alt="Loading"
-              className="w-24 h-24 min-[950px]:w-32 min-[950px]:h-32 object-contain"
+              className="w-20 h-20 min-[950px]:w-24 min-[950px]:h-24 object-contain"
             />
           </div>
 
-          <h1 className="text-3xl min-[950px]:text-5xl font-bold text-gray-800 mb-4 min-[950px]:mb-6">
+          <h1 className="text-3xl min-[950px]:text-4xl font-bold text-gray-800 mb-3 min-[950px]:mb-4">
             Let us set up your workspace
           </h1>
 
-          <p className="text-lg min-[950px]:text-2xl text-gray-600 min-[950px]:text-gray-700 max-w-[300px] min-[950px]:max-w-[600px] leading-relaxed mb-10 min-[950px]:mb-16">
+          <p className="text-lg min-[950px]:text-xl text-gray-600 min-[950px]:text-gray-700 max-w-[300px] min-[950px]:max-w-[600px] leading-relaxed mb-8 min-[950px]:mb-10">
             We're configuring your dashboard, recommendations, and category preferences
           </p>
 

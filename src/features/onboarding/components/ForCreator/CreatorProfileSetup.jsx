@@ -109,22 +109,22 @@ export default function CreatorProfileSetup() {
         </div>
 
         {/* ✅ DESKTOP (unchanged) */}
-        <div className="hidden min-[950px]:flex bg-white/40 min-[950px]:bg-white/40 backdrop-blur-xl rounded-[30px] shadow-xl p-6 min-[950px]:p-16 w-full max-w-[500px] min-[950px]:max-w-none min-[950px]:w-[95%] min-[950px]:h-[90%] relative z-10 border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] flex-col justify-center items-center text-center">
-          <h1 className="text-3xl min-[950px]:text-5xl font-bold text-gray-800 mb-4 min-[950px]:mb-6">
+        <div className="hidden min-[950px]:flex bg-white/40 min-[950px]:bg-white/40 backdrop-blur-xl rounded-[30px] shadow-xl p-6 min-[950px]:p-[clamp(24px,4vh,64px)] w-full max-w-[500px] min-[950px]:max-w-none min-[950px]:w-[95%] min-[950px]:h-auto min-[950px]:min-h-[85%] relative z-10 border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] flex-col justify-center items-center text-center">
+          <h1 className="text-3xl min-[950px]:text-4xl font-bold text-gray-800 mb-3 min-[950px]:mb-4">
             You're all set!
           </h1>
 
-          <p className="text-lg min-[950px]:text-2xl text-gray-600 min-[950px]:text-gray-700 max-w-[300px] min-[950px]:max-w-[600px] leading-relaxed mb-6 min-[950px]:mb-8">
+          <p className="text-lg min-[950px]:text-xl text-gray-600 min-[950px]:text-gray-700 max-w-[300px] min-[950px]:max-w-[600px] leading-relaxed mb-4 min-[950px]:mb-6">
             Complete your profile to boost visibility and match accuracy
           </p>
 
-          <div className="w-full h-px bg-black min-[950px]:bg-black mb-6 min-[950px]:mb-8 max-w-[600px]" />
+          <div className="w-full h-px bg-black min-[950px]:bg-black mb-4 min-[950px]:mb-6 max-w-[600px]" />
 
-          <p className="text-lg min-[950px]:text-xl font-medium text-gray-800 mb-6 min-[950px]:mb-8">
+          <p className="text-lg min-[950px]:text-xl font-medium text-gray-800 mb-4 min-[950px]:mb-6">
             Let's create your profile
           </p>
 
-          <div className="flex gap-3 min-[950px]:gap-4 mb-10 min-[950px]:mb-20 w-full justify-center">
+          <div className="flex gap-3 min-[950px]:gap-4 mb-8 min-[950px]:mb-12 w-full justify-center">
             <button
               onClick={handleGetStarted}
               className="px-6 py-3 min-[950px]:px-12 min-[950px]:py-4 rounded-lg min-[950px]:rounded-xl bg-[#CEFF1B] border border-black text-black font-semibold text-sm min-[950px]:text-xl hover:bg-white hover:text-gray-900 transition-all shadow-sm hover:shadow-[0_0_15px_#CEFF1B] flex-1 min-[950px]:flex-none whitespace-nowrap"
