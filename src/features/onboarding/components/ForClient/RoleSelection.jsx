@@ -108,7 +108,7 @@ export default function RoleSelection() {
           </button>
 
           {/* QUESTION */}
-          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-[clamp(40px,10vh,128px)] items-start text-left px-4 min-[950px]:px-0">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-[clamp(40px,10vh,128px)] items-center min-[950px]:items-start text-center min-[950px]:text-left px-4 min-[950px]:px-0">
             <h2 className="text-3xl min-[701px]:text-4xl min-[950px]:text-4xl font-bold text-black leading-tight">
               How will you be
             </h2>
@@ -129,11 +129,10 @@ export default function RoleSelection() {
                 <div
                   key={index}
                   onClick={() => index < currentStep && navigate(stepPaths[index])}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentStep
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep
                       ? "bg-black w-4 h-4"
                       : "bg-white cursor-pointer"
-                  }`}
+                    }`}
                 />
               ) : null
             )}
@@ -272,19 +271,17 @@ export default function RoleSelection() {
           <div className="flex gap-8 items-stretch">
             <div
               onClick={() => setSelectedRole("creator")}
-              className={`flex-1 min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-                selectedRole === "creator"
+              className={`flex-1 min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "creator"
                   ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
                   : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
-              }`}
+                }`}
             >
               <div className="mb-4">
                 <span
-                  className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
-                    selectedRole === "creator"
+                  className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "creator"
                       ? "border-black bg-[#C3FF00]/10"
                       : "border-gray-400 bg-white"
-                  }`}
+                    }`}
                 >
                   Creator
                 </span>
@@ -303,19 +300,17 @@ export default function RoleSelection() {
 
             <div
               onClick={() => setSelectedRole("client")}
-              className={`flex-1 min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-                selectedRole === "client"
+              className={`flex-1 min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "client"
                   ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
                   : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
-              }`}
+                }`}
             >
               <div className="mb-4">
                 <span
-                  className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
-                    selectedRole === "client"
+                  className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "client"
                       ? "border-black bg-[#C3FF00]/10"
                       : "border-gray-400 bg-white"
-                  }`}
+                    }`}
                 >
                   Client
                 </span>
@@ -353,11 +348,10 @@ export default function RoleSelection() {
               <button
                 onClick={handleContinue}
                 disabled={!selectedRole}
-                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${
-                  selectedRole
+                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${selectedRole
                     ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
                     : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
-                }`}
+                  }`}
               >
                 Continue
               </button>

@@ -54,37 +54,35 @@ export default function CreatorProfileSetup() {
         />
 
         {/* ✅ MOBILE (screenshot-style) */}
-        <div className="min-[950px]:hidden w-full max-w-[420px] relative z-10">
-          <div className="bg-[#E9E9E9] rounded-[26px] px-3 py-4 border border-black/10 shadow-sm">
-            <div className="bg-white rounded-[22px] border border-black/10 p-6 text-center">
-              <h1 className="text-2xl font-bold text-gray-800 mb-3">
-                You're all set!
-              </h1>
+        <div className="min-[950px]:hidden w-full max-w-[420px] relative z-10 px-6">
+          <div className="bg-white rounded-[22px] border border-black/10 p-6 text-center shadow-sm">
+            <h1 className="text-2xl font-bold text-gray-800 mb-3">
+              You're all set!
+            </h1>
 
-              <p className="text-sm text-gray-600 leading-relaxed mb-5">
-                Complete your profile to boost visibility and match accuracy
-              </p>
+            <p className="text-sm text-gray-600 leading-relaxed mb-5">
+              Complete your profile to boost visibility and match accuracy
+            </p>
 
-              <div className="w-full h-px bg-black/70 mb-5" />
+            <div className="w-full h-px bg-black/70 mb-5" />
 
-              <p className="text-sm font-medium text-gray-800 mb-6">
-                Let's create your profile
-              </p>
+            <p className="text-sm font-medium text-gray-800 mb-6">
+              Let's create your profile
+            </p>
 
-              <div className="flex gap-3">
-                <button
-                  onClick={handleGetStarted}
-                  className="flex-1 h-10 rounded-lg bg-[#CEFF1B] border border-black text-black font-semibold text-sm"
-                >
-                  Get Started
-                </button>
-                <button
-                  onClick={handleSkip}
-                  className="flex-1 h-10 rounded-lg bg-white border border-black/30 text-black font-semibold text-sm"
-                >
-                  Skip
-                </button>
-              </div>
+            <div className="flex gap-3">
+              <button
+                onClick={handleGetStarted}
+                className="flex-1 h-10 rounded-lg bg-[#CEFF1B] border border-black text-black font-semibold text-sm"
+              >
+                Get Started
+              </button>
+              <button
+                onClick={handleSkip}
+                className="flex-1 h-10 rounded-lg bg-white border border-black/30 text-black font-semibold text-sm"
+              >
+                Skip
+              </button>
             </div>
 
             {/* black dots like other screens */}
@@ -102,14 +100,11 @@ export default function CreatorProfileSetup() {
                 )
               ))}
             </div>
-
-
-
           </div>
         </div>
 
-        {/* ✅ DESKTOP (unchanged) */}
-        <div className="hidden min-[950px]:flex bg-white/40 min-[950px]:bg-white/40 backdrop-blur-xl rounded-[30px] shadow-xl p-6 min-[950px]:p-[clamp(24px,4vh,64px)] w-full max-w-[500px] min-[950px]:max-w-none min-[950px]:w-[95%] min-[950px]:h-auto min-[950px]:min-h-[85%] relative z-10 border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] flex-col justify-center items-center text-center">
+        {/* ✅ DESKTOP (unchanged styling EXCEPT background) */}
+        <div className="hidden min-[950px]:flex bg-white backdrop-blur-xl rounded-[30px] shadow-xl p-6 min-[950px]:p-[clamp(24px,4vh,64px)] w-full max-w-[500px] min-[950px]:max-w-none min-[950px]:w-[95%] min-[950px]:h-auto min-[950px]:min-h-[85%] relative z-10 border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] flex-col justify-center items-center text-center">
           <h1 className="text-3xl min-[950px]:text-4xl font-bold text-gray-800 mb-3 min-[950px]:mb-4">
             You're all set!
           </h1>

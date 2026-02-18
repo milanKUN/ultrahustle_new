@@ -110,7 +110,7 @@ export default function GoalsSelection() {
           </button>
 
           {/* Question */}
-          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-[clamp(40px,10vh,128px)] items-start text-left px-4 min-[950px]:px-0">
+          <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-[clamp(40px,10vh,128px)] items-center min-[950px]:items-start text-center min-[950px]:text-left px-4 min-[950px]:px-0">
             <h2 className="text-3xl min-[701px]:text-4xl min-[950px]:text-4xl font-bold text-black leading-tight">
               What do you
             </h2>
@@ -130,9 +130,8 @@ export default function GoalsSelection() {
                 <div
                   key={index}
                   onClick={() => index < currentStep && navigate(stepPaths[index])}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
+                    }`}
                 />
               ) : null
             )}
@@ -256,10 +255,9 @@ export default function GoalsSelection() {
                     onClick={() => toggleGoal(goal.id)}
                     className={`
                       flex items-center gap-4 px-6 py-4 rounded-xl cursor-pointer border-2 backdrop-blur-sm
-                      ${
-                        isSelected
-                          ? "bg-[#CEFF1B] border-black shadow-lg scale-105"
-                          : "bg-white/20 border-[#2B2B2B] "
+                      ${isSelected
+                        ? "bg-[#CEFF1B] border-black shadow-lg scale-105"
+                        : "bg-white/20 border-[#2B2B2B] "
                       }
                     `}
                   >
@@ -297,11 +295,10 @@ export default function GoalsSelection() {
               <button
                 onClick={handleContinue}
                 disabled={!canContinue}
-                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${
-                  canContinue
+                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${canContinue
                     ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
                     : "bg-[#CEFF1B]/50 border border-[#2B2B2B] text-gray-500 cursor-not-allowed"
-                }`}
+                  }`}
               >
                 Continue
               </button>
