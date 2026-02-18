@@ -9,6 +9,11 @@
   --ir-border-dark: #333;
 }
 
+/* Base styles */
+.hamburger-btn {
+  display: none;
+}
+
 /* Header Styles */
 .inreview-header {
   display: flex;
@@ -72,13 +77,28 @@
   border-radius: 0 0 41.309px 41.309px;
   background: transparent;
   transition: all 0.25s ease;
+  margin-top: -12px;
+}
+
+.nav-pill.active {
+  background: #CEFF1B;
+  box-shadow: 0 4px 10px rgba(206, 255, 27, 0.4);
 }
 
 .nav-text {
   font-size: 15px;
   font-weight: 500;
-  color: #D3D5D0;
+  color: #5C5C5C;
   transition: color 0.25s ease;
+}
+
+.nav-item:hover .nav-text,
+.nav-item:hover .nav-pill {
+  color: #222;
+}
+
+.nav-item:hover .nav-pill:not(.active) {
+  background: rgba(206, 255, 27, 0.3);
 }
 
 
@@ -501,7 +521,7 @@
 
 .messages-dropdown {
   position: absolute;
-  height: 500px;
+  height: 460px !important;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -612,7 +632,7 @@
   padding: 10px 15px;
   text-align: center;
   font-size: 24px;
-  height: 48px;
+  height: 60px !important;
   background: transparent;
   color: rgba(43, 43, 43, 0.50);
   text-decoration: none;
@@ -634,7 +654,7 @@
 
 .notifications-dropdown {
   position: absolute;
-  height: 500px;
+  height: 450px !important;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -796,7 +816,11 @@
 }
 
 /* ========== MOBILE HEADER ORDER FIX ========== */
-@media (max-width: 1100px) {
+@media (max-width: 950px) {
+  .nav-menu {
+    display: none !important;
+  }
+
   .inreview-header {
     display: flex;
     align-items: center;
@@ -815,7 +839,7 @@
 
   /* Hamburger Toggle */
   .hamburger-btn {
-    display: block !important;
+    display: flex !important;
     font-size: 24px;
     background: none;
     border: none;
@@ -823,7 +847,6 @@
     color: #2b2b2b;
     width: 30px;
     height: 30px;
-    display: flex;
     align-items: center;
     justify-content: center;
   }
@@ -896,7 +919,7 @@
 }
 
 /* ========== MOBILE DROPDOWN FIX ========== */
-@media (max-width:1100px) {
+@media (max-width: 950px) {
 
   /* ✅ FORCE CENTER NOTIFICATION DROPDOWN */
   .notifications-wrapper {
@@ -925,6 +948,18 @@
     right: auto !important;
     left: 92% !important;
     transform: translateX(-50%) !important;
+  }
+
+  /* ✅ FORCE CENTER SEARCH DROPDOWN */
+  .search-dropdown {
+    position: fixed !important;
+    top: 84px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100vw - 20px) !important;
+    max-width: 600px !important;
+    border-radius: 12px !important;
+    z-index: 9999 !important;
   }
 }
 

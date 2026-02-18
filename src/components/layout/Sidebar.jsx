@@ -143,7 +143,7 @@ export default function Sidebar({
   const [activeBottomTab, setActiveBottomTab] = useState("Marketplace");
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => setIsMobile(window.innerWidth < 950);
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);

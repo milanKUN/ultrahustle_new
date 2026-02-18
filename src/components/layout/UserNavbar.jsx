@@ -1,7 +1,9 @@
 import React, { useState, useMemo, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./NavbarLight.css";
 
 const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
+  const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -352,7 +354,24 @@ const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
             {isSidebarOpen ? "✕" : "☰"}
           </button>
 
-          <img src="/logo.png" alt="UltraHustle" className="logo" />
+          <Link to="/">
+            <img src="/logo.png" alt="UltraHustle" className="logo" />
+          </Link>
+
+          <nav className="nav-menu">
+            <Link to="/" className="nav-item">
+              <span className={`nav-pill ${location.pathname === "/" ? "active" : ""}`}></span>
+              <span className="nav-text">Home</span>
+            </Link>
+            <Link to="/dashboard" className="nav-item">
+              <span className={`nav-pill ${location.pathname === "/dashboard" ? "active" : ""}`}></span>
+              <span className="nav-text">Dashboard</span>
+            </Link>
+            <Link to="/solo-contracts-listing" className="nav-item">
+              <span className={`nav-pill ${location.pathname === "/solo-contracts-listing" ? "active" : ""}`}></span>
+              <span className="nav-text">Marketplace</span>
+            </Link>
+          </nav>
         </div>
 
         <div className="search-wrapper">
