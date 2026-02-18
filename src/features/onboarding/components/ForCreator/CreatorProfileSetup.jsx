@@ -1,28 +1,29 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function CreatorProfileSetup() {
+export default function ClientProfileSetup() {
   const navigate = useNavigate();
-  const currentStep = 6;
-  const totalSteps = 7;
+  const currentStep = 7; // Visual step index (8th step)
+  const totalSteps = 8;
 
   const stepPaths = [
     "/onboarding",
-    "/creator-role-selection",
-    "/creator-work-type-selection",
-    "/creator-goals-selection",
-    "/creator-needs",
-    "/creator-setup-workspace",
-    "/creator-profile-setup"
+    "/client-role-selection",
+    "/client-work-type-selection",
+    "/client-goals-selection",
+    "/client-needs",
+    "/client-business-details",
+    "/client-setup-workspace",
+    "/client-profile-setup"
   ];
 
   const handleGetStarted = () => {
-    // navigate('/creator-dashboard');
-    console.log("Navigate to creator dashboard/profile setup");
+    // Navigate to dashboard
+    navigate('/dashboard');
   };
 
   const handleSkip = () => {
-    navigate("/");
+    navigate('/dashboard');
   };
 
   return (
@@ -39,72 +40,16 @@ export default function CreatorProfileSetup() {
 
       {/* Bottom (Mobile) / Right (Desktop) - Content */}
       <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] min-[950px]:bg-gradient-to-br min-[950px]:from-[#E8E8E8] min-[950px]:via-[#E0E0E0] min-[950px]:to-[#D8D8D8] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 p-6 min-[950px]:p-12 flex flex-col justify-center items-center relative overflow-hidden min-h-[55vh] min-[950px]:min-h-screen z-20">
-        {/* Animated Gradient Glows - Desktop only */}
-        <div
-          className="hidden min-[950px]:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0"
+        {/* Animated Gradient Glows */}
 
-        />
-        <div
-          className="hidden min-[950px]:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0"
 
-        />
-        <div
-          className="hidden min-[950px]:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0"
 
-        />
 
-        {/* ✅ MOBILE (screenshot-style) */}
-        <div className="min-[950px]:hidden w-full max-w-[420px] relative z-10 px-6">
-          <div className="bg-white rounded-[22px] border border-black/10 p-6 text-center shadow-sm">
-            <h1 className="text-2xl font-bold text-gray-800 mb-3">
-              You're all set!
-            </h1>
 
-            <p className="text-sm text-gray-600 leading-relaxed mb-5">
-              Complete your profile to boost visibility and match accuracy
-            </p>
 
-            <div className="w-full h-px bg-black/70 mb-5" />
+        {/* Content Card Container */}
+        <div className="bg-white/40 min-[950px]:bg-white/40 backdrop-blur-xl rounded-[30px] shadow-xl p-6 min-[950px]:p-[clamp(24px,4vh,64px)] w-full max-w-[500px] min-[950px]:max-w-none min-[950px]:w-[95%] min-[950px]:h-auto min-[950px]:min-h-[85%] relative z-10 border border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] flex flex-col justify-center items-center text-center">
 
-            <p className="text-sm font-medium text-gray-800 mb-6">
-              Let's create your profile
-            </p>
-
-            <div className="flex gap-3">
-              <button
-                onClick={handleGetStarted}
-                className="flex-1 h-10 rounded-lg bg-[#CEFF1B] border border-black text-black font-semibold text-sm"
-              >
-                Get Started
-              </button>
-              <button
-                onClick={handleSkip}
-                className="flex-1 h-10 rounded-lg bg-white border border-black/30 text-black font-semibold text-sm"
-              >
-                Skip
-              </button>
-            </div>
-
-            {/* black dots like other screens */}
-            <div className="mt-6 flex justify-center items-center gap-2">
-              {[...Array(totalSteps)].map((_, index) => (
-                index <= currentStep && (
-                  <span
-                    key={index}
-                    onClick={() => index < currentStep && navigate(stepPaths[index])}
-                    className={[
-                      "w-2 h-2 rounded-full",
-                      index === currentStep ? "bg-black" : "bg-black/30 cursor-pointer",
-                    ].join(" ")}
-                  />
-                )
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* ✅ DESKTOP (unchanged styling EXCEPT background) */}
-        <div className="hidden min-[950px]:flex bg-white backdrop-blur-xl rounded-[30px] shadow-xl p-6 min-[950px]:p-[clamp(24px,4vh,64px)] w-full max-w-[500px] min-[950px]:max-w-none min-[950px]:w-[95%] min-[950px]:h-auto min-[950px]:min-h-[85%] relative z-10 border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] flex-col justify-center items-center text-center">
           <h1 className="text-3xl min-[950px]:text-4xl font-bold text-gray-800 mb-3 min-[950px]:mb-4">
             You're all set!
           </h1>
@@ -113,7 +58,8 @@ export default function CreatorProfileSetup() {
             Complete your profile to boost visibility and match accuracy
           </p>
 
-          <div className="w-full h-px bg-black min-[950px]:bg-black mb-4 min-[950px]:mb-6 max-w-[600px]" />
+          {/* Divider */}
+          <div className="w-full h-px bg-black min-[950px]:bg-black mb-4 min-[950px]:mb-6 max-w-[600px]"></div>
 
           <p className="text-lg min-[950px]:text-xl font-medium text-gray-800 mb-4 min-[950px]:mb-6">
             Let's create your profile
@@ -134,7 +80,7 @@ export default function CreatorProfileSetup() {
             </button>
           </div>
 
-          {/* Step Indicators (desktop) */}
+          {/* Step Indicators */}
           <div className="flex justify-center items-center gap-3">
             {[...Array(totalSteps)].map((_, index) => (
               index <= currentStep && (
@@ -142,13 +88,14 @@ export default function CreatorProfileSetup() {
                   key={index}
                   onClick={() => index < currentStep && navigate(stepPaths[index])}
                   className={`w-3 h-3 min-[950px]:w-4 min-[950px]:h-4 rounded-full transition-all duration-300 ${index === currentStep
-                    ? "bg-[#C3FF00]"
-                    : "bg-gray-500 min-[950px]:bg-gray-600 hover:bg-gray-400 cursor-pointer"
+                    ? 'bg-[#C3FF00]'
+                    : 'bg-gray-500 min-[950px]:bg-gray-600 hover:bg-gray-400 cursor-pointer'
                     }`}
                 />
               )
             ))}
           </div>
+
 
 
 
