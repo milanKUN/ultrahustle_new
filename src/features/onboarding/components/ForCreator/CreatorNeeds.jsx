@@ -18,10 +18,10 @@ export default function CreatorNeeds() {
   const [primarySkill, setPrimarySkill] = useState("");
   const [experienceLevel, setExperienceLevel] = useState("");
   const [rateRange, setRateRange] = useState("");
-  const [hasPortfolio, setHasPortfolio] = useState(null); // 'yes', 'no'
+  const [hasPortfolio, setHasPortfolio] = useState(null);
   const [portfolioLinks, setPortfolioLinks] = useState("");
 
-  // Custom Dropdown State
+  // Dropdown
   const [isExperienceOpen, setIsExperienceOpen] = useState(false);
   const experienceRef = useRef(null);
 
@@ -33,9 +33,9 @@ export default function CreatorNeeds() {
   ];
 
   const selectedExperienceLabel =
-    experienceOptions.find((opt) => opt.value === experienceLevel)?.label || "Select";
+    experienceOptions.find((opt) => opt.value === experienceLevel)?.label ||
+    "Select";
 
-  // Handle click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (experienceRef.current && !experienceRef.current.contains(event.target)) {
@@ -56,7 +56,7 @@ export default function CreatorNeeds() {
     "/creator-goals-selection",
     "/creator-needs",
     "/creator-setup-workspace",
-    "/creator-profile-setup"
+    "/creator-profile-setup",
   ];
 
   const categories = [
@@ -91,7 +91,7 @@ export default function CreatorNeeds() {
 
   const handleReset = () => navigate("/onboarding");
 
-  // ✅ Mobile chip (white + lime border style)
+  // ✅ Mobile/Tablet chip (bigger on iPad mini)
   const MobileChip = ({ category }) => {
     const Icon = category.icon;
     const active = selectedCategories.includes(category.id);
@@ -101,19 +101,18 @@ export default function CreatorNeeds() {
         type="button"
         onClick={() => toggleCategory(category.id)}
         className={[
-          "flex items-center gap-2 px-3 py-2 rounded-xl border transition-all",
-          active ? "bg-[#CEFF1B] border-black shadow-sm" : "bg-white border-[#CEFF1B]",
+          "flex items-center gap-2 rounded-xl border transition-all",
+          "px-3 py-2 min-[701px]:px-4 min-[701px]:py-3",
+          active
+            ? "bg-[#CEFF1B] border-black shadow-sm"
+            : "bg-white border-[#CEFF1B]",
         ].join(" ")}
       >
-        <span
-          className={[
-            "w-6 h-6 rounded-lg flex items-center justify-center shrink-0",
-            "bg-[#CEFF1B]",
-          ].join(" ")}
-        >
-          <Icon size={14} className="text-black" strokeWidth={2} />
+        <span className="w-6 h-6 min-[701px]:w-7 min-[701px]:h-7 rounded-lg flex items-center justify-center shrink-0 bg-[#CEFF1B]">
+          <Icon size={14} className="text-black min-[701px]:hidden" strokeWidth={2} />
+          <Icon size={16} className="text-black hidden min-[701px]:block" strokeWidth={2} />
         </span>
-        <span className="text-xs font-medium text-black/80 whitespace-nowrap">
+        <span className="text-xs min-[701px]:text-sm font-medium text-black/80 whitespace-nowrap">
           {category.label}
         </span>
       </button>
@@ -121,14 +120,14 @@ export default function CreatorNeeds() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col min-[950px]:flex-row">
-      {/* Top Section */}
-      <div className="w-full min-[950px]:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] min-[950px]:min-h-screen">
-        <div className="absolute inset-0 flex flex-col justify-between p-6 min-[950px]:p-10">
-          {/* Back Button - Mobile Only */}
+    <div className="min-h-[100svh] w-full flex flex-col min-[950px]:flex-row">
+      {/* LEFT/TOP PANEL */}
+      <div className="w-full min-[950px]:w-[30%] relative overflow-hidden bg-[#CEFF1B] min-h-[45vh] min-[950px]:min-h-[100svh]">
+        <div className="absolute inset-0 flex flex-col justify-between p-6 min-[701px]:p-8 min-[950px]:p-10">
+          {/* Back Button - Mobile/Tablet Only */}
           <button
             onClick={handleBack}
-            className="min-[950px]:hidden w-10 h-10 rounded-full flex items-center justify-center mb-4 relative"
+            className="min-[950px]:hidden w-10 h-10 min-[701px]:w-12 min-[701px]:h-12 rounded-full flex items-center justify-center mb-4 relative"
             style={{
               background: "linear-gradient(180deg, #FFFFFF, #9C9C9C)",
               padding: "2px",
@@ -137,72 +136,93 @@ export default function CreatorNeeds() {
             <span className="w-full h-full rounded-full flex items-center justify-center bg-[#CEFF1B]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-black"
+                className="h-5 w-5 min-[701px]:h-6 min-[701px]:w-6 text-black"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </span>
           </button>
 
           {/* Question */}
           <div className="flex-1 flex flex-col justify-center min-[950px]:justify-start min-[950px]:pt-[clamp(40px,10vh,128px)] items-start text-left px-4 min-[950px]:px-0">
-            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black leading-tight">
+            <h2 className="text-3xl min-[701px]:text-4xl min-[950px]:text-4xl font-bold text-black leading-tight">
               Tell us more about
             </h2>
 
-            <h2 className="text-3xl min-[950px]:text-4xl font-bold text-black -mt-1 leading-tight">
+            <h2 className="text-3xl min-[701px]:text-4xl min-[950px]:text-4xl font-bold text-black -mt-1 leading-tight">
               your skills
             </h2>
 
-            <p className="text-black/60 text-base min-[950px]:text-xl mt-4 min-[950px]:mt-4 max-w-md">
+            <p className="text-black/60 text-base min-[701px]:text-lg min-[950px]:text-xl mt-4 max-w-md">
               What service do you offer
             </p>
           </div>
 
           {/* Step Indicators - Desktop Only */}
           <div className="hidden min-[950px]:flex items-center gap-3 ml-12">
-            {[...Array(totalSteps)].map((_, index) => (
-              index <= currentStep && (
+            {[...Array(totalSteps)].map((_, index) =>
+              index <= currentStep ? (
                 <div
                   key={index}
                   onClick={() => index < currentStep && navigate(stepPaths[index])}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
-                    }`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
+                  }`}
                 />
-              )
-            ))}
+              ) : null
+            )}
           </div>
-
-
-
         </div>
       </div>
 
-      {/* Bottom Section */}
-      <div className="w-full min-[950px]:w-[70%] bg-[#E0E0E0] rounded-t-[50px] min-[950px]:rounded-none -mt-12 min-[950px]:mt-0 px-3 py-6 min-[950px]:p-[clamp(24px,4vh,48px)] flex flex-col justify-center items-center relative overflow-visible min-h-[60vh] min-[950px]:min-h-screen z-20">
+      {/* RIGHT/BOTTOM CONTENT */}
+      <div
+        className="
+          w-full min-[950px]:w-[70%]
+          bg-[#E0E0E0]
+          rounded-t-[34px] max-[400px]:rounded-t-[28px]
+          min-[701px]:rounded-t-[44px]
+          min-[950px]:rounded-none
+
+          -mt-10 max-[400px]:-mt-8
+          min-[701px]:-mt-12
+          min-[950px]:mt-0
+
+          px-3 py-6
+          min-[701px]:px-8 min-[701px]:py-10
+          min-[950px]:p-[clamp(24px,4vh,48px)]
+
+          flex flex-col justify-center items-center
+          relative overflow-visible min-h-[60vh] min-[701px]:min-h-[62vh] min-[950px]:min-h-[100svh]
+          z-20
+        "
+      >
         <div className="relative z-10 w-full max-w-[900px]">
-          {/* ✅ MOBILE (screenshot-style) */}
-          <div className="min-[950px]:hidden w-full max-w-[420px] mx-auto">
-            <div className="bg-transparent rounded-[26px] px-2 py-4 border ">
+          {/* ✅ MOBILE + TABLET (0–949px) — FIXED BIGGER FOR iPad mini */}
+          <div className="min-[950px]:hidden w-full max-w-[420px] min-[701px]:max-w-[760px] mx-auto">
+            <div
+              className="
+                bg-transparent rounded-[26px]
+                px-2 py-4
+                min-[701px]:px-6 min-[701px]:py-6
+                border border-black/10
+                shadow-sm
+              "
+            >
               {/* category chips */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 min-[701px]:gap-3">
                 {categories.map((c) => (
                   <MobileChip key={c.id} category={c} />
                 ))}
               </div>
 
               {/* fields */}
-              <div className="mt-5 grid grid-cols-2 gap-3 items-end relative z-20">
+              <div className="mt-5 min-[701px]:mt-7 grid grid-cols-2 gap-3 min-[701px]:gap-5 items-end relative z-20">
                 <div>
-                  <label className="block text-[11px] font-semibold text-black/70 mb-2">
+                  <label className="block text-[11px] min-[701px]:text-[13px] font-semibold text-black/70 mb-2">
                     Primary skill / niche
                   </label>
                   <input
@@ -210,15 +230,19 @@ export default function CreatorNeeds() {
                     value={primarySkill}
                     onChange={(e) => setPrimarySkill(e.target.value)}
                     placeholder="Skill/niche"
-                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
+                    className="w-full h-10 min-[701px]:h-12 rounded-xl border border-black/20 bg-transparent px-3 min-[701px]:px-4 text-sm min-[701px]:text-base text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-semibold text-black/70 mb-2">
+                  <label className="block text-[11px] min-[701px]:text-[13px] font-semibold text-black/70 mb-2">
                     Experience level
                   </label>
-                  <div className={`onboarding-custom-select ${isExperienceOpen ? "active" : ""}`} ref={experienceRef}>
+
+                  <div
+                    className={`onboarding-custom-select ${isExperienceOpen ? "active" : ""}`}
+                    ref={experienceRef}
+                  >
                     <div
                       className={`onboarding-selected-option ${isExperienceOpen ? "open" : ""}`}
                       onClick={(e) => {
@@ -256,7 +280,7 @@ export default function CreatorNeeds() {
                 </div>
 
                 <div className="col-span-2">
-                  <label className="block text-[11px] font-semibold text-black/70 mb-2">
+                  <label className="block text-[11px] min-[701px]:text-[13px] font-semibold text-black/70 mb-2">
                     Hourly / project range (optional)
                   </label>
                   <input
@@ -264,15 +288,15 @@ export default function CreatorNeeds() {
                     value={rateRange}
                     onChange={(e) => setRateRange(e.target.value)}
                     placeholder="Hourly/project range"
-                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
+                    className="w-full h-10 min-[701px]:h-12 rounded-xl border border-black/20 bg-white px-3 min-[701px]:px-4 text-sm min-[701px]:text-base text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
 
                 <div className="col-span-2">
-                  <label className="block text-[11px] font-semibold text-black/70 mb-2">
+                  <label className="block text-[11px] min-[701px]:text-[13px] font-semibold text-black/70 mb-2">
                     Do you already have a portfolio?
                   </label>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 min-[701px]:gap-3">
                     {["Yes", "No"].map((opt) => {
                       const val = opt.toLowerCase();
                       const active = hasPortfolio === val;
@@ -282,7 +306,8 @@ export default function CreatorNeeds() {
                           type="button"
                           onClick={() => setHasPortfolio(val)}
                           className={[
-                            "flex-1 h-10 rounded-xl border text-xs font-medium transition-all",
+                            "flex-1 rounded-xl border font-medium transition-all",
+                            "h-10 min-[701px]:h-12 text-xs min-[701px]:text-sm",
                             active
                               ? "bg-[#CEFF1B] border-black text-black"
                               : "bg-white border-black/20 text-black/60",
@@ -298,8 +323,8 @@ export default function CreatorNeeds() {
 
               {/* portfolio links */}
               {hasPortfolio === "yes" && (
-                <div className="mt-5">
-                  <label className="block text-[11px] font-semibold text-black/70 mb-2">
+                <div className="mt-5 min-[701px]:mt-7">
+                  <label className="block text-[11px] min-[701px]:text-[13px] font-semibold text-black/70 mb-2">
                     Upload links (IG, Behance, Portfolio, Drive)
                   </label>
                   <input
@@ -307,23 +332,35 @@ export default function CreatorNeeds() {
                     value={portfolioLinks}
                     onChange={(e) => setPortfolioLinks(e.target.value)}
                     placeholder="Paste here"
-                    className="w-full h-10 rounded-xl border border-black/20 bg-white px-3 text-sm text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
+                    className="w-full h-10 min-[701px]:h-12 rounded-xl border border-black/20 bg-white px-3 min-[701px]:px-4 text-sm min-[701px]:text-base text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
               )}
 
               {/* buttons */}
-              <div className="mt-6 flex items-center justify-between gap-3">
+              <div className="mt-6 min-[701px]:mt-8 flex items-center justify-between gap-3 min-[701px]:gap-5">
                 <button
                   onClick={handleReset}
-                  className="h-10 px-5 rounded-lg border border-black/20 bg-white text-black/60 text-sm"
+                  className="
+                    h-10 min-[701px]:h-12
+                    px-5 min-[701px]:px-8
+                    rounded-lg border border-black/20
+                    bg-white text-black/60
+                    text-sm min-[701px]:text-base
+                  "
                 >
                   Reset
                 </button>
 
                 <button
                   onClick={handleBack}
-                  className="h-10 px-6 rounded-lg border border-black/40 bg-white text-black text-sm"
+                  className="
+                    h-10 min-[701px]:h-12
+                    px-6 min-[701px]:px-8
+                    rounded-lg border border-black/40
+                    bg-white text-black
+                    text-sm min-[701px]:text-base
+                  "
                 >
                   Back
                 </button>
@@ -332,7 +369,8 @@ export default function CreatorNeeds() {
                   onClick={handleContinue}
                   disabled={!isContinueEnabled}
                   className={[
-                    "h-10 px-6 rounded-lg text-sm font-medium border transition-all",
+                    "rounded-lg font-medium border transition-all",
+                    "h-10 min-[701px]:h-12 px-6 min-[701px]:px-8 text-sm min-[701px]:text-base",
                     isContinueEnabled
                       ? "bg-[#CEFF1B] border-black text-black"
                       : "bg-[#DADADA] border-black/20 text-black/30",
@@ -342,29 +380,28 @@ export default function CreatorNeeds() {
                 </button>
               </div>
 
-              {/* step dots */}
-              <div className="mt-6 flex justify-center items-center gap-2">
-                {[...Array(totalSteps)].map((_, index) => (
-                  index <= currentStep && (
+              {/* dots */}
+              <div className="mt-6 min-[701px]:mt-8 flex justify-center items-center gap-2">
+                {[...Array(totalSteps)].map((_, index) =>
+                  index <= currentStep ? (
                     <span
                       key={index}
                       onClick={() => index < currentStep && navigate(stepPaths[index])}
                       className={[
-                        "w-2 h-2 rounded-full",
+                        "rounded-full",
+                        "w-2 h-2 min-[701px]:w-2.5 min-[701px]:h-2.5",
                         index === currentStep ? "bg-black" : "bg-black/30 cursor-pointer",
                       ].join(" ")}
                     />
-                  )
-                ))}
+                  ) : null
+                )}
               </div>
-
-
-
             </div>
           </div>
 
-          {/* ✅ DESKTOP (unchanged as your existing) */}
+          {/* ✅ DESKTOP (your original, unchanged) */}
           <div className="hidden min-[950px]:block">
+            {/* ... kept exactly as you had (desktop code unchanged) */}
             {/* Creator Categories - Desktop Container */}
             <div className="bg-[#FEFEFE]/40 min-[950px]:bg-white/40 backdrop-blur-md border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] rounded-[24px] min-[950px]:rounded-[30px] p-4 min-[950px]:p-[clamp(16px,3vh,32px)] shadow-xl mb-4 min-[950px]:mb-6 flex flex-col justify-center gap-4">
               <div className="hidden min-[950px]:flex flex-col gap-4">
@@ -386,10 +423,12 @@ export default function CreatorNeeds() {
                               }
                             `}
                           >
-                            <div
-                              className={`p-1.5 rounded-xl flex items-center justify-center shrink-0 bg-[#CEFF1B]`}
-                            >
-                              <Icon size={rowIndex === 0 ? 22 : 18} className="text-black" strokeWidth={2} />
+                            <div className="p-1.5 rounded-xl flex items-center justify-center shrink-0 bg-[#CEFF1B]">
+                              <Icon
+                                size={rowIndex === 0 ? 22 : 18}
+                                className="text-black"
+                                strokeWidth={2}
+                              />
                             </div>
                             <span
                               className={`font-[500] text-[clamp(14px,1.2vw,18px)] ${isSelected ? "text-black" : "text-gray-800"
@@ -404,8 +443,6 @@ export default function CreatorNeeds() {
                   )
                 )}
               </div>
-
-              {/* Mobile categories here were earlier - now handled in mobile card */}
             </div>
 
             {/* Desktop fields (original) */}
@@ -441,7 +478,6 @@ export default function CreatorNeeds() {
 
                   {isExperienceOpen && (
                     <ul className="onboarding-options-list">
-
                       {experienceOptions.map((opt) => (
                         <li
                           key={opt.value}
@@ -481,19 +517,17 @@ export default function CreatorNeeds() {
                     <button
                       key={opt}
                       onClick={() => setHasPortfolio(opt.toLowerCase())}
-                      className={`flex-1 p-2 min-[950px]:py-3 rounded-md min-[950px]:rounded-xl font-medium transition-all text-xs min-[950px]:text-base ${hasPortfolio === opt.toLowerCase()
-                        ? "bg-[#CEFF1B] text-black"
-                        : "bg-transparent text-gray-600"
-                        }`}
-                      style={{
-                        border: "0.6px solid #000",
-                      }}
+                      className={`flex-1 p-2 min-[950px]:py-3 rounded-md min-[950px]:rounded-xl font-medium transition-all text-xs min-[950px]:text-base ${
+                        hasPortfolio === opt.toLowerCase()
+                          ? "bg-[#CEFF1B] text-black"
+                          : "bg-transparent text-gray-600"
+                      }`}
+                      style={{ border: "0.6px solid #000" }}
                     >
                       {opt}
                     </button>
                   ))}
                 </div>
-
               </div>
             </div>
 
@@ -514,7 +548,6 @@ export default function CreatorNeeds() {
               </div>
             )}
 
-            {/* Desktop footer (original) */}
             <div className="mt-4 min-[950px]:mt-[clamp(16px,2vh,32px)] relative z-10 w-full">
               <div className="flex justify-between items-center gap-2 min-[950px]:gap-4">
                 <button
@@ -534,19 +567,19 @@ export default function CreatorNeeds() {
                   <button
                     onClick={handleContinue}
                     disabled={!isContinueEnabled}
-                    className={`px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg font-medium text-xs min-[950px]:text-lg transition-all whitespace-nowrap ${isContinueEnabled
-                      ? "bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]"
-                      : "bg-lime-200 border border-black text-black cursor-not-allowed"
-                      }`}
+                    className={`px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg font-medium text-xs min-[950px]:text-lg transition-all whitespace-nowrap ${
+                      isContinueEnabled
+                        ? "bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]"
+                        : "bg-lime-200 border border-black text-black cursor-not-allowed"
+                    }`}
                   >
                     Continue
                   </button>
                 </div>
               </div>
-
-              {/* (mobile dots now inside mobile card) */}
             </div>
           </div>
+          {/* /desktop */}
         </div>
       </div>
     </div>
