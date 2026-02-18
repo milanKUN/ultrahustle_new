@@ -30,13 +30,14 @@
 .header-left {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
+  flex-shrink: 0;
 }
 
 .logo {
-  height: 45px;
-  width: 293px;
-  margin-left: -30px;
+  height: 32px;
+  width: auto;
+  margin-left: 0;
 }
 
 .nav-menu {
@@ -56,31 +57,41 @@
   transition: color 0.2s;
 }
 
-.nav-link:hover {
-  color: var(--ir-text-dark);
-}
-
-.nav-link.active {
-  color: var(--ir-text-dark);
-}
-
-.forum-link {
+.nav-item {
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.forum-icon {
-  width: 68px;
+.nav-pill {
+  width: 42px;
   height: 5px;
-  background: var(--ir-text-dark);
   border-radius: 0 0 41.309px 41.309px;
+  background: transparent;
+  transition: all 0.25s ease;
 }
+
+.nav-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #D3D5D0;
+  transition: color 0.25s ease;
+}
+
+
+
+
+
+
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
+  flex-shrink: 0;
 }
 
 /* Header Search Bar */
@@ -103,7 +114,7 @@
 }
 
 .inreview-header .search-input::placeholder {
-  text-align: center;
+  text-align: left;
   color: #606060;
   font-family: Inter;
   font-size: 14.117px;
@@ -127,6 +138,10 @@
 /* Search Dropdown Styles */
 .search-wrapper {
   position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 600px;
 }
 
 .search-dropdown {
@@ -486,16 +501,10 @@
 
 .messages-dropdown {
   position: absolute;
-  top: calc(100% + 25px);
-  right: -125px;
-  width: 470px;
-  max-height: 350px;
-  background: #ffffff;
-  border-radius: 6.225px;
-  box-shadow: 0 0.403px 6.7px 0 #CEFF1B;
-  backdrop-filter: blur(23.169px);
-  z-index: 1000;
-  overflow: visible;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .messages-dropdown::before {
@@ -525,7 +534,7 @@
 }
 
 .messages-list {
-  max-height: 405px;
+  flex: 1;
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -537,7 +546,7 @@
 
 .message-item {
   display: flex;
-  height: 60px;
+  min-height: 70px;
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
@@ -569,14 +578,14 @@
 .message-content {
   display: flex;
   flex-direction: column;
-  gap: 2;
+  gap: 4px;
   flex: 1;
   min-width: 0;
 }
 
 .message-name {
   font-size: 15px !important;
-  font-weight: 300;
+  font-weight: 500;
   color: #000000;
 }
 
@@ -587,7 +596,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: -5px;
+  margin-top: 0px;
 }
 
 .message-time {
@@ -603,16 +612,19 @@
   padding: 10px 15px;
   text-align: center;
   font-size: 24px;
-  height: 45px;
+  height: 48px;
   background: transparent;
   color: rgba(43, 43, 43, 0.50);
   text-decoration: none;
   border-top: 1px solid #CEFF1B;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  border-radius: 0 0 6.225px 6.225px;
 }
 
 .view-all-link:hover {
-  color: var(--ir-text-dark);
+  background: transparent;
+  color: #000 !important;
+  font-weight: 500;
 }
 
 /* Notifications Dropdown Styles */
@@ -622,16 +634,11 @@
 
 .notifications-dropdown {
   position: absolute;
-  top: calc(100% + 25px);
-  right: -85px;
-  width: 470px;
-  max-height: 440px;
-  background: #ffffff;
-  border-radius: 6.225px;
-  box-shadow: 0 0.403px 6.7px 0 #CEFF1B;
-  backdrop-filter: blur(23.169px);
-  z-index: 1000;
-  overflow: visible;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 10px;
 }
 
 .notifications-dropdown::before {
@@ -678,8 +685,8 @@
 }
 
 .notifications-list {
-  max-height: none;
-  overflow-y: visible;
+  flex: 1;
+  overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -758,16 +765,19 @@
   padding: 10px 15px;
   text-align: center;
   font-size: 24px;
-  height: 45px;
+  height: 48px;
   background: transparent;
   color: rgba(43, 43, 43, 0.50);
   text-decoration: none;
   border-top: 1px solid #CEFF1B;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  border-radius: 0 0 6.225px 6.225px;
 }
 
 .notifications-view-all:hover {
-  color: var(--ir-text-dark);
+  background: transparent;
+  color: #000 !important;
+  font-weight: 500;
 }
 
 /* Blur Overlay */
@@ -786,12 +796,13 @@
 }
 
 /* ========== MOBILE HEADER ORDER FIX ========== */
-@media (max-width:768px) {
+@media (max-width: 1100px) {
   .inreview-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 14px;
+    gap: 15px;
   }
 
   /* LEFT SIDE */
@@ -799,26 +810,55 @@
     order: 1;
     display: flex;
     align-items: center;
+    gap: 15px;
   }
 
-  /* Hamburger LEFT */
+  /* Hamburger Toggle */
   .hamburger-btn {
-    display: block;
-    font-size: 22px;
+    display: block !important;
+    font-size: 24px;
     background: none;
     border: none;
     cursor: pointer;
+    color: #2b2b2b;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* CENTER LOGO */
+  .inreview-header.dark .hamburger-btn {
+    color: #fff;
+  }
+
+  /* LOGO */
   .logo {
-    height: 32px;
-    margin-left: -10px;
+    height: 28px;
+    width: auto;
+    margin-left: 0;
   }
 
-  /* hide desktop nav */
-  .nav-menu {
-    display: none;
+  /* hide desktop nav items */
+  .nav-menu,
+  .nav-link,
+  .nav-item {
+    display: none !important;
+  }
+
+  /* CENTERED SEARCH */
+  .search-wrapper {
+    order: 2;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    max-width: none;
+  }
+
+  .header-search {
+    width: 100%;
+    max-width: 200px;
   }
 
   /* RIGHT SIDE */
@@ -826,27 +866,37 @@
     order: 3;
     display: flex;
     align-items: center;
+    gap: 15px;
   }
 
-  /* Notification RIGHT */
-  .notifications-wrapper {
-    display: block;
+  /* Responsive visibility for smaller screens */
+  @media (max-width: 600px) {
+
+    .messages-wrapper,
+    .user-avatar-wrapper {
+      display: none;
+    }
+
+    .logo {
+      display: none;
+      /* Hide logo on very small screens to fit search */
+    }
   }
 
-  /* hide others on mobile */
-  .messages-wrapper,
-  .user-avatar-wrapper {
-    display: none;
-  }
+  @media (max-width: 450px) {
+    .search-wrapper {
+      display: none;
+    }
 
-  /* hide search in header on mobile */
-  .search-wrapper {
-    display: none;
+    .logo {
+      display: block;
+      height: 24px;
+    }
   }
 }
 
 /* ========== MOBILE DROPDOWN FIX ========== */
-@media (max-width:768px) {
+@media (max-width:1100px) {
 
   /* ✅ FORCE CENTER NOTIFICATION DROPDOWN */
   .notifications-wrapper {
@@ -990,7 +1040,8 @@
 }
 
 .inreview-header.dark .dropdown-item:hover {
-  background: #1f2937;
+  background: #CEFF1B;
+  color: #000;
 }
 
 /* Blur overlay */
@@ -1064,113 +1115,33 @@
 
 /* ================= MESSAGE DROPDOWN FINAL DARK FIX ================= */
 
-/* Whole dropdown */
-.inreview-header.dark .messages-dropdown {
+.inreview-header.dark .messages-dropdown,
+.inreview-header.dark .notifications-dropdown {
   background: #2B2B2B;
   border: 1px solid #ceff1b;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
 }
 
-/* Header (green bar stays green) */
-.inreview-header.dark .messages-header {
-  background: #ceff1b;
-  color: #000;
-}
-
-/* Message list */
-.inreview-header.dark .messages-list {
-  background: var(--card);
-}
-
-/* EACH message row — force dark */
-.inreview-header.dark .message-item {
-  background: #1a1d23 !important;
-  color: var(--text);
-}
-
-/* Kill even/odd light rows */
-.inreview-header.dark .message-item:nth-child(even),
-.inreview-header.dark .message-item:nth-child(odd) {
-  background: #2B2B2B !important;
-}
-
-/* Hover */
-.inreview-header.dark .message-item:hover {
-  background: #5E5E5E !important;
-}
-
-/* Name & text */
-.inreview-header.dark .message-name {
+.inreview-header.dark .view-all-link,
+.inreview-header.dark .notifications-view-all {
+  background: transparent;
   color: #ffffff;
+  border-top: 1px solid #ceff1b;
 }
 
-.inreview-header.dark .message-text {
-  color: #ffffff;
-}
-
-/* Time */
-.inreview-header.dark .message-time {
-  color: #ffffff;
-}
-
-/* Avatar grey box */
-.inreview-header.dark .message-avatar {
-  background: #3a3a3a;
-}
-
-/* View all footer */
-.inreview-header.dark .view-all-link {
-  background: #141821;
-  color: #9ca3af;
-  border-top: 1px solid var(--border);
+.inreview-header.dark .view-all-link:hover,
+.inreview-header.dark .notifications-view-all:hover {
+  background: transparent;
+  color: #ceff1b !important;
 }
 
 
 /* ======================================================= */
 
-/* Notifications dropdown */
-.inreview-header.dark .notifications-dropdown {
-  background: #2B2B2B;
-  color: var(--text);
-  border: 1px solid var(--border);
-}
 
-/* Notifications header */
-.inreview-header.dark .notifications-header {
-  color: var(--text);
-  border-bottom: 1px solid var(--border);
-}
-
-/* Mark all read */
-.inreview-header.dark .mark-all-read {
-  color: #ffffff;
-}
-
-/* Notification item */
-.inreview-header.dark .notification-item {
-  background: transparent;
-  color: var(--text);
-}
-
-/* Notification text */
-.inreview-header.dark .notification-text {
-  color: var(--text);
-}
-
-/* Notification time */
-.inreview-header.dark .notification-time {
-  color: #ffffff;
-}
-
-/* Notification hover */
-.inreview-header.dark .notification-item:hover {
-  background: #5E5E5E;
-}
-
-/* View all */
-.inreview-header.dark .notifications-view-all {
-  color: #ceff1b;
-  border-top: 1px solid var(--border);
-}
 
 /* Dark mode – notification header text BLACK */
 .inreview-header.dark .notifications-dropdown .notifications-header {

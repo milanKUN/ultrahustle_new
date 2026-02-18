@@ -84,12 +84,12 @@ const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
 
   // Sample messages data
   const messagesData = [
-  { id: 1, name: "John Smith", text: "Thanks for your help!", time: "2m ago" },
-  { id: 2, name: "Ayesha Khan", text: "Can you share the file?", time: "10m ago" },
-  { id: 3, name: "Rahul Sharma", text: "Let’s connect tomorrow.", time: "1d ago" },
-  { id: 4, name: "Mike Chen", text: "Approved ✅", time: "1d ago" },
-  { id: 5, name: "Priya Patel", text: "Sent the update.", time: "2d ago" },
-];
+    { id: 1, name: "John Smith", text: "Thanks for your help!", time: "2m ago" },
+    { id: 2, name: "Ayesha Khan", text: "Can you share the file?", time: "10m ago" },
+    { id: 3, name: "Rahul Sharma", text: "Let’s connect tomorrow.", time: "1d ago" },
+    { id: 4, name: "Mike Chen", text: "Approved ✅", time: "1d ago" },
+    { id: 5, name: "Priya Patel", text: "Sent the update.", time: "2d ago" },
+  ];
 
 
   // Sample notifications data
@@ -131,7 +131,7 @@ const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
           description: "Service description",
           category: "Service",
         },
-      {
+        {
           id: 2,
           title: "Logo Design Service",
           description: "Minimal + modern logo for brands",
@@ -290,7 +290,7 @@ const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
           description: "Branding, motion & social creatives",
           category: "Team",
         },
-      
+
       ],
 
       // ✅ USER TAB (User Name + Description)
@@ -348,30 +348,13 @@ const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
       {/* Header/Navbar */}
       <header className={`inreview-header ${theme}`}>
         <div className="header-left">
-          {/* ✅ Mobile Hamburger (safe) */}
-          {typeof window !== "undefined" && window.innerWidth < 768 && (
-            <button className="hamburger-btn" onClick={handleSidebarToggle}>
-              {isSidebarOpen ? "✕" : "☰"}
-            </button>
-          )}
+          <button className="hamburger-btn" onClick={handleSidebarToggle}>
+            {isSidebarOpen ? "✕" : "☰"}
+          </button>
 
           <img src="/logo.png" alt="UltraHustle" className="logo" />
-
-          <nav className="nav-menu">
-            <a href="#" className="nav-link">
-              Home
-            </a>
-            <a href="#" className="nav-link">
-              Marketplace
-            </a>
-            <a href="#" className="nav-link active forum-link">
-              <span className="forum-icon"></span>
-              Dashboard
-            </a>
-          </nav>
         </div>
 
-        {/* Search Bar with Dropdown */}
         <div className="search-wrapper">
           <div className="header-search">
             <input
@@ -611,9 +594,8 @@ const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
 
                 <a
                   href="#"
-                  className={`notifications-view-all ${
-                    activeViewAll === "notifications" ? "active" : ""
-                  }`}
+                  className={`notifications-view-all ${activeViewAll === "notifications" ? "active" : ""
+                    }`}
                   onClick={(e) => {
                     e.preventDefault();
                     setActiveViewAll("notifications");
