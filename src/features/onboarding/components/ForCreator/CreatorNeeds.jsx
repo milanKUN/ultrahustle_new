@@ -332,12 +332,12 @@ export default function CreatorNeeds() {
               )}
 
               {/* buttons */}
-              <div className="mt-6 min-[701px]:mt-8 flex items-center justify-between gap-3 min-[701px]:gap-5">
+              <div className="mt-6 min-[701px]:mt-8 flex flex-wrap items-center justify-center gap-2 min-[701px]:gap-5">
                 <button
                   onClick={handleReset}
                   className="
                     h-10 min-[701px]:h-12
-                    px-5 min-[701px]:px-8
+                    px-4 min-[701px]:px-8
                     rounded-lg border border-black/20
                     bg-white text-black/60
                     text-sm min-[701px]:text-base
@@ -350,7 +350,7 @@ export default function CreatorNeeds() {
                   onClick={handleBack}
                   className="
                     h-10 min-[701px]:h-12
-                    px-6 min-[701px]:px-8
+                    px-4 min-[701px]:px-8
                     rounded-lg border border-black/40
                     bg-white text-black
                     text-sm min-[701px]:text-base
@@ -364,7 +364,7 @@ export default function CreatorNeeds() {
                   disabled={!isContinueEnabled}
                   className={[
                     "rounded-lg font-medium border transition-all",
-                    "h-10 min-[701px]:h-12 px-6 min-[701px]:px-8 text-sm min-[701px]:text-base",
+                    "h-10 min-[701px]:h-12 px-4 min-[701px]:px-8 text-sm min-[701px]:text-base",
                     isContinueEnabled
                       ? "bg-[#CEFF1B] border-black text-black"
                       : "bg-[#DADADA] border-black/20 text-black/30",
@@ -512,8 +512,8 @@ export default function CreatorNeeds() {
                       key={opt}
                       onClick={() => setHasPortfolio(opt.toLowerCase())}
                       className={`flex-1 p-2 min-[950px]:py-3 rounded-md min-[950px]:rounded-xl font-medium transition-all text-xs min-[950px]:text-base ${hasPortfolio === opt.toLowerCase()
-                          ? "bg-[#CEFF1B] text-black"
-                          : "bg-transparent text-gray-600"
+                        ? "bg-[#CEFF1B] text-black"
+                        : "bg-transparent text-gray-600"
                         }`}
                       style={{ border: "0.6px solid #000" }}
                     >
@@ -561,8 +561,8 @@ export default function CreatorNeeds() {
                     onClick={handleContinue}
                     disabled={!isContinueEnabled}
                     className={`px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg font-medium text-xs min-[950px]:text-lg transition-all whitespace-nowrap ${isContinueEnabled
-                        ? "bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]"
-                        : "bg-lime-200 border border-black text-black cursor-not-allowed"
+                      ? "bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]"
+                      : "bg-lime-200 border border-black text-black cursor-not-allowed"
                       }`}
                   >
                     Continue

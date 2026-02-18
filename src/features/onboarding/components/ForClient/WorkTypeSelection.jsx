@@ -108,9 +108,8 @@ export default function WorkTypeSelection() {
                 <div
                   key={index}
                   onClick={() => index < currentStep && navigate(stepPaths[index])}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
+                    }`}
                 />
               ) : null
             )}
@@ -303,12 +302,12 @@ export default function WorkTypeSelection() {
             )}
 
             {/* Buttons row */}
-            <div className="mt-5 min-[701px]:mt-8 flex items-center justify-between gap-3 min-[701px]:gap-5">
+            <div className="mt-5 min-[701px]:mt-8 flex flex-wrap items-center justify-center gap-2 min-[701px]:gap-5">
               <button
                 onClick={handleReset}
                 className="
                   h-10 min-[701px]:h-12
-                  px-5 min-[701px]:px-8
+                  px-4 min-[701px]:px-8
                   rounded-lg border border-black/20
                   bg-white text-black/60
                   text-sm min-[701px]:text-base
@@ -321,7 +320,7 @@ export default function WorkTypeSelection() {
                 onClick={handleBack}
                 className="
                   h-10 min-[701px]:h-12
-                  px-6 min-[701px]:px-8
+                  px-4 min-[701px]:px-8
                   rounded-lg border border-black/40
                   bg-white text-black
                   text-sm min-[701px]:text-base
@@ -335,7 +334,7 @@ export default function WorkTypeSelection() {
                 disabled={!canContinue}
                 className={[
                   "rounded-lg font-medium border",
-                  "h-10 min-[701px]:h-12 px-6 min-[701px]:px-8",
+                  "h-10 min-[701px]:h-12 px-4 min-[701px]:px-8",
                   "text-sm min-[701px]:text-base",
                   canContinue
                     ? "bg-[#CEFF1B] border-black text-black"
@@ -370,19 +369,17 @@ export default function WorkTypeSelection() {
           {/* Solo Card */}
           <div
             onClick={() => setSelectedType("solo")}
-            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-              selectedType === "solo"
-                ? "bg-[#CEFF1B]  shadow-lg"
-                : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
-            }`}
+            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "solo"
+              ? "bg-[#CEFF1B]  shadow-lg"
+              : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-3 py-2 rounded-lg border-1 font-medium text-lg ${
-                  selectedType === "solo"
-                    ? "border-black bg-[#FEFEFE]/66"
-                    : "border-gray-900 bg-[#FEFEFE]/66"
-                }`}
+                className={`inline-block px-3 py-2 rounded-lg border-1 font-medium text-lg ${selectedType === "solo"
+                  ? "border-black bg-[#FEFEFE]/66"
+                  : "border-gray-900 bg-[#FEFEFE]/66"
+                  }`}
               >
                 Solo Creator / Solo Professional
               </span>
@@ -402,19 +399,17 @@ export default function WorkTypeSelection() {
           {/* Team Card */}
           <div
             onClick={() => setSelectedType("team")}
-            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-              selectedType === "team"
-                ? "bg-[#CEFF1B]  shadow-lg"
-                : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
-            }`}
+            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedType === "team"
+              ? "bg-[#CEFF1B]  shadow-lg"
+              : "bg-[#FEFEFE]/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              }`}
           >
             <div className="mb-4">
               <span
-                className={`inline-block px-3 py-2 rounded-lg border-1 font-medium text-lg ${
-                  selectedType === "team"
-                    ? "border-black bg-[#FEFEFE]/66"
-                    : "border-gray-900 bg-[#FEFEFE]/66"
-                }`}
+                className={`inline-block px-3 py-2 rounded-lg border-1 font-medium text-lg ${selectedType === "team"
+                  ? "border-black bg-[#FEFEFE]/66"
+                  : "border-gray-900 bg-[#FEFEFE]/66"
+                  }`}
               >
                 Team / Organization
               </span>
@@ -479,13 +474,11 @@ export default function WorkTypeSelection() {
                   <button
                     key={option}
                     onClick={() => setBuildTeamPlan(option.toLowerCase())}
-                    className={`${
-                      option === "Maybe Later" ? "w-[172px]" : "w-[104px]"
-                    } h-[50px] rounded-xl border-2 font-medium transition-all flex items-center justify-center ${
-                      buildTeamPlan === option.toLowerCase()
+                    className={`${option === "Maybe Later" ? "w-[172px]" : "w-[104px]"
+                      } h-[50px] rounded-xl border-2 font-medium transition-all flex items-center justify-center ${buildTeamPlan === option.toLowerCase()
                         ? "bg-[#CEFF1B] border-black text-black"
                         : "bg-white/50 border-gray-200 text-gray-500 hover:bg-white/80"
-                    }`}
+                      }`}
                   >
                     {option}
                   </button>
@@ -517,11 +510,10 @@ export default function WorkTypeSelection() {
               <button
                 onClick={handleContinue}
                 disabled={!canContinue}
-                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${
-                  canContinue
-                    ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
-                    : "bg-gray-200 border-1 border-black text-gray-700 cursor-not-allowed"
-                }`}
+                className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${canContinue
+                  ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
+                  : "bg-gray-200 border-1 border-black text-gray-700 cursor-not-allowed"
+                  }`}
               >
                 Continue
               </button>

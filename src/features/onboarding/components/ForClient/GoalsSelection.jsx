@@ -179,12 +179,12 @@ export default function GoalsSelection() {
             </div>
 
             {/* Buttons */}
-            <div className="mt-6 min-[701px]:mt-8 flex items-center justify-between gap-3 min-[701px]:gap-5">
+            <div className="mt-6 min-[701px]:mt-8 flex flex-wrap items-center justify-center gap-2 min-[701px]:gap-5">
               <button
                 onClick={handleReset}
                 className="
                   h-10 min-[701px]:h-12
-                  px-5 min-[701px]:px-8
+                  px-4 min-[701px]:px-8
                   rounded-lg border border-black/20
                   bg-white text-black/60
                   text-sm min-[701px]:text-base
@@ -197,7 +197,7 @@ export default function GoalsSelection() {
                 onClick={handleBack}
                 className="
                   h-10 min-[701px]:h-12
-                  px-6 min-[701px]:px-8
+                  px-4 min-[701px]:px-8
                   rounded-lg border border-black/40
                   bg-white text-black
                   text-sm min-[701px]:text-base
@@ -211,7 +211,7 @@ export default function GoalsSelection() {
                 disabled={!canContinue}
                 className={[
                   "rounded-lg font-medium border transition-all",
-                  "h-10 min-[701px]:h-12 px-6 min-[701px]:px-8",
+                  "h-10 min-[701px]:h-12 px-4 min-[701px]:px-8",
                   "text-sm min-[701px]:text-base",
                   canContinue
                     ? "bg-[#CEFF1B] border-black text-black"
@@ -296,8 +296,8 @@ export default function GoalsSelection() {
                 onClick={handleContinue}
                 disabled={!canContinue}
                 className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${canContinue
-                    ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
-                    : "bg-[#CEFF1B]/50 border border-[#2B2B2B] text-gray-500 cursor-not-allowed"
+                  ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
+                  : "bg-[#CEFF1B]/50 border border-[#2B2B2B] text-gray-500 cursor-not-allowed"
                   }`}
               >
                 Continue

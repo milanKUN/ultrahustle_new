@@ -74,7 +74,7 @@ export default function SetupWorkspaceForCreator() {
         ></div>
 
         {/* Content Card Container */}
-        <div className="bg-white/40 min-[950px]:bg-white/40 backdrop-blur-xl rounded-[30px] shadow-xl p-8 min-[950px]:p-12 w-full max-w-[500px] min-[950px]:max-w-none min-[950px]:w-[95%] min-[950px]:h-auto min-[950px]:min-h-[80%] relative z-10 border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] flex flex-col justify-center items-center text-center">
+        <div className="bg-white/40 min-[950px]:bg-white/40 backdrop-blur-xl rounded-[30px] shadow-xl px-4 py-8 min-[950px]:p-12 w-full max-w-[500px] min-[950px]:max-w-none min-[950px]:w-[95%] min-[950px]:h-auto min-[950px]:min-h-[80%] relative z-10 border-[#CEFF1B] min-[950px]:border min-[950px]:border-[#CEFF1B] flex flex-col justify-center items-center text-center">
 
           {/* Circle Arrow Icon */}
           <div className="mb-6 min-[950px]:mb-12">

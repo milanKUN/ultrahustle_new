@@ -65,16 +65,16 @@ export default function ClientProfileSetup() {
             Let's create your profile
           </p>
 
-          <div className="flex gap-3 min-[950px]:gap-4 mb-8 min-[950px]:mb-12 w-full justify-center">
+          <div className="flex flex-wrap gap-2 min-[950px]:gap-4 mb-8 min-[950px]:mb-12 w-full justify-center">
             <button
               onClick={handleGetStarted}
-              className="px-6 py-3 min-[950px]:px-12 min-[950px]:py-4 rounded-lg min-[950px]:rounded-xl bg-[#CEFF1B] border border-black text-black font-semibold text-sm min-[950px]:text-xl hover:bg-white hover:text-gray-900 transition-all shadow-sm hover:shadow-[0_0_15px_#CEFF1B] flex-1 min-[950px]:flex-none whitespace-nowrap"
+              className="px-4 py-3 min-[950px]:px-12 min-[950px]:py-4 rounded-lg min-[950px]:rounded-xl bg-[#CEFF1B] border border-black text-black font-semibold text-sm min-[950px]:text-xl hover:bg-white hover:text-gray-900 transition-all shadow-sm hover:shadow-[0_0_15px_#CEFF1B] flex-1 min-[950px]:flex-none whitespace-nowrap"
             >
               Get Started
             </button>
             <button
               onClick={handleSkip}
-              className="px-6 py-3 min-[950px]:px-12 min-[950px]:py-4 rounded-lg min-[950px]:rounded-xl bg-[#CEFF1B] border border-black text-black font-semibold text-sm min-[950px]:text-xl hover:bg-white hover:text-gray-900 transition-all shadow-sm hover:shadow-[0_0_15px_#CEFF1B] flex-1 min-[950px]:flex-none whitespace-nowrap"
+              className="px-4 py-3 min-[950px]:px-12 min-[950px]:py-4 rounded-lg min-[950px]:rounded-xl bg-[#CEFF1B] border border-black text-black font-semibold text-sm min-[950px]:text-xl hover:bg-white hover:text-gray-900 transition-all shadow-sm hover:shadow-[0_0_15px_#CEFF1B] flex-1 min-[950px]:flex-none whitespace-nowrap"
             >
               Skip for now
             </button>

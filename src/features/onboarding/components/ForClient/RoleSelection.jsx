@@ -130,8 +130,8 @@ export default function RoleSelection() {
                   key={index}
                   onClick={() => index < currentStep && navigate(stepPaths[index])}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep
-                      ? "bg-black w-4 h-4"
-                      : "bg-white cursor-pointer"
+                    ? "bg-black w-4 h-4"
+                    : "bg-white cursor-pointer"
                     }`}
                 />
               ) : null
@@ -205,12 +205,12 @@ export default function RoleSelection() {
           </p>
 
           {/* buttons row */}
-          <div className="mt-5 min-[701px]:mt-8 flex items-center justify-between gap-3 min-[701px]:gap-5">
+          <div className="mt-5 min-[701px]:mt-8 flex flex-wrap items-center justify-center gap-2 min-[701px]:gap-5">
             <button
               onClick={handleReset}
               className="
                 h-10 min-[701px]:h-12
-                px-5 min-[701px]:px-8
+                px-4 min-[701px]:px-8
                 rounded-lg border border-black/20
                 bg-white text-black/60
                 text-sm min-[701px]:text-base
@@ -223,7 +223,7 @@ export default function RoleSelection() {
               onClick={handleBack}
               className="
                 h-10 min-[701px]:h-12
-                px-6 min-[701px]:px-8
+                px-4 min-[701px]:px-8
                 rounded-lg border border-black/40
                 bg-white text-black
                 text-sm min-[701px]:text-base
@@ -272,15 +272,15 @@ export default function RoleSelection() {
             <div
               onClick={() => setSelectedRole("creator")}
               className={`flex-1 min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "creator"
-                  ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                  : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
                 }`}
             >
               <div className="mb-4">
                 <span
                   className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "creator"
-                      ? "border-black bg-[#C3FF00]/10"
-                      : "border-gray-400 bg-white"
+                    ? "border-black bg-[#C3FF00]/10"
+                    : "border-gray-400 bg-white"
                     }`}
                 >
                   Creator
@@ -301,15 +301,15 @@ export default function RoleSelection() {
             <div
               onClick={() => setSelectedRole("client")}
               className={`flex-1 min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${selectedRole === "client"
-                  ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                  : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
                 }`}
             >
               <div className="mb-4">
                 <span
                   className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${selectedRole === "client"
-                      ? "border-black bg-[#C3FF00]/10"
-                      : "border-gray-400 bg-white"
+                    ? "border-black bg-[#C3FF00]/10"
+                    : "border-gray-400 bg-white"
                     }`}
                 >
                   Client
@@ -349,8 +349,8 @@ export default function RoleSelection() {
                 onClick={handleContinue}
                 disabled={!selectedRole}
                 className={`px-10 py-3 rounded-lg font-medium text-lg transition-all ${selectedRole
-                    ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
-                    : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
+                  ? "bg-[#CEFF1B] border-2 border-black text-black hover:bg-[#b8e617]"
+                  : "bg-gray-200 border-2 border-gray-300 text-gray-400 cursor-not-allowed"
                   }`}
               >
                 Continue

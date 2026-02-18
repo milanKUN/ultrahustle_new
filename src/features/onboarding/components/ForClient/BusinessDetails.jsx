@@ -355,10 +355,10 @@ export default function BusinessDetails() {
             <span className="text-sm min-[950px]:text-xl text-gray-600 font-medium">This is a personal account</span>
           </div>
 
-          <div className="flex justify-between items-center w-full gap-4">
+          <div className="flex flex-wrap justify-center items-center w-full gap-2 min-[950px]:gap-4">
             <button
               onClick={handleReset}
-              className="px-4 py-2 min-[950px]:px-8 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg border-1 border-[#2B2B2B] text-gray-600 font-medium text-lg min-[950px]:text-lg hover:bg-gray-100 transition-all"
+              className="px-4 py-2 min-[950px]:px-8 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg border-1 border-[#2B2B2B] text-gray-600 font-medium text-sm min-[950px]:text-lg hover:bg-gray-100 transition-all"
             >
               Reset
             </button>
@@ -366,14 +366,14 @@ export default function BusinessDetails() {
             <div className="flex gap-2 min-[950px]:gap-4">
               <button
                 onClick={handleBack}
-                className="px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg border-1 border-[#2B2B2B] text-gray-700 font-medium text-lg min-[950px]:text-lg hover:bg-gray-100 transition-all"
+                className="px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg border-1 border-[#2B2B2B] text-gray-700 font-medium text-sm min-[950px]:text-lg hover:bg-gray-100 transition-all"
               >
                 Discard
               </button>
               <button
                 onClick={handleContinue}
                 disabled={!isFormValid()}
-                className={`px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg font-medium text-lg min-[950px]:text-lg transition-all whitespace-nowrap ${isFormValid()
+                className={`px-4 py-2 min-[950px]:px-10 min-[950px]:py-3 rounded-md min-[950px]:rounded-lg font-medium text-sm min-[950px]:text-lg transition-all whitespace-nowrap ${isFormValid()
                   ? 'bg-[#CEFF1B] border border-black text-black hover:bg-[#b8e617]'
                   : 'bg-[#CEFF1B]/50 border-1 border-[#2B2B2B] text-gray-400 cursor-not-allowed'
                   }`}

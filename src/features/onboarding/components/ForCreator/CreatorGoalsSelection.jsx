@@ -129,9 +129,8 @@ export default function CreatorGoalsSelection() {
                 <div
                   key={index}
                   onClick={() => index < currentStep && navigate(stepPaths[index])}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
+                    }`}
                 />
               ) : null
             )}
@@ -191,12 +190,12 @@ export default function CreatorGoalsSelection() {
             </div>
 
             {/* Buttons */}
-            <div className="mt-6 min-[701px]:mt-8 flex items-center justify-between gap-3 min-[701px]:gap-5">
+            <div className="mt-6 min-[701px]:mt-8 flex flex-wrap items-center justify-center gap-2 min-[701px]:gap-5">
               <button
                 onClick={handleReset}
                 className="
                   h-10 min-[701px]:h-12
-                  px-5 min-[701px]:px-8
+                  px-4 min-[701px]:px-8
                   rounded-lg border border-black/20
                   bg-white text-black/60
                   text-sm min-[701px]:text-base
@@ -209,7 +208,7 @@ export default function CreatorGoalsSelection() {
                 onClick={handleBack}
                 className="
                   h-10 min-[701px]:h-12
-                  px-6 min-[701px]:px-8
+                  px-4 min-[701px]:px-8
                   rounded-lg border border-black/40
                   bg-white text-black
                   text-sm min-[701px]:text-base
@@ -223,7 +222,7 @@ export default function CreatorGoalsSelection() {
                 disabled={!canContinue}
                 className={[
                   "rounded-lg font-medium border transition-all",
-                  "h-10 min-[701px]:h-12 px-6 min-[701px]:px-8 text-sm min-[701px]:text-base",
+                  "h-10 min-[701px]:h-12 px-4 min-[701px]:px-8 text-sm min-[701px]:text-base",
                   canContinue
                     ? "bg-[#CEFF1B] border-black text-black"
                     : "bg-[#DADADA] border-black/20 text-black/30",

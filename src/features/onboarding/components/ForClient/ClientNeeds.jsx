@@ -324,17 +324,17 @@ export default function ClientNeeds() {
             )}
 
             {/* bottom buttons */}
-            <div className="mt-6 flex items-center justify-between gap-3">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
               <button
                 onClick={handleReset}
-                className="h-10 px-5 rounded-lg border border-black/20 bg-white text-black/60 text-sm"
+                className="h-10 px-4 rounded-lg border border-black/20 bg-white text-black/60 text-sm"
               >
                 Reset
               </button>
 
               <button
                 onClick={handleBack}
-                className="h-10 px-6 rounded-lg border border-black/40 bg-white text-black text-sm"
+                className="h-10 px-4 rounded-lg border border-black/40 bg-white text-black text-sm"
               >
                 Back
               </button>
@@ -343,7 +343,7 @@ export default function ClientNeeds() {
                 onClick={handleContinue}
                 disabled={!isContinueEnabled}
                 className={[
-                  "h-10 px-6 rounded-lg text-sm font-medium border transition-all",
+                  "h-10 px-4 rounded-lg text-sm font-medium border transition-all",
                   isContinueEnabled
                     ? "bg-[#CEFF1B] border-black text-black"
                     : "bg-[#DADADA] border-black/20 text-black/30",
