@@ -230,7 +230,7 @@ export default function CreatorNeeds() {
                     value={primarySkill}
                     onChange={(e) => setPrimarySkill(e.target.value)}
                     placeholder="Skill/niche"
-                    className="w-full h-10 min-[701px]:h-12 rounded-xl border border-black/20 bg-transparent px-3 min-[701px]:px-4 text-sm min-[701px]:text-base text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
+                    className="w-full h-10 min-[701px]:h-12 rounded-xl border border-black/20 bg-white px-3 min-[701px]:px-4 text-sm min-[701px]:text-base text-black/70 focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
                   />
                 </div>
 
@@ -256,12 +256,7 @@ export default function CreatorNeeds() {
 
                     {isExperienceOpen && (
                       <ul className="onboarding-options-list">
-                        <li
-                          className="text-gray-400 cursor-not-allowed"
-                          style={{ pointerEvents: "none" }}
-                        >
-                          Select
-                        </li>
+                       
                         {experienceOptions.map((opt) => (
                           <li
                             key={opt.value}

@@ -37,10 +37,8 @@ export default function RoleSelection() {
         type="button"
         onClick={() => setSelectedRole(role)}
         className={[
-          // ✅ always 2 cards in one row (mobile/tablet)
           "flex-1 min-w-0 flex flex-col items-start text-left",
           "rounded-2xl transition-all border",
-          // ✅ padding grows on tablet
           "p-3 sm:p-4 min-[701px]:p-6",
           active
             ? "bg-[#CEFF1B] border-black shadow-md"
@@ -50,7 +48,6 @@ export default function RoleSelection() {
         <span
           className={[
             "inline-flex shrink-0 items-center rounded-md font-medium border",
-            // ✅ badge sizes grow on tablet
             "px-2 py-0.5 text-[10px] sm:px-3 sm:py-1 sm:text-xs min-[701px]:px-4 min-[701px]:py-1.5 min-[701px]:text-sm",
             active ? "border-black bg-[#FEFEFE]/66" : "border-black/70 bg-white",
           ].join(" ")}
@@ -133,7 +130,9 @@ export default function RoleSelection() {
                   key={index}
                   onClick={() => index < currentStep && navigate(stepPaths[index])}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentStep ? "bg-black w-4 h-4" : "bg-white cursor-pointer"
+                    index === currentStep
+                      ? "bg-black w-4 h-4"
+                      : "bg-white cursor-pointer"
                   }`}
                 />
               ) : null
@@ -153,7 +152,6 @@ export default function RoleSelection() {
           min-[701px]:rounded-t-[44px]
           min-[950px]:rounded-none
 
-          /* ✅ overlap tuned */
           -mt-10 max-[400px]:-mt-8
           min-[701px]:-mt-12
           min-[950px]:mt-0
@@ -167,7 +165,7 @@ export default function RoleSelection() {
           min-h-[60vh] min-[701px]:min-h-[62vh] min-[950px]:min-h-[100svh]
         "
       >
-        {/* Desktop glows (kept as-is) */}
+        {/* Desktop glows */}
         <div className="hidden min-[950px]:block absolute w-[500px] h-[500px] rounded-full pointer-events-none z-0" />
         <div className="hidden min-[950px]:block absolute w-[400px] h-[400px] rounded-full pointer-events-none z-0" />
         <div className="hidden min-[950px]:block absolute w-[350px] h-[350px] rounded-full pointer-events-none z-0" />
@@ -202,8 +200,9 @@ export default function RoleSelection() {
             />
           </div>
 
+          {/* Mobile/Tablet: center */}
           <p className="text-center text-black/60 text-sm min-[701px]:text-base mt-4 min-[701px]:mt-6">
-            You can switch or use both roles anytime
+            You can switch or use both roles anytime.
           </p>
 
           {/* buttons row */}
@@ -267,73 +266,76 @@ export default function RoleSelection() {
           </div>
         </div>
 
-        {/* ✅ DESKTOP (unchanged from your code) */}
-        <div className="hidden min-[950px]:flex flex-col min-[950px]:flex-row gap-6 justify-between items-stretch relative z-10 w-full px-4">
-          <div
-            onClick={() => setSelectedRole("creator")}
-            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-              selectedRole === "creator"
-                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
-            }`}
-          >
-            <div className="mb-4">
-              <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
-                  selectedRole === "creator"
-                    ? "border-black bg-[#C3FF00]/10"
-                    : "border-gray-400 bg-white"
-                }`}
-              >
-                Creator
-              </span>
+        {/* ✅ DESKTOP */}
+        <div className="hidden min-[950px]:block relative z-10 w-full max-w-[980px] px-4">
+          {/* cards row */}
+          <div className="flex gap-8 items-stretch">
+            <div
+              onClick={() => setSelectedRole("creator")}
+              className={`flex-1 min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
+                selectedRole === "creator"
+                  ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+                  : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              }`}
+            >
+              <div className="mb-4">
+                <span
+                  className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
+                    selectedRole === "creator"
+                      ? "border-black bg-[#C3FF00]/10"
+                      : "border-gray-400 bg-white"
+                  }`}
+                >
+                  Creator
+                </span>
+              </div>
+              <ul className="text-gray-700 text-base space-y-3">
+                <li className="flex items-start gap-2">
+                  <span className="text-gray-500">•</span>
+                  <span>I want to offer services and sell digital products</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-gray-500">•</span>
+                  <span>I want to run webinars and courses</span>
+                </li>
+              </ul>
             </div>
-            <ul className="text-gray-700 text-base space-y-3">
-              <li className="flex items-start gap-2">
-                <span className="text-gray-500">•</span>
-                <span>I want to offer services and sell digital products</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-gray-500">•</span>
-                <span>I want to run webinars and courses</span>
-              </li>
-            </ul>
+
+            <div
+              onClick={() => setSelectedRole("client")}
+              className={`flex-1 min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
+                selectedRole === "client"
+                  ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
+                  : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
+              }`}
+            >
+              <div className="mb-4">
+                <span
+                  className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
+                    selectedRole === "client"
+                      ? "border-black bg-[#C3FF00]/10"
+                      : "border-gray-400 bg-white"
+                  }`}
+                >
+                  Client
+                </span>
+              </div>
+              <ul className="text-gray-700 text-base space-y-3">
+                <li className="flex items-start gap-2">
+                  <span className="text-gray-500">•</span>
+                  <span>I want to hire creators and purchase products/courses</span>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div
-            onClick={() => setSelectedRole("client")}
-            className={`flex-1 max-w-[450px] min-h-[160px] p-[clamp(16px,3vh,32px)] rounded-2xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
-              selectedRole === "client"
-                ? "bg-[#CEFF1B] border-2 border-black shadow-lg"
-                : "bg-white/40 border-1 border-[#CEFF1B] hover:bg-white/20"
-            }`}
-          >
-            <div className="mb-4">
-              <span
-                className={`inline-block px-5 py-2 rounded-lg border-2 font-semibold text-lg ${
-                  selectedRole === "client"
-                    ? "border-black bg-[#C3FF00]/10"
-                    : "border-gray-400 bg-white"
-                }`}
-              >
-                Client
-              </span>
-            </div>
-            <ul className="text-gray-700 text-base space-y-3">
-              <li className="flex items-start gap-2">
-                <span className="text-gray-500">•</span>
-                <span>I want to hire creators and purchase products/courses</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="hidden min-[950px]:block mt-4 min-[950px]:mt-6 relative z-10 w-full max-w-[750px]">
-          <p className="text-left text-gray-600 text-lg mb-4 min-[950px]:mb-6">
+          {/* ✅ THIS is the line you wanted: LEFT aligned and ALSO placed to the LEFT side (not centered block) */}
+          <p className="mt-6 text-left text-gray-600 text-lg">
             You can switch or use both roles anytime.
           </p>
 
-          <div className="flex justify-between items-center">
+          {/* footer buttons */}
+          <div className="mt-6 flex justify-between items-center">
             <button
               onClick={handleReset}
               className="px-8 py-3 rounded-lg border-2 border-black text-gray-600 font-medium text-lg hover:bg-gray-100 transition-all"
