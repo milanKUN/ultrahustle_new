@@ -5,12 +5,13 @@ export default function Navbar() {
   return (
     <nav
       className="
-        fixed top-0 left-0 right-0 z-50
-        border-b border-[#CEFF1B]
-        box-shadow-[0_1px_13.6px_0_#CEFF1B]
-        backdrop-blur-xl
-        bg-gradient-to-r from-[#D9D9D9] via-[#CFCFCF] to-[#C6C6C6]
-      "
+  fixed top-0 left-0 right-0 z-50
+  border-b border-[#CEFF1B]
+  shadow-[0_2px_12px_3px_rgba(206,255,27,0.35)]
+  backdrop-blur-xl
+  bg-gradient-to-r from-[#D9D9D9] via-[#CFCFCF] to-[#C6C6C6]
+"
+
     >
       {/* MAIN BAR */}
       <div
