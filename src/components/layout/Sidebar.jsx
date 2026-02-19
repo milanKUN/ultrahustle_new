@@ -17,68 +17,85 @@ import {
   Package,
   FilePlus,
   ShoppingBag,
+  ShoppingCart,
 } from "lucide-react";
 
 /* ================= DATA ================= */
 
 const CREATOR_ITEMS = [
   { label: "Dashboard", icon: LayoutGrid },
+
   {
     label: "Marketplace",
     icon: Store,
     children: [
       { label: "View Products", icon: Package, highlight: true },
-      { label: "Add New Listing", icon: FilePlus },
-      { label: "Orders", icon: ShoppingBag },
+      { label: "Add New Listings", icon: FilePlus },
     ],
   },
+
   {
     label: "My Team",
     icon: Users,
     children: [
       { label: "Create Team", icon: Maximize2, highlight: true },
-      { label: "Add Members", icon: Users },
-      { label: "Manage Teams", icon: Users },
+      { label: "Manage Team", icon: Users },
     ],
   },
+
   {
     label: "My Projects",
     icon: Folder,
-    children: [{ label: "Active Projects", icon: Folder }],
+    children: [
+      { label: "Active Projects", icon: Folder },
+      { label: "My Orders", icon: ShoppingBag },
+    ],
   },
-  { label: "Messages", icon: MessageCircle },
+
+  { label: "Message", icon: MessageCircle },
+
   {
     label: "Growth Tools",
     icon: TrendingUp,
-    children: [
-      { label: "Analytics & Earnings", icon: TrendingUp },
-      { label: "Boost Listings", icon: ShoppingBag },
-    ],
+    children: [{ label: "Analytics & Earning", icon: TrendingUp }],
   },
+
   {
-    label: "Setting",
+    label: "Settings",
     icon: Settings,
     children: [
-      { label: "Profile and Setting", icon: Users },
+      { label: "Profile & Settings", icon: Users },
       { label: "Payout / Wallet", icon: ShoppingBag },
-      { label: "Contracts", icon: FilePlus },
     ],
   },
 ];
 
 const CLIENT_ITEMS = [
   { label: "Dashboard", icon: LayoutGrid },
-  {
-    label: "Marketplace",
-    icon: Store,
-    children: [{ label: "Browse" }, { label: "My Orders" }],
-  },
+
+  { label: "Marketplace", icon: Store },
+
+  { label: "My Cart", icon: ShoppingCart },
+
   {
     label: "My Projects",
     icon: Folder,
-    children: [{ label: "Active Projects" }],
+    children: [
+      { label: "Active Projects", icon: Folder },
+      { label: "My Orders", icon: ShoppingBag },
+    ],
   },
-  { label: "Messages", icon: MessageCircle },
+
+  { label: "Message", icon: MessageCircle },
+
+  {
+    label: "Settings",
+    icon: Settings,
+    children: [
+      { label: "Profile & Settings", icon: Users },
+      { label: "Payout / Wallet", icon: ShoppingBag },
+    ],
+  },
 ];
 
 /* ================= COMPONENT ================= */
@@ -98,32 +115,54 @@ export default function Sidebar({
   const [openMenu, setOpenMenu] = useState(null);
   const [userType, setUserType] = useState("creator");
 
-  // ✅ ONLY for Dashboard & Messages neon
+  // ✅ ONLY for Dashboard & Message neon
   const [activeMain, setActiveMain] = useState("Dashboard");
 
   useEffect(() => {
     const path = window.location.pathname;
 
-    // Default values
     let detectedMain = "Dashboard";
     let detectedMenu = null;
 
+    // ✅ SINGLE PAGES
     if (path.includes("/dashboard")) {
       detectedMain = "Dashboard";
       detectedMenu = null;
-    } else if (path.includes("/setting")) {
-      detectedMain = "Setting";
-      detectedMenu = "Setting";
-    } else if (path.includes("/marketplace") || path.includes("/listing") || path.includes("/contracts") || path.includes("/milestones")) {
+    } else if (path.includes("/messages")) {
+      detectedMain = "Message";
+      detectedMenu = null;
+    }
+
+    // ✅ SETTINGS (dropdown)
+    else if (path.includes("/setting") || path.includes("/settings")) {
+      detectedMain = "Settings";
+      detectedMenu = "Settings";
+    }
+
+    // ✅ MARKETPLACE (dropdown)
+    else if (
+      path.includes("/marketplace") ||
+      path.includes("/listing") ||
+      path.includes("/contracts") ||
+      path.includes("/solo-contracts")
+    ) {
       detectedMain = "Marketplace";
       detectedMenu = "Marketplace";
-    } else if (path.includes("/team")) {
+    }
+
+    // ✅ TEAM (dropdown)
+    else if (path.includes("/team") || path.includes("/create-team")) {
       detectedMain = "My Team";
       detectedMenu = "My Team";
-    } else if (path.includes("/messages")) {
-      detectedMain = "Messages";
-      detectedMenu = null;
-    } else if (path.includes("/project")) {
+    }
+
+    // ✅ PROJECTS (dropdown)  <-- IMPORTANT FIX: milestones/orders comes here
+    else if (
+      path.includes("/project") ||
+      path.includes("/milestones") ||
+      path.includes("/orders") ||
+      path.includes("/my-orders")
+    ) {
       detectedMain = "My Projects";
       detectedMenu = "My Projects";
     }
@@ -131,14 +170,15 @@ export default function Sidebar({
     setActiveMain(detectedMain);
     setOpenMenu(detectedMenu);
 
-    if (path.includes("/setting") || forceClient) {
-      setUserType("creator");
-      setShowSettings(true);
-      // setExpanded(true); // Keep sidebar collapsed initially
+    // ✅ force client
+    if (forceClient) {
+      setUserType("client");
+      setShowSettings(false);
     }
-  }, [forceClient, setExpanded, setShowSettings]);
+  }, [forceClient, setShowSettings]);
 
   const SIDEBAR_ITEMS = userType === "creator" ? CREATOR_ITEMS : CLIENT_ITEMS;
+
   const [isMobile, setIsMobile] = useState(false);
   const [activeBottomTab, setActiveBottomTab] = useState("Marketplace");
 
@@ -156,16 +196,16 @@ export default function Sidebar({
     }
   }, [isMobile, setExpanded, setShowSettings]);
 
-  // ✅ userType change handle
   useEffect(() => {
     if (userType === "client") {
       setActiveMain("Dashboard");
+      setOpenMenu(null);
     }
   }, [userType]);
 
   return (
     <>
-      <div className="flex ">
+      <div className="flex">
         {/* ================= ICON RAIL ================= */}
         {!isMobile && !expanded && (
           <aside
@@ -182,7 +222,11 @@ export default function Sidebar({
 
             <div className="flex flex-col space-y-6">
               {SIDEBAR_ITEMS.map((item) => (
-                <item.icon key={item.label} size={18} style={{ color: "var(--text)" }} />
+                <item.icon
+                  key={item.label}
+                  size={18}
+                  style={{ color: "var(--text)" }}
+                />
               ))}
             </div>
           </aside>
@@ -201,9 +245,10 @@ export default function Sidebar({
           <aside
             className={`
               relative
-              ${isMobile
-                ? "fixed top-0 left-0 h-screen w-[289px] z-[9999]"
-                : "relative w-[289px] min-w-[289px] min-h-[calc(100vh-85px)]"
+              ${
+                isMobile
+                  ? "fixed top-0 left-0 h-screen w-[289px] z-[9999]"
+                  : "relative w-[289px] min-w-[289px] min-h-[calc(100vh-85px)]"
               }
               px-6 py-6 flex flex-col
             `}
@@ -233,7 +278,7 @@ export default function Sidebar({
 
               <button
                 onClick={() => setExpanded(false)}
-                className="p-2 rounded-xl bg-[#CEFF1B] text-[#CEFF1B] hover:text-[#bddd18]  transition"
+                className="p-2 rounded-xl bg-[#CEFF1B] text-[#CEFF1B] hover:text-[#bddd18] transition"
                 title="Collapse Sidebar"
               >
                 <ChevronLeft size={20} />
@@ -244,35 +289,60 @@ export default function Sidebar({
             <nav className="space-y-4">
               {SIDEBAR_ITEMS.map((item) => {
                 const isDashboardOrMsg =
-                  item.label === "Dashboard" || item.label === "Messages";
+                  item.label === "Dashboard" || item.label === "Message";
 
-                // ✅ neon only for Dashboard & Messages (when selected)
                 const isNeon = isDashboardOrMsg && activeMain === item.label;
 
                 return (
                   <div key={item.label}>
                     <button
                       onClick={() => {
-                        if (isDashboardOrMsg) {
-                          setActiveMain(item.label);
-                          if (item.label === "Dashboard") navigate("/dashboard");
+                        // ✅ Dashboard
+                        if (item.label === "Dashboard") {
+                          setActiveMain("Dashboard");
+                          setOpenMenu(null);
+                          navigate("/dashboard");
+                          return;
                         }
-                        // keep old behavior
+
+                        // ✅ Message
+                        if (item.label === "Message") {
+                          setActiveMain("Message");
+                          setOpenMenu(null);
+                          navigate("/messages");
+                          return;
+                        }
+
+                        // ✅ Client single pages
+                        if (userType === "client" && !item.children) {
+                          setActiveMain(item.label);
+                          setOpenMenu(null);
+
+                          if (item.label === "Marketplace")
+                            navigate("/marketplace");
+                          else if (item.label === "My Cart") navigate("/cart");
+                          return;
+                        }
+
+                        // ✅ Dropdowns
+                        setActiveMain(item.label);
                         setOpenMenu(openMenu === item.label ? null : item.label);
                       }}
                       className="w-full flex items-center font-medium px-3 py-2 rounded-md transition"
                       style={{
-                        // ✅ Neon highlights for Dashboard & Messages (single pages) OR active dropdown items
                         backgroundColor: isNeon
                           ? "#CEFF1B"
-                          : // ✅ Dropdown parent buttons stay grey when open
-                          (theme === "dark" && openMenu === item.label)
-                            ? "#3A3A3A"
-                            : (theme === "light" && openMenu === item.label)
-                              ? "#E8E8E8"
-                              : "transparent",
+                          : theme === "dark" && openMenu === item.label
+                          ? "#3A3A3A"
+                          : theme === "light" && openMenu === item.label
+                          ? "#E8E8E8"
+                          : "transparent",
 
-                        color: isNeon ? "#000000" : theme === "dark" ? "#FFFFFF" : "var(--text)",
+                        color: isNeon
+                          ? "#000000"
+                          : theme === "dark"
+                          ? "#FFFFFF"
+                          : "var(--text)",
                       }}
                     >
                       <item.icon size={18} />
@@ -281,8 +351,9 @@ export default function Sidebar({
                       {item.children && (
                         <ChevronDown
                           size={14}
-                          className={`ml-auto transition-transform ${openMenu === item.label ? "rotate-180" : ""
-                            }`}
+                          className={`ml-auto transition-transform ${
+                            openMenu === item.label ? "rotate-180" : ""
+                          }`}
                         />
                       )}
                     </button>
@@ -291,20 +362,46 @@ export default function Sidebar({
                       <div className="ml-8 mt-2 space-y-1">
                         {item.children.map((sub) => {
                           const Icon = sub.icon;
+
                           return (
                             <div
                               key={sub.label}
                               className="flex items-center gap-3 text-sm px-3 py-2 rounded-md cursor-pointer transition"
                               onClick={() => {
-                                // Navigate based on sub-label
-                                if (sub.label === "Profile and Setting") navigate("/setting");
-                                else if (sub.label === "Create Team") navigate("/create-team");
-                                else if (sub.label === "View Products") navigate("/solo-contracts-listing");
-                                else if (sub.label === "Contracts") navigate("/solo-contracts-listing");
-                                else if (sub.label === "Active Projects") navigate("/milestones");
+                                const label = sub.label;
+
+                                // ✅ SETTINGS
+                                if (label === "Profile & Settings")
+                                  navigate("/setting");
+                                else if (label === "Payout / Wallet")
+                                  navigate("/wallet");
+
+                                // ✅ TEAM
+                                else if (label === "Create Team")
+                                  navigate("/create-team");
+                                else if (label === "Manage Team")
+                                  navigate("/team");
+
+                                // ✅ MARKETPLACE
+                                else if (label === "View Products")
+                                  navigate("/solo-contracts-listing");
+                                else if (label === "Add New Listings")
+                                  navigate("/add-listing");
+
+                                // ✅ PROJECTS
+                                else if (label === "Active Projects")
+                                  navigate("/milestones");
+                                else if (label === "My Orders")
+                                  navigate("/orders");
+
+                                // ✅ GROWTH
+                                else if (label === "Analytics & Earning")
+                                  navigate("/analytics");
                               }}
                               style={{
-                                backgroundColor: sub.highlight ? "#CEFF1B" : "transparent",
+                                backgroundColor: sub.highlight
+                                  ? "#CEFF1B"
+                                  : "transparent",
                                 color: sub.highlight ? "#000" : "var(--text)",
                               }}
                             >
@@ -341,7 +438,11 @@ export default function Sidebar({
                     flex items-center justify-center
                     shadow-md shadow-black/30
                     transition-all duration-300 ease-in-out
-                    ${theme === "dark" ? "left-[96px] bg-[#24272C]" : "left-[6px] bg-[#24272C]"}
+                    ${
+                      theme === "dark"
+                        ? "left-[96px] bg-[#24272C]"
+                        : "left-[6px] bg-[#24272C]"
+                    }
                   `}
                 >
                   {theme === "dark" ? (
@@ -412,8 +513,8 @@ export default function Sidebar({
                         item === "delete"
                           ? "#ef4444"
                           : isActive
-                            ? "#000000"
-                            : "var(--text)",
+                          ? "#000000"
+                          : "var(--text)",
                     }}
                   >
                     {item.replace(/\b\w/g, (c) => c.toUpperCase())}
