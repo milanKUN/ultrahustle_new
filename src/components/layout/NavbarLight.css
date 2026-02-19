@@ -20,7 +20,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 40px;
-  background-color: rgba(234, 234, 234, 0.95);
+  background-color: rgba(234, 234, 234, 0.95)!;
   border-bottom: 0.5px solid #CEFF1B;
   box-shadow: 0 1px 13.6px 0 #CEFF1B;
   backdrop-filter: blur(27px);
@@ -138,7 +138,7 @@
 .inreview-header .search-input {
   width: 100%;
   padding: 12px 45px 12px 20px;
-  border: 1.569px solid rgba(193, 193, 193, 0.24);
+  border: 1.569px solid #CEFF1B;
   border-radius: 36.138px;
   font-size: 16px;
   background: rgba(193, 193, 193, 0.24);
@@ -1391,4 +1391,20 @@ USER DROPDOWN – DARK MODE FIX
 /* Inner profile icon dark (contrast ke liye) */
 .inreview-header.dark .user-avatar-btn.active svg path:last-child {
   stroke: #2b2b2b;
+}
+/* ===============================
+   HEADER BG: LIGHT = #D2D2D2
+   DARK = no issues
+   (place at END)
+================================ */
+
+/* Light mode header background */
+.inreview-header {
+  background-color: #D2D2D2 !important;
+}
+
+/* Dark mode header background (force) */
+.inreview-header.dark {
+  background-color: #0f1115 !important;
+  border-bottom: 1px solid #1f2937 !important;
 }
