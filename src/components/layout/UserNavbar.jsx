@@ -11,7 +11,7 @@ const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const [activeSearchTab, setActiveSearchTab] = useState("Service");
+  const [activeSearchTab, setActiveSearchTab] = useState("");
   const [activeViewAll, setActiveViewAll] = useState(null);
 
   // ✅ (optional) input value
@@ -378,8 +378,8 @@ const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
           <div className="header-search">
             <input
               type="text"
-              className="search-input"
-              placeholder={`Search in ${activeSearchTab}`}
+              className="search-input font-roboto "
+              placeholder={`Search ${activeSearchTab}`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={toggleSearch}

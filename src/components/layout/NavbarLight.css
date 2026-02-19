@@ -98,7 +98,19 @@
 }
 
 .nav-item:hover .nav-pill:not(.active) {
-  background: rgba(206, 255, 27, 0.3);
+  background: #CEFF1B;
+}
+
+/* ✅ Active nav item — neon text + pill (light & dark) */
+.nav-item .nav-pill.active+.nav-text,
+.nav-item:has(.nav-pill.active) .nav-text {
+  color: #CEFF1B !important;
+  font-weight: 600;
+}
+
+.nav-pill.active {
+  background: #CEFF1B;
+  box-shadow: 0 4px 14px rgba(206, 255, 27, 0.6), 0 0 20px rgba(206, 255, 27, 0.3);
 }
 
 
@@ -120,6 +132,7 @@
   display: flex;
   align-items: center;
   width: 398px;
+  min-width: 0;
 }
 
 .inreview-header .search-input {
@@ -136,7 +149,7 @@
 .inreview-header .search-input::placeholder {
   text-align: left;
   color: #606060;
-  font-family: Inter;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 14.117px;
   font-style: normal;
   font-weight: 400;
@@ -634,7 +647,7 @@
   font-size: 24px;
   height: 60px !important;
   background: transparent;
-  color: rgba(43, 43, 43, 0.50);
+  color: rgba(43, 43, 43, 0.50) !important; ;
   text-decoration: none;
   border-top: 1px solid #CEFF1B;
   transition: all 0.2s;
@@ -815,6 +828,40 @@
   cursor: pointer;
 }
 
+/* ========== NARROW DESKTOP FIX: Nest Hub / iPad Pro (950px - 1200px) ========== */
+@media (min-width: 951px) and (max-width: 1200px) {
+  .inreview-header {
+    padding: 12px 20px;
+    gap: 10px;
+  }
+
+  .header-left {
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .nav-menu {
+    gap: 16px;
+  }
+
+  .search-wrapper {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .header-search {
+    width: 100%;
+    max-width: 260px;
+    min-width: 0;
+  }
+
+  .header-right {
+    gap: 12px;
+    flex-shrink: 0;
+  }
+}
+  
+
 /* ========== MOBILE HEADER ORDER FIX ========== */
 @media (max-width: 950px) {
   .nav-menu {
@@ -892,32 +939,85 @@
     gap: 15px;
   }
 
-  /* Responsive visibility for smaller screens */
-  @media (max-width: 600px) {
+  /* ===== ≤500px: Pure mobile — hamburger + icons only ===== */
+  /* =========================
+   ≤500px FINAL CENTER FIX
+========================= */
+  @media (max-width: 500px) {
 
-    .messages-wrapper,
-    .user-avatar-wrapper {
-      display: none;
-    }
 
-    .logo {
-      display: none;
-      /* Hide logo on very small screens to fit search */
-    }
+  .notifications-dropdown::before {
+display: none !important;
   }
+    .inreview-header {
+      position: fixed;
+      height: 68px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-  @media (max-width: 450px) {
+    .header-left {
+      position: static !important;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    /* TRUE CENTER LOGO — SMALLER */
+    .logo {
+      position: fixed !important;
+      left: 50%;
+      top: 20px;
+      transform: translateX(-50%);
+      height: 20px;
+      /* 👈 changed from 26px */
+      width: auto;
+      z-index: 1001;
+      pointer-events: none;
+    }
+
     .search-wrapper {
-      display: none;
+      display: none !important;
     }
 
-    .logo {
-      display: block;
-      height: 24px;
+    .header-right {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
+
+    .notifications-wrapper,
+    .user-avatar-wrapper {
+      display: flex !important;
+    }
+
+    .messages-wrapper {
+      display: none !important;
+    }
+
+    .blur-overlay {
+      top: 68px !important;
+    }
+
+    .notifications-dropdown,
+    .search-dropdown {
+      top: 68px !important;
+    }
+
   }
-}
 
+
+}
+@media (min-width: 501px) and (max-width: 950px) {
+  .notifications-dropdown::before {
+    display: block !important;
+  }
+  
+}
 /* ========== MOBILE DROPDOWN FIX ========== */
 @media (max-width: 950px) {
 
@@ -1224,11 +1324,18 @@ USER DROPDOWN – DARK MODE FIX
   transition: all 0.25s ease;
 }
 
-/* HOVER = neon preview */
+/* HOVER = neon glow */
 .inreview-header.dark .view-all-link:hover,
-.inreview-header.dark .search-view-all:hover,
 .inreview-header.dark .notifications-view-all:hover {
   color: #ffffff;
+}
+
+/* ✅ Search View All — neon hover in dark mode */
+.inreview-header.dark .search-view-all:hover {
+  color: #CEFF1B !important;
+  /* text-shadow: 0 0 10px rgba(206, 255, 27, 0.8), 0 0 20px rgba(206, 255, 27, 0.4); */
+  background: transparent !important;
+  transition: all 0.25s ease;
 }
 
 /* ACTIVE (CLICKED) = neon locked */
