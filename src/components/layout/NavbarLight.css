@@ -375,6 +375,13 @@
     0 0 24px rgba(206, 255, 27, 0.35) !important;
 }
 
+.inreview-header.dark .messages-dropdown .view-all-link,
+.inreview-header.dark .messages-dropdown .view-all-link:link,
+.inreview-header.dark .messages-dropdown .view-all-link:visited {
+  color: #ffffff !important;
+}
+
+
 /* ✅ hover pe text black */
 .search-result-item:hover .search-result-title,
 .search-result-item:hover .search-result-description {
@@ -831,8 +838,21 @@
 /* ========== NARROW DESKTOP FIX: Nest Hub / iPad Pro (950px - 1200px) ========== */
 @media (min-width: 951px) and (max-width: 1200px) {
   .inreview-header {
-    padding: 12px 20px;
+    padding: 12px 1px;
     gap: 10px;
+  }
+   .search-dropdown {
+    position: fixed !important;
+    top: 84px !important;          /* header ke neeche */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+
+    width: calc(100vw - 40px) !important; /* 20px padding L/R */
+    max-width: 740px !important;          /* tweak if needed */
+    border-radius: 12px !important;
+
+    z-index: 9999 !important;
   }
 
   .header-left {
@@ -860,7 +880,6 @@
     flex-shrink: 0;
   }
 }
-  
 
 /* ========== MOBILE HEADER ORDER FIX ========== */
 @media (max-width: 950px) {
@@ -1012,12 +1031,9 @@ display: none !important;
 
 
 }
-@media (min-width: 501px) and (max-width: 950px) {
-  .notifications-dropdown::before {
-    display: block !important;
-  }
-  
-}
+
+
+
 /* ========== MOBILE DROPDOWN FIX ========== */
 @media (max-width: 950px) {
 
@@ -1063,6 +1079,24 @@ display: none !important;
   }
 }
 
+/* ✅ ONLY 501px — 950px: Notifications dropdown 8% left */
+@media (min-width: 501px) and (max-width: 950px) {
+  .notifications-dropdown {
+    left: 58% !important;   /* 50% - 8% */
+    transform: translateX(-50%) !important;
+  }
+
+  .notifications-dropdown::before {
+    display: block !important;
+  }
+}
+
+/* ✅ ONLY <=500px: Hide arrow (triangle) */
+@media (max-width: 500px) {
+  .notifications-dropdown::before {
+    display: none !important;
+  }
+}
 
 
 /* ================= DARK MODE ================= */
