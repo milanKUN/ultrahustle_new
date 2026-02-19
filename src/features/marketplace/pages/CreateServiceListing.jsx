@@ -283,11 +283,10 @@ export default function CreateServiceListing({ theme, setTheme }) {
         <Sidebar
           expanded={sidebarOpen}
           setExpanded={setSidebarOpen}
-          showSettings={showSettings}
-          setShowSettings={setShowSettings}
+          showSettings={false}
+          setShowSettings={() => { }}
           activeSetting={activeSetting}
           onSectionChange={handleSectionChange}
-          forceClient={true}
           theme={theme}
           setTheme={setTheme}
         />

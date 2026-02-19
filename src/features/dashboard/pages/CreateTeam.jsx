@@ -228,7 +228,6 @@ const CreateTeam = ({ theme, setTheme }) => {
           setShowSettings={setShowSettings}
           activeSetting={activeSetting}
           onSectionChange={handleSectionChange}
-          forceClient={true}
           theme={theme}
           setTheme={setTheme}
         />

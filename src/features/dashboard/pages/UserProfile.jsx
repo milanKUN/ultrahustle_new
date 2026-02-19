@@ -333,7 +333,6 @@ const UserProfile = (props) => {
           setShowSettings={() => { }}
           activeSetting={activeSetting}
           onSectionChange={handleSectionChange}
-          forceClient={true}
           theme={theme}
           setTheme={setTheme}
         />

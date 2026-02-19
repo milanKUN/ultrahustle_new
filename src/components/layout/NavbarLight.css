@@ -20,7 +20,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 40px;
-  background-color: rgba(234, 234, 234, 0.95)!;
+  background-color: rgba(234, 234, 234, 0.95) !;
   border-bottom: 0.5px solid #CEFF1B;
   box-shadow: 0 1px 13.6px 0 #CEFF1B;
   backdrop-filter: blur(27px);
@@ -496,7 +496,7 @@
   border-radius: 8.727px;
   box-shadow: 0 1px 4px 0 #CEFF1B;
   backdrop-filter: blur(27px);
-  padding: 16px 0;
+  padding: 16px 0 6px 0 !important;
   z-index: 1000;
 }
 
@@ -527,9 +527,20 @@
   color: var(--ir-text-dark);
 }
 
+/* LIGHT THEME LOGOUT FIX */
+.inreview-header.light .user-dropdown .dropdown-item.logout,
+.inreview-header:not(.dark) .user-dropdown .dropdown-item.logout,
 .dropdown-item.logout {
-  color: #F00;
-  font-weight: 400;
+
+  color: #ef4444 !important;
+  font-weight: 500 !important;
+}
+
+.inreview-header.light .user-dropdown .dropdown-item.logout:hover,
+.inreview-header:not(.dark) .user-dropdown .dropdown-item.logout:hover,
+.dropdown-item.logout:hover {
+  background: rgba(239, 68, 68, 0.12) !important;
+  color: #ef4444 !important;
 }
 
 /* Messages Dropdown Styles */
@@ -652,7 +663,8 @@
   font-size: 24px;
   height: 62px !important;
   background: transparent;
-  color: rgba(43, 43, 43, 0.50) !important; ;
+  color: rgba(43, 43, 43, 0.50) !important;
+  ;
   text-decoration: none;
   border-top: 1px solid #CEFF1B;
   transition: all 0.2s;
@@ -803,7 +815,7 @@
   padding: 12px 15px;
   text-align: center;
   font-size: 24px;
-  height: 56px!important;
+  height: 56px !important;
   background: transparent;
   color: rgba(43, 43, 43, 0.50);
   text-decoration: none;
@@ -950,9 +962,10 @@
   @media (max-width: 500px) {
 
 
-  .notifications-dropdown::before {
-display: none !important;
-  }
+    .notifications-dropdown::before {
+      display: none !important;
+    }
+
     .inreview-header {
       position: fixed;
       height: 68px;
@@ -1067,7 +1080,8 @@ display: none !important;
 /* ✅ ONLY 501px — 950px: Notifications dropdown 8% left */
 @media (min-width: 501px) and (max-width: 950px) {
   .notifications-dropdown {
-    left: 58% !important;   /* 50% - 8% */
+    left: 58% !important;
+    /* 50% - 8% */
     transform: translateX(-50%) !important;
   }
 
@@ -1378,8 +1392,8 @@ USER DROPDOWN – DARK MODE FIX
   /* 👈 full green */
   border: none;
   /* no border */
-  box-shadow: none;
-  /* no glow / ring */
+  box-shadow: 0 0 20px 8px rgba(206, 255, 27, 0.5);
+  /* 👈 Add glow similar to light mode */
 }
 
 /* Circle fill bhi green */
@@ -1392,6 +1406,7 @@ USER DROPDOWN – DARK MODE FIX
 .inreview-header.dark .user-avatar-btn.active svg path:last-child {
   stroke: #2b2b2b;
 }
+
 /* ===============================
    HEADER BG: LIGHT = #D2D2D2
    DARK = no issues

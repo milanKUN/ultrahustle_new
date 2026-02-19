@@ -20,7 +20,7 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
   const [activeStatus, setActiveStatus] = useState("All");
 
   // ✅ VIEW ONLY STATE
-const isViewOnly = true;
+  const isViewOnly = true;
 
   // dropdown
   const [projectOpen, setProjectOpen] = useState(false);
@@ -200,11 +200,10 @@ const isViewOnly = true;
         <Sidebar
           expanded={sidebarOpen}
           setExpanded={setSidebarOpen}
-          showSettings={showSettings}
-          setShowSettings={setShowSettings}
+          showSettings={false}
+          setShowSettings={() => { }}
           activeSetting={activeSetting}
-          onSectionChange={(id) => setActiveSetting(id)}
-          forceClient={true}
+          onSectionChange={handleSectionChange}
           theme={theme}
           setTheme={setTheme}
         />

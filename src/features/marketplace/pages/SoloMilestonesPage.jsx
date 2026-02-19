@@ -20,7 +20,7 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
   const [activeStatus, setActiveStatus] = useState("All");
 
   // ✅ VIEW ONLY STATE
-const isViewOnly = true;
+  const isViewOnly = true;
 
   // dropdown
   const [projectOpen, setProjectOpen] = useState(false);
@@ -204,7 +204,6 @@ const isViewOnly = true;
           setShowSettings={setShowSettings}
           activeSetting={activeSetting}
           onSectionChange={(id) => setActiveSetting(id)}
-          forceClient={true}
           theme={theme}
           setTheme={setTheme}
         />
@@ -567,46 +566,46 @@ const isViewOnly = true;
                           + Add Milestone
                         </button>
                       </div>
-                          {/* Team Payout Configuration */}
-                    <div className="ms-ct-card ms-ct-payout-config">
-                      <div className="ms-ct-cardHead">Team Payout Configuration</div>
+                      {/* Team Payout Configuration */}
+                      <div className="ms-ct-card ms-ct-payout-config">
+                        <div className="ms-ct-cardHead">Team Payout Configuration</div>
 
-                      <div className="ms-ct-grid3">
-                        <div className="ms-ct-field">
-                          <input className="ms-ct-input" placeholder="Member A" />
+                        <div className="ms-ct-grid3">
+                          <div className="ms-ct-field">
+                            <input className="ms-ct-input" placeholder="Member A" />
+                          </div>
+                          <div className="ms-ct-field">
+                            <input className="ms-ct-input" placeholder="Design" />
+                          </div>
+                          <div className="ms-ct-field">
+                            <input className="ms-ct-input" placeholder="80%" />
+                          </div>
                         </div>
-                        <div className="ms-ct-field">
-                          <input className="ms-ct-input" placeholder="Design" />
+
+                        <div className="ms-ct-grid3">
+                          <div className="ms-ct-field">
+                            <input className="ms-ct-input" placeholder="Member B" />
+                          </div>
+                          <div className="ms-ct-field">
+                            <input className="ms-ct-input" placeholder="Dev" />
+                          </div>
+                          <div className="ms-ct-field">
+                            <input className="ms-ct-input" placeholder="60%" />
+                          </div>
                         </div>
-                        <div className="ms-ct-field">
-                          <input className="ms-ct-input" placeholder="80%" />
+
+                        <div className="ms-ct-grid3">
+                          <div className="ms-ct-field">
+                            <input className="ms-ct-input" placeholder="Member C" />
+                          </div>
+                          <div className="ms-ct-field">
+                            <input className="ms-ct-input" placeholder="QA" />
+                          </div>
+                          <div className="ms-ct-field">
+                            <input className="ms-ct-input" placeholder="50%" />
+                          </div>
                         </div>
                       </div>
-
-                      <div className="ms-ct-grid3">
-                        <div className="ms-ct-field">
-                          <input className="ms-ct-input" placeholder="Member B" />
-                        </div>
-                        <div className="ms-ct-field">
-                          <input className="ms-ct-input" placeholder="Dev" />
-                        </div>
-                        <div className="ms-ct-field">
-                          <input className="ms-ct-input" placeholder="60%" />
-                        </div>
-                      </div>
-
-                      <div className="ms-ct-grid3">
-                        <div className="ms-ct-field">
-                          <input className="ms-ct-input" placeholder="Member C" />
-                        </div>
-                        <div className="ms-ct-field">
-                          <input className="ms-ct-input" placeholder="QA" />
-                        </div>
-                        <div className="ms-ct-field">
-                          <input className="ms-ct-input" placeholder="50%" />
-                        </div>
-                      </div>
-                    </div>
 
                       {/* Final Confirmation cards */}
                       <div className="ms-ct-confirmRow">

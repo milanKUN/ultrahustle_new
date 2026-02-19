@@ -6,7 +6,8 @@ export default function Navbar() {
     <nav
       className="
         fixed top-0 left-0 right-0 z-50
-        border-b border-white/60
+        border-b border-[#CEFF1B]
+        box-shadow-[0_1px_13.6px_0_#CEFF1B]
         backdrop-blur-xl
         bg-gradient-to-r from-[#D9D9D9] via-[#CFCFCF] to-[#C6C6C6]
       "
@@ -142,9 +143,9 @@ export default function Navbar() {
               Sign up
             </Link>
 
-           
 
-           
+
+
           </div>
         </div>
       </div>
