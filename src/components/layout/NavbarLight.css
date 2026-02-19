@@ -647,10 +647,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 15px;
+  padding: 11px 15px;
   text-align: center;
   font-size: 24px;
-  height: 60px !important;
+  height: 62px !important;
   background: transparent;
   color: rgba(43, 43, 43, 0.50) !important; ;
   text-decoration: none;
@@ -800,10 +800,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 15px;
+  padding: 12px 15px;
   text-align: center;
   font-size: 24px;
-  height: 48px;
+  height: 56px!important;
   background: transparent;
   color: rgba(43, 43, 43, 0.50);
   text-decoration: none;
