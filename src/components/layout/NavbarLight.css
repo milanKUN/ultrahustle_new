@@ -375,9 +375,7 @@
     0 0 24px rgba(206, 255, 27, 0.35) !important;
 }
 
-.inreview-header.dark .messages-dropdown .view-all-link,
-.inreview-header.dark .messages-dropdown .view-all-link:link,
-.inreview-header.dark .messages-dropdown .view-all-link:visited {
+.inreview-header.dark .messages-dropdown .view-all-link {
   color: #ffffff !important;
 }
 
@@ -838,21 +836,8 @@
 /* ========== NARROW DESKTOP FIX: Nest Hub / iPad Pro (950px - 1200px) ========== */
 @media (min-width: 951px) and (max-width: 1200px) {
   .inreview-header {
-    padding: 12px 1px;
+    padding: 12px 20px;
     gap: 10px;
-  }
-   .search-dropdown {
-    position: fixed !important;
-    top: 84px !important;          /* header ke neeche */
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    right: auto !important;
-
-    width: calc(100vw - 40px) !important; /* 20px padding L/R */
-    max-width: 740px !important;          /* tweak if needed */
-    border-radius: 12px !important;
-
-    z-index: 9999 !important;
   }
 
   .header-left {
@@ -1377,8 +1362,15 @@ USER DROPDOWN – DARK MODE FIX
 .inreview-header.dark .search-view-all.active,
 .inreview-header.dark .notifications-view-all.active {
   color: #ceff1b;
-  font-weight: 600;
+  font-weight: 400;
 }
+
+
+/* Dark mode (extra safe) */
+.inreview-header.dark .view-all-link.active {
+  color: #CEFF1B !important;
+}
+
 
 /* Dark mode – avatar active FULL GREEN */
 .inreview-header.dark .user-avatar-btn.active {
