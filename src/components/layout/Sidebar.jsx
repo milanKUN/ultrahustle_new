@@ -215,14 +215,41 @@ export default function Sidebar({
               <img src="/switch.svg" alt="toggle sidebar" className="w-5 h-5" />
             </button>
 
-            <div className="flex flex-col space-y-6">
-              {SIDEBAR_ITEMS.map((item) => (
-                <item.icon
-                  key={item.label}
-                  size={18}
-                  style={{ color: "var(--text)" }}
-                />
-              ))}
+            <div className="flex flex-col space-y-4">
+              {SIDEBAR_ITEMS.map((item) => {
+                const isActive = activeMain === item.label;
+                return (
+                  <button
+                    key={item.label}
+                    onClick={() => {
+                      // Always expand on click as requested
+                      setExpanded(true);
+
+                      if (item.path) {
+                        navigate(item.path);
+                        setActiveMain(item.label);
+                        setOpenMenu(null);
+                      } else if (item.children && item.children.length > 0) {
+                        setActiveMain(item.label);
+                        setOpenMenu(item.label);
+                      }
+                    }}
+                    className={`
+                      w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300
+                      ${isActive
+                        ? "bg-[#CEFF1B] shadow-[0_0_15px_rgba(206,255,27,0.4)]"
+                        : "hover:bg-white/10"
+                      }
+                    `}
+                    title={item.label}
+                  >
+                    <item.icon
+                      size={18}
+                      style={{ color: isActive ? "#000" : "var(--text)" }}
+                    />
+                  </button>
+                );
+              })}
             </div>
           </aside>
         )}
@@ -240,7 +267,7 @@ export default function Sidebar({
           <aside
             className={`
               ${isMobile
-                ? "fixed top-0 left-0 h-screen w-[289px] z-[9999]"
+                ? "fixed top-0 left-0 h-screen w-[289px] z-[9999] pt-[85px]"
                 : "sticky top-[85px] w-[289px] min-w-[289px] h-[calc(100vh-85px)]"
               }
               px-6 py-6 flex flex-col

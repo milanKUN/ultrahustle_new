@@ -5,12 +5,18 @@ import "./Dashboard.css";
 import "../../../Darkuser.css";
 
 const Dashboard = ({ theme, setTheme }) => {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(() => {
+        const saved = localStorage.getItem("sidebarOpen");
+        return saved ? JSON.parse(saved) : false;
+    });
     const [showSettings, setShowSettings] = useState(false);
     const [activeSetting, setActiveSetting] = useState("basic");
 
     useEffect(() => {
-        setSidebarOpen(false);
+        localStorage.setItem("sidebarOpen", JSON.stringify(sidebarOpen));
+    }, [sidebarOpen]);
+
+    useEffect(() => {
         setShowSettings(false);
     }, []);
 

@@ -14,12 +14,19 @@ import DeleteAccount from "../components/UserProfile/DeleteAccount";
 import MyPortfolio from "../components/UserProfile/MyPortfolio";
 
 function User({ theme, setTheme }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    const saved = localStorage.getItem("sidebarOpen");
+    return saved ? JSON.parse(saved) : false;
+  });
   const [showSettings, setShowSettings] = useState(false);
   const [activeSetting, setActiveSetting] = useState("account");
 
   const contentRef = useRef(null);
   const ticking = useRef(false);
+
+  useEffect(() => {
+    localStorage.setItem("sidebarOpen", JSON.stringify(sidebarOpen));
+  }, [sidebarOpen]);
 
   /* ---------- SECTION REFS ---------- */
   const refs = {
@@ -36,7 +43,6 @@ function User({ theme, setTheme }) {
 
   /* ---------- INIT ---------- */
   useEffect(() => {
-    setSidebarOpen(false);
     setShowSettings(true);
     setTimeout(() => handleScroll(), 0);
   }, []);

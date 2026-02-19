@@ -489,7 +489,7 @@
 /* User Dropdown Menu */
 .user-dropdown {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 24px) !important;
   right: 0;
   width: 260px;
   background: rgba(254, 254, 254, 0.40);

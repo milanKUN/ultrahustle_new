@@ -662,10 +662,10 @@ const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
               <div className="user-dropdown">
                 <div className="dropdown-greeting">Hi, First Name!</div>
                 <div className="dropdown-divider"></div>
-                <a href="#" className="dropdown-item">
+                <a href="user-profile" className="dropdown-item">
                   My Profile
                 </a>
-                <a href="#" className="dropdown-item">
+                <a href="/setting" className="dropdown-item">
                   Settings
                 </a>
                 <div className="dropdown-divider"></div>
