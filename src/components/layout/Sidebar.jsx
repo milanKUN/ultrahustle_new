@@ -530,7 +530,7 @@ export default function Sidebar({
       </div>
 
       {/* ================= MOBILE BOTTOM NAV ================= */}
-      {isMobile && (
+      {isMobile && !expanded && (
         <MobileBottomNav
           active={activeBottomTab}
           setActive={setActiveBottomTab}

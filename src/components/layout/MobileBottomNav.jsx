@@ -1,69 +1,132 @@
-import { Home, Store, FileText, Settings } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { Store, Newspaper, Search, LayoutGrid, UserRound } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function MobileBottomNav({ active, setActive, theme = "light" }) {
   const isDark = theme === "dark";
   const navigate = useNavigate();
+  const location = useLocation();
 
+  // ✅ Same content like image
   const items = [
-    { label: "Home", icon: Home },
-    { label: "Marketplace", icon: Store },
-    { label: "Forum", icon: FileText },
-    { label: "Settings", icon: Settings },
+    { label: "Marketplace", icon: Store, path: "/marketplace" },
+    { label: "Feed", icon: Newspaper, path: "/feed" },
+    { label: "Search", icon: Search, path: "/search" },
+    { label: "Dashboard", icon: LayoutGrid, path: "/dashboard" },
+    { label: "Account", icon: UserRound, path: "/user-profile" },
   ];
+
+  // ✅ Scroll to Hide Logic (Support for custom containers)
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = (e) => {
+      // If we're capturing, e.target is the element that scrolled
+      // fallback to root if e.target is document
+      const target = (e.target === document) ? (window || document.documentElement) : e.target;
+      const currentScrollY = target.scrollTop !== undefined ? target.scrollTop : window.scrollY;
+
+      const diff = currentScrollY - lastScrollY.current;
+
+      // sensitivity
+      if (Math.abs(diff) < 5) return;
+
+      if (diff > 0 && currentScrollY > 50) {
+        // Scrolling Down -> hide
+        setIsVisible(false);
+      } else if (diff < 0) {
+        // Scrolling Up -> show
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    // Use CAPTURE phase (true) because scroll events don't bubble
+    window.addEventListener("scroll", handleScroll, true);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll, true);
+    };
+  }, []);
+
+  // ✅ if parent doesn't pass active, auto detect using route
+  const currentActive =
+    active ||
+    (() => {
+      const hit = items.find((i) =>
+        location.pathname === i.path || location.pathname.startsWith(i.path + "/")
+      );
+      return hit?.label || "Dashboard";
+    })();
 
   return (
     <div
       className={`
-        fixed bottom-3 left-1/2 -translate-x-1/2
-        w-[352px] max-w-[420px]
-        backdrop-blur-md
-        rounded-2xl
-        flex justify-between
-        px-3 py-1.5
-        shadow-lg
-        z-[9999]
-        md:hidden
-        ${
-          isDark
-            ? "bg-[#0f1115]/80 border border-[#2a2f3a]"
-            : "bg-white/70 border border-[#CEFF1B]"
-        }
+        fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] px-3
+        transition-all duration-300 ease-in-out
       `}
+      style={{
+        transform: isVisible
+          ? "translateX(-50%) translateY(0)"
+          : "translateX(-50%) translateY(140%)",
+        opacity: isVisible ? 1 : 0,
+        pointerEvents: isVisible ? "auto" : "none",
+      }}
     >
-      {items.map((item) => {
-        const Icon = item.icon;
-        const isActive = active === item.label;
+      <div
+        className={`
+    w-[400px] max-w-[92vw]
+    rounded-2xl
+    flex items-center justify-between
+    px-3 py-3
+    backdrop-blur-xl
+    border
+    ${isDark ? "bg-[#0f1115]/85" : "bg-white/75"}
+  `}
+        style={{
+          border: "1.5px solid #CEFF1B",
+          boxShadow: isDark
+            ? "0 10px 28px rgba(0,0,0,0.4), 0 0 18px rgba(206,255,27,0.2)"
+            : "0 10px 28px rgba(0,0,0,0.12), 0 0 18px rgba(206,255,27,0.35)",
+        }}
+      >
+        {items.map((item) => {
+          const Icon = item.icon;
+          const isActive = currentActive === item.label;
 
-        // Settings button route
-        if (item.label === "Settings") {
           return (
             <button
               key={item.label}
-              onClick={() => navigate("/user-profile")}
-              className="w-full h-[52px] flex items-center justify-center"
+              type="button"
+              onClick={() => {
+                setActive?.(item.label);
+                navigate(item.path);
+              }}
+              className="flex-1 h-[52px] flex items-center justify-center"
             >
               {isActive ? (
-                <div className="w-[64px] h-[40px] bg-[#CEFF1B] rounded-lg flex flex-col items-center justify-center">
-                  <Icon size={16} color="#000" />
+                // ✅ Active = neon big pill like image
+                <div className="w-full h-[52px] bg-[#CEFF1B] rounded-2xl flex flex-col items-center justify-center shadow-[0_10px_18px_rgba(206,255,27,0.35)]">
+                  <Icon size={16} style={{ color: "#000000" }} />
                   <span
-                    className={`text-[10px] font-semibold mt-[2px] ${
-                      isDark ? "text-[#1a1a1a]" : "text-black"
-                    }`}
+                    className="text-[10px] font-semibold mt-[2px]"
+                    style={{ color: "#000000" }}
                   >
                     {item.label}
                   </span>
                 </div>
               ) : (
+                // ✅ Inactive
                 <div className="flex flex-col items-center gap-[2px]">
                   <Icon
                     size={16}
-                    color={isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)"}
+                    style={{ color: isDark ? "rgba(255,255,255,0.75)" : "rgba(0,0,0,0.7)" }}
                   />
                   <span
-                    className={`text-[10px] ${
-                      isDark ? "text-white/60" : "text-black/70"
-                    }`}
+                    className="text-[10px] font-semibold mt-[2px]"
+                    style={{ color: isDark ? "rgba(255,255,255,0.75)" : "rgba(0,0,0,0.7)" }}
                   >
                     {item.label}
                   </span>
@@ -71,44 +134,8 @@ export default function MobileBottomNav({ active, setActive, theme = "light" }) 
               )}
             </button>
           );
-        }
-
-        // Other buttons
-        return (
-          <button
-            key={item.label}
-            onClick={() => setActive && setActive(item.label)}
-            className="w-full h-[52px] flex items-center justify-center"
-          >
-            {isActive ? (
-              <div className="w-[64px] h-[40px] bg-[#CEFF1B] rounded-lg flex flex-col items-center justify-center">
-                <Icon size={16} color="#000" />
-                <span
-                  className={`text-[10px] font-semibold mt-[2px] ${
-                    isDark ? "text-[#1a1a1a]" : "text-black"
-                  }`}
-                >
-                  {item.label}
-                </span>
-              </div>
-            ) : (
-              <div className="flex flex-col items-center gap-[2px]">
-                <Icon
-                  size={16}
-                  color={isDark ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)"}
-                />
-                <span
-                  className={`text-[10px] ${
-                    isDark ? "text-white/60" : "text-black/70"
-                  }`}
-                >
-                  {item.label}
-                </span>
-              </div>
-            )}
-          </button>
-        );
-      })}
+        })}
+      </div>
     </div>
   );
 }
