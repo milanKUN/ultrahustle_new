@@ -6,6 +6,8 @@ import "./TeamProfileLight.css";
 import NavbarLight from "../../../components/layout/UserNavbar";
 import Sidebar from "../../../components/layout/Sidebar";
 import "../../../Darkuser.css";
+import "../../onboarding/components/OnboardingSelect.css";
+
 
 const UserProfile = (props) => {
   // ✅ Theme via props (CreateTeam jaisa)
@@ -1269,8 +1271,19 @@ function ActivityCalendar({ onClose, activityDates, theme }) {
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth());
   const [openYear, setOpenYear] = useState(false);
+  const yearRef = useRef(null);
 
   const years = Array.from({ length: 101 }, (_, i) => 1950 + i);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (yearRef.current && !yearRef.current.contains(event.target)) {
+        setOpenYear(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const firstDay = new Date(year, month, 1).getDay();
   const totalDays = new Date(year, month + 1, 0).getDate();
@@ -1308,38 +1321,40 @@ function ActivityCalendar({ onClose, activityDates, theme }) {
         className="bg-white dark:bg-[#2B2B2B] w-[335px] h-[350px] rounded-xl p-3 shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
-
         {/* INNER CARD */}
         <div className="bg-white dark:bg-[#2B2B2B] border border-[#CEFF1B] w-full h-full rounded-lg p-3 flex flex-col text-black dark:text-black">
-
           {/* YEAR DROPDOWN */}
-          <div className="relative mb-6 z-20">
-            <div
-              onClick={() => setOpenYear(!openYear)}
-              className="bg-[#CEFF1B] text-black rounded-md text-center py-1 text-sm font-semibold cursor-pointer"
-            >
-              {year} :
-            </div>
-
-            {openYear && (
-              <div className="absolute mt-2 w-full bg-white dark:bg-[#1E1E1E] border border-[#CEFF1B]/40 rounded-md shadow z-10 max-h-40 custom-scroll overflow-y-auto">
-                {years.map((y) => (
-                  <div
-                    key={y}
-                    onClick={() => {
-                      setYear(y);
-                      setOpenYear(false);
-                    }}
-                    className={`px-3 py-1 text-sm cursor-pointer ${y === year
-                      ? "bg-[#CEFF1B] text-black font-semibold"
-                      : "hover:bg-gray-100 dark:hover:bg-[#CEFF1B]"
-                      }`}
-                  >
-                    {y}
-                  </div>
-                ))}
+          <div className="relative mb-6 z-20 w-full" ref={yearRef}>
+            <div className={`onboarding-custom-select ${openYear ? "active" : ""}`}>
+              <div
+                className={`onboarding-selected-option ${openYear ? "open" : ""}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenYear(!openYear);
+                }}
+                style={{ background: "#CEFF1B", color: "black", fontWeight: "bold" }}
+              >
+                <span>{year} :</span>
+                <span className="onboarding-arrow">▼</span>
               </div>
-            )}
+
+              {openYear && (
+                <ul className="onboarding-options-list dark:bg-[#1E1E1E]">
+                  {years.map((y) => (
+                    <li
+                      key={y}
+                      className={y === year ? "active" : ""}
+                      onClick={() => {
+                        setYear(y);
+                        setOpenYear(false);
+                      }}
+                    >
+                      {y}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
 
           {/* MONTH HEADER */}

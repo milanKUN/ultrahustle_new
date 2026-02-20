@@ -14,11 +14,11 @@ export default function ConnectedApps() {
       "
     >
       {/* HEADER */}
-      <div className="flex items-start sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-        <h3 className="text-[18px] sm:text-[24px] font-semibold text-gray-700 break-words">
+      <div className="flex items-center gap-4 mb-6">
+        <h3 className="text-xl font-semibold whitespace-nowrap">
           Connected Apps
         </h3>
-        <div className="flex-1 h-px bg-[#2B2B2B] mt-3 hidden sm:block" />
+        <div className="flex-1 h-px bg-[#2B2B2B]" />
       </div>
 
       {/* TITLE */}

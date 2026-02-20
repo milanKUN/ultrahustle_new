@@ -45,7 +45,7 @@ export default function MyPortfolio() {
       >
         {/* HEADER */}
         <div className="flex items-center gap-4 mb-6">
-          <h3 className="text-xl font-semibold">My Portfolio</h3>
+          <h3 className="text-xl font-semibold whitespace-nowrap">My Portfolio</h3>
           <div className="flex-1 h-px bg-[#2B2B2B]" />
         </div>
 
@@ -167,8 +167,7 @@ export default function MyPortfolio() {
       {/* ================= SUCCESS MODAL (TOP) ================= */}
       {uploadStep === "success" && (
         <UploadSuccess
-          onAddNew={() => setUploadStep("grid")}
-          onExplore={() => setUploadStep(null)}
+          onBack={() => setUploadStep(null)}
         />
       )}
     </>
@@ -204,11 +203,10 @@ function UploadGrid({ onSelect, onBack, blurred }) {
     <div className="fixed inset-0 z-[950] flex items-center justify-center pointer-events-auto">
       <div
         className={`upload-card rounded-2xl p-4 w-[820px] max-h-[82vh] flex flex-col bg-white shadow-xl transition-all duration-200
-        ${
-          blurred
+        ${blurred
             ? "blur-sm scale-[0.98] pointer-events-none select-none opacity-95"
             : ""
-        }`}
+          }`}
       >
         {/* HEADER */}
         <div className="upload-header flex items-center gap-3 mb-3 shrink-0">
@@ -248,16 +246,16 @@ function UploadGrid({ onSelect, onBack, blurred }) {
                 className="upload-slot relative h-[110px] rounded-xl flex items-center justify-center cursor-pointer overflow-hidden bg-gray-100"
               >
                 {/* ✅ COVER IMAGE BADGE */}
-               {i === 0 && (
-  <span
-    className="
+                {i === 0 && (
+                  <span
+                    className="
       absolute inset-0 z-10
       flex items-center justify-center
       px-2
     "
-  >
-    <span
-      className="
+                  >
+                    <span
+                      className="
         bg-[#CEFF1B] text-black
         text-[10px] sm:text-xs
         px-2 py-[3px]
@@ -267,11 +265,11 @@ function UploadGrid({ onSelect, onBack, blurred }) {
         whitespace-normal
         leading-tight
       "
-    >
-      Upload Cover Image
-    </span>
-  </span>
-)}
+                    >
+                      Upload Cover Image
+                    </span>
+                  </span>
+                )}
 
 
                 {/* ✅ FILE PREVIEW */}
@@ -308,14 +306,7 @@ function UploadGrid({ onSelect, onBack, blurred }) {
           })}
         </div>
 
-        {/* FOOTER */}
-        <div className="flex justify-between items-center mt-3 shrink-0">
-          <p className="text-xs text-red-500">
-            {files.filter(Boolean).length === 0
-              ? "3 required, up to 50 allowed"
-              : `${files.filter(Boolean).length} files selected`}
-          </p>
-
+        <div className="flex justify-end items-center mt-3 shrink-0">
           <div className="flex gap-3">
             <button
               type="button"
@@ -351,33 +342,25 @@ function UploadGrid({ onSelect, onBack, blurred }) {
 
 /* ================= SUCCESS (TOP OF GRID) ================= */
 
-function UploadSuccess({ onAddNew, onExplore }) {
+function UploadSuccess({ onBack }) {
   return (
     <div className="fixed inset-0 z-[1001] flex items-center justify-center pointer-events-auto">
-      <div className="upload-success-card rounded-2xl w-[600px] h-[400px] flex flex-col items-center justify-center shadow-xl bg-white">
+      <div className="upload-success-card rounded-2xl w-[600px] h-[400px] flex flex-col items-center justify-center shadow-xl bg-white dark:bg-[#2B2B2B] border-2 border-[#CEFF1B]">
         <div className="w-24 h-24 bg-[#CEFF1B] rounded-full flex items-center justify-center mb-6">
           <img src="/right.svg" alt="" />
         </div>
 
-        <h3 className="text-2xl font-semibold mb-6">
+        <h3 className="text-2xl font-semibold mb-8 text-black dark:text-white text-center px-4">
           You have successfully uploaded!
         </h3>
 
-        <div className="flex gap-4">
+        <div className="flex justify-center">
           <button
             type="button"
-            onClick={onAddNew}
-            className="upload-btn-cancel px-6 py-2 rounded-lg border border-black"
+            onClick={onBack}
+            className="upload-btn-confirm px-12 py-3 rounded-lg bg-[#CEFF1B] border border-black font-semibold text-black transition-transform hover:scale-105"
           >
-            Add New Listings
-          </button>
-
-          <button
-            type="button"
-            onClick={onExplore}
-            className="upload-btn-confirm px-6 py-2 rounded-lg bg-[#CEFF1B] border border-black"
-          >
-            Explore
+            Back
           </button>
         </div>
       </div>
@@ -390,13 +373,12 @@ function UploadSuccess({ onAddNew, onExplore }) {
 function Input({ label, placeholder, small }) {
   return (
     <div>
-      <label className="block text-lg font-medium mb-1">{label}</label>
+      <label className="block mb-1 font-medium">{label}</label>
       <input
         placeholder={placeholder}
-        className={`${
-          small ? "w-40" : "w-full"
-        } border border-black rounded-md px-3 py-2 bg-transparent text-sm
-        outline-none placeholder:text-gray-400`}
+        className={`${small ? "w-40" : "w-full"
+          } border border-black rounded-md px-3 py-2 bg-transparent text-sm
+        outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B] placeholder:text-gray-400`}
       />
     </div>
   );
@@ -407,14 +389,14 @@ function Textarea({ label, placeholder, limit }) {
 
   return (
     <div>
-      <label className="block text-lg font-medium mb-1">{label}</label>
+      <label className="block mb-1 font-medium">{label}</label>
       <textarea
         placeholder={placeholder}
         rows={3}
         value={text}
         onChange={(e) => setText(e.target.value)}
         className="w-full border border-black rounded-md px-3 py-2 bg-transparent text-sm resize-none
-        outline-none placeholder:text-gray-400"
+        outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B] placeholder:text-gray-400"
       />
       {limit && (
         <p className="text-xs text-red-500 mt-1">

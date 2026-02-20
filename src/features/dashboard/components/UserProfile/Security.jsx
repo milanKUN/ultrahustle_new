@@ -5,17 +5,17 @@ export default function Security() {
     <div className="">
       {/* ================= Security ================= */}
       <div className="mb-8 -mt-28 ">
-       <div className="flex items-center gap-4 mb-6">
-        <h3 className="text-[24px] font-semibold text-[#5C5C5C] whitespace-nowrap">
-          Security
-        </h3>
-        <div className="flex-1 h-px bg-[#2B2B2B]" />
-      </div>
+        <div className="flex items-center gap-4 mb-6">
+          <h3 className="text-xl font-semibold whitespace-nowrap">
+            Security
+          </h3>
+          <div className="flex-1 h-px bg-[#2B2B2B]" />
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Current Password */}
           <div>
-            <label className="text-[16px] font-bold text-[#2B2B2B]">
+            <label className="block mb-1 font-medium">
               Current password
             </label>
             <div className="relative">
@@ -30,7 +30,7 @@ export default function Security() {
 
           {/* New Password */}
           <div>
-            <label className="text-[16px] font-bold text-[#2B2B2B]">New password</label>
+            <label className="block mb-1 font-medium">New password</label>
             <div className="relative">
               <input
                 type="password"
@@ -43,7 +43,7 @@ export default function Security() {
 
           {/* Confirm Password */}
           <div>
-            <label className="text-[16px] font-bold text-[#2B2B2B]">
+            <label className="block mb-1 font-medium">
               Confirm New password
             </label>
             <div className="relative">
@@ -67,12 +67,12 @@ export default function Security() {
 
       {/* ================= Active Devices ================= */}
       <div>
-       <div className="flex items-center gap-4 mb-6">
-        <h3 className="text-[24px] font-semibold text-[#5C5C5C] whitespace-nowrap">
-          Active Devices
-        </h3>
-        <div className="flex-1 h-px bg-[#2B2B2B]" />
-      </div>
+        <div className="flex items-center gap-4 mb-6">
+          <h3 className="text-xl font-semibold whitespace-nowrap">
+            Active Devices
+          </h3>
+          <div className="flex-1 h-px bg-[#2B2B2B]" />
+        </div>
         <p className="mb-4 text-[16px] ">Currently login</p>
 
         {/* Current Session */}
@@ -80,10 +80,10 @@ export default function Security() {
           <div>
             <p className="text-[16px] font-medium">Windows</p>
             <p className="text-[16px] text-gray-500">Chennai, Tamil Nadu, India</p>
-          <p className="text-[16px] text-[#2B2B2B] flex items-center gap-1">
-  <span className="text-[#0FB400]">●</span>
-  Your Current Session
-</p>
+            <p className="text-[16px] text-[#2B2B2B] flex items-center gap-1">
+              <span className="text-[#0FB400]">●</span>
+              Your Current Session
+            </p>
 
           </div>
           <button className="bg-[#FF0000] border border-black text-white text-xs px-4 py-1.5 rounded-lg">

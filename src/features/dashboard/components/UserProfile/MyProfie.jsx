@@ -51,7 +51,7 @@ export default function ProfileForm() {
             className="
               flex-1
               h-px
-              bg-[#2B2B2B]z
+              bg-[#2B2B2B]
             "
           />
         </div>
@@ -80,7 +80,7 @@ export default function ProfileForm() {
               onClick={() => setOpenImageModal(true)}
               className="
     relative
-    w-16 h-16
+    w-20 h-20
     rounded-full
     bg-[#D9D9D9]
     cursor-pointer
@@ -161,6 +161,7 @@ export default function ProfileForm() {
             z-50 flex
             mt-20
             fixed inset-0 items-center justify-center image-modal
+            backdrop-blur-sm bg-black/30
           "
         >
           <div
@@ -217,9 +218,9 @@ export default function ProfileForm() {
                       pointer-events-none
                       flex items-center justify-center
                     "
-                    style={{
-                      background: "radial-gradient(circle, transparent 130px, rgba(0,0,0,0.5) 130px)"
-                    }}
+                  // style={{
+                  //   background: "radial-gradient(circle, transparent 130px, rgba(0,0,0,0.5) 130px)"
+                  // }}
                   >
                     <div
                       className="
@@ -260,6 +261,7 @@ export default function ProfileForm() {
                 flex
                 px-4 mb-6
                 items-center gap-2
+                zoom-bar
               "
             >
               {/* MINUS */}
@@ -283,7 +285,7 @@ export default function ProfileForm() {
                 onChange={(e) => setZoom(parseInt(e.target.value))}
                 className="
                   w-[279px]
-                  accent-[#5C5C5C]
+                  accent-[#CEFF1B]
                 "
               />
 
@@ -337,6 +339,7 @@ function FriendListModal({ onClose }) {
         z-50 flex
         mt-20
         bg-black/60
+        backdrop-blur-sm
         fixed inset-0 items-center justify-center friend-modal
       "
     >
@@ -364,7 +367,7 @@ function FriendListModal({ onClose }) {
             flex
             mb-6
             font-semibold
-            justify-center gap-8
+            justify-center gap-16
           "
         >
           <button
@@ -395,6 +398,7 @@ function FriendListModal({ onClose }) {
             h-[1px]
             mb-5
             bg-[#000000]
+            divider
           "
         />
 

@@ -7,11 +7,10 @@ const Toggle = ({ enabled, onChange }) => (
     style={{ minWidth: 48, minHeight: 28 }}
   >
     <span
-      className={`absolute left-1 w-6 h-6 rounded-full shadow-md transition-transform duration-200 ${
-        enabled
+      className={`absolute left-1 w-6 h-6 rounded-full shadow-md transition-transform duration-200 ${enabled
           ? "translate-x-full bg-[#CEFF1B]"
           : "translate-x-0 bg-[#5B5B5B]"
-      }`}
+        }`}
       style={{ minWidth: 24, minHeight: 24 }}
     />
   </button>
@@ -43,8 +42,8 @@ export default function Notification() {
     <div className="from-gray-100 to-lime-50 rounded-xl -mt-32 md:-mt-32 p-4 sm:p-6">
 
       {/* ================= HEADER ================= */}
-      <div className="flex items-center gap-3 sm:gap-4 mb-6">
-        <h3 className="text-[18px] sm:text-xl font-semibold">
+      <div className="flex items-center gap-4 mb-6">
+        <h3 className="text-xl font-semibold whitespace-nowrap">
           Notification
         </h3>
         <div className="flex-1 h-px bg-[#2B2B2B]" />
@@ -53,7 +52,7 @@ export default function Notification() {
       {/* ================= EMAIL ================= */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div>
-          <p className="text-[16px] font-semibold">
+          <p className="block mb-1 font-medium">
             Email Notifications
           </p>
           <p className="text-[14px] sm:text-[20px] text-gray-500 mt-1">
@@ -76,7 +75,7 @@ export default function Notification() {
               key={key}
               className="flex justify-between items-center gap-4"
             >
-              <span className="text-[16px] sm:text-[24px]">
+              <span className="text-[16px] font-medium">
                 {label}
               </span>
               <Toggle
@@ -93,7 +92,7 @@ export default function Notification() {
       {/* ================= PUSH ================= */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div>
-          <p className="text-[16px] font-semibold">
+          <p className="block mb-1 font-medium">
             Push Notifications
           </p>
           <p className="text-[14px] sm:text-[20px] text-gray-500 mt-1">
@@ -113,7 +112,7 @@ export default function Notification() {
               key={key}
               className="flex justify-between items-center gap-4"
             >
-              <span className="text-[16px] sm:text-[24px]">
+              <span className="text-[16px] font-medium">
                 {label}
               </span>
               <Toggle
@@ -130,7 +129,7 @@ export default function Notification() {
       {/* ================= MARKETING ================= */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <p className="text-[16px] font-semibold">
+          <p className="block mb-1 font-medium">
             Marketing Emails
           </p>
           <p className="text-[14px] sm:text-[20px] text-gray-500 mt-1">
@@ -141,7 +140,7 @@ export default function Notification() {
 
         <div className="space-y-4">
           <div className="flex justify-between items-center gap-4">
-            <span className="text-[16px] sm:text-[24px]">
+            <span className="text-[16px] font-medium">
               Allow marketing
             </span>
             <Toggle
@@ -151,7 +150,7 @@ export default function Notification() {
           </div>
 
           <div className="flex justify-between items-center gap-4">
-            <span className="text-[16px] sm:text-[24px]">
+            <span className="text-[16px] font-medium">
               Allow product updates
             </span>
             <Toggle

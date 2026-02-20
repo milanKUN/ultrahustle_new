@@ -19,16 +19,11 @@ export default function Verification() {
       "
     >
       {/* HEADER */}
-      <div className="flex items-start gap-3 sm:gap-4 mb-6 sm:mb-8">
-        <h3 className="
-          text-[18px] sm:text-[22px] md:text-[24px]
-          font-semibold
-          text-gray-700
-          break-words              /* ✅ wrap text */
-        ">
-          Verification (Use Automated KYC Service)
+      <div className="flex items-center gap-4 mb-6">
+        <h3 className="text-xl font-semibold whitespace-nowrap">
+          Verification
         </h3>
-        <div className="flex-1 h-px bg-[#2B2B2B] mt-3 hidden sm:block" />
+        <div className="flex-1 h-px bg-[#2B2B2B]" />
       </div>
 
       {/* IDENTITY VERIFICATION */}
@@ -106,10 +101,9 @@ function TabButton({ label, active, onClick }) {
         border
         transition
         whitespace-nowrap
-        ${
-          active
-            ? "bg-[#CEFF1B] border-black text-black"
-            : "bg-transparent border-gray-300 text-gray-600 hover:bg-gray-50"
+        ${active
+          ? "bg-[#CEFF1B] border-black text-black"
+          : "bg-transparent border-gray-300 text-gray-600 hover:bg-gray-50"
         }
       `}
     >

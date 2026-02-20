@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import "../../../onboarding/components/OnboardingSelect.css";
 
 function Payments() {
   const [openCalendar, setOpenCalendar] = useState(false);
@@ -7,86 +8,86 @@ function Payments() {
   return (
     <div className=" -mt-16 from-gray-100 to-lime-50 rounded-xl p-6">
       {/* ================= HEADER ================= */}
-     <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-  <h3 className="text-[18px] sm:text-[22px] md:text-[24px] font-semibold text-gray-700 whitespace-nowrap">
-    Payments & Payouts
-  </h3>
-  <div className="flex-1 h-px bg-[#2B2B2B]" />
-</div>
+      <div className="flex items-center gap-4 mb-6">
+        <h3 className="text-xl font-semibold whitespace-nowrap">
+          Payments & Payouts
+        </h3>
+        <div className="flex-1 h-px bg-[#2B2B2B]" />
+      </div>
 
-<p className="text-[14px] sm:text-[16px] text-gray-500 mb-6">
-  (For buying services/products/courses)
-</p>
+      <p className="text-[14px] sm:text-[16px] text-gray-500 mb-6">
+        (For buying services/products/courses)
+      </p>
 
 
       {/* ================= PAYMENT METHODS ================= */}
-     <div className="mb-8">
-  <p className="text-[16px] sm:text-[18px] md:text-[20px] font-semibold mb-3">
-    Payment Methods
-  </p>
+      <div className="mb-8">
+        <p className="text-[16px] sm:text-[18px] md:text-[20px] font-semibold mb-3">
+          Payment Methods
+        </p>
 
-  <div className="space-y-4">
-    {/* ADD CARD */}
-    <label className="flex items-start sm:items-center gap-2 text-[16px] sm:text-[18px] md:text-[20px]">
-      <input type="radio" name="payment" className="mt-1 sm:mt-0" />
-      <span>Add credit/debit card</span>
-    </label>
+        <div className="space-y-4">
+          {/* ADD CARD */}
+          <label className="flex items-start sm:items-center gap-2 text-[16px] sm:text-[18px] md:text-[20px]">
+            <input type="radio" name="payment" className="mt-1 sm:mt-0" />
+            <span>Add credit/debit card</span>
+          </label>
 
-    <div className="h-px bg-[#2B2B2B]" />
+          <div className="h-px bg-[#2B2B2B]" />
 
-    {/* CARD ICONS */}
-    <div className="flex flex-wrap items-center gap-3">
-      <div className="border rounded-md px-3 py-2 bg-white">
-        <img src="/visa.png" alt="Visa" className="h-5" />
+          {/* CARD ICONS */}
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="border rounded-md px-3 py-2 bg-white">
+              <img src="/visa.png" alt="Visa" className="h-5" />
+            </div>
+
+            <div className="border rounded-md px-3 py-2 bg-white">
+              <img src="/mastercard.png" alt="Mastercard" className="h-5" />
+            </div>
+
+            <div className="border rounded-md px-3 py-2 bg-white">
+              <img src="/paypal.svg" alt="PayPal" className="h-5" />
+            </div>
+          </div>
+
+          {/* UPI */}
+          <label className="flex items-start sm:items-center gap-2 text-[16px] sm:text-[18px] md:text-[20px]">
+            <input type="radio" name="payment" className="mt-1 sm:mt-0" />
+            <span className="flex items-center gap-2">
+              Scan and Pay with <img src="/upi.png" alt="upi" className="h-5" />
+            </span>
+          </label>
+
+          <div className="h-px bg-[#2B2B2B]" />
+
+          <p className="text-[14px] sm:text-[16px] cursor-pointer">
+            Click here to Scan
+          </p>
+
+          {/* SAVED CARD */}
+          <label className="flex items-start sm:items-center gap-2 text-[16px] sm:text-[18px] md:text-[20px]">
+            <input type="radio" name="payment" className="mt-1 sm:mt-0" />
+            <span>Remove / Set default</span>
+          </label>
+
+          <div className="h-px bg-[#2B2B2B]" />
+
+          <p className="text-[16px] sm:text-[18px] text-gray-600">
+            abc Bank ****1234
+          </p>
+
+          {/* ACTION BUTTONS */}
+          <div className="flex flex-col sm:flex-row justify-between gap-3 mt-4">
+            <button className="w-full sm:w-[204px] h-[36px] border border-black bg-[#CEFF1B] rounded text-xs font-medium">
+              + Add Another Account
+            </button>
+
+            <button className="w-full sm:w-auto px-4 py-2 rounded-lg text-sm border border-black">
+              Discard
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div className="border rounded-md px-3 py-2 bg-white">
-        <img src="/mastercard.png" alt="Mastercard" className="h-5" />
-      </div>
-
-      <div className="border rounded-md px-3 py-2 bg-white">
-        <img src="/paypal.svg" alt="PayPal" className="h-5" />
-      </div>
-    </div>
-
-    {/* UPI */}
-    <label className="flex items-start sm:items-center gap-2 text-[16px] sm:text-[18px] md:text-[20px]">
-      <input type="radio" name="payment" className="mt-1 sm:mt-0" />
-      <span className="flex items-center gap-2">
-        Scan and Pay with <img src="/upi.png" alt="upi" className="h-5" />
-      </span>
-    </label>
-
-    <div className="h-px bg-[#2B2B2B]" />
-
-    <p className="text-[14px] sm:text-[16px] cursor-pointer">
-      Click here to Scan
-    </p>
-
-    {/* SAVED CARD */}
-    <label className="flex items-start sm:items-center gap-2 text-[16px] sm:text-[18px] md:text-[20px]">
-      <input type="radio" name="payment" className="mt-1 sm:mt-0" />
-      <span>Remove / Set default</span>
-    </label>
-
-    <div className="h-px bg-[#2B2B2B]" />
-
-    <p className="text-[16px] sm:text-[18px] text-gray-600">
-      abc Bank ****1234
-    </p>
-
-    {/* ACTION BUTTONS */}
-    <div className="flex flex-col sm:flex-row justify-between gap-3 mt-4">
-      <button className="w-full sm:w-[204px] h-[36px] border border-black bg-[#CEFF1B] rounded text-xs font-medium">
-        + Add Another Account
-      </button>
-
-      <button className="w-full sm:w-auto px-4 py-2 rounded-lg text-sm border border-black">
-        Discard
-      </button>
-    </div>
-  </div>
-</div>
 
 
       <div className=" text-[20px]">
@@ -100,7 +101,7 @@ function Payments() {
       {/* ================= CARD DETAILS ================= */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div>
-          <label className="text-[16px]">Card Number</label>
+          <label className="block mb-1 font-medium">Card Number</label>
           <input
             className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
             placeholder="**** **** **** 2345"
@@ -108,7 +109,7 @@ function Payments() {
         </div>
 
         <div>
-          <label className="text-[16px]">CVV</label>
+          <label className="block mb-1 font-medium">CVV</label>
           <input
             className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
             placeholder="CVV"
@@ -116,7 +117,7 @@ function Payments() {
         </div>
 
         <div>
-          <label className="text-[16px]">Name On Card</label>
+          <label className="block mb-1 font-medium">Name On Card</label>
           <input
             className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
             placeholder="Name on card"
@@ -125,7 +126,7 @@ function Payments() {
 
         {/* ✅ Expiry Date — SAME LINE & SAME DESIGN */}
         <div>
-          <label className="text-[16px]">Expiry Date</label>
+          <label className="block mb-1 font-medium">Expiry Date</label>
 
           <div className="relative">
             <input
@@ -173,14 +174,14 @@ function Payments() {
       )}
 
       <div className="flex flex-col sm:flex-row justify-end gap-3 mb-10">
-  <button className="w-full sm:w-auto px-4 py-2 rounded-lg text-sm border border-black">
-    Discard
-  </button>
+        <button className="w-full sm:w-auto px-4 py-2 rounded-lg text-sm border border-black">
+          Discard
+        </button>
 
-  <button className="w-full sm:w-auto px-4 py-2 bg-[#CEFF1B] rounded-lg text-sm font-medium border border-black">
-    Confirm
-  </button>
-</div>
+        <button className="w-full sm:w-auto px-4 py-2 bg-[#CEFF1B] rounded-lg text-sm font-medium border border-black">
+          Confirm
+        </button>
+      </div>
 
 
       {/* ================= PAYOUT ACCOUNTS ================= */}
@@ -230,47 +231,47 @@ function Payments() {
         {/* BASIC INFO */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
           <div>
-            <label className="text-[14px] sm:text-[16px]">First Name</label>
+            <label className="block mb-1 font-medium">First Name</label>
             <input
               type="text"
               placeholder="First name"
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             />
           </div>
 
           <div>
-            <label className="text-[14px] sm:text-[16px]">Last Name</label>
+            <label className="block mb-1 font-medium">Last Name</label>
             <input
               type="text"
               placeholder="Last name"
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             />
           </div>
 
           <div>
-            <label className="text-[14px] sm:text-[16px]">
+            <label className="block mb-1 font-medium">
               Email for Invoice
             </label>
             <input
               type="email"
               placeholder="example@gmail.com"
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             />
           </div>
 
           <div>
-            <label className="text-[14px] sm:text-[16px]">Phone Number</label>
+            <label className="block mb-1 font-medium">Phone Number</label>
             <input
               type="tel"
               placeholder="+91 XXXXX XXXXX"
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             />
           </div>
         </div>
 
         {/* ADDRESS HEADER */}
         <div className="flex items-center gap-4 mb-4">
-          <h3 className="text-[18px] sm:text-[20px] font-medium text-gray-700 whitespace-nowrap">
+          <h3 className="text-xl font-semibold whitespace-nowrap">
             Address
           </h3>
           <div className="flex-1 h-px bg-[#2B2B2B]" />
@@ -279,47 +280,47 @@ function Payments() {
         {/* ADDRESS DETAILS */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
           <div className="md:col-span-2">
-            <label className="text-[14px] sm:text-[16px]">Street Address</label>
+            <label className="block mb-1 font-medium">Street Address</label>
             <input
               type="text"
               placeholder="Street, House No, Area"
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             />
           </div>
 
           <div>
-            <label className="text-[14px] sm:text-[16px]">City</label>
+            <label className="block mb-1 font-medium">City</label>
             <input
               type="text"
               placeholder="City"
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             />
           </div>
 
           <div>
-            <label className="text-[14px] sm:text-[16px]">State</label>
+            <label className="block mb-1 font-medium">State</label>
             <input
               type="text"
               placeholder="State"
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             />
           </div>
 
           <div>
-            <label className="text-[14px] sm:text-[16px]">Country</label>
+            <label className="block mb-1 font-medium">Country</label>
             <input
               type="text"
               placeholder="Country"
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             />
           </div>
 
           <div>
-            <label className="text-[14px] sm:text-[16px]">Pincode</label>
+            <label className="block mb-1 font-medium">Pincode</label>
             <input
               type="text"
               placeholder="Pincode"
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             />
           </div>
         </div>
@@ -357,52 +358,62 @@ function ExpiryCalendar({ onClose, onSelect }) {
   const currentYear = new Date().getFullYear();
   const [year, setYear] = useState(currentYear);
   const [openYear, setOpenYear] = useState(false);
+  const yearRef = useRef(null);
 
   const years = Array.from({ length: 15 }, (_, i) => currentYear + i);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (yearRef.current && !yearRef.current.contains(event.target)) {
+        setOpenYear(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
       {/* OUTER CARD */}
       <div className="bg-[#F2F2F2] w-[335px] h-[380px] rounded-xl p-3 relative flex items-center justify-center">
-        {/* CLOSE */}
-
         {/* INNER CARD */}
-        <div className="bg-[#FEFEFE]/40 w-full h-full rounded-lg p-3 flex flex-col">
+        <div className="bg-[#FEFEFE]/40 w-full h-full rounded-lg p-3 flex flex-col items-center">
           {/* YEAR DROPDOWN */}
-          <div className="relative mb-4">
-            <div
-              onClick={() => setOpenYear(!openYear)}
-              className="bg-[#CEFF1B] text-black rounded-md text-center py-1 text-sm font-semibold cursor-pointer"
-            >
-              {year} :
-            </div>
-
-            {openYear && (
-              <div className="absolute mt-2 w-full bg-white border rounded-md shadow z-10 max-h-40 overflow-y-auto">
-                {years.map((y) => (
-                  <div
-                    key={y}
-                    onClick={() => {
-                      setYear(y);
-                      setOpenYear(false);
-                    }}
-                    className={`px-3 py-1 text-sm cursor-pointer transition
-                      ${
-                        y === year
-                          ? "bg-[#CEFF1B] text-black font-semibold"
-                          : "hover:bg-[#CEFF1B] hover:text-black"
-                      }
-                    `}
-                  >
-                    {y}
-                  </div>
-                ))}
+          <div className="relative mb-4 w-full" ref={yearRef}>
+            <div className={`onboarding-custom-select ${openYear ? "active" : ""}`}>
+              <div
+                className={`onboarding-selected-option ${openYear ? "open" : ""}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenYear(!openYear);
+                }}
+                style={{ background: "#CEFF1B", color: "black", fontWeight: "bold" }}
+              >
+                <span>{year} :</span>
+                <span className="onboarding-arrow">▼</span>
               </div>
-            )}
+
+              {openYear && (
+                <ul className="onboarding-options-list">
+                  {years.map((y) => (
+                    <li
+                      key={y}
+                      className={y === year ? "active" : ""}
+                      onClick={() => {
+                        setYear(y);
+                        setOpenYear(false);
+                      }}
+                    >
+                      {y}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
 
           {/* MONTH GRID */}
-          <div className="grid grid-cols-3 gap-3 flex-1 place-content-center">
+          <div className="grid grid-cols-3 gap-3 flex-1 place-content-center w-full">
             {months.map((m, i) => (
               <button
                 key={m}
@@ -413,12 +424,19 @@ function ExpiryCalendar({ onClose, onSelect }) {
                     )}`,
                   )
                 }
-                className="border rounded-md py-3 text-sm font-medium text-black hover:bg-[#CEFF1B] hover:text-black"
+                className="border border-black rounded-md py-3 text-sm font-medium text-black hover:bg-[#CEFF1B] hover:text-black transition-colors"
               >
                 {m}
               </button>
             ))}
           </div>
+
+          <button
+            onClick={onClose}
+            className="mt-4 text-xs text-gray-500 hover:text-black underline"
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>

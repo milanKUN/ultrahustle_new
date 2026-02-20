@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import "../../../onboarding/components/OnboardingSelect.css";
 
 export default function PersonalInformation() {
   const ABOUT_LIMIT = 700;
@@ -17,6 +18,24 @@ export default function PersonalInformation() {
   const [stateVal, setStateVal] = useState("");
   const [openCountry, setOpenCountry] = useState(false);
   const [openState, setOpenState] = useState(false);
+  const [gender, setGender] = useState("");
+  const [openGender, setOpenGender] = useState(false);
+
+  const countryRef = useRef(null);
+  const stateRef = useRef(null);
+  const availabilityRef = useRef(null);
+  const genderRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (countryRef.current && !countryRef.current.contains(event.target)) setOpenCountry(false);
+      if (stateRef.current && !stateRef.current.contains(event.target)) setOpenState(false);
+      if (availabilityRef.current && !availabilityRef.current.contains(event.target)) setOpen(false);
+      if (genderRef.current && !genderRef.current.contains(event.target)) setOpenGender(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const countryOptions = ["India", "United States"];
 
@@ -34,7 +53,8 @@ export default function PersonalInformation() {
       : country === "United States"
         ? ["California", "Texas", "New York", "Florida"]
         : [];
-
+  // ... (rest of the state and skills)
+  // (skipping for brevety in replacement chunk but keeping logic)
   const [skills, setSkills] = useState([
     "Agile/Scrum",
     "Accessibility",
@@ -167,7 +187,39 @@ export default function PersonalInformation() {
               </div>
             </div>
 
-            <Input label="Gender" placeholder="Gender" />
+            {/* GENDER */}
+            <div>
+              <Label>Gender</Label>
+              <div className={`onboarding-custom-select ${openGender ? "active" : ""}`} ref={genderRef}>
+                <div
+                  className={`onboarding-selected-option ${openGender ? "open" : ""}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpenGender(!openGender);
+                  }}
+                >
+                  <span className={!gender ? "opacity-70" : ""}>{gender || "Select gender"}</span>
+                  <span className="onboarding-arrow">▼</span>
+                </div>
+
+                {openGender && (
+                  <ul className="onboarding-options-list">
+                    {["Male", "Female", "Others"].map((g) => (
+                      <li
+                        key={g}
+                        className={gender === g ? "active" : ""}
+                        onClick={() => {
+                          setGender(g);
+                          setOpenGender(false);
+                        }}
+                      >
+                        {g}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
           </TwoCol>
         </Section>
 
@@ -179,38 +231,34 @@ export default function PersonalInformation() {
             {/* COUNTRY */}
             <div>
               <Label>Country</Label>
-              <div className="relative">
-                <input
-                  readOnly
-                  value={country}
-                  placeholder="Select country"
-                  onClick={() => setOpenCountry(!openCountry)}
-                  className="w-full h-[41px] cursor-pointer bg-transparent border border-black rounded-md pl-3 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
-                />
-
-                <img
-                  src="/Polygon.svg"
-                  alt="dropdown"
-                  className={`absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 transition-transform ${openCountry ? "rotate-180" : ""
-                    }`}
-                />
+              <div className={`onboarding-custom-select ${openCountry ? "active" : ""}`} ref={countryRef}>
+                <div
+                  className={`onboarding-selected-option ${openCountry ? "open" : ""}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpenCountry(!openCountry);
+                  }}
+                >
+                  <span className={!country ? "opacity-70" : ""}>{country || "Select country"}</span>
+                  <span className="onboarding-arrow">▼</span>
+                </div>
 
                 {openCountry && (
-                  <div className="absolute mt-2 w-full rounded-md border bg-white p-2 space-y-2 z-10">
+                  <ul className="onboarding-options-list">
                     {countryOptions.map((c) => (
-                      <button
+                      <li
                         key={c}
+                        className={country === c ? "active" : ""}
                         onClick={() => {
                           setCountry(c);
                           setStateVal("");
                           setOpenCountry(false);
                         }}
-                        className="block w-fit border rounded-md px-3 py-1 text-sm"
                       >
                         {c}
-                      </button>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 )}
               </div>
             </div>
@@ -218,39 +266,34 @@ export default function PersonalInformation() {
             {/* STATE */}
             <div>
               <Label>State</Label>
-              <div className="relative">
-                <input
-                  readOnly
-                  value={stateVal}
-                  placeholder={
-                    country ? "Select state" : "Select country first"
-                  }
-                  onClick={() => country && setOpenState(!openState)}
-                  className="w-full h-[41px] cursor-pointer bg-transparent border border-black rounded-md pl-3 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
-                />
-
-                <img
-                  src="/Polygon.svg"
-                  alt="dropdown"
-                  className={`absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 transition-transform ${openState ? "rotate-180" : ""
-                    }`}
-                />
+              <div className={`onboarding-custom-select ${openState ? "active" : ""}`} ref={stateRef}>
+                <div
+                  className={`onboarding-selected-option ${openState ? "open" : ""}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (country) setOpenState(!openState);
+                  }}
+                  style={{ cursor: country ? "pointer" : "not-allowed", opacity: country ? 1 : 0.6 }}
+                >
+                  <span className={!stateVal ? "opacity-70" : ""}>{stateVal || (country ? "Select state" : "Select country first")}</span>
+                  <span className="onboarding-arrow">▼</span>
+                </div>
 
                 {openState && (
-                  <div className="absolute mt-2 w-full rounded-md border bg-white p-2 space-y-2 z-10">
+                  <ul className="onboarding-options-list">
                     {stateOptions.map((s) => (
-                      <button
+                      <li
                         key={s}
+                        className={stateVal === s ? "active" : ""}
                         onClick={() => {
                           setStateVal(s);
                           setOpenState(false);
                         }}
-                        className="block w-fit border rounded-md px-3 py-1 text-sm"
                       >
                         {s}
-                      </button>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 )}
               </div>
             </div>
@@ -312,11 +355,12 @@ export default function PersonalInformation() {
             {about.length}/{ABOUT_LIMIT} characters
           </p>
         </Section>
+
         <Section title="Hashtag">
           <TagInput
-            placeholder="Add skills"
-            tags={skills}
-            setTags={setSkills}
+            placeholder="Add hashtags"
+            tags={hashtag}
+            setTags={setHashtag}
             onKeyDown={handleAddTag}
             onRemove={removeTag}
           />
@@ -345,56 +389,33 @@ export default function PersonalInformation() {
         </Section>
 
         <Section title="Availability">
-          <div className="relative">
-            {/* Input */}
-            <input
-              value={availability}
-              placeholder="Availability"
-              readOnly
-              onClick={() => setOpen(!open)}
-              className="w-full h-[41px] cursor-pointer
-      bg-transparent
-      border border-black dark:border-white
-      rounded-md px-3 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]
-      text-black dark:text-white"
-            />
+          <div className={`onboarding-custom-select ${open ? "active" : ""}`} ref={availabilityRef}>
+            <div
+              className={`onboarding-selected-option ${open ? "open" : ""}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpen(!open);
+              }}
+            >
+              <span className={!availability ? "opacity-70" : ""}>{availability || "Availability"}</span>
+              <span className="onboarding-arrow">▼</span>
+            </div>
 
-            {/* Arrow */}
-            <img
-              src="/Polygon.svg"
-              alt="dropdown"
-              className={`absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 pointer-events-none transition-transform
-      ${open ? "rotate-180" : ""}`}
-            />
-
-            {/* Dropdown (MATCHES Language Dropdown) */}
             {open && (
-              <div
-                className="absolute mt-2 w-full rounded-md border
-        border-gray-200 dark:border-gray-700
-        bg-white dark:bg-[#1E1E1E]
-        p-2 space-y-2 z-10"
-              >
-                {["Available", "Unavailable", "Working on a project"].map(
-                  (item) => (
-                    <button
-                      key={item}
-                      onClick={() => {
-                        setAvailability(item);
-                        setOpen(false);
-                      }}
-                      className={`block w-fit rounded-md border px-3 py-1 text-sm transition
-            ${availability === item
-                          ? "border-black dark:border-white bg-white dark:bg-[#2B2B2B]"
-                          : "border-gray-300 dark:border-gray-600  hover:dark:text-white"
-                        }
-            text-black dark:text-white`}
-                    >
-                      {item}
-                    </button>
-                  ),
-                )}
-              </div>
+              <ul className="onboarding-options-list">
+                {availabilityOptions.map((item) => (
+                  <li
+                    key={item}
+                    className={availability === item ? "active" : ""}
+                    onClick={() => {
+                      setAvailability(item);
+                      setOpen(false);
+                    }}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
             )}
           </div>
         </Section>
@@ -448,18 +469,8 @@ export default function PersonalInformation() {
 
 function Calendar({ onClose, onSelect }) {
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
   ];
 
   const today = new Date();
@@ -468,8 +479,19 @@ function Calendar({ onClose, onSelect }) {
   const [month, setMonth] = useState(today.getMonth());
   const [openYear, setOpenYear] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
+  const yearRef = useRef(null);
 
   const years = Array.from({ length: 101 }, (_, i) => 1950 + i);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (yearRef.current && !yearRef.current.contains(event.target)) {
+        setOpenYear(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const firstDay = new Date(year, month, 1).getDay();
   const totalDays = new Date(year, month + 1, 0).getDate();
@@ -493,39 +515,49 @@ function Calendar({ onClose, onSelect }) {
     `${String(d).padStart(2, "0")}-${String(month + 1).padStart(2, "0")}-${year}`;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/20 dark:bg-black/70 flex items-center justify-center">
+    <div
+      className="fixed inset-0 z-50 bg-black/20 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+      onClick={onClose}
+    >
       {/* OUTER CARD */}
-      <div className="bg-white dark:bg-[#2B2B2B] w-[335px] h-[350px] rounded-xl p-3 shadow-lg">
+      <div
+        className="bg-white dark:bg-[#2B2B2B] w-[335px] h-[350px] rounded-xl p-3 shadow-lg calendar-outer cursor-default"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* INNER CARD */}
-        <div className="bg-white dark:bg-[#2B2B2B] border border-[#CEFF1B] w-full h-full rounded-lg p-3 flex flex-col text-black dark:text-black">
+        <div className="bg-white dark:bg-[#2B2B2B] border border-[#CEFF1B] w-full h-full rounded-lg p-3 flex flex-col text-black dark:text-black calendar-inner">
           {/* YEAR DROPDOWN */}
-          <div className="relative mb-6">
-            <div
-              onClick={() => setOpenYear(!openYear)}
-              className="bg-[#CEFF1B] text-black rounded-md text-center py-1 text-sm font-semibold cursor-pointer"
-            >
-              {year} :
-            </div>
-
-            {openYear && (
-              <div className="absolute mt-2 w-full bg-white dark:bg-[#1E1E1E] border border-[#CEFF1B]/40 rounded-md shadow z-10 max-h-40 custom-scroll overflow-y-auto">
-                {years.map((y) => (
-                  <div
-                    key={y}
-                    onClick={() => {
-                      setYear(y);
-                      setOpenYear(false);
-                    }}
-                    className={`px-3 py-1 text-sm cursor-pointer ${y === year
-                        ? "bg-[#CEFF1B] text-black font-semibold"
-                        : "hover:bg-gray-100 dark:hover:bg-[#CEFF1B]"
-                      }`}
-                  >
-                    {y}
-                  </div>
-                ))}
+          <div className="relative mb-6 z-20 w-full" ref={yearRef}>
+            <div className={`onboarding-custom-select ${openYear ? "active" : ""}`}>
+              <div
+                className={`onboarding-selected-option ${openYear ? "open" : ""}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenYear(!openYear);
+                }}
+                style={{ background: "#CEFF1B", color: "black", fontWeight: "bold" }}
+              >
+                <span>{year} :</span>
+                <span className="onboarding-arrow">▼</span>
               </div>
-            )}
+
+              {openYear && (
+                <ul className="onboarding-options-list dark:bg-[#1E1E1E]">
+                  {years.map((y) => (
+                    <li
+                      key={y}
+                      className={y === year ? "active" : ""}
+                      onClick={() => {
+                        setYear(y);
+                        setOpenYear(false);
+                      }}
+                    >
+                      {y}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
 
           {/* MONTH HEADER */}
@@ -648,27 +680,27 @@ function TagInput({ placeholder, tags, setTags, onKeyDown, onRemove }) {
       />
 
       {/* CHIP CONTAINER (input-style) */}
-      <div className="flex flex-wrap items-center w-full min-h-[56px] rounded-md px-2 py-2 bg-white dark:bg-[#232323] gap-y-2 gap-x-2 mb-2">
-        {/* LEFT: CHIPS */}
-        <div className="flex flex-wrap gap-2 flex-1">
-          {tags.map((tag, i) => (
-            <span
-              key={i}
-              className="tag-chip flex items-center gap-2 px-3 py-2 rounded-md text-xs bg-gray-100 dark:bg-[#232323]"
-            >
-              {tag}
-              <button
-                onClick={() => onRemove(i, tags, setTags)}
-                className="text-xs"
+      {tags.length > 0 && (
+        <div className="flex flex-wrap items-center w-full min-h-[56px] rounded-md px-2 py-2 bg-white dark:bg-[#232323] gap-y-2 gap-x-2 mb-2">
+          {/* LEFT: CHIPS */}
+          <div className="flex flex-wrap gap-2 flex-1">
+            {tags.map((tag, i) => (
+              <span
+                key={i}
+                className="tag-chip flex items-center gap-2 px-3 py-2 rounded-md text-xs bg-gray-100 dark:bg-[#232323]"
               >
-                ✕
-              </button>
-            </span>
-          ))}
-        </div>
+                {tag}
+                <button
+                  onClick={() => onRemove(i, tags, setTags)}
+                  className="text-xs"
+                >
+                  ✕
+                </button>
+              </span>
+            ))}
+          </div>
 
-        {/* RIGHT: BIG CLOSE (container level) */}
-        {tags.length > 0 && (
+          {/* RIGHT: BIG CLOSE (container level) */}
           <button
             onClick={clearAll}
             className="tag-clear-btn ml-2 px-3 h-full flex items-center justify-center text-sm"
@@ -676,8 +708,8 @@ function TagInput({ placeholder, tags, setTags, onKeyDown, onRemove }) {
           >
             ✕
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -695,60 +727,55 @@ function TagSelect({ options, tags, setTags, onRemove }) {
   return (
     <div className="space-y-3">
       {/* Input */}
-      <div className="relative">
-        <input
-          readOnly
-          placeholder="Select languages"
-          onClick={() => setOpen(!open)}
-          className="w-full h-[41px] cursor-pointer bg-transparent border border-black rounded-md pl-3 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
-        />
-
-        {/* Right polygon icon (local svg) */}
-        <img
-          src="/Polygon.svg"
-          alt="dropdown"
-          className={`absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 pointer-events-none transition-transform ${open ? "rotate-180" : ""
-            }`}
-        />
+      <div className={`onboarding-custom-select ${open ? "active" : ""}`}>
+        <div
+          className={`onboarding-selected-option ${open ? "open" : ""}`}
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpen(!open);
+          }}
+        >
+          <span className="opacity-70">Select languages</span>
+          <span className="onboarding-arrow">▼</span>
+        </div>
 
         {/* Dropdown */}
         {open && (
-          <div className="absolute mt-2 w-full rounded-md border border-gray-200 bg-white p-2 space-y-2 z-10 max-h-48 overflow-y-auto">
+          <ul className="onboarding-options-list">
             {options.map((lang) => (
-              <button
+              <li
                 key={lang}
-                onClick={() => addTag(lang)}
-                disabled={tags.includes(lang)}
-                className={`block w-fit rounded-md border px-3 py-1 text-sm transition
-                  ${tags.includes(lang)
-                    ? "border-black bg-white opacity-50 cursor-not-allowed"
-                    : "border-gray-300 "
-                  }`}
+                className={tags.includes(lang) ? "active cursor-not-allowed opacity-50" : ""}
+                onClick={() => {
+                  if (!tags.includes(lang)) addTag(lang);
+                }}
               >
                 {lang}
-              </button>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
       </div>
 
       {/* Selected tags */}
-      <div className="flex w-full rounded-lg bg-[#FEFEFE] flex-wrap gap-2 p-2 border">
-        {tags.map((tag, i) => (
-          <span
-            key={i}
-            className="tag-chip flex items-center gap-2 px-3 py-1 rounded-md text-xs h-8"
-          >
-            {tag}
-            <button
-              onClick={() => onRemove(i, tags, setTags)}
-              className="text-xs"
+      {tags.length > 0 && (
+        <div className="flex w-full rounded-lg bg-[#FEFEFE] flex-wrap gap-2 p-2 border">
+          {tags.map((tag, i) => (
+            <span
+              key={i}
+              className="tag-chip flex items-center gap-2 px-3 py-1 rounded-md text-xs h-8"
             >
-              ✕
-            </button>
-          </span>
-        ))}
-      </div>
+              {tag}
+              <button
+                onClick={() => onRemove(i, tags, setTags)}
+                className="text-xs"
+              >
+                ✕
+              </button>
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
