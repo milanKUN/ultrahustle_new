@@ -1051,6 +1051,50 @@ LIGHT MODE – DROPDOWN HOVER ONLY
   color: #000 !important;
 }
 
+/* GLOBAL FORM INPUTS (DARK MODE FIX) */
+.user-page.dark input,
+.user-page.dark textarea {
+  border-color: #4B4B4B !important;
+  color: #ffffff !important;
+}
+
+.user-page.dark input::placeholder,
+.user-page.dark textarea::placeholder {
+  color: #888 !important;
+}
+
+/* CUSTOM DROPDOWNS (DARK MODE FIX) */
+.user-page.dark .onboarding-selected-option {
+  border-color: #4B4B4B !important;
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+
+.user-page.dark .onboarding-selected-option:hover {
+  background-color: #1a1a1a !important;
+}
+
+.user-page.dark .onboarding-options-list {
+  background-color: #1e1e1e !important;
+  color: #fff !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid #333 !important;
+}
+
+.user-page.dark .onboarding-options-list li {
+  color: #e5e7eb !important;
+}
+
+.user-page.dark .onboarding-options-list li:hover,
+.user-page.dark .onboarding-options-list li.active {
+  background-color: #CEFF1B !important;
+  color: #000 !important;
+}
+
+.user-page.dark .onboarding-arrow {
+  color: #ceff1b !important;
+}
+
 /* =========================================
    CREATE TEAM PAGE – DARK MODE (FULL SUPPORT)
    ========================================= */
