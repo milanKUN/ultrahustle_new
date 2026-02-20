@@ -42,9 +42,18 @@ const UserProfile = (props) => {
     "18-02-2026", "22-02-2026", "25-02-2026", "28-02-2026"
   ]); // Sample activity dates in DD-MM-YYYY format
 
-  // ✅ Sidebar state
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  // ✅ Sidebar state (standardized with localStorage)
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    const saved = localStorage.getItem("sidebarOpen");
+    return saved ? JSON.parse(saved) : false;
+  });
+
+  const [showSettings, setShowSettings] = useState(false);
   const [activeSetting, setActiveSetting] = useState("basic");
+
+  useEffect(() => {
+    localStorage.setItem("sidebarOpen", JSON.stringify(sidebarOpen));
+  }, [sidebarOpen]);
 
   const contentRef = useRef(null);
 
@@ -329,8 +338,8 @@ const UserProfile = (props) => {
         <Sidebar
           expanded={sidebarOpen}
           setExpanded={setSidebarOpen}
-          showSettings={false}
-          setShowSettings={() => { }}
+          showSettings={showSettings}
+          setShowSettings={setShowSettings}
           activeSetting={activeSetting}
           onSectionChange={handleSectionChange}
           theme={theme}

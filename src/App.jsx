@@ -87,7 +87,7 @@ export default function App() {
           <Route path="/client-profile-setup" element={<ClientProfileSetup />} />
           <Route path="/create-team" element={<CreateTeam theme={theme} setTheme={setTheme} />} />
           <Route path="/team-profile" element={<TeamProfileLight />} />
-          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/user-profile" element={<UserProfile theme={theme} setTheme={setTheme} />} />
           <Route path="/solo-contracts-listing" element={<SoloContractListing theme={theme} setTheme={setTheme} />} />
           <Route path="/milestones" element={<MilestonesPage theme={theme} setTheme={setTheme} />} />
           <Route path="/solo-milestones" element={<SoloMilestonesPage theme={theme} setTheme={setTheme} />} />

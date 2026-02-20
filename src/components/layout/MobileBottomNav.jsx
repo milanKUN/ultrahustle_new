@@ -77,19 +77,18 @@ export default function MobileBottomNav({ active, setActive, theme = "light" }) 
     >
       <div
         className={`
-    w-[400px] max-w-[92vw]
-    rounded-2xl
-    flex items-center justify-between
-    px-3 py-3
-    backdrop-blur-xl
-    border
-    ${isDark ? "bg-[#0f1115]/85" : "bg-white/75"}
-  `}
+          w-[400px] max-w-[92vw]
+          rounded-2xl
+          flex items-center justify-between
+          px-3 py-3
+          backdrop-blur-xl
+          ${isDark ? "bg-[#0f1115]/85" : "bg-white/75"}
+        `}
         style={{
-          border: "1.5px solid #CEFF1B",
+          border: "2px solid #CEFF1B", // Slightly thicker for visibility
           boxShadow: isDark
-            ? "0 10px 28px rgba(0,0,0,0.4), 0 0 18px rgba(206,255,27,0.2)"
-            : "0 10px 28px rgba(0,0,0,0.12), 0 0 18px rgba(206,255,27,0.35)",
+            ? "0 10px 28px rgba(0,0,0,0.4)"
+            : "0 10px 28px rgba(0,0,0,0.12)",
         }}
       >
         {items.map((item) => {
@@ -108,7 +107,7 @@ export default function MobileBottomNav({ active, setActive, theme = "light" }) 
             >
               {isActive ? (
                 // ✅ Active = neon big pill like image
-                <div className="w-full h-[52px] bg-[#CEFF1B] rounded-2xl flex flex-col items-center justify-center shadow-[0_10px_18px_rgba(206,255,27,0.35)]">
+                <div className="w-full h-[52px] bg-[#CEFF1B] rounded-2xl flex flex-col items-center justify-center">
                   <Icon size={16} style={{ color: "#000000" }} />
                   <span
                     className="text-[10px] font-semibold mt-[2px]"
