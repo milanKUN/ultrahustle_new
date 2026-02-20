@@ -20,7 +20,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 40px;
-  background-color: rgba(234, 234, 234, 0.95) !;
+  background-color: rgba(234, 234, 234, 0.95);
   border-bottom: 0.5px solid #CEFF1B;
   box-shadow: 0 1px 13.6px 0 #CEFF1B;
   backdrop-filter: blur(27px);
@@ -845,35 +845,51 @@
   cursor: pointer;
 }
 
-/* ========== NARROW DESKTOP FIX: Nest Hub / iPad Pro (950px - 1200px) ========== */
-@media (min-width: 951px) and (max-width: 1200px) {
+/* ========== NARROW DESKTOP FIX: Nest Hub / iPad Pro / Nest Hub Max (951px - 1400px) ========== */
+@media (min-width: 951px) and (max-width: 1400px) {
   .inreview-header {
-    padding: 12px 20px;
-    gap: 10px;
+    padding: 12px 15px !important;
+    gap: 15px !important;
+  }
+
+  .logo {
+    height: 26px !important;
   }
 
   .header-left {
-    gap: 12px;
+    gap: 12px !important;
     flex-shrink: 0;
   }
 
   .nav-menu {
-    gap: 16px;
+    gap: 12px !important;
   }
 
   .search-wrapper {
     flex: 1;
     min-width: 0;
+    position: relative;
+    /* Ensure it can anchor the dropdown if needed, but fixed search-dropdown usually centers on viewport */
   }
 
   .header-search {
-    width: 100%;
-    max-width: 260px;
+    width: 450px !important;
+    max-width: 100%;
     min-width: 0;
   }
 
+  .search-dropdown {
+    position: fixed !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100vw - 40px) !important;
+    max-width: 877px !important;
+    top: 85px !important;
+    z-index: 9999 !important;
+  }
+
   .header-right {
-    gap: 12px;
+    gap: 12px !important;
     flex-shrink: 0;
   }
 }
@@ -959,7 +975,7 @@
   /* =========================
    ≤500px FINAL CENTER FIX
 ========================= */
-  @media (max-width: 500px) {
+  @media (max-width: 550px) {
 
 
     .notifications-dropdown::before {
@@ -986,12 +1002,12 @@
     /* TRUE CENTER LOGO — SMALLER */
     .logo {
       position: fixed !important;
-      left: 50%;
-      top: 20px;
+      left: 50% !important;
+      top: 25px !important;
       transform: translateX(-50%);
-      height: 20px;
-      /* 👈 changed from 26px */
-      width: auto;
+      height: 35px !important;
+      /* 👈 balanced height */
+      width: 200px !important;
       z-index: 1001;
       pointer-events: none;
     }
@@ -1078,7 +1094,7 @@
 }
 
 /* ✅ ONLY 501px — 950px: Notifications dropdown 8% left */
-@media (min-width: 501px) and (max-width: 950px) {
+@media (min-width: 551px) and (max-width: 950px) {
   .notifications-dropdown {
     left: 58% !important;
     /* 50% - 8% */
@@ -1091,12 +1107,11 @@
 }
 
 /* ✅ ONLY <=500px: Hide arrow (triangle) */
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   .notifications-dropdown::before {
     display: none !important;
   }
 }
-
 
 /* ================= DARK MODE ================= */
 

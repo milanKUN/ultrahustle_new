@@ -306,13 +306,15 @@ export default function Sidebar({
                 })}
               </div>
 
-              <button
-                onClick={() => setExpanded(false)}
-                className="p-2 rounded-xl bg-[#CEFF1B] text-[#CEFF1B] hover:text-[#bddd18] transition"
-                title="Collapse Sidebar"
-              >
-                <ChevronLeft size={20} />
-              </button>
+              {!isMobile && (
+                <button
+                  onClick={() => setExpanded(false)}
+                  className="p-2 rounded-xl bg-[#CEFF1B] text-[#000] hover:opacity-90 transition"
+                  title="Collapse Sidebar"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+              )}
             </div>
 
             {/* NAV */}
