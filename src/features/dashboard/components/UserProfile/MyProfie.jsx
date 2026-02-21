@@ -167,8 +167,8 @@ export default function ProfileForm() {
           <div
             className="
               flex flex-col
-              w-[400px] h-[621px]
-              p-8
+              w-[90%] max-w-[400px] h-auto max-h-[90vh] overflow-y-auto
+              p-5 md:p-8
               rounded-2xl
               image-modal-card relative
             "
@@ -195,7 +195,7 @@ export default function ProfileForm() {
             <div
               className="
                 flex
-                w-[330px] h-[368px]
+                w-full aspect-square md:w-[330px] md:h-[368px]
                 mb-5
                 bg-[#2B2B2B]
                 rounded-xl
@@ -284,7 +284,7 @@ export default function ProfileForm() {
                 value={zoom}
                 onChange={(e) => setZoom(parseInt(e.target.value))}
                 className="
-                  w-[279px]
+                  w-full
                   accent-[#CEFF1B]
                 "
               />
@@ -345,8 +345,10 @@ function FriendListModal({ onClose }) {
     >
       <div
         className="
-          w-[620px]
-          p-8
+          w-[95%] max-w-[620px] max-h-[90vh]
+          p-5 md:p-8
+          rounded-2xl
+          flex flex-col
           rounded-2xl
           friend-modal-card relative
         "
@@ -365,9 +367,10 @@ function FriendListModal({ onClose }) {
         <div
           className="
             flex
-            mb-6
+            flex-wrap
+            mb-3
             font-semibold
-            justify-center gap-16
+            justify-center gap-4 md:gap-16
           "
         >
           <button
@@ -396,7 +399,7 @@ function FriendListModal({ onClose }) {
         <div
           className="
             h-[1px]
-            mb-5
+            mb-3
             bg-[#000000]
             divider
           "

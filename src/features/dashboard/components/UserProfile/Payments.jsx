@@ -1,9 +1,11 @@
 import { useState, useRef, useEffect } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import "../../../onboarding/components/OnboardingSelect.css";
 
 function Payments() {
   const [openCalendar, setOpenCalendar] = useState(false);
   const [expiryDate, setExpiryDate] = useState("");
+  const [showCardNumber, setShowCardNumber] = useState(false);
 
   return (
     <div className=" -mt-16 from-gray-100 to-lime-50 rounded-xl p-6">
@@ -102,16 +104,28 @@ function Payments() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div>
           <label className="block mb-1 font-medium">Card Number</label>
-          <input
-            className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
-            placeholder="**** **** **** 2345"
-          />
+          <div className="relative">
+            <input
+              type={showCardNumber ? "text" : "password"}
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
+              placeholder="**** **** **** 2345"
+            />
+            <button
+              type="button"
+              onClick={() => setShowCardNumber(!showCardNumber)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 focus:outline-none"
+            >
+              {showCardNumber ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+            </button>
+          </div>
         </div>
 
         <div>
           <label className="block mb-1 font-medium">CVV</label>
           <input
-            className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
+            type="password"
+            maxLength={4}
+            className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             placeholder="CVV"
           />
         </div>
@@ -119,7 +133,8 @@ function Payments() {
         <div>
           <label className="block mb-1 font-medium">Name On Card</label>
           <input
-            className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm"
+            type="text"
+            className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             placeholder="Name on card"
           />
         </div>
@@ -134,7 +149,7 @@ function Payments() {
               placeholder="MM / YY"
               value={expiryDate}
               readOnly
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm"
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             />
 
             <span
@@ -375,7 +390,7 @@ function ExpiryCalendar({ onClose, onSelect }) {
   return (
     <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
       {/* OUTER CARD */}
-      <div className="bg-[#F2F2F2] w-[335px] h-[380px] rounded-xl p-3 relative flex items-center justify-center">
+      <div className="bg-[#F2F2F2] w-[95%] max-w-[335px] h-[380px] rounded-xl p-3 relative flex items-center justify-center">
         {/* INNER CARD */}
         <div className="bg-[#FEFEFE]/40 w-full h-full rounded-lg p-3 flex flex-col items-center">
           {/* YEAR DROPDOWN */}

@@ -521,7 +521,7 @@ function Calendar({ onClose, onSelect }) {
     >
       {/* OUTER CARD */}
       <div
-        className="bg-white dark:bg-[#2B2B2B] w-[335px] h-[350px] rounded-xl p-3 shadow-lg calendar-outer cursor-default"
+        className="bg-white dark:bg-[#2B2B2B] w-[95%] max-w-[335px] h-[350px] rounded-xl p-3 shadow-lg calendar-outer cursor-default"
         onClick={(e) => e.stopPropagation()}
       >
         {/* INNER CARD */}

@@ -987,7 +987,7 @@ UPLOAD GRID – VIDEO & PLUS ICON FIX
 /* plus button background already green – make + black */
 .upload-slot .bg-\[\#CEFF1B\] {
   color: #000000 !important;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 /* ensure + symbol visible */
@@ -1065,7 +1065,7 @@ LIGHT MODE – DROPDOWN HOVER ONLY
 
 /* CUSTOM DROPDOWNS (DARK MODE FIX) */
 .user-page.dark .onboarding-selected-option {
-  border-color: #4B4B4B !important;
+  border-color: #fefefe !important;
   color: #ffffff !important;
   background-color: transparent !important;
 }

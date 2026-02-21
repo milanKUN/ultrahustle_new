@@ -1,6 +1,11 @@
-import { Eye } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 export default function Security() {
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   return (
     <div className="">
       {/* ================= Security ================= */}
@@ -20,11 +25,17 @@ export default function Security() {
             </label>
             <div className="relative">
               <input
-                type="password"
+                type={showCurrentPassword ? "text" : "password"}
                 placeholder="********"
                 className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
               />
-              <Eye className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 cursor-pointer" />
+              <button
+                type="button"
+                onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 focus:outline-none"
+              >
+                {showCurrentPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
             </div>
           </div>
 
@@ -33,11 +44,17 @@ export default function Security() {
             <label className="block mb-1 font-medium">New password</label>
             <div className="relative">
               <input
-                type="password"
+                type={showNewPassword ? "text" : "password"}
                 placeholder="********"
                 className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
               />
-              <Eye className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 cursor-pointer" />
+              <button
+                type="button"
+                onClick={() => setShowNewPassword(!showNewPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 focus:outline-none"
+              >
+                {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
             </div>
           </div>
 
@@ -48,11 +65,17 @@ export default function Security() {
             </label>
             <div className="relative">
               <input
-                type="password"
+                type={showConfirmPassword ? "text" : "password"}
                 placeholder="********"
                 className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
               />
-              <Eye className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 cursor-pointer" />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 focus:outline-none"
+              >
+                {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
             </div>
           </div>
 
@@ -80,7 +103,7 @@ export default function Security() {
           <div>
             <p className="text-[16px] font-medium">Windows</p>
             <p className="text-[16px] text-gray-500">Chennai, Tamil Nadu, India</p>
-            <p className="text-[16px] text-[#2B2B2B] flex items-center gap-1 dark:text-white">
+            <p className="text-[16px] text-black flex items-center gap-1 dark:text-white">
               <span className="text-[#0FB400]">●</span>
               Your Current Session
             </p>
