@@ -755,8 +755,8 @@
 }
 
 .profile-avatar {
-    width: 90px;
-    height: 90px;
+    width: 100px !important;
+    height: 100px !important;
     border-radius: 50%;
     background: #333;
 }
@@ -794,6 +794,9 @@
     font-size: 16px;
     color: var(--ir-text-dark);
     transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .btn-message:hover {
@@ -917,8 +920,8 @@
 
 .hashtag {
     padding: 6px 14px;
-    background: transparent;
-    border: 1px solid #999;
+    background: #CEFF1B;
+    border: none;
     border-radius: 12px;
     font-size: 14px;
     color: #2B2B2B;
@@ -1113,6 +1116,7 @@
 
 .language-item {
     padding: 10px 20px;
+    border: 1px solid var(--ir-border-dark);
     border-radius: 12px;
     font-size: 16px;
     font-weight: 500;

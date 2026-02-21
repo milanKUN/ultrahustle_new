@@ -12,6 +12,7 @@ import "../../onboarding/components/OnboardingSelect.css";
 const UserProfile = (props) => {
   // ✅ Theme via props (CreateTeam jaisa)
   const [activeItem, setActiveItem] = useState(null);
+  const [activeItemIndex, setActiveItemIndex] = useState(0);
   const toolsContainerRef = useRef(null);
   const languagesContainerRef = useRef(null);
   const [joinStatus, setJoinStatus] = useState("idle");
@@ -30,12 +31,23 @@ const UserProfile = (props) => {
       ? [props.theme, props.setTheme]
       : useState("light");
   const [isrequestsent, setIsRequestsent] = useState(false);
+  const [favorites, setFavorites] = useState(new Set());
+
+  const toggleFavorite = (index) => {
+    setFavorites((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
+  };
 
   const [mainTab, setMainTab] = useState("listings"); // listings | projects
   const [filter, setFilter] = useState("All"); // All | Services | Products | Courses | Webinars
 
   const skillsContainerRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [openFollowModal, setOpenFollowModal] = useState(false);
 
   // ✅ Activity Calendar state
   const [openActivityCalendar, setOpenActivityCalendar] = useState(false);
@@ -378,7 +390,12 @@ const UserProfile = (props) => {
                       </span>
 
                       <span className="meta-separator">•</span>
-                      <span>{teamData.friendsCount} 123 Friends</span>
+                      <span
+                        style={{ cursor: "pointer", textDecoration: "underline" }}
+                        onClick={() => setOpenFollowModal(true)}
+                      >
+                        123 Friends
+                      </span>
 
                       <span className="meta-separator">•</span>
                       <span>Joined Oct 2025 {teamData.joined}</span>
@@ -387,14 +404,39 @@ const UserProfile = (props) => {
                 </div>
 
                 <div className="profile-actions">
-                  <button className="btn-message">Message</button>
+                  <button className="btn-message">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect width="20" height="16" x="2" y="4" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                    Message
+                  </button>
 
                   <button
                     className={`btn-join ${joinStatus === "sent" ? "sent" : ""}`}
                     onClick={() => setJoinStatus("sent")}
                     disabled={joinStatus === "sent"}
                   >
-                    {joinStatus === "sent" ? "Followed" : "Follow"}
+                    {joinStatus === "sent" ? (
+                      <>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                          <circle cx="9" cy="7" r="4" />
+                          <polyline points="16 11 18 13 22 9" />
+                        </svg>
+                        Followed
+                      </>
+                    ) : (
+                      <>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                          <circle cx="9" cy="7" r="4" />
+                          <line x1="19" y1="8" x2="19" y2="14" />
+                          <line x1="22" y1="11" x2="16" y2="11" />
+                        </svg>
+                        Follow
+                      </>
+                    )}
                   </button>
                 </div>
               </section>
@@ -591,18 +633,41 @@ const UserProfile = (props) => {
                   onClick={() => setOpenActivityCalendar(true)}
                   style={{ cursor: "pointer" }}
                 >
-                  {/* ✅ DOTS ICON (old svg removed) */}
+                  {/* ✅ DOTS ICON — green dots based on activityDates */}
                   <div className="">
                     <div className="activity-dots" aria-hidden="true">
-                      {Array.from({ length: 32 }).map((_, i) => (
-                        <span key={i} className={`dot ${i < 8 ? "on" : ""}`} />
-                      ))}
+                      {(() => {
+                        const now = new Date();
+                        const currentMonth = now.getMonth() + 1; // 1-12
+                        const currentYear = now.getFullYear();
+                        const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
+
+                        // Extract active day numbers for current month
+                        const activeDays = new Set(
+                          activityDates
+                            .filter((d) => {
+                              const [dd, mm, yyyy] = d.split("-").map(Number);
+                              return mm === currentMonth && yyyy === currentYear;
+                            })
+                            .map((d) => parseInt(d.split("-")[0], 10))
+                        );
+
+                        return Array.from({ length: daysInMonth }).map((_, i) => (
+                          <span key={i} className={`dot ${activeDays.has(i + 1) ? "on" : ""}`} />
+                        ));
+                      })()}
                     </div>
                   </div>
 
                   {/* ✅ content */}
                   <div className="stat-content">
-                    <span className="stat-value">{teamData.stats.members}</span>
+                    <span className="stat-value">
+                      {activityDates.filter((d) => {
+                        const [, mm, yyyy] = d.split("-").map(Number);
+                        const now = new Date();
+                        return mm === now.getMonth() + 1 && yyyy === now.getFullYear();
+                      }).length}
+                    </span>
                     <span className="stat-label">Activity Time</span>
                   </div>
                 </div>
@@ -823,7 +888,11 @@ const UserProfile = (props) => {
                     <img
                       src={portfolioData.featured.image}
                       alt={portfolioData.featured.title}
-                      onClick={() => setActiveItem(portfolioData.featured)} // ✅ ADD
+                      onClick={() => {
+                        const allItems = [portfolioData.featured, ...portfolioData.items];
+                        setActiveItemIndex(0);
+                        setActiveItem(allItems[0]);
+                      }}
                       style={{ cursor: "pointer" }}
                     />
                   </div>
@@ -861,11 +930,27 @@ const UserProfile = (props) => {
                           <span>Made by Name</span>
                         </div>
                         <div className="portfolio-modal-nav">
-                          <button className="nav-arrow left">◀</button>
+                          <button
+                            className="nav-arrow left"
+                            onClick={() => {
+                              const allItems = [portfolioData.featured, ...portfolioData.items];
+                              const prevIndex = activeItemIndex > 0 ? activeItemIndex - 1 : allItems.length - 1;
+                              setActiveItemIndex(prevIndex);
+                              setActiveItem(allItems[prevIndex]);
+                            }}
+                          >◀</button>
                           <span className="portfolio-modal-counter">
-                            1 of 12
+                            {activeItemIndex + 1} of {[portfolioData.featured, ...portfolioData.items].length}
                           </span>
-                          <button className="nav-arrow right">▶</button>
+                          <button
+                            className="nav-arrow right"
+                            onClick={() => {
+                              const allItems = [portfolioData.featured, ...portfolioData.items];
+                              const nextIndex = activeItemIndex < allItems.length - 1 ? activeItemIndex + 1 : 0;
+                              setActiveItemIndex(nextIndex);
+                              setActiveItem(allItems[nextIndex]);
+                            }}
+                          >▶</button>
                         </div>
                         <button
                           className="portfolio-modal-close"
@@ -879,9 +964,7 @@ const UserProfile = (props) => {
                       <div className="portfolio-modal-info">
                         <div className="portfolio-info-header">
                           <h3>{activeItem.title}</h3>
-                          <button className="portfolio-contact-pill">
-                            Contact
-                          </button>
+
                         </div>
                         <p>{activeItem.description}</p>
 
@@ -920,7 +1003,11 @@ const UserProfile = (props) => {
                           <img
                             src={item.image}
                             alt={item.title}
-                            onClick={() => setActiveItem(item)} // ✅ ADD
+                            onClick={() => {
+                              const allItems = [portfolioData.featured, ...portfolioData.items];
+                              setActiveItemIndex(index + 1);
+                              setActiveItem(allItems[index + 1]);
+                            }}
                             style={{ cursor: "pointer" }}
                           />
                         </div>
@@ -1076,8 +1163,15 @@ const UserProfile = (props) => {
 
                           <div className="listing-actions">
                             <button className="btn-view-listing">View Listing</button>
-                            <button className="btn-favorite">
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <button
+                              className="btn-favorite"
+                              onClick={() => toggleFavorite(index)}
+                            >
+                              <svg width="20" height="20" viewBox="0 0 24 24"
+                                fill={favorites.has(index) ? "#ef4444" : "none"}
+                                stroke={favorites.has(index) ? "#ef4444" : "currentColor"}
+                                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                              >
                                 <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
                               </svg>
                             </button>
@@ -1254,9 +1348,150 @@ const UserProfile = (props) => {
           theme={theme}
         />
       )}
+
+      {/* ================= FOLLOWERS / FOLLOWING MODAL ================= */}
+      {openFollowModal && (
+        <FollowModal
+          onClose={() => setOpenFollowModal(false)}
+          theme={theme}
+        />
+      )}
     </div >
   );
 };
+
+/* ================= FOLLOWERS / FOLLOWING MODAL ================= */
+
+function FollowModal({ onClose, theme }) {
+  const [tab, setTab] = useState("followers");
+
+  const [followersList, setFollowersList] = useState(
+    Array.from({ length: 10 }, (_, i) => ({
+      id: i,
+      name: "User Name",
+    }))
+  );
+
+  const [followingList, setFollowingList] = useState(
+    Array.from({ length: 8 }, (_, i) => ({
+      id: i + 100,
+      name: "User Name",
+    }))
+  );
+
+  const removeFollower = (id) => {
+    setFollowersList(followersList.filter((u) => u.id !== id));
+  };
+
+  const removeFollowing = (id) => {
+    setFollowingList(followingList.filter((u) => u.id !== id));
+  };
+
+  const currentList = tab === "followers" ? followersList : followingList;
+
+  return (
+    <div
+      className="
+        z-50 flex
+        md:mt-20 p-4 md:p-0
+        bg-black/60
+        backdrop-blur-sm
+        fixed inset-0 items-center justify-center friend-modal
+      "
+      onClick={onClose}
+    >
+      <div
+        className="
+          w-[95%] max-w-[620px] max-h-[90vh]
+          p-5 md:p-8
+          rounded-2xl
+          flex flex-col
+          friend-modal-card relative
+        "
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="text-gray-600 text-lg absolute top-4 right-4"
+        >
+          ✕
+        </button>
+
+        {/* TABS */}
+        <div className="flex flex-wrap mb-1 md:mb-3 font-semibold justify-center gap-4 md:gap-16">
+          <button
+            onClick={() => setTab("followers")}
+            className={`px-5 py-1.5 rounded-lg ${tab === "followers" ? "bg-[#CEFF1B] text-black" : ""}`}
+            style={{ border: "1px solid black" }}
+          >
+            Followers
+          </button>
+          <button
+            onClick={() => setTab("following")}
+            className={`px-5 py-1.5 rounded-lg ${tab === "following" ? "bg-[#CEFF1B] text-black" : ""}`}
+            style={{ border: "1px solid black" }}
+          >
+            Following
+          </button>
+        </div>
+
+        <div className="h-[1px] mb-2 md:mb-3 bg-[#000000] divider" />
+
+        {/* SEARCH */}
+        <div className="mb-3 md:mb-5 relative">
+          <input
+            placeholder="Search here"
+            className="w-full px-5 py-2.5 text-sm text-left bg-white rounded-full border border-gray-300 placeholder:text-center focus:outline-none focus:ring-0 focus:border-gray-300"
+          />
+          <span className="text-gray-500 pointer-events-none absolute right-5 top-2.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </span>
+        </div>
+
+        {/* LIST */}
+        <div className="overflow-y-auto max-h-[360px] pr-2 space-y-5 custom-scroll">
+          {currentList.map((u) => (
+            <div key={u.id} className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 bg-[#D9D9D9] rounded-full" />
+                <span className="text-sm">{u.name}</span>
+              </div>
+
+              {tab === "followers" ? (
+                <div className="flex gap-3">
+                  <button className="px-4 py-1.5 text-xs bg-[#CEFF1B] rounded-md text-black">
+                    Follow Back
+                  </button>
+                  <button
+                    onClick={() => removeFollower(u.id)}
+                    className="px-4 py-1.5 text-xs border rounded-md"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ) : (
+                <div className="flex gap-3">
+                  <button className="px-4 py-1.5 text-xs bg-[#CEFF1B] rounded-md text-black">
+                    Following
+                  </button>
+                  <button
+                    onClick={() => removeFollowing(u.id)}
+                    className="px-4 py-1.5 text-xs border rounded-md"
+                  >
+                    Unfollow
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /* ================= ACTIVITY CALENDAR COMPONENT ================= */
 
@@ -1313,16 +1548,16 @@ function ActivityCalendar({ onClose, activityDates, theme }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/20 dark:bg-black/70 flex items-center justify-center"
+      className="fixed inset-0 z-50 bg-black/40 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center"
       onClick={onClose}
     >
       {/* OUTER CARD */}
       <div
-        className="bg-white dark:bg-[#2B2B2B] w-[335px] h-[350px] rounded-xl p-3 shadow-lg"
+        className="bg-white dark:bg-[#2B2B2B] w-[335px] h-[350px] rounded-xl p-3 calendar-outer cursor-default"
         onClick={(e) => e.stopPropagation()}
       >
         {/* INNER CARD */}
-        <div className="bg-white dark:bg-[#2B2B2B] border border-[#CEFF1B] w-full h-full rounded-lg p-3 flex flex-col text-black dark:text-black">
+        <div className="bg-white dark:bg-[#2B2B2B] w-full h-full rounded-lg p-3 flex flex-col text-black dark:text-black calendar-inner">
           {/* YEAR DROPDOWN */}
           <div className="relative mb-6 z-20 w-full" ref={yearRef}>
             <div className={`onboarding-custom-select ${openYear ? "active" : ""}`}>
@@ -1392,18 +1627,10 @@ function ActivityCalendar({ onClose, activityDates, theme }) {
               return (
                 <div
                   key={day}
-                  className="relative mx-auto w-7 h-7 flex items-center justify-center"
+                  className={`relative mx-auto w-7 h-7 flex items-center justify-center rounded-full
+                    ${isActivity ? "bg-[#CEFF1B] text-black font-semibold" : ""}`}
                 >
-                  {/* Date number */}
                   <span className="relative z-10">{day}</span>
-
-                  {/* Activity dot indicator */}
-                  {isActivity && (
-                    <span
-                      className="absolute bottom-0 w-1.5 h-1.5 rounded-full bg-[#CEFF1B]"
-                      style={{ zIndex: 5 }}
-                    ></span>
-                  )}
                 </div>
               );
             })}
