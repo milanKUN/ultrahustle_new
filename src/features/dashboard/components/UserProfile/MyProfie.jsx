@@ -328,10 +328,29 @@ export default function ProfileForm() {
 function FriendListModal({ onClose }) {
   const [tab, setTab] = useState("list");
 
-  const users = Array.from({ length: 10 }, (_, i) => ({
-    id: i,
-    name: "User Name",
-  }));
+  const [friendList, setFriendList] = useState(
+    Array.from({ length: 10 }, (_, i) => ({
+      id: i,
+      name: "User Name",
+    }))
+  );
+
+  const [suggestionList, setSuggestionList] = useState(
+    Array.from({ length: 10 }, (_, i) => ({
+      id: i + 100,
+      name: "User Name",
+    }))
+  );
+
+  const removeFriend = (id) => {
+    setFriendList(friendList.filter((u) => u.id !== id));
+  };
+
+  const removeSuggestion = (id) => {
+    setSuggestionList(suggestionList.filter((u) => u.id !== id));
+  };
+
+  const currentList = tab === "list" ? friendList : suggestionList;
 
   return (
     <div
@@ -457,7 +476,7 @@ function FriendListModal({ onClose }) {
             custom-scroll
           "
         >
-          {users.map((u) => (
+          {currentList.map((u) => (
             <div
               key={u.id}
               className="
@@ -505,6 +524,7 @@ function FriendListModal({ onClose }) {
                     Following
                   </button>
                   <button
+                    onClick={() => removeFriend(u.id)}
                     className="
                       px-4 py-1.5
                       text-xs
@@ -529,9 +549,10 @@ function FriendListModal({ onClose }) {
                       rounded-md
                     "
                   >
-                    Add
+                    Follow
                   </button>
                   <button
+                    onClick={() => removeSuggestion(u.id)}
                     className="
                       text-gray-500
                     "

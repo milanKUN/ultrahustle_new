@@ -1,20 +1,26 @@
 import { useState, useRef, useEffect } from "react";
 
+let nextId = 4; // counter for unique IDs
+
 export default function MyPortfolio() {
   const [projects, setProjects] = useState([
-    { title: "", desc: "", cost: "" },
-    { title: "", desc: "", cost: "" },
-    { title: "", desc: "", cost: "" },
+    { id: 1, title: "", desc: "", cost: "" },
+    { id: 2, title: "", desc: "", cost: "" },
+    { id: 3, title: "", desc: "", cost: "" },
   ]);
 
   const [uploadStep, setUploadStep] = useState(null); // null | "grid" | "success"
 
   const addProject = () => {
-    setProjects([...projects, { title: "", desc: "", cost: "" }]);
+    setProjects([...projects, { id: nextId++, title: "", desc: "", cost: "" }]);
   };
 
-  const removeProject = (index) => {
-    setProjects(projects.filter((_, i) => i !== index));
+  const removeProject = (id) => {
+    setProjects(projects.filter((p) => p.id !== id));
+  };
+
+  const updateProject = (id, field, value) => {
+    setProjects(projects.map((p) => (p.id === id ? { ...p, [field]: value } : p)));
   };
 
   // ✅ Modal open when grid OR success
@@ -82,10 +88,10 @@ export default function MyPortfolio() {
 
         {/* PROJECTS GRID */}
         <div className="border-2 border-white rounded-xl p-6 mb-6 flex flex-col">
-          <div className="max-h-[520px] overflow-y-auto pr-2 custom-scroll">
+          <div className="max-h-[520px] overflow-y-auto px-4 pb-4 -mx-4 custom-scroll">
             <div className="grid md:grid-cols-3 gap-6">
-              {projects.map((_, index) => (
-                <div key={index} className="space-y-3">
+              {projects.map((project) => (
+                <div key={project.id} className="space-y-3">
                   <div className="relative h-[250px] bg-gray-200 rounded-xl">
                     <button
                       type="button"
@@ -97,7 +103,7 @@ export default function MyPortfolio() {
 
                     <button
                       type="button"
-                      onClick={() => removeProject(index)}
+                      onClick={() => removeProject(project.id)}
                       className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center
                         bg-red-500 text-white rounded-full text-sm"
                       title="Remove"
@@ -106,9 +112,9 @@ export default function MyPortfolio() {
                     </button>
                   </div>
 
-                  <Input label="Title" />
-                  <Textarea label="Description" />
-                  <Input label="Cost" small />
+                  <Input label="Title" value={project.title} onChange={(v) => updateProject(project.id, 'title', v)} />
+                  <Textarea label="Description" value={project.desc} onChange={(v) => updateProject(project.id, 'desc', v)} />
+                  <Input label="Cost" small value={project.cost} onChange={(v) => updateProject(project.id, 'cost', v)} />
                 </div>
               ))}
             </div>
@@ -370,12 +376,14 @@ function UploadSuccess({ onBack }) {
 
 /* ================= INPUTS ================= */
 
-function Input({ label, placeholder, small }) {
+function Input({ label, placeholder, small, value, onChange }) {
   return (
     <div>
       <label className="block mb-1 font-medium">{label}</label>
       <input
         placeholder={placeholder}
+        value={value ?? ""}
+        onChange={(e) => onChange?.(e.target.value)}
         className={`${small ? "w-40" : "w-full"
           } border border-black rounded-md px-3 py-2 bg-transparent text-sm
         outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B] placeholder:text-gray-400`}
@@ -384,8 +392,8 @@ function Input({ label, placeholder, small }) {
   );
 }
 
-function Textarea({ label, placeholder, limit }) {
-  const [text, setText] = useState("");
+function Textarea({ label, placeholder, limit, value, onChange }) {
+  const text = value ?? "";
 
   return (
     <div>
@@ -394,7 +402,7 @@ function Textarea({ label, placeholder, limit }) {
         placeholder={placeholder}
         rows={3}
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => onChange?.(e.target.value)}
         className="w-full border border-black rounded-md px-3 py-2 bg-transparent text-sm resize-none
         outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B] placeholder:text-gray-400"
       />
