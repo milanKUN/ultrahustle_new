@@ -19,6 +19,7 @@ import {
   ShoppingBag,
   ShoppingCart,
 } from "lucide-react";
+import { CiSaveDown1 } from "react-icons/ci";
 
 /* ================= DATA ================= */
 
@@ -77,6 +78,7 @@ const CLIENT_ITEMS = [
     ],
   },
   { label: "Message", icon: MessageCircle, path: "/messages" },
+  { label: "Saved", icon:  CiSaveDown1, path: "/saved" },
   {
     label: "Settings",
     icon: Settings,
