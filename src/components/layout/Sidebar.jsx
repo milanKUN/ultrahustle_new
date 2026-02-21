@@ -501,7 +501,7 @@ export default function Sidebar({
                 "payments",
                 "verification",
                 "apps",
-                "delete",
+              "delete",
               ].map((item) => {
                 const isActive = activeSetting === item;
 

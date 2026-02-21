@@ -159,16 +159,16 @@ export default function ProfileForm() {
         <div
           className="
             z-50 flex
-            mt-20
+            md:mt-20 p-4 md:p-0
             fixed inset-0 items-center justify-center image-modal
             backdrop-blur-sm bg-black/30
           "
         >
           <div
             className="
-              flex flex-col
-              w-[90%] max-w-[400px] h-auto max-h-[90vh] overflow-y-auto
-              p-5 md:p-8
+              flex flex-col items-center
+              w-[90%] max-w-[380px] h-auto max-h-[90vh] overflow-y-auto
+              p-5 md:p-6
               rounded-2xl
               image-modal-card relative
             "
@@ -195,8 +195,8 @@ export default function ProfileForm() {
             <div
               className="
                 flex
-                w-full aspect-square md:w-[330px] md:h-[368px]
-                mb-5
+                w-full aspect-square max-w-[280px]
+                mb-5 mx-auto
                 bg-[#2B2B2B]
                 rounded-xl
                 items-center justify-center
@@ -224,7 +224,7 @@ export default function ProfileForm() {
                   >
                     <div
                       className="
-                        w-[300px] h-[300px]
+                        w-[230px] h-[230px] md:w-[250px] md:h-[250px]
                         rounded-full
                         border-2 border-white/50
                       "
@@ -258,9 +258,9 @@ export default function ProfileForm() {
             </p>
             <div
               className="
-                flex
+                flex w-full
                 px-4 mb-6
-                items-center gap-2
+                items-center justify-between gap-3
                 zoom-bar
               "
             >
@@ -284,7 +284,7 @@ export default function ProfileForm() {
                 value={zoom}
                 onChange={(e) => setZoom(parseInt(e.target.value))}
                 className="
-                  w-full
+                  flex-1
                   accent-[#CEFF1B]
                 "
               />
@@ -337,7 +337,7 @@ function FriendListModal({ onClose }) {
     <div
       className="
         z-50 flex
-        mt-20
+        md:mt-20 p-4 md:p-0
         bg-black/60
         backdrop-blur-sm
         fixed inset-0 items-center justify-center friend-modal
@@ -368,7 +368,7 @@ function FriendListModal({ onClose }) {
           className="
             flex
             flex-wrap
-            mb-3
+            mb-1 md:mb-3
             font-semibold
             justify-center gap-4 md:gap-16
           "
@@ -399,7 +399,7 @@ function FriendListModal({ onClose }) {
         <div
           className="
             h-[1px]
-            mb-3
+            mb-2 md:mb-3
             bg-[#000000]
             divider
           "
@@ -408,7 +408,7 @@ function FriendListModal({ onClose }) {
         {/* SEARCH */}
         <div
           className="
-            mb-5
+            mb-3 md:mb-5
             relative
           "
         >

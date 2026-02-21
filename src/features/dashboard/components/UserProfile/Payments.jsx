@@ -107,6 +107,9 @@ function Payments() {
           <div className="relative">
             <input
               type={showCardNumber ? "text" : "password"}
+              inputMode="numeric"
+              maxLength={16}
+              onInput={(e) => e.target.value = e.target.value.replace(/[^0-9]/g, '')}
               className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
               placeholder="**** **** **** 2345"
             />
@@ -276,11 +279,19 @@ function Payments() {
 
           <div>
             <label className="block mb-1 font-medium">Phone Number</label>
-            <input
-              type="tel"
-              placeholder="+91 XXXXX XXXXX"
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
-            />
+            <div className="flex items-center border border-black rounded-md px-3 py-2 gap-2 focus-within:shadow-[0_0_15px_#CEFF1B] focus-within:!border-transparent">
+              <span className="text-sm text-gray-700">India</span>
+              <span className="text-gray-400">|</span>
+              <span className="text-sm text-gray-700">+91</span>
+              <input
+                type="tel"
+                inputMode="numeric"
+                placeholder="XXXXXXXXXX"
+                maxLength={10}
+                onInput={(e) => e.target.value = e.target.value.replace(/[^0-9]/g, '')}
+                className="flex-1 outline-none border-none bg-transparent text-sm pl-2 focus:outline-none focus:ring-0"
+              />
+            </div>
           </div>
         </div>
 
@@ -334,6 +345,9 @@ function Payments() {
             <label className="block mb-1 font-medium">Pincode</label>
             <input
               type="text"
+              inputMode="numeric"
+              maxLength={6}
+              onInput={(e) => e.target.value = e.target.value.replace(/[^0-9]/g, '')}
               placeholder="Pincode"
               className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
             />
@@ -388,9 +402,15 @@ function ExpiryCalendar({ onClose, onSelect }) {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center">
+    <div
+      className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+      onClick={onClose}
+    >
       {/* OUTER CARD */}
-      <div className="bg-[#F2F2F2] w-[95%] max-w-[335px] h-[380px] rounded-xl p-3 relative flex items-center justify-center">
+      <div
+        className="bg-[#F2F2F2] w-[95%] max-w-[335px] h-[380px] rounded-xl p-3 relative flex items-center justify-center cursor-default"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* INNER CARD */}
         <div className="bg-[#FEFEFE]/40 w-full h-full rounded-lg p-3 flex flex-col items-center">
           {/* YEAR DROPDOWN */}

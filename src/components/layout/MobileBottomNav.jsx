@@ -62,19 +62,21 @@ export default function MobileBottomNav({ active, setActive, theme = "light" }) 
     })();
 
   return (
-    <div
-      className={`
-        fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] px-3
-        transition-all duration-300 ease-in-out
-      `}
-      style={{
-        transform: isVisible
-          ? "translateX(-50%) translateY(0)"
-          : "translateX(-50%) translateY(140%)",
-        opacity: isVisible ? 1 : 0,
-        pointerEvents: isVisible ? "auto" : "none",
-      }}
-    >
+   <div
+    className={`
+      fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] px-3
+      transition-all duration-300 ease-in-out
+      min-[550px]:hidden
+    `}
+    style={{
+      transform: isVisible
+        ? "translateX(-50%) translateY(0)"
+        : "translateX(-50%) translateY(140%)",
+      opacity: isVisible ? 1 : 0,
+      pointerEvents: isVisible ? "auto" : "none",
+    }}
+  >
+    
       <div
         className={`
           w-[400px] max-w-[92vw]

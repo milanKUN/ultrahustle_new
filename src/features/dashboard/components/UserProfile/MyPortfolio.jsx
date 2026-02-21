@@ -202,7 +202,7 @@ function UploadGrid({ onSelect, onBack, blurred }) {
   return (
     <div className="fixed inset-0 z-[950] flex items-center justify-center pointer-events-auto">
       <div
-        className={`upload-card rounded-2xl p-4 w-[95%] max-w-[820px] h-auto max-h-[90vh] flex flex-col bg-white shadow-xl transition-all duration-200
+        className={`upload-card rounded-2xl p-4 w-[95%] max-w-[820px] h-auto max-h-[90vh] flex flex-col bg-white shadow-[0_0_20px_#CEFF1B] transition-all duration-200
         ${blurred
             ? "blur-sm scale-[0.98] pointer-events-none select-none opacity-95"
             : ""
@@ -224,7 +224,7 @@ function UploadGrid({ onSelect, onBack, blurred }) {
           <button
             type="button"
             onClick={onBack}
-            className="ml-auto w-9 h-9 rounded-full flex items-center justify-center hover:bg-gray-100"
+            className="ml-auto w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#CEFF1B]"
             title="Close"
           >
             ✕
@@ -345,7 +345,7 @@ function UploadGrid({ onSelect, onBack, blurred }) {
 function UploadSuccess({ onBack }) {
   return (
     <div className="fixed inset-0 z-[1001] flex items-center justify-center pointer-events-auto p-4">
-      <div className="upload-success-card rounded-2xl w-[90%] max-w-[600px] h-auto min-h-[300px] md:h-[400px] py-10 flex flex-col items-center justify-center shadow-xl bg-white dark:bg-[#2B2B2B] border-2 border-[#CEFF1B]">
+      <div className="upload-success-card rounded-2xl w-[90%] max-w-[600px] h-auto min-h-[300px] md:h-[400px] py-10 flex flex-col items-center justify-center shadow-[0_0_20px_#CEFF1B] bg-white dark:bg-[#2B2B2B]">
         <div className="w-24 h-24 bg-[#CEFF1B] rounded-full flex items-center justify-center mb-6">
           <img src="/right.svg" alt="" />
         </div>

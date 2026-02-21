@@ -179,7 +179,10 @@ export default function PersonalInformation() {
                 <span className="text-sm text-gray-700">+91</span>
                 <input
                   type="tel"
+                  inputMode="numeric"
                   placeholder="XXXXXXXXXX"
+                  maxLength={10}
+                  onInput={(e) => e.target.value = e.target.value.replace(/[^0-9]/g, '')}
                   onFocus={() => setFocusedId("phone")}
                   onBlur={() => setFocusedId(null)}
                   className="flex-1 outline-none border-none bg-transparent text-sm pl-2 focus:outline-none focus:ring-0"
@@ -298,7 +301,17 @@ export default function PersonalInformation() {
               </div>
             </div>
 
-            <Input label="Pincode" placeholder="Pincode" />
+            <div>
+              <Label>Pincode</Label>
+              <input
+                type="text"
+                inputMode="numeric"
+                placeholder="Pincode"
+                maxLength={6}
+                onInput={(e) => e.target.value = e.target.value.replace(/[^0-9]/g, '')}
+                className="w-full bg-transparent border border-black rounded-md px-3 py-2 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
+              />
+            </div>
           </TwoCol>
         </Section>
 
@@ -759,21 +772,32 @@ function TagSelect({ options, tags, setTags, onRemove }) {
 
       {/* Selected tags */}
       {tags.length > 0 && (
-        <div className="flex w-full rounded-lg bg-[#FEFEFE] flex-wrap gap-2 p-2 border">
-          {tags.map((tag, i) => (
-            <span
-              key={i}
-              className="tag-chip flex items-center gap-2 px-3 py-1 rounded-md text-xs h-8"
-            >
-              {tag}
-              <button
-                onClick={() => onRemove(i, tags, setTags)}
-                className="text-xs"
+        <div className="flex w-full rounded-lg bg-[#FEFEFE] flex-wrap items-center gap-2 p-2 border">
+          <div className="flex flex-wrap gap-2 flex-1">
+            {tags.map((tag, i) => (
+              <span
+                key={i}
+                className="tag-chip flex items-center gap-2 px-3 py-1 rounded-md text-xs h-8"
               >
-                ✕
-              </button>
-            </span>
-          ))}
+                {tag}
+                <button
+                  onClick={() => onRemove(i, tags, setTags)}
+                  className="text-xs"
+                >
+                  ✕
+                </button>
+              </span>
+            ))}
+          </div>
+
+          {/* CLEAR ALL */}
+          <button
+            onClick={() => setTags([])}
+            className="tag-clear-btn ml-2 px-3 h-full flex items-center justify-center text-sm"
+            title="Clear all"
+          >
+            ✕
+          </button>
         </div>
       )}
     </div>
