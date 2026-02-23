@@ -227,7 +227,7 @@ const UserProfile = (props) => {
     {
       image:
         "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      title: "C",
+      title: "Complete UI/UX Design for Mobile & Web more...",
       type: "Service",
       views: 3247,
       price: "$2,500",
