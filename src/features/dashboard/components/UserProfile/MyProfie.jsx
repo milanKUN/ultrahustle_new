@@ -363,14 +363,7 @@ function FriendListModal({ onClose }) {
       "
     >
       <div
-        className="
-          w-[95%] max-w-[620px] max-h-[90vh]
-          p-5 md:p-8
-          rounded-2xl
-          flex flex-col
-          rounded-2xl
-          friend-modal-card relative
-        "
+        className="w-[95%] max-w-[620px] max-h-[90vh] p-5 md:p-8 rounded-[16px] flex flex-col friend-modal-card relative bg-white dark:bg-[#121212] border-2 border-[#CEFF1B] dark:border-[#CEFF1B] shadow-[0_0_40px_rgba(206,255,27,0.5)] dark:shadow-[0_0_50px_rgba(206,255,27,0.6)] transition-colors"
       >
         <button
           onClick={onClose}

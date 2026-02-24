@@ -18,6 +18,7 @@ import {
   FilePlus,
   ShoppingBag,
   ShoppingCart,
+  HeartIcon,
 } from "lucide-react";
 import { CiSaveDown1 } from "react-icons/ci";
 
@@ -78,7 +79,7 @@ const CLIENT_ITEMS = [
     ],
   },
   { label: "Message", icon: MessageCircle, path: "/messages" },
-  { label: "Saved", icon:  CiSaveDown1, path: "/saved" },
+  { label: "Saved", icon: HeartIcon, path: "/saved" },
   {
     label: "Settings",
     icon: Settings,
@@ -503,7 +504,7 @@ export default function Sidebar({
                 "payments",
                 "verification",
                 "apps",
-              "delete",
+                "delete",
               ].map((item) => {
                 const isActive = activeSetting === item;
 

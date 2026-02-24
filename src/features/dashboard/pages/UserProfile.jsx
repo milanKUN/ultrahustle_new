@@ -453,7 +453,7 @@ const UserProfile = (props) => {
                 <div className="title-center">
                   <div className="info-stack">
                     {/* 📍 Location */}
-                    <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "8px" }}>
+                    <div className="profile-info-item">
                       <svg
                         width="20"
                         height="20"
@@ -461,21 +461,18 @@ const UserProfile = (props) => {
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
-                        style={{ color: "#333" }}
+                        className="info-icon"
                       >
                         <path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 1 1 18 0Z" />
                         <circle cx="12" cy="10" r="3" />
                       </svg>
-                      <div
-                        className="info-badge location-badge"
-                        style={{ display: "flex", alignItems: "center", fontSize: "16px", color: "#333" }}
-                      >
-                        <span style={{ fontWeight: "600", color: "#111", marginRight: "6px" }}>Location:</span> {teamData.location}
+                      <div className="info-badge location-badge">
+                        <span className="info-label">Location:</span> {teamData.location}
                       </div>
                     </div>
 
                     {/* 🟢 Availability */}
-                    <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <div className="profile-info-item">
                       <svg
                         width="20"
                         height="20"
@@ -483,22 +480,12 @@ const UserProfile = (props) => {
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
-                        style={{ color: "#333" }}
+                        className="info-icon"
                       >
                         <circle cx="12" cy="12" r="10"></circle>
                         <polyline points="12 6 12 12 16 14"></polyline>
                       </svg>
-                      <div
-                        className="info-badge availability-badge"
-                        style={{
-                          background: "#CEFF1B",
-                          padding: "8px 16px",
-                          borderRadius: "10px",
-                          color: "#000",
-                          fontWeight: "500",
-                          fontSize: "14px",
-                        }}
-                      >
+                      <div className="availability-badge">
                         {teamData.availability}
                       </div>
                     </div>
@@ -915,12 +902,9 @@ const UserProfile = (props) => {
 
                 {/* ✅ POPUP MODAL */}
                 {activeItem && createPortal(
-                  <div
-                    className={`portfolio-modal ${theme}`}
-                    onClick={() => setActiveItem(null)}
-                  >
+                  <div className="portfolio-modal-backdrop" onClick={() => setActiveItem(null)}>
                     <div
-                      className="portfolio-modal-content"
+                      className={`portfolio-modal-content ${theme}`}
                       onClick={(e) => e.stopPropagation()}
                     >
                       {/* 🔝 Top Bar */}
@@ -929,35 +913,40 @@ const UserProfile = (props) => {
                           <div className="portfolio-brand-circle"></div>
                           <span>Made by Name</span>
                         </div>
-                        <div className="portfolio-modal-nav">
+
+                        {/* Right Actions: Arrows + Close */}
+                        <div className="flex items-center gap-4">
+                          <div className="portfolio-modal-nav">
+                            <button
+                              className="nav-arrow left"
+                              onClick={() => {
+                                const allItems = [portfolioData.featured, ...portfolioData.items];
+                                const prevIndex = activeItemIndex > 0 ? activeItemIndex - 1 : allItems.length - 1;
+                                setActiveItemIndex(prevIndex);
+                                setActiveItem(allItems[prevIndex]);
+                              }}
+                            >◀</button>
+                            <span className="portfolio-modal-counter">
+                              {activeItemIndex + 1} of {[portfolioData.featured, ...portfolioData.items].length}
+                            </span>
+                            <button
+                              className="nav-arrow right"
+                              onClick={() => {
+                                const allItems = [portfolioData.featured, ...portfolioData.items];
+                                const nextIndex = activeItemIndex < allItems.length - 1 ? activeItemIndex + 1 : 0;
+                                setActiveItemIndex(nextIndex);
+                                setActiveItem(allItems[nextIndex]);
+                              }}
+                            >▶</button>
+                          </div>
+
                           <button
-                            className="nav-arrow left"
-                            onClick={() => {
-                              const allItems = [portfolioData.featured, ...portfolioData.items];
-                              const prevIndex = activeItemIndex > 0 ? activeItemIndex - 1 : allItems.length - 1;
-                              setActiveItemIndex(prevIndex);
-                              setActiveItem(allItems[prevIndex]);
-                            }}
-                          >◀</button>
-                          <span className="portfolio-modal-counter">
-                            {activeItemIndex + 1} of {[portfolioData.featured, ...portfolioData.items].length}
-                          </span>
-                          <button
-                            className="nav-arrow right"
-                            onClick={() => {
-                              const allItems = [portfolioData.featured, ...portfolioData.items];
-                              const nextIndex = activeItemIndex < allItems.length - 1 ? activeItemIndex + 1 : 0;
-                              setActiveItemIndex(nextIndex);
-                              setActiveItem(allItems[nextIndex]);
-                            }}
-                          >▶</button>
+                            className="portfolio-modal-close"
+                            onClick={() => setActiveItem(null)}
+                          >
+                            ✕
+                          </button>
                         </div>
-                        <button
-                          className="portfolio-modal-close"
-                          onClick={() => setActiveItem(null)}
-                        >
-                          ✕
-                        </button>
                       </div>
 
                       {/* 📝 Info */}
@@ -982,6 +971,9 @@ const UserProfile = (props) => {
                       {/* 🧩 Thumbnails */}
                       <div className="portfolio-modal-thumbs">
                         {[
+                          activeItem.image,
+                          activeItem.image,
+                          activeItem.image,
                           activeItem.image,
                           activeItem.image,
                           activeItem.image,
@@ -1034,7 +1026,7 @@ const UserProfile = (props) => {
               </section>
 
               {/* Listings Section */}
-              <section style={{ width: "100%" }}>
+              < section style={{ width: "100%" }}>
                 {/* ================= TOP CONTROLS ================= */}
                 <div
                   style={{
@@ -1401,13 +1393,7 @@ function FollowModal({ onClose, theme }) {
       onClick={onClose}
     >
       <div
-        className="
-          w-[95%] max-w-[620px] max-h-[90vh]
-          p-5 md:p-8
-          rounded-2xl
-          flex flex-col
-          friend-modal-card relative
-        "
+        className={`w-[95%] max-w-[620px] max-h-[90vh] p-5 md:p-8 rounded-[16px] flex flex-col friend-modal-card relative bg-white dark:bg-[#121212] border-2 border-[#CEFF1B] shadow-[0_0_40px_rgba(206,255,27,0.5)] dark:shadow-[0_0_50px_rgba(206,255,27,0.6)] transition-colors ${theme === "dark" || theme === "dark-theme" ? "dark" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -1422,14 +1408,14 @@ function FollowModal({ onClose, theme }) {
           <button
             onClick={() => setTab("followers")}
             className={`px-5 py-1.5 rounded-lg ${tab === "followers" ? "bg-[#CEFF1B] text-black" : ""}`}
-            style={{ border: "1px solid black" }}
+
           >
             Followers
           </button>
           <button
             onClick={() => setTab("following")}
             className={`px-5 py-1.5 rounded-lg ${tab === "following" ? "bg-[#CEFF1B] text-black" : ""}`}
-            style={{ border: "1px solid black" }}
+
           >
             Following
           </button>
@@ -1455,31 +1441,28 @@ function FollowModal({ onClose, theme }) {
         <div className="overflow-y-auto max-h-[360px] pr-2 space-y-5 custom-scroll">
           {currentList.map((u) => (
             <div key={u.id} className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-11 h-11 bg-[#D9D9D9] rounded-full" />
-                <span className="text-sm">{u.name}</span>
+              <div className="flex items-center gap-3 md:gap-4 flex-1 min-w-0 pr-2">
+                <div className="w-9 h-9 md:w-11 md:h-11 shrink-0 bg-[#D9D9D9] rounded-full" />
+                <span className="text-xs md:text-sm font-medium truncate">{u.name}</span>
               </div>
 
               {tab === "followers" ? (
-                <div className="flex gap-3">
-                  <button className="px-4 py-1.5 text-xs bg-[#CEFF1B] rounded-md text-black">
+                <div className="flex gap-2 shadow-sm">
+                  <button className="px-2 md:px-4 py-1 md:py-1.5 text-[10px] md:text-xs bg-[#CEFF1B] rounded-md text-black whitespace-nowrap font-medium">
                     Follow Back
                   </button>
                   <button
                     onClick={() => removeFollower(u.id)}
-                    className="px-4 py-1.5 text-xs border rounded-md"
+                    className="px-2 md:px-4 py-1 md:py-1.5 text-[10px] md:text-xs border rounded-md whitespace-nowrap font-medium"
                   >
                     Remove
                   </button>
                 </div>
               ) : (
-                <div className="flex gap-3">
-                  <button className="px-4 py-1.5 text-xs bg-[#CEFF1B] rounded-md text-black">
-                    Following
-                  </button>
+                <div className="flex gap-2">
                   <button
                     onClick={() => removeFollowing(u.id)}
-                    className="px-4 py-1.5 text-xs border rounded-md"
+                    className="px-3 md:px-4 py-1 md:py-1.5 text-[10px] md:text-xs border rounded-md whitespace-nowrap font-medium"
                   >
                     Unfollow
                   </button>
@@ -1502,13 +1485,11 @@ function ActivityCalendar({ onClose, activityDates, theme }) {
   ];
 
   const today = new Date();
-
   const [year, setYear] = useState(today.getFullYear());
-  const [month, setMonth] = useState(today.getMonth());
   const [openYear, setOpenYear] = useState(false);
   const yearRef = useRef(null);
 
-  const years = Array.from({ length: 101 }, (_, i) => 1950 + i);
+  const years = Array.from({ length: 21 }, (_, i) => today.getFullYear() - 10 + i);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -1520,68 +1501,100 @@ function ActivityCalendar({ onClose, activityDates, theme }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const firstDay = new Date(year, month, 1).getDay();
-  const totalDays = new Date(year, month + 1, 0).getDate();
-  const prevMonthDays = new Date(year, month, 0).getDate();
-
-  const changeMonth = (dir) => {
-    if (dir === "prev") {
-      if (month === 0) {
-        setMonth(11);
-        setYear(y => y - 1);
-      } else setMonth(m => m - 1);
-    } else {
-      if (month === 11) {
-        setMonth(0);
-        setYear(y => y + 1);
-      } else setMonth(m => m + 1);
-    }
+  const changeYear = (dir) => {
+    if (dir === "prev") setYear(y => y - 1);
+    else setYear(y => y + 1);
   };
 
-  const formatDate = (d) =>
-    `${String(d).padStart(2, "0")}-${String(month + 1).padStart(2, "0")}-${year}`;
 
-  const hasActivity = (day) => {
-    const formatted = formatDate(day);
+  const hasActivity = (day, mIndex, y) => {
+    const formatted = `${String(day).padStart(2, "0")}-${String(mIndex + 1).padStart(2, "0")}-${y}`;
     return activityDates.includes(formatted);
   };
 
+  // Ensure modal prevents background scroll
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/40 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center"
+      className="fixed inset-0 z-[9999] bg-black/20 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 sm:p-4 overflow-hidden"
       onClick={onClose}
     >
-      {/* OUTER CARD */}
       <div
-        className="bg-white dark:bg-[#2B2B2B] w-[335px] h-[350px] rounded-xl p-3 calendar-outer cursor-default"
+        className="bg-white dark:bg-[#121212] w-full max-w-[1240px] h-auto max-h-[90vh] md:h-[90vh] rounded-[16px] flex flex-col relative border-2 border-[#CEFF1B] dark:border-[#CEFF1B] shadow-[0_0_40px_rgba(206,255,27,0.5)] dark:shadow-[0_0_50px_rgba(206,255,27,0.6)] overflow-hidden transition-colors"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* INNER CARD */}
-        <div className="bg-white dark:bg-[#2B2B2B] w-full h-full rounded-lg p-3 flex flex-col text-black dark:text-black calendar-inner">
-          {/* YEAR DROPDOWN */}
-          <div className="relative mb-6 z-20 w-full" ref={yearRef}>
-            <div className={`onboarding-custom-select ${openYear ? "active" : ""}`}>
+        {/* LIME GREEN HEADER */}
+        <div className="bg-[#CEFF1B] w-full py-2 sm:py-3 px-6 flex justify-center items-center shrink-0 relative z-10 transition-colors">
+          <div className="flex items-center gap-2 relative">
+            {/* Year Navigation Prev */}
+            <button
+              onClick={() => changeYear("prev")}
+              className="flex w-8 h-8 md:w-6 md:h-6 sm:w-8 sm:h-8 items-center justify-center hover:bg-black/10 rounded-full transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+            </button>
+
+            <div className={`onboarding-custom-select ${openYear ? "active" : ""}`} style={{ width: "140px" }} ref={yearRef}>
               <div
-                className={`onboarding-selected-option ${openYear ? "open" : ""}`}
+                className={`onboarding-selected-option activity-year-trigger ${openYear ? "open" : ""}`}
                 onClick={(e) => {
                   e.stopPropagation();
                   setOpenYear(!openYear);
                 }}
-                style={{ background: "#CEFF1B", color: "black", fontWeight: "bold" }}
+                style={{
+                  background: "#CEFF1B",
+                  color: "#000",
+                  fontWeight: "900",
+                  borderRadius: "8px",
+                  height: "36px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "0 12px",
+                  fontSize: "18px"
+                }}
               >
-                <span>{year} :</span>
-                <span className="onboarding-arrow">▼</span>
+                <span>{year}</span>
+                <span className="onboarding-arrow" style={{ marginLeft: "8px", fontSize: "10px" }}>▼</span>
               </div>
 
               {openYear && (
-                <ul className="onboarding-options-list dark:bg-[#1E1E1E]">
+                <ul
+                  className="onboarding-options-list"
+                  style={{
+                    position: "absolute",
+                    top: "100%",
+                    left: 0,
+                    width: "100%",
+                    maxHeight: "200px",
+                    overflowY: "auto",
+                    background: theme === "dark" || theme === "dark-theme" ? "#1A1A1A" : "#FFFFFF",
+                    border: "1px solid #000",
+                    borderRadius: "8px",
+                    marginTop: "4px",
+                    zIndex: 100
+                  }}
+                >
                   {years.map((y) => (
                     <li
                       key={y}
-                      className={y === year ? "active" : ""}
                       onClick={() => {
                         setYear(y);
                         setOpenYear(false);
+                      }}
+                      className={year === y ? "active" : ""}
+                      style={{
+                        padding: "8px 12px",
+                        cursor: "pointer",
+                        color: theme === "dark" || theme === "dark-theme" ? "#FFFFFF" : "#000000",
+                        fontSize: "16px",
+                        backgroundColor: year === y ? "#CEFF1B" : "transparent"
                       }}
                     >
                       {y}
@@ -1590,52 +1603,80 @@ function ActivityCalendar({ onClose, activityDates, theme }) {
                 </ul>
               )}
             </div>
+
+            {/* Year Navigation Next */}
+            <button
+              onClick={() => changeYear("next")}
+              className="flex w-8 h-8 md:w-6 md:h-6 sm:w-8 sm:h-8 items-center justify-center hover:bg-black/10 rounded-full transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+            </button>
           </div>
 
-          {/* MONTH HEADER */}
-          <div className="flex justify-between items-center text-sm font-medium -mt-2 mb-2 px-1">
-            <span onClick={() => changeMonth("prev")} className="cursor-pointer">‹</span>
-            <span>{months[month]} {year}</span>
-            <span onClick={() => changeMonth("next")} className="cursor-pointer">›</span>
-          </div>
+          {/* Mobile Close Button */}
+          <button
+            onClick={onClose}
+            className="flex md:hidden w-8 h-8 items-center justify-center hover:bg-black/10 rounded-full transition-colors absolute right-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
 
-          {/* WEEK */}
-          <div className="grid grid-cols-7 text-[10px] text-gray-600 dark:text-gray-400 mb-2">
-            {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map(d => (
-              <div key={d} className="text-center">{d}</div>
-            ))}
-          </div>
+        {/* MONTH GRID */}
+        <div className="overflow-y-auto p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-3 bg-white dark:bg-[#121212] items-stretch transition-colors flex-1 min-h-0 custom-scroll">
+          {months.map((monthName, mIndex) => {
+            const firstDay = new Date(year, mIndex, 1).getDay();
+            const totalDays = new Date(year, mIndex + 1, 0).getDate();
 
-          {/* DAYS */}
-          <div className="grid grid-cols-7 gap-2 text-sm flex-1">
-
-            {/* PREVIOUS MONTH DAYS */}
-            {Array.from({ length: firstDay }).map((_, i) => (
+            return (
               <div
-                key={i}
-                className="text-center text-gray-400 dark:text-gray-600"
-              >
-                {prevMonthDays - firstDay + i + 1}
-              </div>
-            ))}
-
-            {/* CURRENT MONTH DAYS */}
-            {Array.from({ length: totalDays }).map((_, i) => {
-              const day = i + 1;
-              const isActivity = hasActivity(day);
-
-              return (
-                <div
-                  key={day}
-                  className={`relative mx-auto w-7 h-7 flex items-center justify-center rounded-full
-                    ${isActivity ? "bg-[#CEFF1B] text-black font-semibold" : ""}`}
-                >
-                  <span className="relative z-10">{day}</span>
+                key={monthName}
+                className="flex bg-white dark:bg-[#1A1A1A] rounded-[8px] p-3 border border-gray-200 dark:border-[#333333] flex-col items-center hover:border-gray-400 dark:hover:border-gray-500 transition-colors shadow-sm dark:shadow-none min-h-[250px] md:min-h-0"
+                style={{ height: "auto" }}>
+                {/* Month Name */}
+                <div className="w-full flex justify-center items-center mb-1 text-[11px] font-bold text-black dark:text-white">
+                  <span className="text-black dark:text-white">{monthName}</span>
                 </div>
-              );
-            })}
-          </div>
 
+                {/* Weekdays */}
+                <div className="w-full grid grid-cols-7 text-[7px] md:text-[8px] font-bold text-gray-500 dark:text-gray-500 mb-0.5 tracking-wider">
+                  {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map(d => (
+                    <div key={d} className="flex justify-center text-center">{d}</div>
+                  ))}
+                </div>
+
+                {/* Dates Container */}
+                <div className="w-full flex-1 flex flex-col justify-between">
+                  {Array.from({ length: 6 }).map((_, rIndex) => (
+                    <div key={`row-${rIndex}`} className="w-full grid grid-cols-7 gap-y-[1px]">
+                      {Array.from({ length: 7 }).map((_, cIndex) => {
+                        const cellIndex = rIndex * 7 + cIndex;
+                        const dayNumber = cellIndex - firstDay + 1;
+
+                        let content = "";
+                        let isActive = false;
+                        let cssClasses = "flex justify-center items-center h-[18px] sm:h-[22px] text-[10px] md:text-[11px] font-medium transition-colors ";
+
+                        if (cellIndex >= firstDay && dayNumber <= totalDays) {
+                          content = dayNumber;
+                          cssClasses += "text-black dark:text-gray-300";
+                          isActive = hasActivity(dayNumber, mIndex, year);
+                        }
+
+                        return (
+                          <div key={`cell-${cellIndex}`} className={cssClasses}>
+                            <div className={`w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] flex items-center justify-center rounded-full transition-colors ${isActive ? "bg-[#CEFF1B] text-black font-extrabold shadow-sm" : ""}`}>
+                              {content}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

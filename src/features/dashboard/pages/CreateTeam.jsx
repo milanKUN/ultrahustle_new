@@ -22,7 +22,8 @@ const CreateTeam = ({ theme, setTheme }) => {
     tools: ['Figma', 'Illustrator', 'Photoshop', 'Tailwind CSS'],
     availability: '',
     languages: ['Hindi', 'Tamil', 'English'],
-    rules: ['Professional Conduct', '24hr Response', 'Secure File Handling']
+    rules: ['Professional Conduct', '24hr Response', 'Secure File Handling'],
+    category: ''
   });
 
   // Inputs state for adding new tags
@@ -34,6 +35,24 @@ const CreateTeam = ({ theme, setTheme }) => {
     rule: ''
   });
 
+  // Dropdown states
+  const [openAvailability, setOpenAvailability] = useState(false);
+  const [openLanguages, setOpenLanguages] = useState(false);
+  const [openCategory, setOpenCategory] = useState(false);
+  const availabilityRef = React.useRef(null);
+  const languagesRef = React.useRef(null);
+  const categoryRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (availabilityRef.current && !availabilityRef.current.contains(event.target)) setOpenAvailability(false);
+      if (languagesRef.current && !languagesRef.current.contains(event.target)) setOpenLanguages(false);
+      if (categoryRef.current && !categoryRef.current.contains(event.target)) setOpenCategory(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const LIMITS = {
     teamName: 50,
     teamUsername: 30,
@@ -44,7 +63,10 @@ const CreateTeam = ({ theme, setTheme }) => {
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    if (LIMITS[name] && value.length > LIMITS[name]) {
+      value = value.slice(0, LIMITS[name]);
+    }
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -54,6 +76,7 @@ const CreateTeam = ({ theme, setTheme }) => {
 
   const addTag = (e, field, listName, limit) => {
     if (e.key === 'Enter' && inputStates[field].trim()) {
+      e.preventDefault();
       if (formData[listName].length < limit) {
         setFormData(prev => ({
           ...prev,
@@ -72,10 +95,11 @@ const CreateTeam = ({ theme, setTheme }) => {
   };
 
   const renderCharCounter = (fieldName) => {
-    const currentLength = formData[fieldName].length;
+    const currentLength = formData[fieldName]?.length || 0;
     const limit = LIMITS[fieldName];
+
     return (
-      <div className="char-counter">
+      <div className="char-counter text-red-500 text-[0.75rem] mt-1 mb-2">
         You have used {currentLength} Characters out of {limit} Characters
       </div>
     );
@@ -246,7 +270,7 @@ const CreateTeam = ({ theme, setTheme }) => {
               {/* Avatar Section */}
               <div className="team-avatar-card">
                 <div
-                  className="relative w-16 h-16 rounded-full bg-[#D9D9D9] cursor-pointer flex items-center justify-center avatar-container"
+                  className="relative w-20 h-20 rounded-full bg-[#D9D9D9] cursor-pointer flex items-center justify-center avatar-container"
                   onClick={openAvatarModal}
                 >
                   {selectedAvatarImage ? (
@@ -327,6 +351,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                       name="title"
                       className="form-textarea"
                       placeholder="Product Designer & Full-Stack Developer"
+                      value={formData.title}
                       onChange={handleInputChange}
                       style={{ minHeight: '80px', resize: 'none' }}
                     />
@@ -343,6 +368,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                         name="bio"
                         className="form-textarea scrollable-textarea custom-scroll"
                         placeholder="Multi-disciplinary team helping..."
+                        value={formData.bio}
                         onChange={handleInputChange}
                       />
                     </div>
@@ -360,6 +386,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                       name="about"
                       className="form-textarea scrollable-textarea custom-scroll"
                       placeholder="We are a multi-disciplinary..."
+                      value={formData.about}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -397,14 +424,26 @@ const CreateTeam = ({ theme, setTheme }) => {
                     onKeyDown={(e) => addTag(e, 'hashtag', 'hashtags', 15)}
                   />
                   <div className="tags-limit-text">You can add {15 - formData.hashtags.length} hashtag</div>
-                  <div className="tags-container">
-                    {formData.hashtags.map((tag, index) => (
-                      <div key={index} className="tag-pill">
-                        {tag}
-                        <span className="tag-remove" onClick={() => removeTag(tag, 'hashtags')}>×</span>
+                  {formData.hashtags.length > 0 && (
+                    <div className="tags-container">
+                      <div className="flex flex-wrap gap-2 flex-1">
+                        {formData.hashtags.map((tag, index) => (
+                          <span key={index} className="tag-pill">
+                            {tag}
+                            <button type="button" className="tag-remove" onClick={() => removeTag(tag, 'hashtags')}>✕</button>
+                          </span>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                      <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, hashtags: [] }))}
+                        className="tag-clear-btn ml-2 px-3 h-full flex items-center justify-center text-sm"
+                        title="Clear all"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 {/* Skills & Expertise Section */}
@@ -421,14 +460,26 @@ const CreateTeam = ({ theme, setTheme }) => {
                     onKeyDown={(e) => addTag(e, 'skill', 'skills', 16)}
                   />
                   <div className="tags-limit-text">You can add {16 - formData.skills.length} more skills & expertise</div>
-                  <div className="tags-container">
-                    {formData.skills.map((tag, index) => (
-                      <div key={index} className="tag-pill">
-                        {tag}
-                        <span className="tag-remove" onClick={() => removeTag(tag, 'skills')}>×</span>
+                  {formData.skills.length > 0 && (
+                    <div className="tags-container">
+                      <div className="flex flex-wrap gap-2 flex-1">
+                        {formData.skills.map((tag, index) => (
+                          <span key={index} className="tag-pill">
+                            {tag}
+                            <button type="button" className="tag-remove" onClick={() => removeTag(tag, 'skills')}>✕</button>
+                          </span>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                      <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, skills: [] }))}
+                        className="tag-clear-btn ml-2 px-3 h-full flex items-center justify-center text-sm"
+                        title="Clear all"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 {/* Tools & Technologies Section */}
@@ -445,14 +496,26 @@ const CreateTeam = ({ theme, setTheme }) => {
                     onKeyDown={(e) => addTag(e, 'tool', 'tools', 10)}
                   />
                   <div className="tags-limit-text">You can add {10 - formData.tools.length} more tools & technologies</div>
-                  <div className="tags-container">
-                    {formData.tools.map((tag, index) => (
-                      <div key={index} className="tag-pill">
-                        {tag}
-                        <span className="tag-remove" onClick={() => removeTag(tag, 'tools')}>×</span>
+                  {formData.tools.length > 0 && (
+                    <div className="tags-container">
+                      <div className="flex flex-wrap gap-2 flex-1">
+                        {formData.tools.map((tag, index) => (
+                          <span key={index} className="tag-pill">
+                            {tag}
+                            <button type="button" className="tag-remove" onClick={() => removeTag(tag, 'tools')}>✕</button>
+                          </span>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                      <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, tools: [] }))}
+                        className="tag-clear-btn ml-2 px-3 h-full flex items-center justify-center text-sm"
+                        title="Clear all"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 {/* Availability Section */}
@@ -460,17 +523,35 @@ const CreateTeam = ({ theme, setTheme }) => {
                   <label className="form-label">
                     Availability
                   </label>
-                  <select
-                    name="availability"
-                    className="form-select"
-                    value={formData.availability}
-                    onChange={handleInputChange}
-                  >
-                    <option value="" disabled hidden>Select Availability</option>
-                    <option value="Full-time">Full-time</option>
-                    <option value="Part-time">Part-time</option>
-                    <option value="Contract">Contract</option>
-                  </select>
+                  <div className={`onboarding-custom-select ${openAvailability ? "active" : ""}`} ref={availabilityRef}>
+                    <div
+                      className={`onboarding-selected-option ${openAvailability ? "open" : ""}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOpenAvailability(!openAvailability);
+                      }}
+                    >
+                      <span className={!formData.availability ? "opacity-70" : ""}>{formData.availability || "Select Availability"}</span>
+                      <span className="onboarding-arrow">▼</span>
+                    </div>
+
+                    {openAvailability && (
+                      <ul className="onboarding-options-list">
+                        {["Full-time", "Part-time", "Contract"].map((item) => (
+                          <li
+                            key={item}
+                            className={formData.availability === item ? "active" : ""}
+                            onClick={() => {
+                              handleInputChange({ target: { name: 'availability', value: item } });
+                              setOpenAvailability(false);
+                            }}
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
 
                 {/* Languages Section */}
@@ -478,52 +559,93 @@ const CreateTeam = ({ theme, setTheme }) => {
                   <label className="form-label">
                     Languages
                   </label>
-                  <select
-                    className="form-select"
-                    placeholder="Select Languages"
-                    onChange={(e) => {
-                      if (e.target.value && formData.languages.length < 10) {
-                        setFormData(prev => ({
-                          ...prev,
-                          languages: [...prev.languages, e.target.value]
-                        }));
-                      }
-                    }}
-                  >
-                    <option value="" disabled hidden>Select Languages</option>
-                    <option value="English">English</option>
-                    <option value="Hindi">Hindi</option>
-                    <option value="Tamil">Tamil</option>
-                    <option value="Spanish">Spanish</option>
-                    <option value="French">French</option>
-                    <option value="German">German</option>
-                    <option value="Chinese">Chinese</option>
-                    <option value="Japanese">Japanese</option>
-                  </select>
-                  <div className="tags-limit-text">You can add upto {10 - formData.languages.length} Languages</div>
-                  <div className="tags-container">
-                    {formData.languages.map((tag, index) => (
-                      <div key={index} className="tag-pill">
-                        {tag}
-                        <span className="tag-remove" onClick={() => removeTag(tag, 'languages')}>×</span>
-                      </div>
-                    ))}
+                  <div className={`onboarding-custom-select ${openLanguages ? "active" : ""}`} ref={languagesRef}>
+                    <div
+                      className={`onboarding-selected-option ${openLanguages ? "open" : ""}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOpenLanguages(!openLanguages);
+                      }}
+                    >
+                      <span className="opacity-70">Select Languages</span>
+                      <span className="onboarding-arrow">▼</span>
+                    </div>
+
+                    {openLanguages && (
+                      <ul className="onboarding-options-list">
+                        {["English", "Hindi", "Tamil", "Spanish", "French", "German", "Chinese", "Japanese"].map((lang) => (
+                          <li
+                            key={lang}
+                            className={formData.languages.includes(lang) ? "active cursor-not-allowed opacity-50" : ""}
+                            onClick={() => {
+                              if (!formData.languages.includes(lang) && formData.languages.length < 10) {
+                                setFormData(prev => ({ ...prev, languages: [...prev.languages, lang] }));
+                              }
+                              setOpenLanguages(false);
+                            }}
+                          >
+                            {lang}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
+                  <div className="tags-limit-text">You can add upto {10 - formData.languages.length} Languages</div>
+                  {formData.languages.length > 0 && (
+                    <div className="tags-container">
+                      <div className="flex flex-wrap gap-2 flex-1">
+                        {formData.languages.map((tag, index) => (
+                          <span key={index} className="tag-pill">
+                            {tag}
+                            <button type="button" className="tag-remove" onClick={() => removeTag(tag, 'languages')}>✕</button>
+                          </span>
+                        ))}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, languages: [] }))}
+                        className="tag-clear-btn ml-2 px-3 h-full flex items-center justify-center text-sm"
+                        title="Clear all"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  )}
                 </div>
+
                 <div className="form-group full-width">
                   <label className="form-label">
                     Team Category <span className="required-star">*</span>
                   </label>
-                  <select placeholder="Select category"
-                    className="form-select">
+                  <div className={`onboarding-custom-select ${openCategory ? "active" : ""}`} ref={categoryRef}>
+                    <div
+                      className={`onboarding-selected-option ${openCategory ? "open" : ""}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOpenCategory(!openCategory);
+                      }}
+                    >
+                      <span className={!formData.category ? "opacity-70" : ""}>{formData.category || "Select category"}</span>
+                      <span className="onboarding-arrow">▼</span>
+                    </div>
 
-                    <option value="">Select category</option>
-                    <option value="Design">Design</option>
-                    <option value="Development">Development</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Content">Content</option>
-                    <option value="Sales">Sales</option>
-                  </select>
+                    {openCategory && (
+                      <ul className="onboarding-options-list">
+                        {["Design", "Development", "Marketing", "Content", "Sales"].map((item) => (
+                          <li
+                            key={item}
+                            className={formData.category === item ? "active" : ""}
+                            onClick={() => {
+                              handleInputChange({ target: { name: 'category', value: item } });
+                              setOpenCategory(false);
+                            }}
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -662,19 +784,44 @@ const CreateTeam = ({ theme, setTheme }) => {
                 <div className="rules-section">
                   <label className="form-label" style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '10px' }}>Creator Rules & Expectations</label>
                   <div className="rules-input-row">
-                    <input type="text" className="form-input rules-input" placeholder="Add rule and press enter" />
-                    <button className="btn-add-rule">+ Add</button>
+                    <input
+                      type="text"
+                      className="form-input rules-input"
+                      placeholder="Add rule and press enter"
+                      value={inputStates.rule}
+                      onChange={(e) => handleTagInput(e, 'rule')}
+                      onKeyDown={(e) => addTag(e, 'rule', 'rules', 16)}
+                    />
+                    <button
+                      type="button"
+                      className="btn-add-rule"
+                      onClick={(e) => addTag({ key: 'Enter', preventDefault: () => { } }, 'rule', 'rules', 16)}
+                    >
+                      + Add
+                    </button>
                   </div>
-                  <div className="rules-helper-text">You can add 16 more skills & expertise's</div>
+                  <div className="rules-helper-text">You can add {16 - formData.rules.length} more rules & expectations</div>
 
-                  <div className="tags-container">
-                    {formData.rules.map((tag, index) => (
-                      <div key={index} className="tag-pill">
-                        {tag}
-                        <span className="tag-remove" onClick={() => removeTag(tag, 'rules')}>×</span>
+                  {formData.rules.length > 0 && (
+                    <div className="tags-container">
+                      <div className="flex flex-wrap gap-2 flex-1">
+                        {formData.rules.map((tag, index) => (
+                          <span key={index} className="tag-pill">
+                            {tag}
+                            <button type="button" className="tag-remove" onClick={() => removeTag(tag, 'rules')}>✕</button>
+                          </span>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                      <button
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, rules: [] }))}
+                        className="tag-clear-btn ml-2 px-3 h-full flex items-center justify-center text-sm"
+                        title="Clear all"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  )}
                 </div>
 
                 {/* Action Buttons */}
@@ -691,49 +838,51 @@ const CreateTeam = ({ theme, setTheme }) => {
           {isAvatarModalOpen && (
             <div
               className="
-            z-50 flex
-            mt-20
-            fixed inset-0 items-center justify-center image-modal
-          "
+                z-[99] flex
+                md:mt-20 p-4 md:p-0
+                fixed inset-0 items-center justify-center image-modal
+                backdrop-blur-sm bg-black/30
+              "
             >
               <div
                 className="
-              flex flex-col
-              w-[400px] h-[621px]
-              p-8
-              rounded-2xl
-              image-modal-card relative
-            "
+                  flex flex-col items-center
+                  w-[90%] max-w-[380px] h-auto max-h-[90vh] overflow-y-auto
+                  p-5 md:p-6
+                  rounded-2xl
+                  image-modal-card relative
+                  bg-white dark:bg-[#121212]
+                "
               >
                 <button
                   onClick={closeAvatarModal}
                   className="
-                text-red-500 font-bold
-                absolute top-4 right-4
-              "
+                    text-red-500 font-bold
+                    absolute top-4 right-4
+                  "
                 >
                   ✕
                 </button>
 
                 <h3
                   className="
-                mb-6
-                text-center font-semibold text-gray-800
-              "
+                    mb-6
+                    text-center font-semibold text-black dark:text-gray-100
+                  "
                 >
                   Resize and adjust <br /> your photo
                 </h3>
 
                 <div
                   className="
-                flex
-                w-[330px] h-[368px]
-                mb-5
-                bg-[#2B2B2B]
-                rounded-xl
-                items-center justify-center
-                relative overflow-hidden
-              "
+                    flex
+                    w-full aspect-square max-w-[280px]
+                    mb-5 mx-auto
+                    bg-[#2B2B2B]
+                    rounded-xl
+                    items-center justify-center
+                    relative overflow-hidden
+                  "
                 >
                   {selectedAvatarImage ? (
                     <>
@@ -746,20 +895,17 @@ const CreateTeam = ({ theme, setTheme }) => {
                       {/* CIRCULAR PREVIEW OVERLAY */}
                       <div
                         className="
-                      absolute inset-0
-                      pointer-events-none
-                      flex items-center justify-center
-                    "
-                        style={{
-                          background: "radial-gradient(circle, transparent 130px, rgba(0,0,0,0.5) 130px)"
-                        }}
+                          absolute inset-0
+                          pointer-events-none
+                          flex items-center justify-center
+                        "
                       >
                         <div
                           className="
-                        w-[300px] h-[300px]
-                        rounded-full
-                        border-2 border-white/50
-                      "
+                            w-[230px] h-[230px] md:w-[250px] md:h-[250px]
+                            rounded-full
+                            border-2 border-white/50
+                          "
                         />
                       </div>
                     </>
@@ -767,11 +913,11 @@ const CreateTeam = ({ theme, setTheme }) => {
                     <button
                       onClick={handleSelectImageClick}
                       className="
-                    w-[157px] h-[58.41px]
-                    text-sm
-                    bg-white
-                    rounded
-                  "
+                        w-[157px] h-[58.41px]
+                        text-sm
+                        bg-white text-black
+                        rounded
+                      "
                     >
                       Select Image
                     </button>
@@ -787,28 +933,31 @@ const CreateTeam = ({ theme, setTheme }) => {
 
                 <p
                   className="
-                mb-2
-                text-xs text-center text-red-500
-                -mt-6
-              "
+                    mb-2
+                    text-xs text-center text-red-500
+                    -mt-6
+                  "
                 >
                   Maximum upload size: 10 MB
                 </p>
                 <div
                   className="
-                flex
-                px-4 mb-6
-                items-center gap-2
-              "
+                    flex w-full
+                    px-4 mb-6
+                    items-center justify-between gap-3
+                    zoom-bar
+                  "
                 >
                   {/* MINUS */}
                   <button
                     onClick={() => setAvatarZoom(Math.max(0, avatarZoom - 10))}
-                    className="p-1 hover:bg-gray-100 rounded"
+                    className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="filter invert brightness-0">
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
+                    <img
+                      src="/minus.svg"
+                      alt="Decrease"
+                      className="w-5 h-5 filter invert brightness-0 dark:invert-0 dark:brightness-100"
+                    />
                   </button>
 
                   {/* RANGE */}
@@ -819,31 +968,32 @@ const CreateTeam = ({ theme, setTheme }) => {
                     value={avatarZoom}
                     onChange={(e) => setAvatarZoom(parseInt(e.target.value))}
                     className="
-                  w-[279px]
-                  accent-[#5C5C5C]
-                "
+                      flex-1
+                      accent-[#CEFF1B]
+                    "
                   />
 
                   {/* PLUS */}
                   <button
                     onClick={() => setAvatarZoom(Math.min(100, avatarZoom + 10))}
-                    className="p-1 hover:bg-gray-100 rounded"
+                    className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="filter invert brightness-0">
-                      <line x1="12" y1="5" x2="12" y2="19" />
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
+                    <img
+                      src="/plus.svg"
+                      alt="Increase"
+                      className="w-5 h-5 filter invert brightness-0 dark:invert-0 dark:brightness-100"
+                    />
                   </button>
                 </div>
 
                 <button
                   className="
-                w-full
-                mt-auto py-3
-                font-medium
-                bg-[#CEFF1B]
-                rounded-md
-              "
+                    w-full
+                    mt-auto py-3
+                    font-medium
+                    bg-[#CEFF1B] text-black
+                    rounded-md
+                  "
                   onClick={closeAvatarModal}
                 >
                   Upload Photo

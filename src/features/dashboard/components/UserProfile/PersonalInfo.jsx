@@ -538,7 +538,7 @@ function Calendar({ onClose, onSelect }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* INNER CARD */}
-        <div className="bg-white dark:bg-[#2B2B2B] border border-[#CEFF1B] w-full h-full rounded-lg p-3 flex flex-col text-black dark:text-black calendar-inner">
+        <div className="bg-white dark:bg-[#2B2B2B] w-full h-full rounded-lg p-3 flex flex-col text-black dark:text-black calendar-inner">
           {/* YEAR DROPDOWN */}
           <div className="relative mb-6 z-20 w-full" ref={yearRef}>
             <div className={`onboarding-custom-select ${openYear ? "active" : ""}`}>

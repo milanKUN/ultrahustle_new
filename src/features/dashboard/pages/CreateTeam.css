@@ -109,10 +109,37 @@ body {
     border: 1px solid #eee;
 }
 
+.team-avatar-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px;
+    border: 0.5px solid #CEFF1B;
+    border-radius: 12px;
+    background-color: #FEFEFE;
+    margin-bottom: 30px;
+    width: 100%;
+    /* Added backdrop blur to match settings */
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+.user-page.dark .team-avatar-card,
+.user-page-dark .team-avatar-card {
+    background-color: transparent;
+    border-color: #CEFF1B;
+}
+
 .team-display-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #222;
+    font-size: 22px;
+    font-weight: 600;
+    color: #111827;
+    /* gray-900 */
+}
+
+.user-page.dark .team-display-name,
+.user-page-dark .team-display-name {
+    color: #fff;
 }
 
 /* Form Section */
@@ -181,14 +208,14 @@ body {
 .create-team-page .form-textarea,
 .create-team-page .form-select {
     width: 100%;
-    border-radius: 8px;
-    border: 1px solid #2B2B2B;
+    border-radius: 6px;
+    border: 1px solid #CEFF1B;
     background-color: transparent;
-    padding: 12px 16px;
-    font-size: 1rem;
+    padding: 8px 12px;
+    font-size: 14px;
     font-family: inherit;
-    color: #333;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    color: #000;
+    transition: box-shadow 0.2s, border-color 0.2s;
     box-sizing: border-box;
 }
 
@@ -196,8 +223,61 @@ body {
 .create-team-page .form-textarea:focus,
 .create-team-page .form-select:focus {
     outline: none;
-    border-color: #999;
-    background-color: none;
+    border-color: transparent !important;
+    box-shadow: 0 0 15px #CEFF1B !important;
+}
+
+/* Dark Mode Overrides */
+.user-page.dark.create-team-page .form-input,
+.user-page-dark.create-team-page .form-input,
+.user-page.dark.create-team-page .form-textarea,
+.user-page-dark.create-team-page .form-textarea,
+.user-page.dark.create-team-page .form-select,
+.user-page-dark.create-team-page .form-select {
+    border-color: #CEFF1B !important;
+    color: #fff;
+}
+
+.user-page.dark.create-team-page .form-input::placeholder,
+.user-page-dark.create-team-page .form-input::placeholder,
+.user-page.dark.create-team-page .form-textarea::placeholder,
+.user-page-dark.create-team-page .form-textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* Input Prefix Wrapper */
+.create-team-page .input-with-prefix {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    border: 1px solid #CEFF1B;
+    padding: 8px 12px;
+    background-color: transparent;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.create-team-page .input-with-prefix:focus-within {
+    border-color: transparent !important;
+    box-shadow: 0 0 15px #CEFF1B !important;
+}
+
+.user-page.dark.create-team-page .input-with-prefix,
+.user-page-dark.create-team-page .input-with-prefix {
+    border-color: #CEFF1B !important;
+}
+
+.create-team-page .input-with-prefix .input-prefix {
+    color: #9ca3af;
+    margin-right: 4px;
+    user-select: none;
+    font-size: 14px;
+}
+
+.create-team-page .input-with-prefix .form-input {
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    flex: 1;
 }
 
 /* Custom dropdown arrow for select elements */
@@ -212,6 +292,23 @@ body {
     cursor: pointer;
 }
 
+/* Custom Dropdown (Onboarding format) Overrides */
+.create-team-page .onboarding-selected-option {
+    border: 1px solid #CEFF1B !important;
+    background-color: transparent !important;
+}
+
+.create-team-page .onboarding-selected-option.open {
+    border-color: transparent !important;
+    box-shadow: 0 0 15px #CEFF1B !important;
+}
+
+.user-page.dark.create-team-page .onboarding-selected-option,
+.user-page-dark.create-team-page .onboarding-selected-option {
+    border-color: #CEFF1B !important;
+    color: #fff !important;
+}
+
 .form-textarea {
     resize: vertical;
     min-height: 80px;
@@ -219,11 +316,22 @@ body {
 
 /* Textarea Wrapper - holds border for scrollable textareas */
 .textarea-wrapper {
-    border: 1px solid #2B2B2B;
-    border-radius: 8px;
-    padding: 4px;
+    border: 1px solid #CEFF1B;
+    border-radius: 6px;
+    padding: 0;
     background: transparent;
     display: flex;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.textarea-wrapper:focus-within {
+    border-color: transparent !important;
+    box-shadow: 0 0 15px #CEFF1B !important;
+}
+
+.user-page.dark.create-team-page .textarea-wrapper,
+.user-page-dark.create-team-page .textarea-wrapper {
+    border-color: #CEFF1B !important;
 }
 
 /* Scrollable Textarea - Bio, About, and What We Do */
@@ -233,9 +341,10 @@ body {
     max-height: 80px;
     overflow-y: scroll;
     border: none !important;
-    padding-right: 15px;
+    padding: 8px 12px;
     flex: 1;
     background: transparent;
+    box-shadow: none !important;
     /* Firefox scrollbar */
     scrollbar-width: thin;
     scrollbar-color: #CEFF1B transparent !important;
@@ -380,27 +489,37 @@ body {
 
 .role-dd-trigger {
     width: 100%;
-    height: 36px;
-    border: 1px solid #2b2b2b;
-    border-radius: 8px;
-    background: #fff;
+    height: 40px;
+    border: 1px solid #CEFF1B;
+    border-radius: 6px;
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 0 16px;
     cursor: pointer;
+    font-size: 14px;
+    color: #000000b3;
+    transition: all 0.2s ease;
+}
+
+.role-dd-trigger:hover {
+    background: #e5e7eb;
+}
+
+.role-dd-trigger.open {
+    background: transparent;
+    border-color: transparent !important;
+    box-shadow: 0 0 15px #CEFF1B !important;
 }
 
 .role-dd-chip {
-
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .role-dd-arrow {
     width: 10px;
-    transition: .2s;
+    transition: transform 0.2s ease;
 }
 
 .role-dd-arrow.rot {
@@ -409,30 +528,41 @@ body {
 
 .role-dd-menu {
     position: absolute;
-    top: calc(100% + 6px);
+    top: calc(100% + 4px);
     left: 0;
     width: 100%;
-    background: #fff;
-    border: 1px solid #ceff1b;
-    border-radius: 10px;
-    padding: 6px;
+    background: #ffffff !important;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    padding: 4px;
     z-index: 50;
+    max-height: 210px;
+    overflow-y: auto;
 }
 
 .role-dd-item {
     width: 100%;
     text-align: left;
-    padding: 8px 10px;
-    border-radius: 6px;
+    padding: 10px 12px;
+    border-radius: 0px;
     background: transparent;
     border: none;
     cursor: pointer;
+    font-size: 14px;
+    color: #374151;
+    transition: background 0.2s ease;
 }
 
-.role-dd-item:hover,
-.role-dd-item.active {
-    background: #ceff1b;
+.role-dd-item:hover {
+    background: #CEFF1B;
     color: #000;
+}
+
+.role-dd-item.active {
+    background: #CEFF1B;
+    color: #000;
+    font-weight: 600;
 }
 
 /* =======================================
@@ -440,25 +570,22 @@ body {
    Works for: .user-page.dark OR .user-page-dark
 ======================================= */
 
-.user-page.dark .role-dd-trigger,
-.user-page-dark .role-dd-trigger {
-    background: rgba(20, 20, 20, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    color: #fefefe;
+.user-page.dark.create-team-page .role-dd-trigger,
+.user-page-dark.create-team-page .role-dd-trigger {
+    background: transparent !important;
+    border: 1px solid #CEFF1B !important;
+    color: #fefefe !important;
 }
 
-.user-page.dark .role-dd-trigger:hover,
-.user-page-dark .role-dd-trigger:hover {
-    border-color: #ceff1b;
-    box-shadow: 0 0 0 3px rgba(206, 255, 27, 0.18),
-        0 0 14px rgba(206, 255, 27, 0.35);
+.user-page.dark.create-team-page .role-dd-trigger:hover,
+.user-page-dark.create-team-page .role-dd-trigger:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
 
-.user-page.dark .role-dd-trigger.open,
-.user-page-dark .role-dd-trigger.open {
-    border-color: #ceff1b;
-    box-shadow: 0 0 0 3px rgba(206, 255, 27, 0.22),
-        0 0 18px rgba(206, 255, 27, 0.45);
+.user-page.dark.create-team-page .role-dd-trigger.open,
+.user-page-dark.create-team-page .role-dd-trigger.open {
+    border-color: transparent !important;
+    box-shadow: 0 0 15px #CEFF1B !important;
 }
 
 /* chip inside trigger */
@@ -470,7 +597,7 @@ body {
 /* dropdown menu */
 .user-page.dark .role-dd-menu,
 .user-page-dark .role-dd-menu {
-    background: #141414;
+    background: #141414 !important;
     border: 1px solid rgba(206, 255, 27, 0.35);
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
 }
@@ -707,11 +834,6 @@ body {
 
 .rules-input {
     flex: 1;
-    background: transparent;
-    border: 1px solid #757575;
-    padding: 12px 16px;
-    border-radius: 6px;
-    font-size: 0.95rem;
 }
 
 .btn-add-rule {
@@ -919,24 +1041,38 @@ body {
     color: #888;
 }
 
-.table-input {
+.table-input,
+.table-select {
     width: 100%;
     max-width: 180px;
-    padding: 10px 16px;
-    border: 1px solid #2B2B2B;
+    padding: 8px 12px;
+    border: 1px solid #CEFF1B;
     border-radius: 6px;
     background: transparent;
     box-sizing: border-box;
-    font-size: 1rem;
+    font-size: 14px;
+    font-family: inherit;
+    color: #000;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.table-input:focus,
+.table-select:focus {
+    outline: none;
+    border-color: transparent !important;
+    box-shadow: 0 0 15px #CEFF1B !important;
+}
+
+.user-page.dark .table-input,
+.user-page-dark .table-input,
+.user-page.dark .table-select,
+.user-page-dark .table-select {
+    border-color: #CEFF1B;
+    color: #fff;
 }
 
 .table-select {
-    padding: 10px 45px 10px 16px;
-    border: 1px solid #2B2B2B;
-    border-radius: 6px;
-    background: transparent;
-    box-sizing: border-box;
-    font-size: 1rem;
+    padding-right: 45px;
     appearance: none;
     -webkit-appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 29 29' fill='none'%3E%3Cpath d='M15.1735 8.45744C15.4226 8.24398 15.7975 8.27282 16.0109 8.52186C16.2244 8.77089 16.1956 9.14582 15.9465 9.35928L11.7893 12.9226C11.5669 13.1133 11.2387 13.1133 11.0163 12.9226L6.85901 9.35928C6.60998 9.14582 6.58114 8.77089 6.7946 8.52186C7.00806 8.27282 7.38298 8.24398 7.63202 8.45744L11.4028 11.6895L15.1735 8.45744Z' fill='%232B2B2B'/%3E%3C/svg%3E");
@@ -1001,44 +1137,61 @@ body {
 
 /* Tags Section */
 .tags-limit-text {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
+    font-size: 12px;
+    color: #9ca3af;
     margin-top: 4px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .tags-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 5px;
-    background-color: #ffffff;
+    align-items: center;
+    width: 100%;
+    min-height: 56px;
+    border-radius: 6px;
     padding: 8px;
-    border-radius: 10px;
+    background-color: #fff;
+    gap: 8px;
+    margin-top: 5px;
+    border: 1px solid #CEFF1B;
+}
+
+.user-page.dark .tags-container,
+.user-page-dark .tags-container {
+    background-color: #232323;
+    border-color: #CEFF1B;
 }
 
 .tag-pill {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 12px;
-    background-color: #fff;
-    border: 0.308px solid #2B2B2B;
-    border-radius: 5.196px;
-    font-size: 0.85rem;
-    color: #5C5C5C;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    padding: 8px 12px;
+    background-color: #f3f4f6;
+    /* gray-100 */
+    border-radius: 6px;
+    font-size: 12px;
+    color: #333;
+    border: none;
+    box-shadow: none;
+}
+
+.user-page.dark .tag-pill,
+.user-page-dark .tag-pill {
+    background-color: #232323;
+    color: #fff;
 }
 
 .tag-remove {
     cursor: pointer;
-    color: #5C5C5C;
-    font-size: 1.1rem;
+    font-size: 12px;
     line-height: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: color 0.2s;
+    color: inherit;
 }
 
 .tag-remove:hover {
@@ -1679,7 +1832,7 @@ body {
 }
 
 .user-page.dark .tag-pill {
-    background-color: #232323 !important;
+    background-color: #5E5E5E !important;
     border: 1px solid #CEFF1B !important;
     color: #CEFF1B !important;
 }

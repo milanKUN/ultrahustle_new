@@ -582,22 +582,27 @@ textarea:focus {
 .user-page.dark .calendar-outer {
   background: #ffffff;
   border: 2px solid #ceff1b !important;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 35px rgba(206, 255, 27, 0.45) !important;
+  border-radius: 14px;
 }
 
 .user-page.dark .calendar-outer {
   background: #0b0b0b;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 40px rgba(206, 255, 27, 0.6) !important;
 }
 
 /* ---------- INNER CARD ---------- */
 /* CALENDAR – INNER CARD (NEON BORDER) */
 .user-page.light .calendar-inner,
 .user-page.dark .calendar-inner {
-  border: 2px solid #CEFF1B !important;
-  box-shadow: 0 0 12px rgba(206, 255, 27, 0.45) !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
+/* ---------- YEAR HEADER TITLE ---------- */
+.user-page.dark .calendar-year-title {
+  color: #000000 !important;
+}
 
 /* ---------- YEAR BUTTON ---------- */
 .user-page.dark .calendar-year-btn {
@@ -965,13 +970,13 @@ CALENDAR – DARK NEON BORDER (FINAL)
 =============================== */
 
 .user-page.dark .calendar-inner {
-  border: 1.5px solid #CEFF1B !important;
-
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* Light mode – normal border */
 .user-page.light .calendar-inner {
-  border: 1px solid #CEFF1B;
+  border: none !important;
 }
 
 /* ===============================
@@ -1066,8 +1071,8 @@ LIGHT MODE – DROPDOWN HOVER ONLY
 /* CUSTOM DROPDOWNS (DARK MODE FIX) */
 .user-page.dark .onboarding-selected-option {
   border-color: #fefefe !important;
-  color: #ffffff !important;
-  background-color: transparent !important;
+
+
 }
 
 .user-page.dark .onboarding-selected-option:hover {
@@ -1093,6 +1098,19 @@ LIGHT MODE – DROPDOWN HOVER ONLY
 
 .user-page.dark .onboarding-arrow {
   color: #ceff1b !important;
+}
+
+/* ACTIVITY YEAR DROPDOWN – DISABLE HOVER/ACTIVE FEEDBACK */
+.activity-year-trigger,
+.user-page.dark .activity-year-trigger,
+.activity-year-trigger:hover,
+.activity-year-trigger.open,
+.user-page.dark .activity-year-trigger:hover,
+.user-page.dark .activity-year-trigger.open {
+  background-color: #CEFF1B !important;
+  color: #000 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* =========================================

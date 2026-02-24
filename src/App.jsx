@@ -28,6 +28,7 @@ import ClientProfileSetup from "./features/onboarding/components/ForClient/Clien
 import CreateTeam from "./features/dashboard/pages/CreateTeam";
 import TeamProfileLight from "./features/dashboard/pages/TeamProfileLight";
 import UserProfile from "./features/dashboard/pages/UserProfile";
+import PublicUserProfile from "./features/dashboard/pages/PublicUserProfile";
 import SoloContractListing from "./features/marketplace/pages/SoloContractListing";
 import Dashboard from "./features/dashboard/pages/Dashboard";
 
@@ -88,6 +89,7 @@ export default function App() {
           <Route path="/create-team" element={<CreateTeam theme={theme} setTheme={setTheme} />} />
           <Route path="/team-profile" element={<TeamProfileLight />} />
           <Route path="/user-profile" element={<UserProfile theme={theme} setTheme={setTheme} />} />
+          <Route path="/public-user-profile" element={<PublicUserProfile theme={theme} setTheme={setTheme} />} />
           <Route path="/solo-contracts-listing" element={<SoloContractListing theme={theme} setTheme={setTheme} />} />
           <Route path="/milestones" element={<MilestonesPage theme={theme} setTheme={setTheme} />} />
           <Route path="/solo-milestones" element={<SoloMilestonesPage theme={theme} setTheme={setTheme} />} />
