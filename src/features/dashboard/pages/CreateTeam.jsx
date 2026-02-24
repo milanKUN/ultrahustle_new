@@ -14,8 +14,8 @@ const CreateTeam = ({ theme, setTheme }) => {
     teamName: '',
     teamUsername: '',
     title: 'Product Designer & Full-Stack Developer',
-    bio: 'Multi-disciplinary team helping brands ship elegant, accessible design systems and modern front-ends.',
-    about: 'We are a multi-disciplinary product design and front-end team with 6+ years of experience shipping accessible, modern experiences. We specialize in design systems, tokens, and high-quality component libraries.',
+    bio: '',
+    about: '',
     whatWeDo: '',
     hashtags: ['Agile/Scrum', 'Accessibility', 'Front-end Development', 'Product Design', 'Design Systems'],
     skills: ['Agile/Scrum', 'Accessibility', 'Front-end Development', 'Product Design', 'Design Systems'],
@@ -331,7 +331,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                       Team Username <span className="required-star">*</span>
                     </label>
                     <div className="input-with-prefix">
-                      <span className="input-prefix">@</span>
+                      <span className="input-prefix"></span>
                       <input
                         type="text"
                         name="teamUsername"

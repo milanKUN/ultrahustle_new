@@ -1,4 +1,4 @@
-:root {
+﻿:root {
     --primary-bg: #F2F2F2;
     --input-bg: #e6e6e6;
     --text-main: #333;
@@ -21,6 +21,31 @@ body {
     color: var(--text-main);
     min-height: 100vh;
     position: relative;
+}
+
+/* Custom Scrollbar for Main Container */
+.create-team-page .overflow-y-auto::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.create-team-page .overflow-y-auto::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.user-page.dark.create-team-page .overflow-y-auto::-webkit-scrollbar-track,
+.user-page-dark.create-team-page .overflow-y-auto::-webkit-scrollbar-track {
+    background: #ffffff !important;
+    border-radius: 10px;
+}
+
+.create-team-page .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: #4B5563;
+    border-radius: 10px;
+}
+
+.create-team-page .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: #CEFF1B;
 }
 
 .create-team-page .create-team-container {
@@ -89,6 +114,11 @@ body {
     height: 100%;
     border-radius: 50%;
     background-color: #e0e0e0;
+}
+
+.user-page.dark .avatar-circle,
+.user-page-dark .avatar-circle {
+    background-color: #CEFF1B !important;
 }
 
 .edit-icon {
@@ -209,7 +239,7 @@ body {
 .create-team-page .form-select {
     width: 100%;
     border-radius: 6px;
-    border: 1px solid #CEFF1B;
+    border: 1px solid #000;
     background-color: transparent;
     padding: 8px 12px;
     font-size: 14px;
@@ -234,7 +264,7 @@ body {
 .user-page-dark.create-team-page .form-textarea,
 .user-page.dark.create-team-page .form-select,
 .user-page-dark.create-team-page .form-select {
-    border-color: #CEFF1B !important;
+    border-color: #fff !important;
     color: #fff;
 }
 
@@ -250,7 +280,7 @@ body {
     display: flex;
     align-items: center;
     border-radius: 6px;
-    border: 1px solid #CEFF1B;
+    border: 1px solid #000;
     padding: 8px 12px;
     background-color: transparent;
     transition: box-shadow 0.2s, border-color 0.2s;
@@ -263,7 +293,7 @@ body {
 
 .user-page.dark.create-team-page .input-with-prefix,
 .user-page-dark.create-team-page .input-with-prefix {
-    border-color: #CEFF1B !important;
+    border-color: #fff !important;
 }
 
 .create-team-page .input-with-prefix .input-prefix {
@@ -294,7 +324,7 @@ body {
 
 /* Custom Dropdown (Onboarding format) Overrides */
 .create-team-page .onboarding-selected-option {
-    border: 1px solid #CEFF1B !important;
+    border: 1px solid #000 !important;
     background-color: transparent !important;
 }
 
@@ -305,7 +335,7 @@ body {
 
 .user-page.dark.create-team-page .onboarding-selected-option,
 .user-page-dark.create-team-page .onboarding-selected-option {
-    border-color: #CEFF1B !important;
+    border-color: #fff !important;
     color: #fff !important;
 }
 
@@ -316,7 +346,7 @@ body {
 
 /* Textarea Wrapper - holds border for scrollable textareas */
 .textarea-wrapper {
-    border: 1px solid #CEFF1B;
+    border: 1px solid #000;
     border-radius: 6px;
     padding: 0;
     background: transparent;
@@ -331,7 +361,7 @@ body {
 
 .user-page.dark.create-team-page .textarea-wrapper,
 .user-page-dark.create-team-page .textarea-wrapper {
-    border-color: #CEFF1B !important;
+    border-color: #fff !important;
 }
 
 /* Scrollable Textarea - Bio, About, and What We Do */
@@ -339,7 +369,7 @@ body {
     resize: none;
     min-height: 68px;
     max-height: 80px;
-    overflow-y: scroll;
+    overflow-y: auto;
     border: none !important;
     padding: 8px 12px;
     flex: 1;
@@ -347,7 +377,7 @@ body {
     box-shadow: none !important;
     /* Firefox scrollbar */
     scrollbar-width: thin;
-    scrollbar-color: #CEFF1B transparent !important;
+    scrollbar-color: #CEFF1B #ffffff !important;
 }
 
 .scrollable-textarea:focus {
@@ -361,6 +391,12 @@ body {
 
 .scrollable-textarea::-webkit-scrollbar-track {
     background: transparent;
+}
+
+.user-page.dark.create-team-page .scrollable-textarea::-webkit-scrollbar-track,
+.user-page-dark.create-team-page .scrollable-textarea::-webkit-scrollbar-track {
+    background: #ffffff !important;
+    border-radius: 10px;
 }
 
 .create-team-page .scrollable-textarea::-webkit-scrollbar-thumb {
@@ -424,6 +460,13 @@ body {
     font-weight: bold;
     font-size: 0.85rem;
     color: #333;
+    background-color: #e0e0e0;
+}
+
+.user-page.dark .user-avatar,
+.user-page-dark .user-avatar {
+    background-color: #CEFF1B !important;
+    color: #000 !important;
 }
 
 .user-details h4 {
@@ -566,7 +609,7 @@ body {
 }
 
 /* =======================================
-   ROLE DROPDOWN — DARK MODE OVERRIDES
+   ROLE DROPDOWN â€” DARK MODE OVERRIDES
    Works for: .user-page.dark OR .user-page-dark
 ======================================= */
 
@@ -1030,6 +1073,12 @@ body {
     flex-shrink: 0;
 }
 
+.user-page.dark .table-avatar,
+.user-page-dark .table-avatar {
+    background-color: #CEFF1B !important;
+    color: #000 !important;
+}
+
 .member-name {
     font-weight: 400;
     font-size: 1.1rem;
@@ -1168,12 +1217,12 @@ body {
     align-items: center;
     gap: 8px;
     padding: 8px 12px;
-    background-color: #f3f4f6;
+
     /* gray-100 */
     border-radius: 6px;
     font-size: 12px;
     color: #333;
-    border: none;
+    border: 1px solid grey;
     box-shadow: none;
 }
 
@@ -1753,7 +1802,7 @@ body {
 }
 
 /* =========================================
-   CREATE TEAM — DARK MODE
+   CREATE TEAM â€” DARK MODE
    Works when wrapper has: .user-page.dark
    ========================================= */
 
@@ -1818,7 +1867,7 @@ body {
 
 /* Scrollbar in Dark Mode */
 .user-page.dark .scrollable-textarea::-webkit-scrollbar-track {
-    background: transparent !important;
+    background: #ffffff !important;
 }
 
 .user-page.dark .scrollable-textarea::-webkit-scrollbar-thumb {
@@ -1848,7 +1897,7 @@ body {
 /* User Card and Search */
 .user-page.dark .user-card {
     background-color: #141414 !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid #CEFF1B !important;
 }
 
 .user-page.dark .user-details h4 {
@@ -1876,7 +1925,7 @@ body {
 .user-page.dark .portfolio-grid-container,
 .user-page.dark .my-portfolio>div {
     background: #0b0b0b !important;
-
+    border-color: #CEFF1B !important;
 }
 
 /* Status Table */
@@ -2123,4 +2172,24 @@ body {
     .my-portfolio .grid {
         grid-template-columns: 1fr !important;
     }
+}
+
+/* ============================================================
+   FORCE SCROLLBAR TRACK (WHITE STICK)
+   Overriding global Darkuser.css
+   ============================================================ */
+
+.user-page.dark.create-team-page ::-webkit-scrollbar-track,
+.user-page-dark.create-team-page ::-webkit-scrollbar-track,
+.create-team-page.dark ::-webkit-scrollbar-track,
+.create-team-page.user-page-dark ::-webkit-scrollbar-track,
+.create-team-page ::-webkit-scrollbar-track {
+    background: #ffffff !important;
+    border-radius: 10px !important;
+}
+
+.create-team-page .overflow-y-auto::-webkit-scrollbar-track,
+.create-team-page .scrollable-textarea::-webkit-scrollbar-track {
+    background: #ffffff !important;
+    border-radius: 10px !important;
 }
