@@ -1447,7 +1447,7 @@ function FollowModal({ onClose, theme }) {
               </div>
 
               {tab === "followers" ? (
-                <div className="flex gap-2 shadow-sm">
+                <div className="flex gap-2">
                   <button className="px-2 md:px-4 py-1 md:py-1.5 text-[10px] md:text-xs bg-[#CEFF1B] rounded-md text-black whitespace-nowrap font-medium">
                     Follow Back
                   </button>

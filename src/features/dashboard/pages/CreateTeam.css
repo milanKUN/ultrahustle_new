@@ -264,7 +264,6 @@ body {
 .user-page-dark.create-team-page .form-textarea,
 .user-page.dark.create-team-page .form-select,
 .user-page-dark.create-team-page .form-select {
-    border-color: #fff !important;
     color: #fff;
 }
 
@@ -291,10 +290,6 @@ body {
     box-shadow: 0 0 15px #CEFF1B !important;
 }
 
-.user-page.dark.create-team-page .input-with-prefix,
-.user-page-dark.create-team-page .input-with-prefix {
-    border-color: #fff !important;
-}
 
 .create-team-page .input-with-prefix .input-prefix {
     color: #9ca3af;
@@ -335,7 +330,6 @@ body {
 
 .user-page.dark.create-team-page .onboarding-selected-option,
 .user-page-dark.create-team-page .onboarding-selected-option {
-    border-color: #fff !important;
     color: #fff !important;
 }
 
@@ -359,10 +353,6 @@ body {
     box-shadow: 0 0 15px #CEFF1B !important;
 }
 
-.user-page.dark.create-team-page .textarea-wrapper,
-.user-page-dark.create-team-page .textarea-wrapper {
-    border-color: #fff !important;
-}
 
 /* Scrollable Textarea - Bio, About, and What We Do */
 .create-team-page .scrollable-textarea {
@@ -440,7 +430,7 @@ body {
     justify-content: space-between;
     padding: 12px 16px;
     background: transparent;
-    border: 1px solid #2B2B2B;
+    border: 1px solid #FEFEFE;
     border-radius: 8px;
 }
 
@@ -616,7 +606,6 @@ body {
 .user-page.dark.create-team-page .role-dd-trigger,
 .user-page-dark.create-team-page .role-dd-trigger {
     background: transparent !important;
-    border: 1px solid #fff !important;
     color: #fefefe !important;
 }
 
@@ -1116,7 +1105,6 @@ body {
 .user-page-dark .table-input,
 .user-page.dark .table-select,
 .user-page-dark .table-select {
-    border: 1px solid #fff;
     color: #fff;
 }
 
@@ -1861,10 +1849,6 @@ body {
     color: #ffffff !important;
 }
 
-.user-page.dark .textarea-wrapper {
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
 /* Scrollbar in Dark Mode */
 .user-page.dark .scrollable-textarea::-webkit-scrollbar-track {
     background: #ffffff !important;
@@ -1882,7 +1866,6 @@ body {
 
 .user-page.dark .tag-pill {
     background-color: #5E5E5E !important;
-    border: 1px solid #fff !important;
     color: #CEFF1B !important;
 }
 
@@ -1897,7 +1880,7 @@ body {
 /* User Card and Search */
 .user-page.dark .user-card {
     background-color: #141414 !important;
-    border: 1px solid #fff !important;
+    border: 1px solid #CEFF1B !important;
 }
 
 .user-page.dark .user-details h4 {
@@ -1909,7 +1892,6 @@ body {
 }
 
 .user-page.dark .btn-invite {
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     color: #ffffff !important;
 }
 
@@ -1922,10 +1904,9 @@ body {
 /* Invite & Portfolio Containers */
 .user-page.dark .invite-container,
 .user-page.dark .portfolio-container,
-.user-page.dark .portfolio-grid-container,
-.user-page.dark .my-portfolio>div {
+.user-page.dark .portfolio-grid-container {
     background: #0b0b0b !important;
-    border: 1px solid #fff !important;
+    border: 1px solid #CEFF1B !important;
 }
 
 /* Status Table */
@@ -1966,7 +1947,6 @@ body {
 /* MyPortfolio Component Overrides */
 .user-page.dark .my-portfolio input,
 .user-page.dark .my-portfolio textarea {
-    border-color: rgba(255, 255, 255, 0.2) !important;
     color: #ffffff !important;
 }
 
@@ -1989,7 +1969,6 @@ body {
 /* Action Buttons */
 .user-page.dark .btn-discard {
     background: transparent !important;
-    border: 1px solid #ffffff !important;
     color: #ffffff !important;
 }
 
@@ -1998,7 +1977,6 @@ body {
 .user-page.dark .portfolio-modal,
 .user-page.dark .portfolio-success-modal {
     background-color: #0b0b0b !important;
-    border: 1px solid #fff !important;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
 }
 
@@ -2013,7 +1991,6 @@ body {
 .user-page.dark .btn-portfolio-cancel,
 .user-page.dark .btn-add-listing {
     background-color: transparent !important;
-    border: 1px solid #ffffff !important;
     color: #ffffff !important;
 }
 

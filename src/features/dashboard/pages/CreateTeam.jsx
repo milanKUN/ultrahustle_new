@@ -674,7 +674,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                   {mockUsers.map(user => (
                     <div key={user.id} className="user-card">
                       <div className="user-info">
-                        <div className="user-avatar" style={{ backgroundColor: user.color }}>
+                        <div className="user-avatar" style={{ backgroundColor: '#ceff1b' }}>
                           {user.avatar}
                         </div>
                         <div className="user-details">
