@@ -5,10 +5,9 @@ import { useNavigate } from "react-router-dom";
 import "../../../pages/InReviewLight.css";
 import "./TeamProfileLight.css";
 import NavbarLight from "../../../components/layout/UserNavbar";
-import Sidebar from "../../../components/layout/Sidebar";
 import "../../../Darkuser.css";
 
-const TeamProfileLight = (props) => {
+const PublicTeamProfile = (props) => {
   const navigate = useNavigate();
   // ✅ Theme via props (CreateTeam jaisa)
   const [activeItem, setActiveItem] = useState(null);
@@ -330,17 +329,8 @@ const TeamProfileLight = (props) => {
       />
 
       <div className="pt-[85px] flex relative z-10">
-        {/* ✅ SIDEBAR */}
-        <Sidebar
-          expanded={sidebarOpen}
-          setExpanded={setSidebarOpen}
-          showSettings={false}
-          setShowSettings={() => { }}
-          activeSetting={activeSetting}
-          onSectionChange={handleSectionChange}
-          theme={theme}
-          setTheme={setTheme}
-        />
+
+
 
         {/* ✅ MAIN CONTENT WRAPPER */}
         <div className="relative flex-1 min-w-5 overflow-hidden">
@@ -1163,4 +1153,4 @@ const TeamProfileLight = (props) => {
   );
 };
 
-export default TeamProfileLight;
+export default PublicTeamProfile;

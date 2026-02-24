@@ -108,7 +108,11 @@
 }
 
 .viewBtn:hover {
-  background: #f5f5f5;
+  background: #CEFF1B;
+  border-color: #CEFF1B;
+  color: #000;
+  box-shadow: 0 0 15px #CEFF1B;
+  transition: all 0.3s ease;
 }
 
 /* responsive */
@@ -182,8 +186,11 @@
 }
 
 .user-page.dark .viewBtn:hover {
-
-  border-color: rgba(206, 255, 27, 0.45) !important;
+  background: #CEFF1B !important;
+  border-color: #CEFF1B !important;
+  color: #000000 !important;
+  box-shadow: 0 0 15px #CEFF1B !important;
+  transition: all 0.3s ease !important;
 }
 
 
@@ -1291,7 +1298,11 @@
 }
 
 .teamBtn:hover {
-  background: #fbffe9;
+  background: #CEFF1B;
+  border-color: #CEFF1B;
+  color: #000;
+  box-shadow: 0 0 15px #CEFF1B;
+  transition: all 0.3s ease;
 }
 
 /* ✅ responsive */
@@ -1361,7 +1372,11 @@
 }
 
 .user-page-dark .teamBtn:hover {
-  background: rgba(206, 255, 27, 0.08);
+  background: #CEFF1B !important;
+  border-color: #CEFF1B !important;
+  color: #000000 !important;
+  box-shadow: 0 0 15px #CEFF1B !important;
+  transition: all 0.3s ease !important;
 }
 
 
@@ -1950,6 +1965,10 @@ TITLE + BADGES GRID
 .user-page.dark .info-badge,
 .user-page.dark .location-badge {
   color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.user-page.dark .info-badge.availability-badge {
+  color: #000000 !important;
 }
 
 .user-page.dark .info-label {
