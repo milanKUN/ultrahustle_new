@@ -893,9 +893,9 @@
   .hashtag {
     padding: 9px 14px;
     border-radius: 999px;
-    border: 1px solid #9a9a9a;
-    background: transparent;
-    color: #2b2b2b;
+    background: #CEFF1B;
+    border: 1px solid #CEFF1B;
+    color: #1a1a1a;
 
     font-size: 14px;
     font-weight: 500;
@@ -1496,7 +1496,10 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-right: 16px;
+  margin-left: auto;
+  /* Push group to the right */
+  margin-right: 20px;
+  /* Space between nav and close button */
 }
 
 .portfolio-modal-counter {
@@ -1512,8 +1515,8 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-
-
+  background: #ffffff;
+  border: 1px solid #cfcfcf;
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 14px;
@@ -1574,8 +1577,7 @@
 
 /* ✅ Close button RIGHT SIDE (inside topbar) */
 .portfolio-modal-close {
-  margin-left: auto;
-  /* ✅ push right */
+  /* margin-left: auto; Removed to stay grouped with nav */
   width: 28px;
   height: 28px;
   border-radius: 50%;

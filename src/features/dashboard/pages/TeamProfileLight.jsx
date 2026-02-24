@@ -1,5 +1,6 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 
 import "../../../pages/InReviewLight.css";
 import "./TeamProfileLight.css";
@@ -8,6 +9,7 @@ import Sidebar from "../../../components/layout/Sidebar";
 import "../../../Darkuser.css";
 
 const TeamProfileLight = (props) => {
+  const navigate = useNavigate();
   // ✅ Theme via props (CreateTeam jaisa)
   const [activeItem, setActiveItem] = useState(null);
   const toolsContainerRef = useRef(null);
@@ -28,6 +30,17 @@ const TeamProfileLight = (props) => {
       ? [props.theme, props.setTheme]
       : useState("light");
   const [isrequestsent, setIsrequestsent] = useState(false);
+  const [favorites, setFavorites] = useState(new Set());
+  const [activeItemIndex, setActiveItemIndex] = useState(null);
+
+  const toggleFavorite = (index) => {
+    setFavorites((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
+  };
 
   const [mainTab, setMainTab] = useState("listings"); // listings | projects
   const [filter, setFilter] = useState("All"); // All | Services | Products | Courses | Webinars
@@ -160,6 +173,26 @@ const TeamProfileLight = (props) => {
         cost: "$600-$800",
       },
     ],
+  };
+
+  // ✅ Flatten for the Viewer Modal navigation
+  const allProjects = [portfolioData.featured, ...portfolioData.items];
+
+  const openViewer = (index) => {
+    setActiveItemIndex(index);
+    setActiveItem(allProjects[index]);
+  };
+
+  const nextProject = (e) => {
+    e.stopPropagation();
+    const nextIdx = (activeItemIndex + 1) % allProjects.length;
+    openViewer(nextIdx);
+  };
+
+  const prevProject = (e) => {
+    e.stopPropagation();
+    const prevIdx = (activeItemIndex - 1 + allProjects.length) % allProjects.length;
+    openViewer(prevIdx);
   };
 
   const listingsData = [
@@ -766,7 +799,7 @@ const TeamProfileLight = (props) => {
                     <img
                       src={portfolioData.featured.image}
                       alt={portfolioData.featured.title}
-                      onClick={() => setActiveItem(portfolioData.featured)} // ✅ ADD
+                      onClick={() => openViewer(0)} // ✅ Use openViewer
                       style={{ cursor: "pointer" }}
                     />
                   </div>
@@ -787,7 +820,7 @@ const TeamProfileLight = (props) => {
                   </div>
                 </div>
 
-                {/* ✅ POPUP MODAL */}
+                {/* ✅ POPUP MODAL (Viewer) */}
                 {activeItem && createPortal(
                   <div className="portfolio-modal-backdrop" onClick={() => setActiveItem(null)}>
                     <div
@@ -801,11 +834,11 @@ const TeamProfileLight = (props) => {
                           <span>Made by Name</span>
                         </div>
                         <div className="portfolio-modal-nav">
-                          <button className="nav-arrow left">◀</button>
+                          <button className="nav-arrow left" onClick={prevProject}>◀</button>
                           <span className="portfolio-modal-counter">
-                            1 of 12
+                            {activeItemIndex + 1} of {allProjects.length}
                           </span>
-                          <button className="nav-arrow right">▶</button>
+                          <button className="nav-arrow right" onClick={nextProject}>▶</button>
                         </div>
                         <button
                           className="portfolio-modal-close"
@@ -860,7 +893,7 @@ const TeamProfileLight = (props) => {
                           <img
                             src={item.image}
                             alt={item.title}
-                            onClick={() => setActiveItem(item)} // ✅ ADD
+                            onClick={() => openViewer(index + 1)} // ✅ Use openViewer
                             style={{ cursor: "pointer" }}
                           />
                         </div>
@@ -907,7 +940,7 @@ const TeamProfileLight = (props) => {
 
                         <div className="memberTag">{m.tag}</div>
 
-                        <button className="viewBtn" type="button">
+                        <button className="viewBtn" type="button" onClick={() => navigate("/public-user-profile")}>
                           View Profile
                         </button>
                       </div>
@@ -977,8 +1010,15 @@ const TeamProfileLight = (props) => {
 
                       <div className="listing-actions">
                         <button className="btn-view-listing">View Listing</button>
-                        <button className="btn-favorite">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <button
+                          className="btn-favorite"
+                          onClick={() => toggleFavorite(index)}
+                        >
+                          <svg width="20" height="20" viewBox="0 0 24 24"
+                            fill={favorites.has(index) ? "#ef4444" : "none"}
+                            stroke={favorites.has(index) ? "#ef4444" : "currentColor"}
+                            strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                          >
                             <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
                           </svg>
                         </button>

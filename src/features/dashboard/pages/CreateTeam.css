@@ -533,7 +533,7 @@ body {
 .role-dd-trigger {
     width: 100%;
     height: 40px;
-    border: 1px solid #CEFF1B;
+    border: 1px solid #000;
     border-radius: 6px;
     background: transparent;
     display: flex;
@@ -616,7 +616,7 @@ body {
 .user-page.dark.create-team-page .role-dd-trigger,
 .user-page-dark.create-team-page .role-dd-trigger {
     background: transparent !important;
-    border: 1px solid #CEFF1B !important;
+    border: 1px solid #fff !important;
     color: #fefefe !important;
 }
 
@@ -1095,7 +1095,7 @@ body {
     width: 100%;
     max-width: 180px;
     padding: 8px 12px;
-    border: 1px solid #CEFF1B;
+    border: 1px solid #000;
     border-radius: 6px;
     background: transparent;
     box-sizing: border-box;
@@ -1116,7 +1116,7 @@ body {
 .user-page-dark .table-input,
 .user-page.dark .table-select,
 .user-page-dark .table-select {
-    border-color: #CEFF1B;
+    border: 1px solid #fff;
     color: #fff;
 }
 
@@ -1203,13 +1203,13 @@ body {
     background-color: #fff;
     gap: 8px;
     margin-top: 5px;
-    border: 1px solid #CEFF1B;
+    border: 1px solid #000;
 }
 
 .user-page.dark .tags-container,
 .user-page-dark .tags-container {
     background-color: #232323;
-    border-color: #CEFF1B;
+    border: 1px solid #fff;
 }
 
 .tag-pill {
@@ -1733,7 +1733,7 @@ body {
     width: 90%;
     text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border: 1px solid #CEFF1B;
+    border: 1px solid #000;
 }
 
 .portfolio-success-checkmark {
@@ -1882,7 +1882,7 @@ body {
 
 .user-page.dark .tag-pill {
     background-color: #5E5E5E !important;
-    border: 1px solid #CEFF1B !important;
+    border: 1px solid #fff !important;
     color: #CEFF1B !important;
 }
 
@@ -1897,7 +1897,7 @@ body {
 /* User Card and Search */
 .user-page.dark .user-card {
     background-color: #141414 !important;
-    border: 1px solid #CEFF1B !important;
+    border: 1px solid #fff !important;
 }
 
 .user-page.dark .user-details h4 {
@@ -1925,7 +1925,7 @@ body {
 .user-page.dark .portfolio-grid-container,
 .user-page.dark .my-portfolio>div {
     background: #0b0b0b !important;
-    border-color: #CEFF1B !important;
+    border: 1px solid #fff !important;
 }
 
 /* Status Table */
@@ -1998,7 +1998,7 @@ body {
 .user-page.dark .portfolio-modal,
 .user-page.dark .portfolio-success-modal {
     background-color: #0b0b0b !important;
-    border: 1px solid #CEFF1B !important;
+    border: 1px solid #fff !important;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
 }
 

@@ -13,7 +13,7 @@ const CreateTeam = ({ theme, setTheme }) => {
 
     teamName: '',
     teamUsername: '',
-    title: 'Product Designer & Full-Stack Developer',
+    title: '',
     bio: '',
     about: '',
     whatWeDo: '',
@@ -367,7 +367,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                       <textarea
                         name="bio"
                         className="form-textarea scrollable-textarea custom-scroll"
-                        placeholder="Multi-disciplinary team helping..."
+                        placeholder="Multi-disciplinary team helping brands ship elegant, accessible design systems and modern front-ends."
                         value={formData.bio}
                         onChange={handleInputChange}
                       />
@@ -385,7 +385,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                     <textarea
                       name="about"
                       className="form-textarea scrollable-textarea custom-scroll"
-                      placeholder="We are a multi-disciplinary..."
+                      placeholder="We are a multi-disciplinary product design and front-end team with 6+ years of experience shipping accessible, modern experiences. We specialize in design systems, tokens, and high-quality component libraries."
                       value={formData.about}
                       onChange={handleInputChange}
                     />
