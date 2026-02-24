@@ -422,7 +422,7 @@ textarea:focus {
 .user-page.dark .image-modal-card {
   background: #0b0b0b;
   border: 1px solid #ceff1b;
-  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 50px rgba(206, 255, 27, 0.6), 0 20px 70px rgba(0, 0, 0, 0.8);
 }
 
 /* ---------- CLOSE BUTTON ---------- */
@@ -482,7 +482,7 @@ textarea:focus {
 .user-page.light .image-modal-card {
   background: #ffffff;
   border: 2px solid #CEFF1B !important;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 40px rgba(206, 255, 27, 0.5), 0 20px 60px rgba(0, 0, 0, 0.2);
 }
 
 .user-page.light .image-preview {
@@ -508,7 +508,7 @@ textarea:focus {
 .user-page.dark .image-modal-card {
   background: #0b0b0b;
   border: 1px solid #ceff1b;
-  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 50px rgba(206, 255, 27, 0.6), 0 20px 70px rgba(0, 0, 0, 0.8);
 }
 
 .user-page.dark .image-preview {

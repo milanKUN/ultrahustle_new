@@ -465,11 +465,11 @@
   stroke: var(--ir-lime);
 }
 
-/* Active state for avatar button */
+/* Active state for avatar button - Enhanced Neon Glow */
 .user-avatar-btn.active {
   background: #FAFAFA;
   border: none;
-  box-shadow: 0 0 20px 8px rgba(206, 255, 27, 0.5);
+  box-shadow: 0 0 15px 5px rgba(206, 255, 27, 0.6), 0 0 30px 10px rgba(206, 255, 27, 0.4) !important;
 }
 
 .user-avatar-btn.active svg path:first-child {
@@ -1401,14 +1401,11 @@ USER DROPDOWN – DARK MODE FIX
 }
 
 
-/* Dark mode – avatar active FULL GREEN */
+/* Dark mode – avatar active FULL GREEN with Layered Glow */
 .inreview-header.dark .user-avatar-btn.active {
   background: #ceff1b;
-  /* 👈 full green */
   border: none;
-  /* no border */
-  box-shadow: 0 0 20px 8px rgba(206, 255, 27, 0.5);
-  /* 👈 Add glow similar to light mode */
+  box-shadow: 0 0 15px 5px rgba(206, 255, 27, 0.7), 0 0 35px 12px rgba(206, 255, 27, 0.5) !important;
 }
 
 /* Circle fill bhi green */
