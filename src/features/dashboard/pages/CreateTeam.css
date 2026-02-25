@@ -2212,6 +2212,16 @@ body {
     .my-portfolio .grid {
         grid-template-columns: 1fr !important;
     }
+
+    /* Force larger zoom icons on mobile */
+    .zoom-bar button {
+        padding: 12px !important;
+    }
+
+    .zoom-bar img {
+        width: 36px !important;
+        height: 36px !important;
+    }
 }
 
 /* ============================================================
