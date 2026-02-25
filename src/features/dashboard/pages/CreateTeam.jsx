@@ -942,8 +942,8 @@ const CreateTeam = ({ theme, setTheme }) => {
                 </p>
                 <div
                   className="
-                    flex w-full
-                    px-4 mb-6
+                    flex w-full max-w-[280px] mx-auto
+                    mb-6
                     items-center justify-between gap-3
                     zoom-bar
                   "
@@ -951,12 +951,12 @@ const CreateTeam = ({ theme, setTheme }) => {
                   {/* MINUS */}
                   <button
                     onClick={() => setAvatarZoom(Math.max(0, avatarZoom - 10))}
-                    className="p-1  rounded"
+                    className="p-2 flex-shrink-0 hover:bg-black/5 dark:hover:bg-white/10 rounded transition-colors flex items-center justify-center"
                   >
                     <img
                       src="/minus.svg"
                       alt="Decrease"
-                      className="w-5 h-5 filter invert brightness-0 dark:invert-0 dark:brightness-100"
+                      className="w-8 h-8 sm:w-6 sm:h-6 object-contain"
                     />
                   </button>
 
@@ -969,6 +969,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                     onChange={(e) => setAvatarZoom(parseInt(e.target.value))}
                     className="
                       flex-1
+                      min-w-[100px]
                       accent-[#CEFF1B]
                     "
                   />
@@ -976,12 +977,12 @@ const CreateTeam = ({ theme, setTheme }) => {
                   {/* PLUS */}
                   <button
                     onClick={() => setAvatarZoom(Math.min(100, avatarZoom + 10))}
-                    className="p-1  rounded"
+                    className="p-2 flex-shrink-0 hover:bg-black/5 dark:hover:bg-white/10 rounded transition-colors flex items-center justify-center"
                   >
                     <img
                       src="/plus.svg"
                       alt="Increase"
-                      className="w-5 h-5 filter invert brightness-0 dark:invert-0 dark:brightness-100"
+                      className="w-8 h-8 sm:w-6 sm:h-6 object-contain"
                     />
                   </button>
                 </div>

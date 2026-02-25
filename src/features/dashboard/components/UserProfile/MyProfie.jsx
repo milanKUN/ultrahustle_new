@@ -258,8 +258,8 @@ export default function ProfileForm() {
             </p>
             <div
               className="
-                flex w-full
-                px-4 mb-6
+                flex w-full max-w-[280px] mx-auto
+                mb-6
                 items-center justify-between gap-3
                 zoom-bar
               "
