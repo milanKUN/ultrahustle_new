@@ -997,7 +997,7 @@ body {
 
 /* Invite Status Section */
 .invite-status-section {
-    overflow-x: auto;
+    overflow: visible;
 }
 
 .invite-status-section .form-label {
