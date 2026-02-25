@@ -15,7 +15,8 @@ const ManageTeam = (props) => {
         ? [props.theme, props.setTheme]
         : useState("light");
 
-    const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
     const [activeSetting, setActiveSetting] = useState("basic");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -23,6 +24,10 @@ const ManageTeam = (props) => {
     const handleSectionChange = (id) => {
         setActiveSetting(id);
     };
+
+    React.useEffect(() => {
+        setSidebarOpen(false);
+    }, []);
 
     const teams = [
         {
@@ -66,8 +71,8 @@ const ManageTeam = (props) => {
                 <Sidebar
                     expanded={sidebarOpen}
                     setExpanded={setSidebarOpen}
-                    showSettings={false}
-                    setShowSettings={() => { }}
+                    showSettings={showSettings}
+                    setShowSettings={setShowSettings}
                     activeSetting={activeSetting}
                     onSectionChange={handleSectionChange}
                     theme={theme}
