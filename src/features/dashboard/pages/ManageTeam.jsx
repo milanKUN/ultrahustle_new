@@ -261,7 +261,7 @@ const ManageTeam = (props) => {
                     <div className="w-full max-w-[420px] rounded-2xl bg-white dark:bg-[#0f1115] p-5 shadow-2xl border border-black/10 dark:border-white/10">
                         <div className="flex items-start justify-between gap-3 mb-3">
                             <div>
-                                <h3 className="text-lg font-semibold text-[#2A2A2A] dark:text-white">
+                                <h3 className="text-lg font-semibold text-black dark:text-white">
                                     {selectedTeam?.isActive ? "Deactivate team?" : "Activate team?"}
                                 </h3>
                                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -294,7 +294,7 @@ const ManageTeam = (props) => {
 
                             <button
                                 onClick={confirmToggleActive}
-                                className="flex-1 py-2 rounded-xl text-sm font-semibold bg-black text-white hover:opacity-90"
+                                className="flex-1 py-2 rounded-xl text-sm font-semibold border border-black manage-team-view-btn hover:opacity-90 transition-all"
                             >
                                 {selectedTeam?.isActive ? "Deactivate" : "Activate"}
                             </button>

@@ -24,7 +24,6 @@
   text-align: left;
   margin-bottom: 2rem;
   width: 100%;
-  max-width: 800px;
 }
 
 .add-listing-title {
@@ -52,12 +51,25 @@
   grid-template-columns: repeat(1, 1fr);
   gap: 1.5rem;
   width: 100%;
-  max-width: 800px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .add-listing-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .add-listing-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .add-listing-grid {
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
   }
 }
@@ -74,7 +86,7 @@
 }
 
 .add-listing-page.dark .add-listing-card {
-  background-color: #24272c;
+  background-color: #2B2B2B80;
   border-color: #CEFF1B;
 }
 
@@ -137,8 +149,11 @@
 }
 
 .add-listing-btn:hover {
-  background-color: #b8e618;
-  border-color: #b8e618;
+  background-color: #CEFF1B;
+  border-color: #CEFF1B;
+  color: #000;
+  box-shadow: 0 0 15px #CEFF1B;
+  transition: all 0.3s ease;
 }
 
 .add-listing-page.dark .add-listing-btn {
@@ -146,6 +161,9 @@
 }
 
 .add-listing-page.dark .add-listing-btn:hover {
-  background-color: #b8e618;
-  border-color: #b8e618;
+  background-color: #CEFF1B !important;
+  border-color: #CEFF1B !important;
+  color: #000000 !important;
+  box-shadow: 0 0 15px #CEFF1B !important;
+  transition: all 0.3s ease !important;
 }
