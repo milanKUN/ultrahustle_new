@@ -133,6 +133,7 @@
   border: 1px solid #CEFF1B;
   transition: all 0.2s ease;
   cursor: pointer;
+  border: 1px solid black;
 }
 
 .add-listing-btn:hover {

@@ -102,21 +102,21 @@ const ManageTeam = (props) => {
                                         {/* Content (Right) */}
                                         <div className="flex-1 flex flex-col">
                                             {/* Header */}
-                                            <h3 className="font-medium text-[15px] md:text-base mb-4" style={{ color: theme === 'dark' ? '#ffffff' : '#1f2937' }}>{team.name}</h3>
+                                            <h3 className="manage-team-title font-medium text-[15px] md:text-base mb-4">{team.name}</h3>
 
                                             {/* Stats */}
                                             <div className="flex items-center gap-2 md:gap-3 mb-4">
                                                 <div className="manage-team-stat flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl border border-gray-100 dark:border-[#333]">
-                                                    <span className="font-semibold text-lg md:text-xl leading-none mb-1" style={{ color: theme === 'dark' ? '#CEFF1B' : '#1f2937' }}>{team.members}</span>
-                                                    <span className="text-[10px] font-medium capitalize" style={{ color: theme === 'dark' ? '#ffffff' : '#4b5563' }}>Members</span>
+                                                    <span className="manage-team-number font-semibold text-lg md:text-xl leading-none mb-1">{team.members}</span>
+                                                    <span className="manage-team-label text-[10px] font-medium capitalize">Members</span>
                                                 </div>
                                                 <div className="manage-team-stat flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl border border-gray-100 dark:border-[#333]">
-                                                    <span className="font-semibold text-lg md:text-xl leading-none mb-1" style={{ color: theme === 'dark' ? '#CEFF1B' : '#1f2937' }}>{team.listings}</span>
-                                                    <span className="text-[10px] font-medium capitalize" style={{ color: theme === 'dark' ? '#ffffff' : '#4b5563' }}>Listings</span>
+                                                    <span className="manage-team-number font-semibold text-lg md:text-xl leading-none mb-1">{team.listings}</span>
+                                                    <span className="manage-team-label text-[10px] font-medium capitalize">Listings</span>
                                                 </div>
                                                 <div className="manage-team-stat flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl border border-gray-100 dark:border-[#333]">
-                                                    <span className="font-semibold text-lg md:text-xl leading-none mb-1" style={{ color: theme === 'dark' ? '#CEFF1B' : '#1f2937' }}>{team.projects}</span>
-                                                    <span className="text-[10px] font-medium capitalize" style={{ color: theme === 'dark' ? '#ffffff' : '#4b5563' }}>Projects</span>
+                                                    <span className="manage-team-number font-semibold text-lg md:text-xl leading-none mb-1">{team.projects}</span>
+                                                    <span className="manage-team-label text-[10px] font-medium capitalize">Projects</span>
                                                 </div>
                                             </div>
 
@@ -134,7 +134,7 @@ const ManageTeam = (props) => {
                                                 {/* View Team */}
                                                 <button
                                                     onClick={() => navigate('/team-profile')}
-                                                    className="manage-team-view-btn w-full flex items-center justify-center gap-2 py-2 rounded-[10px] sm:rounded-[7px] text-[10px] font-medium transition-colors"
+                                                    className="manage-team-view-btn w-full flex items-center justify-center border-1 border-black gap-2 py-2 rounded-[10px] sm:rounded-[7px] text-[10px] font-medium transition-colors"
                                                 >
                                                     <Eye className="w-3.5 h-3.5" /> View Team
                                                 </button>
