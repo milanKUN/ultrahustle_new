@@ -252,13 +252,13 @@ const ManageTeam = (props) => {
             {/* ✅ Confirm Modal */}
             {confirmOpen && (
                 <div
-                    className="fixed inset-0 z-[9999] flex items-center justify-center px-4"
+                    className="fixed inset-0 z-[9999] flex items-center justify-center px-4 backdrop-blur-sm transition-all duration-300"
                     onMouseDown={(e) => {
                         if (e.target === e.currentTarget) closeDeactivateModal();
                     }}
                     style={{ background: "rgba(0,0,0,0.55)" }}
                 >
-                    <div className="w-full max-w-[420px] rounded-2xl bg-white dark:bg-[#0f1115] p-5 shadow-2xl border border-black/10 dark:border-white/10">
+                    <div className="w-full max-w-[420px] rounded-2xl bg-white dark:bg-[#0f1115] p-5 border-2 border-[#CEFF1B] dark:border-[#CEFF1B] shadow-[0_0_35px_rgba(206,255,27,0.45)] dark:shadow-[0_0_40px_rgba(206,255,27,0.6)]">
                         <div className="flex items-start justify-between gap-3 mb-3">
                             <div>
                                 <h3 className="text-lg font-semibold text-black dark:text-white">
