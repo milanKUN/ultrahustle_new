@@ -951,7 +951,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                   {/* MINUS */}
                   <button
                     onClick={() => setAvatarZoom(Math.max(0, avatarZoom - 10))}
-                    className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
+                    className="p-1  rounded"
                   >
                     <img
                       src="/minus.svg"
@@ -976,7 +976,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                   {/* PLUS */}
                   <button
                     onClick={() => setAvatarZoom(Math.min(100, avatarZoom + 10))}
-                    className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
+                    className="p-1  rounded"
                   >
                     <img
                       src="/plus.svg"

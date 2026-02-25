@@ -173,10 +173,7 @@ SIDEBAR DARK MODE – EXACT COLORS
   color: #ffffff;
 }
 
-/* HOVER */
-.user-page.dark .sidebar button:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-}
+/* HOVER REMOVED FOR DARK MODE AS REQUESTED */
 
 /* ACTIVE */
 .user-page.dark .sidebar .active,

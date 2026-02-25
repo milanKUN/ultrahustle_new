@@ -241,7 +241,7 @@ export default function Sidebar({
                       w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300
                       ${isActive
                         ? "bg-[#CEFF1B] shadow-[0_0_15px_rgba(206,255,27,0.4)]"
-                        : "hover:bg-white/10"
+                        : theme === 'dark' ? "transparent" : "hover:bg-white/10"
                       }
                     `}
                     title={item.label}

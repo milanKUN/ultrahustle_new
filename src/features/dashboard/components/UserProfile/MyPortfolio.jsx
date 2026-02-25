@@ -9,6 +9,7 @@ export default function MyPortfolio() {
     { id: 3, title: "", desc: "", cost: "" },
   ]);
 
+  const [mainProject, setMainProject] = useState({ title: "", desc: "", cost: "" });
   const [uploadStep, setUploadStep] = useState(null); // null | "grid" | "success"
 
   const addProject = () => {
@@ -79,9 +80,9 @@ export default function MyPortfolio() {
             </div>
 
             <div className="space-y-4">
-              <Input label="Title" />
-              <Textarea label="Description" limit={150} />
-              <Input label="Project cost" />
+              <Input label="Title" value={mainProject.title} onChange={(v) => setMainProject({ ...mainProject, title: v })} />
+              <Textarea label="Description" limit={150} value={mainProject.desc} onChange={(v) => setMainProject({ ...mainProject, desc: v })} />
+              <Input label="Project cost" numericOnly value={mainProject.cost} onChange={(v) => setMainProject({ ...mainProject, cost: v })} />
             </div>
           </div>
         </div>
@@ -113,8 +114,8 @@ export default function MyPortfolio() {
                   </div>
 
                   <Input label="Title" value={project.title} onChange={(v) => updateProject(project.id, 'title', v)} />
-                  <Textarea label="Description" value={project.desc} onChange={(v) => updateProject(project.id, 'desc', v)} />
-                  <Input label="Cost" small value={project.cost} onChange={(v) => updateProject(project.id, 'cost', v)} />
+                  <Textarea label="Description" limit={150} value={project.desc} onChange={(v) => updateProject(project.id, 'desc', v)} />
+                  <Input label="Cost" small numericOnly value={project.cost} onChange={(v) => updateProject(project.id, 'cost', v)} />
                 </div>
               ))}
             </div>
@@ -376,14 +377,20 @@ function UploadSuccess({ onBack }) {
 
 /* ================= INPUTS ================= */
 
-function Input({ label, placeholder, small, value, onChange }) {
+function Input({ label, placeholder, small, numericOnly, value, onChange }) {
   return (
     <div>
       <label className="block mb-1 font-medium">{label}</label>
       <input
         placeholder={placeholder}
         value={value ?? ""}
-        onChange={(e) => onChange?.(e.target.value)}
+        onChange={(e) => {
+          let val = e.target.value;
+          if (numericOnly) {
+            val = val.replace(/[^0-9]/g, "");
+          }
+          onChange?.(val);
+        }}
         className={`${small ? "w-40" : "w-full"
           } border border-black rounded-md px-3 py-2 bg-transparent text-sm
         outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B] placeholder:text-gray-400`}
@@ -402,6 +409,7 @@ function Textarea({ label, placeholder, limit, value, onChange }) {
         placeholder={placeholder}
         rows={3}
         value={text}
+        maxLength={limit}
         onChange={(e) => onChange?.(e.target.value)}
         className="w-full border border-black rounded-md px-3 py-2 bg-transparent text-sm resize-none
         outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B] placeholder:text-gray-400"

@@ -279,7 +279,7 @@ body {
     display: flex;
     align-items: center;
     border-radius: 6px;
-    border: 1px solid #000;
+    border: 1px solid grey;
     padding: 8px 12px;
     background-color: transparent;
     transition: box-shadow 0.2s, border-color 0.2s;
@@ -340,7 +340,7 @@ body {
 
 /* Textarea Wrapper - holds border for scrollable textareas */
 .textarea-wrapper {
-    border: 1px solid #000;
+    border: 1px solid grey;
     border-radius: 6px;
     padding: 0;
     background: transparent;
@@ -523,7 +523,7 @@ body {
 .role-dd-trigger {
     width: 100%;
     height: 40px;
-    border: 1px solid #000;
+    border: 1px solid grey;
     border-radius: 6px;
     background: transparent;
     display: flex;
@@ -629,34 +629,42 @@ body {
 /* dropdown menu */
 .user-page.dark .role-dd-menu,
 .user-page-dark .role-dd-menu {
-    background: #141414 !important;
-    border: 1px solid rgba(206, 255, 27, 0.35);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+    background-color: #1e1e1e !important;
+    color: #fff !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid #333 !important;
 }
 
 /* options */
 .user-page.dark .role-dd-item,
 .user-page-dark .role-dd-item {
-    background: rgba(35, 35, 35, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #fefefe;
+    background: transparent;
+    border: none;
+    color: #e5e7eb !important;
+}
+
+.user-page.dark .role-dd-item:last-child,
+.user-page-dark .role-dd-item:last-child {
+    border-bottom: none;
 }
 
 /* neon hover */
 .user-page.dark .role-dd-item:hover,
 .user-page-dark .role-dd-item:hover {
-    border-color: #ceff1b;
-    box-shadow: 0 0 12px rgba(206, 255, 27, 0.35);
+    border: none;
+    background-color: #ceff1b !important;
+    color: #000 !important;
+    box-shadow: none;
 }
 
 /* active selected */
 .user-page.dark .role-dd-item.active,
 .user-page-dark .role-dd-item.active {
-    background: #ceff1b;
-    border-color: #ceff1b;
-    color: #0b0b0b;
+    border: none;
+    background-color: #ceff1b !important;
+    color: #000 !important;
     font-weight: 700;
-    box-shadow: 0 0 14px rgba(206, 255, 27, 0.5);
+    box-shadow: none;
 }
 
 /* arrow invert for dark (Polygon.svg is dark by default) */
