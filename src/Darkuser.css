@@ -1067,7 +1067,7 @@ LIGHT MODE – DROPDOWN HOVER ONLY
 
 /* CUSTOM DROPDOWNS (DARK MODE FIX) */
 .user-page.dark .onboarding-selected-option {
-  border-color: #fefefe !important;
+  border-color: grey !important;
 
 
 }

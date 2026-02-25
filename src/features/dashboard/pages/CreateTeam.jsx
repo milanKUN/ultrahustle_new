@@ -198,7 +198,7 @@ const CreateTeam = ({ theme, setTheme }) => {
     }, []);
 
     return (
-      <div ref={ref} className="role-dd">
+      <div ref={ref} className={`role-dd ${open ? "open" : ""}`}>
         <button
           type="button"
           onClick={() => setOpen(!open)}

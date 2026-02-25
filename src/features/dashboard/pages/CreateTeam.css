@@ -518,6 +518,11 @@ body {
 /* customscroll */
 .role-dd {
     position: relative;
+    z-index: 10;
+}
+
+.role-dd.open {
+    z-index: 9999;
 }
 
 .role-dd-trigger {
