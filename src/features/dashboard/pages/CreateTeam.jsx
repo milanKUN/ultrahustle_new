@@ -718,7 +718,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                       <tbody>
                         {teamMembers.map(member => (
                           <tr key={member.id}>
-                            <td>
+                            <td data-label="Member">
                               <div className="status-member-info">
                                 <div className="table-avatar">{member.avatar}</div>
                                 <div>
@@ -727,10 +727,10 @@ const CreateTeam = ({ theme, setTheme }) => {
                                 </div>
                               </div>
                             </td>
-                            <td>
+                            <td data-label="Member Title">
                               <input type="text" className="table-input" placeholder="Title" defaultValue={member.title !== 'Title' ? member.title : ''} />
                             </td>
-                            <td>
+                            <td data-label="Role">
                               {!member.isMe ? (
                                 <RoleDropdown
                                   value={member.role}
@@ -747,7 +747,7 @@ const CreateTeam = ({ theme, setTheme }) => {
                               )}
                             </td>
 
-                            <td>
+                            <td data-label="Status">
                               <span className={`status-badge ${member.status.toLowerCase().replace(' ', '-')}`}>
                                 {member.status}
                               </span>
@@ -951,12 +951,12 @@ const CreateTeam = ({ theme, setTheme }) => {
                   {/* MINUS */}
                   <button
                     onClick={() => setAvatarZoom(Math.max(0, avatarZoom - 10))}
-                    className="p-1  rounded"
+                    className="p-1 sm:p-2 hover:bg-black/5 dark:hover:bg-white/10 rounded transition-colors"
                   >
                     <img
                       src="/minus.svg"
                       alt="Decrease"
-                      className="w-5 h-5 filter invert brightness-0 dark:invert-0 dark:brightness-100"
+                      className="w-10 h-10 sm:w-6 sm:h-6 filter invert brightness-0 dark:invert-0 dark:brightness-100"
                     />
                   </button>
 
@@ -976,12 +976,12 @@ const CreateTeam = ({ theme, setTheme }) => {
                   {/* PLUS */}
                   <button
                     onClick={() => setAvatarZoom(Math.min(100, avatarZoom + 10))}
-                    className="p-1  rounded"
+                    className="p-1 sm:p-2 hover:bg-black/5 dark:hover:bg-white/10 rounded transition-colors"
                   >
                     <img
                       src="/plus.svg"
                       alt="Increase"
-                      className="w-5 h-5 filter invert brightness-0 dark:invert-0 dark:brightness-100"
+                      className="w-10 h-10 sm:w-6 sm:h-6 filter invert brightness-0 dark:invert-0 dark:brightness-100"
                     />
                   </button>
                 </div>

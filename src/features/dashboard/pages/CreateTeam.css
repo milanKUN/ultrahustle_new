@@ -2114,12 +2114,62 @@ body {
         padding-bottom: 80px;
     }
 
-    .status-table th {
-        font-size: 1rem;
+    /* Mobile Table as Cards */
+    .status-table,
+    .status-table tbody,
+    .status-table tr,
+    .status-table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .status-table thead {
+        display: none;
+    }
+
+    .status-table tr {
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .user-page.dark .status-table tr,
+    .user-page-dark .status-table tr {
+        border-bottom-color: #333;
+    }
+
+    .status-table td {
+        text-align: left !important;
+        padding: 10px 0 !important;
+        border: none !important;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .status-table td:before {
+        content: attr(data-label);
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .status-member-info {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
     }
 
     .member-name {
-        font-size: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .table-input {
+        max-width: 100%;
+        width: 100%;
     }
 
     .form-actions {
