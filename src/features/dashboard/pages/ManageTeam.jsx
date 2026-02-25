@@ -133,7 +133,7 @@ const ManageTeam = (props) => {
                                                 </div>
                                                 {/* View Team */}
                                                 <button
-                                                    onClick={() => navigate('/public-team-profile')}
+                                                    onClick={() => navigate('/team-profile')}
                                                     className="manage-team-view-btn w-full flex items-center justify-center gap-2 py-2 rounded-[10px] sm:rounded-xl text-[10px] font-medium transition-colors"
                                                 >
                                                     <Eye className="w-3.5 h-3.5" /> View Team
