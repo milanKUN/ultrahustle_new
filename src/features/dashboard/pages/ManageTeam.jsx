@@ -102,21 +102,21 @@ const ManageTeam = (props) => {
                                         {/* Content (Right) */}
                                         <div className="flex-1 flex flex-col">
                                             {/* Header */}
-                                            <h3 className="font-medium text-[15px] md:text-base text-gray-800 dark:text-gray-100 mb-4">{team.name}</h3>
+                                            <h3 className="font-medium text-[15px] md:text-base mb-4" style={{ color: theme === 'dark' ? '#ffffff' : '#1f2937' }}>{team.name}</h3>
 
                                             {/* Stats */}
                                             <div className="flex items-center gap-2 md:gap-3 mb-4">
                                                 <div className="manage-team-stat flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl border border-gray-100 dark:border-[#333]">
-                                                    <span className="font-semibold text-lg md:text-xl text-gray-800 dark:text-white leading-none mb-1">{team.members}</span>
-                                                    <span className="text-[10px] font-medium text-gray-600 dark:text-gray-400 capitalize">Members</span>
+                                                    <span className="font-semibold text-lg md:text-xl leading-none mb-1" style={{ color: theme === 'dark' ? '#CEFF1B' : '#1f2937' }}>{team.members}</span>
+                                                    <span className="text-[10px] font-medium capitalize" style={{ color: theme === 'dark' ? '#ffffff' : '#4b5563' }}>Members</span>
                                                 </div>
                                                 <div className="manage-team-stat flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl border border-gray-100 dark:border-[#333]">
-                                                    <span className="font-semibold text-lg md:text-xl text-gray-800 dark:text-white leading-none mb-1">{team.listings}</span>
-                                                    <span className="text-[10px] font-medium text-gray-600 dark:text-gray-400 capitalize">Listings</span>
+                                                    <span className="font-semibold text-lg md:text-xl leading-none mb-1" style={{ color: theme === 'dark' ? '#CEFF1B' : '#1f2937' }}>{team.listings}</span>
+                                                    <span className="text-[10px] font-medium capitalize" style={{ color: theme === 'dark' ? '#ffffff' : '#4b5563' }}>Listings</span>
                                                 </div>
                                                 <div className="manage-team-stat flex-1 flex flex-col items-center justify-center py-2.5 rounded-xl border border-gray-100 dark:border-[#333]">
-                                                    <span className="font-semibold text-lg md:text-xl text-gray-800 dark:text-white leading-none mb-1">{team.projects}</span>
-                                                    <span className="text-[10px] font-medium text-gray-600 dark:text-gray-400 capitalize">Projects</span>
+                                                    <span className="font-semibold text-lg md:text-xl leading-none mb-1" style={{ color: theme === 'dark' ? '#CEFF1B' : '#1f2937' }}>{team.projects}</span>
+                                                    <span className="text-[10px] font-medium capitalize" style={{ color: theme === 'dark' ? '#ffffff' : '#4b5563' }}>Projects</span>
                                                 </div>
                                             </div>
 
@@ -124,17 +124,17 @@ const ManageTeam = (props) => {
                                             <div className="flex flex-col gap-2.5">
                                                 {/* Edit & Deactivate */}
                                                 <div className="flex items-center gap-2.5">
-                                                    <button className="manage-team-action-btn flex-1 flex items-center justify-center gap-1 py-2 rounded-[10px] sm:rounded-xl text-[10px] transition-colors border">
+                                                    <button className="manage-team-action-btn flex-1 flex items-center justify-center gap-1 py-2 rounded-[10px] sm:rounded-[7px] text-[10px] transition-colors border">
                                                         <ExternalLink className="w-3.5 h-3.5" /> Edit Team
                                                     </button>
-                                                    <button className="manage-team-action-btn flex-1 flex items-center justify-center gap-1 py-2 rounded-[10px] sm:rounded-xl text-[10px] transition-colors border">
+                                                    <button className="manage-team-action-btn flex-1 flex items-center justify-center gap-1 py-2 rounded-[10px] sm:rounded-[7px] text-[10px] transition-colors border">
                                                         <X className="w-3.5 h-3.5" /> Deactivate Team
                                                     </button>
                                                 </div>
                                                 {/* View Team */}
                                                 <button
                                                     onClick={() => navigate('/team-profile')}
-                                                    className="manage-team-view-btn w-full flex items-center justify-center gap-2 py-2 rounded-[10px] sm:rounded-xl text-[10px] font-medium transition-colors"
+                                                    className="manage-team-view-btn w-full flex items-center justify-center gap-2 py-2 rounded-[10px] sm:rounded-[7px] text-[10px] font-medium transition-colors"
                                                 >
                                                     <Eye className="w-3.5 h-3.5" /> View Team
                                                 </button>

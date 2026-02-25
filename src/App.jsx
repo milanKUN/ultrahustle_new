@@ -37,6 +37,7 @@ import ManageTeam from "./features/dashboard/pages/ManageTeam";
 import MilestonesPage from "./features/marketplace/pages/MilestonesPage";
 import SoloMilestonesPage from "./features/marketplace/pages/SoloMilestonesPage";
 import CreateServiceListing from "./features/marketplace/pages/CreateServiceListing";
+import AddNewListing from "./features/marketplace/pages/AddNewListing";
 
 
 export default function App() {
@@ -99,6 +100,7 @@ export default function App() {
           <Route path="/create-service-listing" element={<CreateServiceListing theme={theme} setTheme={setTheme} />} />
           <Route path="/dashboard" element={<Dashboard theme={theme} setTheme={setTheme} />} />
           <Route path="/manage-team" element={<ManageTeam theme={theme} setTheme={setTheme} />} />
+          <Route path="/add-listing" element={<AddNewListing theme={theme} setTheme={setTheme} />} />
 
         </Routes>
       </div>

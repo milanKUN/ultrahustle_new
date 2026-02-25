@@ -138,7 +138,8 @@ export default function Sidebar({
       path.includes("/marketplace") ||
       path.includes("/listing") ||
       path.includes("/contracts") ||
-      path.includes("/solo-contracts")
+      path.includes("/solo-contracts") ||
+      path.includes("/add-listing")
     ) {
       detectedMain = "Marketplace";
       detectedMenu = "Marketplace";
