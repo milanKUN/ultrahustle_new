@@ -1,5 +1,6 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 
 import "../../../pages/InReviewLight.css";
 import "./TeamProfileLight.css";
@@ -10,6 +11,7 @@ import "../../onboarding/components/OnboardingSelect.css";
 
 
 const UserProfile = (props) => {
+  const navigate = useNavigate();
   // ✅ Theme via props (CreateTeam jaisa)
   const [activeItem, setActiveItem] = useState(null);
   const [activeItemIndex, setActiveItemIndex] = useState(0);
@@ -1319,7 +1321,7 @@ const UserProfile = (props) => {
                           </div>
                         </div>
 
-                        <button className="teamBtn" type="button">
+                        <button className="teamBtn" type="button" onClick={() => navigate('/public-team-profile')}>
                           View Team
                         </button>
                       </div>

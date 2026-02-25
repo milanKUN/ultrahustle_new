@@ -32,6 +32,7 @@ import UserProfile from "./features/dashboard/pages/UserProfile";
 import PublicUserProfile from "./features/dashboard/pages/PublicUserProfile";
 import SoloContractListing from "./features/marketplace/pages/SoloContractListing";
 import Dashboard from "./features/dashboard/pages/Dashboard";
+import ManageTeam from "./features/dashboard/pages/ManageTeam";
 
 import MilestonesPage from "./features/marketplace/pages/MilestonesPage";
 import SoloMilestonesPage from "./features/marketplace/pages/SoloMilestonesPage";
@@ -97,6 +98,7 @@ export default function App() {
           <Route path="/solo-milestones" element={<SoloMilestonesPage theme={theme} setTheme={setTheme} />} />
           <Route path="/create-service-listing" element={<CreateServiceListing theme={theme} setTheme={setTheme} />} />
           <Route path="/dashboard" element={<Dashboard theme={theme} setTheme={setTheme} />} />
+          <Route path="/manage-team" element={<ManageTeam theme={theme} setTheme={setTheme} />} />
 
         </Routes>
       </div>

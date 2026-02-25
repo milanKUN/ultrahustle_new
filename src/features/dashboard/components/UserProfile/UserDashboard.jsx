@@ -1,6 +1,8 @@
 import { CheckCircle, Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilePageDesktop() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-[#F4F6F2] flex justify-center py-10">
       <div className="w-[1440px] space-y-6">
@@ -218,122 +220,122 @@ export default function ProfilePageDesktop() {
           </div>
         </div>
         {/* ================= REVIEWS ================= */}
-<div className="bg-gradient-to-r from-[#F2F6EA] to-white rounded-2xl border p-8">
-  <h3 className="text-lg font-semibold mb-6">Reviews</h3>
+        <div className="bg-gradient-to-r from-[#F2F6EA] to-white rounded-2xl border p-8">
+          <h3 className="text-lg font-semibold mb-6">Reviews</h3>
 
-  <div className="grid grid-cols-2 gap-10">
+          <div className="grid grid-cols-2 gap-10">
 
-    {/* ===== LEFT : RATING SUMMARY ===== */}
-    <div className="space-y-4">
-      <div className="flex items-center gap-3">
-        <span className="text-3xl font-semibold">4.9</span>
-        <div className="flex text-yellow-400">
-          ★★★★★
+            {/* ===== LEFT : RATING SUMMARY ===== */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="text-3xl font-semibold">4.9</span>
+                <div className="flex text-yellow-400">
+                  ★★★★★
+                </div>
+                <span className="text-sm text-gray-500">(48 reviews)</span>
+              </div>
+
+              {[5, 4, 3, 2, 1].map((star, i) => (
+                <div key={star} className="flex items-center gap-3">
+                  <span className="w-4 text-sm">{star}</span>
+                  <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-yellow-400"
+                      style={{
+                        width:
+                          star === 5
+                            ? "80%"
+                            : star === 4
+                              ? "35%"
+                              : star === 3
+                                ? "15%"
+                                : star === 2
+                                  ? "5%"
+                                  : "2%",
+                      }}
+                    />
+                  </div>
+                  <span className="text-sm text-gray-500 w-6 text-right">
+                    {star === 5
+                      ? 38
+                      : star === 4
+                        ? 7
+                        : star === 3
+                          ? 2
+                          : star === 2
+                            ? 1
+                            : 0}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* ===== RIGHT : REVIEWS LIST (SCROLLABLE) ===== */}
+            <div className="h-[420px] overflow-y-auto pr-4 space-y-6">
+
+              <ReviewItem
+                name="Emily Chen"
+                date="Nov 15, 2025"
+                rating={5}
+                text="Exceptional designer! Sovan delivered a comprehensive design system that transformed our product. His attention to detail and communication throughout the project was outstanding."
+              />
+
+              <ReviewItem
+                name="Marcus Johnson"
+                date="Nov 10, 2025"
+                rating={5}
+                text="Great communication and fantastic results. The component library exceeded our expectations and saved us months of development time."
+              />
+
+              <ReviewItem
+                name="Marcus Johnson"
+                date="Nov 5, 2025"
+                rating={4}
+                text="Very professional and delivered quality work on time. The mobile app designs were pixel-perfect and the developer handoff was seamless."
+              />
+
+              <ReviewItem
+                name="David Kim"
+                date="Oct 28, 2025"
+                rating={4}
+                text="Solid work overall. The designs were modern and user-friendly. Minor revisions were needed but Sovan was very responsive to feedback."
+              />
+
+              <ReviewItem
+                name="Sarah Williams"
+                date="Oct 20, 2025"
+                rating={5}
+                text="Outstanding experience from start to finish. Sovan took the time to understand our business needs and delivered designs that improved our conversion rates by 40%!"
+              />
+
+            </div>
+          </div>
         </div>
-        <span className="text-sm text-gray-500">(48 reviews)</span>
-      </div>
 
-      {[5, 4, 3, 2, 1].map((star, i) => (
-        <div key={star} className="flex items-center gap-3">
-          <span className="w-4 text-sm">{star}</span>
-          <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-yellow-400"
-              style={{
-                width:
-                  star === 5
-                    ? "80%"
-                    : star === 4
-                    ? "35%"
-                    : star === 3
-                    ? "15%"
-                    : star === 2
-                    ? "5%"
-                    : "2%",
-              }}
+        {/* ================= TEAMS ================= */}
+        <div className="space-y-6">
+          <h3 className="text-lg font-semibold">Teams</h3>
+
+          <div className="grid grid-cols-3 gap-6">
+            <TeamCard
+              name="Design Systems Collective"
+              role="Lead Designer"
+              members="12 members"
+            />
+
+            <TeamCard
+              name="AI Product Innovators"
+              role="UI/UX Designer"
+              members="12 members"
+            />
+
+            <TeamCard
+              name="Mobile First Studios"
+              role="Senior Designer"
+              members="12 members"
             />
           </div>
-          <span className="text-sm text-gray-500 w-6 text-right">
-            {star === 5
-              ? 38
-              : star === 4
-              ? 7
-              : star === 3
-              ? 2
-              : star === 2
-              ? 1
-              : 0}
-          </span>
         </div>
-      ))}
-    </div>
-
-    {/* ===== RIGHT : REVIEWS LIST (SCROLLABLE) ===== */}
-    <div className="h-[420px] overflow-y-auto pr-4 space-y-6">
-
-      <ReviewItem
-        name="Emily Chen"
-        date="Nov 15, 2025"
-        rating={5}
-        text="Exceptional designer! Sovan delivered a comprehensive design system that transformed our product. His attention to detail and communication throughout the project was outstanding."
-      />
-
-      <ReviewItem
-        name="Marcus Johnson"
-        date="Nov 10, 2025"
-        rating={5}
-        text="Great communication and fantastic results. The component library exceeded our expectations and saved us months of development time."
-      />
-
-      <ReviewItem
-        name="Marcus Johnson"
-        date="Nov 5, 2025"
-        rating={4}
-        text="Very professional and delivered quality work on time. The mobile app designs were pixel-perfect and the developer handoff was seamless."
-      />
-
-      <ReviewItem
-        name="David Kim"
-        date="Oct 28, 2025"
-        rating={4}
-        text="Solid work overall. The designs were modern and user-friendly. Minor revisions were needed but Sovan was very responsive to feedback."
-      />
-
-      <ReviewItem
-        name="Sarah Williams"
-        date="Oct 20, 2025"
-        rating={5}
-        text="Outstanding experience from start to finish. Sovan took the time to understand our business needs and delivered designs that improved our conversion rates by 40%!"
-      />
-
-    </div>
-  </div>
-</div>
-
-{/* ================= TEAMS ================= */}
-<div className="space-y-6">
-  <h3 className="text-lg font-semibold">Teams</h3>
-
-  <div className="grid grid-cols-3 gap-6">
-    <TeamCard
-      name="Design Systems Collective"
-      role="Lead Designer"
-      members="12 members"
-    />
-
-    <TeamCard
-      name="AI Product Innovators"
-      role="UI/UX Designer"
-      members="12 members"
-    />
-
-    <TeamCard
-      name="Mobile First Studios"
-      role="Senior Designer"
-      members="12 members"
-    />
-  </div>
-</div>
 
       </div>
     </div>
@@ -479,25 +481,28 @@ const ReviewItem = ({ name, date, rating, text }) => (
   </div>
 );
 
-const TeamCard = ({ name, role, members }) => (
-  <div className="bg-white rounded-2xl p-6 flex flex-col gap-4 shadow-[0_2px_16px_0_rgba(0,0,0,0.06)]">
-    <div className="flex items-center gap-4">
-      <div className="w-12 h-12 rounded-full bg-gray-300" />
-      <div className="flex flex-col gap-1">
-        <span className="font-medium text-base">{name}</span>
-        <span className="border px-3 py-1 rounded-full text-xs text-gray-700 bg-white">{role}</span>
+const TeamCard = ({ name, role, members }) => {
+  const navigate = useNavigate();
+  return (
+    <div className="bg-white rounded-2xl p-6 flex flex-col gap-4 shadow-[0_2px_16px_0_rgba(0,0,0,0.06)]">
+      <div className="flex items-center gap-4">
+        <div className="w-12 h-12 rounded-full bg-gray-300" />
+        <div className="flex flex-col gap-1">
+          <span className="font-medium text-base">{name}</span>
+          <span className="border px-3 py-1 rounded-full text-xs text-gray-700 bg-white">{role}</span>
+        </div>
       </div>
+      <div className="flex items-center gap-2 text-gray-500 text-sm">
+        <span className="flex items-center gap-1">
+          <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+          {members}
+          <span>members</span>
+        </span>
+      </div>
+      <button onClick={() => navigate('/public-team-profile')} className="w-60 flex items-center justify-center gap-2 border rounded-lg py-2 text-sm font-medium bg-white shadow-[0_2px_8px_0_rgba(0,0,0,0.04)]">
+        <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M8 12h8M8 12l3-3m-3 3l3 3" /><rect x="3" y="3" width="18" height="18" rx="4" /></svg>
+        View Team
+      </button>
     </div>
-    <div className="flex items-center gap-2 text-gray-500 text-sm">
-      <span className="flex items-center gap-1">
-        <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        {members}
-        <span>members</span>
-      </span>
-    </div>
-    <button className="w-60 flex items-center justify-center gap-2 border rounded-lg py-2 text-sm font-medium bg-white shadow-[0_2px_8px_0_rgba(0,0,0,0.04)]">
-      <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M8 12h8M8 12l3-3m-3 3l3 3"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg>
-      View Team
-    </button>
-  </div>
-);
+  );
+};

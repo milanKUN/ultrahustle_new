@@ -39,7 +39,7 @@ const CREATOR_ITEMS = [
     icon: Users,
     children: [
       { label: "Create Team", icon: Maximize2, path: "/create-team" },
-      { label: "Manage Team", icon: Users, path: "/team" },
+      { label: "Manage Team", icon: Users, path: "/manage-team" },
     ],
   },
   {
@@ -145,7 +145,7 @@ export default function Sidebar({
     }
 
     // ✅ TEAM (dropdown)
-    else if (path.includes("/team") || path.includes("/create-team")) {
+    else if (path.includes("/team") || path.includes("/create-team") || path.includes("/manage-team")) {
       detectedMain = "My Team";
       detectedMenu = "My Team";
     }
