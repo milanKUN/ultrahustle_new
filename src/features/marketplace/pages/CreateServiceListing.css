@@ -306,49 +306,54 @@
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   background: #fff;
-  border: 1px solid var(--csl-border-2);
-  border-radius: 12px;
-  padding: 14px;
+  border: 1px solid #e4e4e4;
+  border-radius: 6px;
+  padding: 8px 35px 8px 10px;
   position: relative;
   width: 100%;
-  background: transparent;
+  min-height: 40px;
+  align-items: center;
 }
 
 .csl-chip {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 12px;
+  gap: 6px;
+  padding: 4px 8px;
   border: 1px solid #eee;
-  border-radius: 8px;
+  border-radius: 6px;
   background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .csl-chipText {
-  font-size: 12px;
-  color: #222;
+  font-size: 13px;
+  color: #555;
 }
 
 .csl-chipX {
   border: 0;
   background: transparent;
   cursor: pointer;
-  color: #666;
-  font-size: 16px;
+  color: #888;
+  font-size: 14px;
   line-height: 1;
   padding: 0;
+  display: flex;
+  align-items: center;
 }
 
 /* Container clear icon */
 .csl-clear-all {
   position: absolute;
-  right: 14px;
-  top: 14px;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   background: transparent;
   border: none;
+  border-left: 1px solid #e4e4e4;
   color: #999;
   cursor: pointer;
   font-size: 18px;
@@ -356,7 +361,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
+  padding: 0 0 0 12px;
+  height: 20px;
 }
 
 .csl-clear-all:hover {
@@ -365,6 +371,24 @@
 
 .user-page.dark .csl-clear-all {
   color: #CEFF1B;
+  border-left-color: rgba(255, 255, 255, 0.2);
+}
+
+.user-page.dark .csl-chips,
+.user-page.dark .sp-chipRow {
+  background: transparent;
+  border: 1px solid #CEFF1B;
+}
+
+.user-page.dark .csl-chip,
+.user-page.dark .sp-chip {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.user-page.dark .csl-chipText {
+  color: #fff;
 }
 
 /* Toggle */
@@ -486,7 +510,7 @@
 .sp-slider {
   position: absolute;
   inset: 0;
-  background: #e4e4e4;
+  background: #909090;
   border: 1px solid var(--csl-border);
   border-radius: 999px;
   transition: .2s ease;
@@ -500,7 +524,7 @@
   left: 3px;
   top: 50%;
   transform: translateY(-50%);
-  background: #fff;
+  background: #5C5C5C;
   border: 1px solid var(--csl-border);
   border-radius: 50%;
   transition: .2s ease;
@@ -512,6 +536,32 @@
 
 .sp-switch input:checked+.sp-slider::before {
   transform: translate(20px, -50%);
+  background: #CEFF1B;
+  border-color: #CEFF1B;
+}
+
+.user-page.dark .sp-mode.active {
+  color: #fff;
+}
+
+.user-page.dark .sp-slider {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+}
+
+.user-page.dark .sp-slider::before {
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+}
+
+.user-page.dark .sp-switch input:checked+.sp-slider {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+}
+
+.user-page.dark .sp-switch input:checked+.sp-slider::before {
+  background: #CEFF1B;
+  border: none;
 }
 
 /* Fields */
@@ -601,7 +651,6 @@
 .sp-packagesTitle {
   font-size: 12px;
   font-weight: 700;
-  color: #222;
   margin-top: 10px;
 }
 
@@ -717,33 +766,40 @@
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   background: #fff;
-  border: 1px solid var(--csl-border-2);
-  border-radius: 12px;
-  padding: 14px;
+  border: 1px solid #e4e4e4;
+  border-radius: 6px;
+  padding: 8px 35px 8px 10px;
+  position: relative;
+  width: 100%;
+  min-height: 40px;
+  align-items: center;
 }
 
 .sp-chip {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 12px;
+  gap: 6px;
+  padding: 4px 8px;
   border: 1px solid #eee;
-  border-radius: 8px;
+  border-radius: 6px;
   background: #fff;
-  font-size: 11px;
-  color: #222;
+  font-size: 13px;
+  color: #555;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .sp-chipX {
   border: 0;
   background: transparent;
   cursor: pointer;
-  color: #666;
-  font-size: 16px;
+  color: #888;
+  font-size: 14px;
   line-height: 1;
   padding: 0;
+  display: flex;
+  align-items: center;
 }
 
 .am-title {
@@ -1042,7 +1098,7 @@
 .user-page.dark .sp-label,
 .user-page.dark .am-field label,
 .user-page.dark .faq-label {
-  color: #CEFF1B !important;
+  color: white !important;
 }
 
 .user-page.dark .csl-input,
@@ -1062,6 +1118,25 @@
 .user-page.dark .csl-select:focus,
 .user-page.dark .csl-textarea:focus {
   border-color: #CEFF1B !important;
+}
+
+.user-page.dark .csl-label,
+.user-page.dark .csl-stepTitle,
+.user-page.dark .sp-label,
+
+.user-page.dark .sp-packagesTitle,
+
+.user-page.dark .faq-label,
+
+.user-page.dark label {
+  color: #ffffff !important;
+}
+
+.user-page.dark .csl-title,
+.user-page.dark .sp-topTitle,
+.user-page.dark .am-title,
+.user-page.dark .faq-title {
+  color: #CEFF1B !important;
 }
 
 .user-page.dark .csl-chips,

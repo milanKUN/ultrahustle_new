@@ -29,12 +29,12 @@ export default function CreateServiceListing({ theme, setTheme }) {
   );
 
   const teamList = useMemo(
-    () => ["Team name", "Ultra Hustle Studio", "Design Squad", "Dev Crew"],
+    () => ["Ultra Hustle Studio", "Design Squad", "Dev Crew"],
     [],
   );
 
   const deliveryFormats = useMemo(
-    () => ["Select one", "Google Drive Link", "Figma Link", "ZIP Download", "Notion Page"],
+    () => ["Google Drive Link", "Figma Link", "ZIP Download", "Notion Page"],
     [],
   );
 
@@ -96,7 +96,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
 
   /* ================== SERVICE PROVIDER + PACKAGES STATE ================== */
   const [mode, setMode] = useState("Solo"); // Solo | Team
-  const [teamName, setTeamName] = useState("Team name");
+  const [teamName, setTeamName] = useState("");
   const [activeTab, setActiveTab] = useState("Basic");
 
   const [pkg, setPkg] = useState({
@@ -110,7 +110,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
       howItWorks: [],
       notIncluded: [],
       toolsUsed: ["Figma", "Illustrator", "Photoshop", "Tailwind CSS"],
-      deliveryFormat: "Select one",
+      deliveryFormat: "",
     },
     Standard: {
       packageName: "Standard",
@@ -122,7 +122,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
       howItWorks: [],
       notIncluded: [],
       toolsUsed: [],
-      deliveryFormat: "Select one",
+      deliveryFormat: "",
     },
     Premium: {
       packageName: "Premium",
@@ -134,7 +134,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
       howItWorks: [],
       notIncluded: [],
       toolsUsed: [],
-      deliveryFormat: "Select one",
+      deliveryFormat: "",
     },
   });
 
@@ -470,19 +470,17 @@ export default function CreateServiceListing({ theme, setTheme }) {
                   </div>
 
                   {mode === "Team" && (
-                    <div className="csl-grid2">
-                      <div className="sp-field">
-                        <label className="sp-label">Team name</label>
-                        <div className="sp-selectWrap">
-                          <CustomSelect
-                            value={teamName}
-                            onChange={(val) => setTeamName(val)}
-                            options={teamList}
-                            disabled={mode !== "Team"}
-                          />
-                        </div>
+                    <div className="sp-field">
+                      <label className="sp-label">Team name</label>
+                      <div className="sp-selectWrap">
+                        <CustomSelect
+                          value={teamName}
+                          onChange={(val) => setTeamName(val)}
+                          options={teamList}
+                          placeholder="Select team name"
+                          disabled={mode !== "Team"}
+                        />
                       </div>
-                      <div></div>
                     </div>
                   )}
 
@@ -645,7 +643,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     </button>
 
                     {!!current.howItWorks?.length && (
-                      <div className="sp-chipRow">
+                      <div className="sp-chipRow" style={{ position: "relative" }}>
                         {current.howItWorks.map((x, idx) => (
                           <div className="sp-chip" key={`${x}-${idx}`}>
                             {x}
@@ -654,6 +652,14 @@ export default function CreateServiceListing({ theme, setTheme }) {
                             </button>
                           </div>
                         ))}
+                        <button
+                          className="csl-clear-all"
+                          onClick={() => setPkg(p => ({
+                            ...p,
+                            [activeTab]: { ...p[activeTab], howItWorks: [] }
+                          }))}
+                          title="Clear all"
+                        >×</button>
                       </div>
                     )}
                   </div>
@@ -672,7 +678,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     </button>
 
                     {!!current.notIncluded?.length && (
-                      <div className="sp-chipRow">
+                      <div className="sp-chipRow" style={{ position: "relative" }}>
                         {current.notIncluded.map((x, idx) => (
                           <div className="sp-chip" key={`${x}-${idx}`}>
                             {x}
@@ -681,6 +687,14 @@ export default function CreateServiceListing({ theme, setTheme }) {
                             </button>
                           </div>
                         ))}
+                        <button
+                          className="csl-clear-all"
+                          onClick={() => setPkg(p => ({
+                            ...p,
+                            [activeTab]: { ...p[activeTab], notIncluded: [] }
+                          }))}
+                          title="Clear all"
+                        >×</button>
                       </div>
                     )}
                   </div>
@@ -702,7 +716,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     <div className="sp-hint">You can add 10 tools</div>
 
                     {!!current.toolsUsed?.length && (
-                      <div className="sp-chipRow">
+                      <div className="sp-chipRow" style={{ position: "relative" }}>
                         {current.toolsUsed.map((x, idx) => (
                           <div className="sp-chip" key={`${x}-${idx}`}>
                             {x}
@@ -711,6 +725,14 @@ export default function CreateServiceListing({ theme, setTheme }) {
                             </button>
                           </div>
                         ))}
+                        <button
+                          className="csl-clear-all"
+                          onClick={() => setPkg(p => ({
+                            ...p,
+                            [activeTab]: { ...p[activeTab], toolsUsed: [] }
+                          }))}
+                          title="Clear all"
+                        >×</button>
                       </div>
                     )}
                   </div>
@@ -822,7 +844,13 @@ export default function CreateServiceListing({ theme, setTheme }) {
                           aria-label="Delete FAQ"
                           title="Delete"
                         >
-                          🗑️
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M3 6h18"></path>
+                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                          </svg>
                         </button>
                       </div>
 
@@ -889,14 +917,7 @@ function CustomSelect({ value, onChange, options, placeholder, disabled = false 
       </div>
       {open && (
         <ul className="onboarding-options-list dark:bg-[#1E1E1E]">
-          {placeholder && (
-            <li
-              className={!value ? "active" : ""}
-              onClick={() => { onChange(""); setOpen(false); }}
-            >
-              {placeholder}
-            </li>
-          )}
+
           {options.map((opt) => (
             <li
               key={opt}
