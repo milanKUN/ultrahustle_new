@@ -858,7 +858,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                         <label className="faq-label">Question</label>
                         <input
                           className="faq-input"
-                          placeholder="Type your question"
+                          placeholder=""
                           value={item.q}
                           onChange={(e) => updateFaq(idx, "q", e.target.value)}
                         />
@@ -868,7 +868,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                         <label className="faq-label">Answer</label>
                         <input
                           className="faq-input"
-                          placeholder="Type the answer"
+                          placeholder=""
                           value={item.a}
                           onChange={(e) => updateFaq(idx, "a", e.target.value)}
                         />

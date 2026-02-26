@@ -371,24 +371,7 @@
 
 .user-page.dark .csl-clear-all {
   color: #CEFF1B;
-  border-left-color: rgba(255, 255, 255, 0.2);
-}
-
-.user-page.dark .csl-chips,
-.user-page.dark .sp-chipRow {
-  background: transparent;
-  border: 1px solid #CEFF1B;
-}
-
-.user-page.dark .csl-chip,
-.user-page.dark .sp-chip {
-  background: transparent;
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-}
-
-.user-page.dark .csl-chipText {
-  color: #fff;
+  border-left: 1px solid #CEFF1B;
 }
 
 /* Toggle */
@@ -993,7 +976,7 @@
 .faq-number {
   font-size: 20px;
   font-weight: 700;
-  color: #222;
+
 }
 
 .faq-trash {
@@ -1142,14 +1125,14 @@
 .user-page.dark .csl-chips,
 .user-page.dark .sp-chipRow,
 .user-page.dark .am-addOnList {
-  background-color: #141414 !important;
-  border-color: #CEFF1B !important;
+  background-color: #5C5C5C !important;
+  border: none !important;
 }
 
 .user-page.dark .csl-chip,
 .user-page.dark .sp-chip,
 .user-page.dark .am-chip {
-  background-color: #232323 !important;
+  background-color: #5C5C5C !important;
   border: 1px solid #CEFF1B !important;
   color: #CEFF1B !important;
 }
