@@ -222,7 +222,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
   const [addOn, setAddOn] = useState({
     name: "Basic",
     price: "4",
-    days: "3",
+    days: "1",
   });
 
   const [addOns, setAddOns] = useState([]);
@@ -524,7 +524,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                       <label className="sp-label">Delivery Time (days)</label>
                       <div className="sp-selectWrap">
                         <CustomSelect
-                          value={current.deliveryDays}
+
                           onChange={(val) => setPkgField("deliveryDays", val)}
                           options={["1", "2", "3", "5", "7", "10", "14", "21", "30"]}
                           placeholder="Select days"
@@ -546,43 +546,13 @@ export default function CreateServiceListing({ theme, setTheme }) {
                       </div>
                     </div>
 
-                    <div className="sp-field">
-                      <label className="sp-label">Delivery format</label>
-                      <div className="sp-selectWrap">
-                        <CustomSelect
-                          value={current.deliveryFormat}
-                          onChange={(val) => setPkgField("deliveryFormat", val)}
-                          options={deliveryFormats}
-                          placeholder="Select format"
-                        />
-                      </div>
-                    </div>
+
                   </div>
 
                   <div className="csl-grid2">
-                    <div className="sp-field">
-                      <label className="sp-label">Source File</label>
-                      <div className="sp-selectWrap">
-                        <CustomSelect
-                          value={current.sourceFile}
-                          onChange={(val) => setPkgField("sourceFile", val)}
-                          options={["Yes", "No"]}
-                          placeholder="Select"
-                        />
-                      </div>
-                    </div>
 
-                    <div className="sp-field">
-                      <label className="sp-label">Commercial Use</label>
-                      <div className="sp-selectWrap">
-                        <CustomSelect
-                          value={current.commercialUse}
-                          onChange={(val) => setPkgField("commercialUse", val)}
-                          options={["Yes", "No"]}
-                          placeholder="Select"
-                        />
-                      </div>
-                    </div>
+
+
                   </div>
 
                   <div className="sp-field">
@@ -735,6 +705,18 @@ export default function CreateServiceListing({ theme, setTheme }) {
                         >×</button>
                       </div>
                     )}
+
+                    <div className="sp-field">
+                      <label className="sp-label">Delivery format</label>
+                      <div className="sp-selectWrap">
+                        <CustomSelect
+                          value={current.deliveryFormat}
+                          onChange={(val) => setPkgField("deliveryFormat", val)}
+                          options={["Googel drive link", "figma link ", "zip download", "notion page"]}
+                          placeholder="Select format"
+                        />
+                      </div>
+                    </div>
                   </div>
 
 
@@ -858,7 +840,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                         <label className="faq-label">Question</label>
                         <input
                           className="faq-input"
-                          placeholder=""
+                          placeholder="Type your question"
                           value={item.q}
                           onChange={(e) => updateFaq(idx, "q", e.target.value)}
                         />
@@ -868,7 +850,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                         <label className="faq-label">Answer</label>
                         <input
                           className="faq-input"
-                          placeholder=""
+                          placeholder="Type the answer"
                           value={item.a}
                           onChange={(e) => updateFaq(idx, "a", e.target.value)}
                         />
