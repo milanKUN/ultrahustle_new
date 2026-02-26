@@ -102,13 +102,16 @@
 }
 
 .csl-ai-pill {
-  font-size: 12px;
-  color: #222;
-  background: #f6f6f6;
-  border: 1px solid var(--csl-border);
+  font-size: 13px;
+  color: #5C5C5C;
+  background: transparent;
+  border: 1px solid #5C5C5C;
   border-radius: 6px;
-  padding: 6px 10px;
+  padding: 4px 10px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .csl-section {
@@ -149,20 +152,27 @@
 }
 
 .csl-input,
-.csl-select,
-.csl-textarea {
+.csl-textarea,
+.sp-input,
+.sp-textarea,
+.am-input,
+.faq-input {
   width: 100%;
-  border: 1px solid var(--csl-border-2);
+  border: 1px solid #000;
   border-radius: var(--csl-radius);
+  background: transparent;
   color: #111;
-  font-size: 13px;
+  font-size: 14px;
   padding: 10px 12px;
   outline: none;
+  transition: all 0.2s ease;
 }
 
 .csl-input,
-.csl-select {
-  height: 50px;
+.sp-input,
+.am-input,
+.faq-input {
+  height: 40px;
 }
 
 .csl-input::placeholder,
@@ -177,10 +187,54 @@
 }
 
 .csl-input:focus,
-.csl-select:focus,
-.csl-textarea:focus {
-  border-color: #bfbfbf;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+.csl-textarea:focus,
+.sp-input:focus,
+.sp-textarea:focus,
+.am-input:focus,
+.faq-input:focus {
+  border-color: transparent !important;
+  box-shadow: 0 0 15px #CEFF1B !important;
+  outline: none;
+}
+
+.user-page.dark .csl-input,
+.user-page.dark .csl-textarea,
+.user-page.dark .sp-input,
+.user-page.dark .sp-textarea,
+.user-page.dark .am-input,
+.user-page.dark .faq-input,
+.user-page.dark .onboarding-selected-option {
+  border: 1px solid #CEFF1B;
+  color: #fff;
+}
+
+.user-page.dark .csl-input::placeholder,
+.user-page.dark .sp-input::placeholder,
+.user-page.dark .am-input::placeholder,
+.user-page.dark .faq-input::placeholder {
+  color: #b0b0b0;
+}
+
+/* Custom Select Dropdown Dark Mode Adjustments */
+.user-page.dark .onboarding-options-list {
+  background: #1e1e1e !important;
+  border: 1px solid #CEFF1B !important;
+}
+
+.user-page.dark .onboarding-options-list li {
+  color: #fff;
+}
+
+.user-page.dark .onboarding-options-list li:hover {
+  color: #000;
+}
+
+.user-page.dark .onboarding-options-list li.active {
+  color: #000;
+}
+
+.user-page.dark .onboarding-arrow {
+  color: #b0b0b0;
 }
 
 .csl-grid2 {
@@ -259,6 +313,7 @@
   padding: 14px;
   position: relative;
   width: 100%;
+  background: transparent;
 }
 
 .csl-chip {
@@ -329,32 +384,59 @@
 .csl-slider {
   position: absolute;
   inset: 0;
-  background: #909090;
-  border: 1px solid var(--csl-border);
+  background: #A3A3A3;
   border-radius: 999px;
+  border: none;
   transition: 0.2s ease;
 }
 
 .csl-slider::before {
   content: "";
   position: absolute;
-  height: 18px;
-  width: 18px;
-  left: 3px;
+  height: 16px;
+  width: 16px;
+  left: 4px;
   top: 50%;
   transform: translateY(-50%);
-  background: #fff;
-  border: 1px solid var(--csl-border);
+  background: #5C5C5C;
   border-radius: 50%;
+  border: none;
   transition: 0.2s ease;
 }
 
 .csl-switch input:checked+.csl-slider {
-  background: #cfcfcf;
+  background: #2B2B2B;
+  border: 1px solid #AC4BFA;
 }
 
 .csl-switch input:checked+.csl-slider::before {
   transform: translate(22px, -50%);
+  background: #AC4BFA;
+  border-color: #AC4BFA;
+}
+
+/* Dark mode Toggle Styles */
+.user-page.dark .csl-ai-pill {
+  color: #fff;
+  border-color: #fff;
+}
+
+.user-page.dark .csl-slider {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+}
+
+.user-page.dark .csl-slider::before {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.user-page.dark .csl-switch input:checked+.csl-slider {
+  border: 1px solid #AC4BFA;
+  background: transparent;
+}
+
+.user-page.dark .csl-switch input:checked+.csl-slider::before {
+  background: linear-gradient(135deg, #df5ef3, #a210ff);
 }
 
 .sp-top {
@@ -449,17 +531,19 @@
 .sp-select,
 .sp-textarea {
   width: 100%;
-  border: 1px solid var(--csl-border-2);
+  border: 1px solid #000;
+  background: transparent;
   border-radius: 6px;
   padding: 9px 12px;
-  font-size: 12px;
+  font-size: 14px;
   color: #111;
   outline: none;
+  transition: all 0.2s ease;
 }
 
 .sp-input,
 .sp-select {
-  height: 50px;
+  height: 40px;
 }
 
 .sp-textarea {
@@ -476,8 +560,16 @@
 .sp-input:focus,
 .sp-select:focus,
 .sp-textarea:focus {
-  border-color: #bdbdbd;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+  border-color: transparent !important;
+  box-shadow: 0 0 15px #CEFF1B !important;
+  outline: none;
+}
+
+.user-page.dark .sp-input,
+.user-page.dark .sp-select,
+.user-page.dark .sp-textarea {
+  border: 1px solid #CEFF1B;
+  color: #fff;
 }
 
 /* Select caret */
@@ -681,11 +773,24 @@
 
 .am-input {
   width: 100%;
-  border: 1px solid var(--csl-border-2);
+  border: 1px solid #000;
+  background: transparent;
   border-radius: 6px;
   padding: 8px 10px;
-  font-size: 12px;
-  height: 50px;
+  font-size: 14px;
+  height: 40px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.am-input:focus {
+  border-color: transparent !important;
+  box-shadow: 0 0 15px #CEFF1B !important;
+}
+
+.user-page.dark .am-input {
+  border: 1px solid #CEFF1B;
+  color: #fff;
 }
 
 .am-priceWrap {
@@ -773,7 +878,7 @@
 
 @media (max-width: 768px) {
   .am-placeholder {
-    height: 250px;
+    height: 240px;
   }
 }
 
@@ -862,7 +967,7 @@
   padding: 9px 12px;
   font-size: 12px;
   outline: none;
-  height: 50px;
+  height: 40px;
 }
 
 .faq-input:focus {

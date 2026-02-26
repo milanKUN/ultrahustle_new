@@ -4,6 +4,7 @@ import UserNavbar from "../../../components/layout/UserNavbar";
 import Sidebar from "../../../components/layout/Sidebar";
 import MyPortfolio from "../../dashboard/components/UserProfile/MyPortfolio";
 import "../../../Darkuser.css";
+import "../../onboarding/components/OnboardingSelect.css";
 
 export default function CreateServiceListing({ theme, setTheme }) {
   /* ================== CONSTANTS ================== */
@@ -306,7 +307,13 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     </div>
 
                     <div className="csl-ai">
-                      <span className="csl-ai-pill">✨ Ai Powered</span>
+                      <span className="csl-ai-pill">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M11 2C11 2 11 10 19 10C11 10 11 18 11 18C11 18 11 10 3 10C11 10 11 2 11 2Z" />
+                          <path d="M18 16C18 16 18 19 22 19C18 19 18 22 18 22C18 22 18 19 14 19C18 19 18 16 18 16Z" />
+                        </svg>
+                        Ai Powered
+                      </span>
                       <label className="csl-switch">
                         <input
                           type="checkbox"
@@ -320,59 +327,59 @@ export default function CreateServiceListing({ theme, setTheme }) {
 
                   <h2 className="csl-section">Basic Details</h2>
 
-                  <div className="csl-field">
-                    <label className="csl-label">Listing Title</label>
-                    <input
-                      className="csl-input"
-                      placeholder="eg., Professional Logo Design"
-                      value={form.title}
-                      onChange={(e) => setFormField("title", e.target.value)}
-                    />
+                  <div className="csl-grid2">
+                    <div className="csl-field">
+                      <label className="csl-label">Listing Title</label>
+                      <input
+                        className="csl-input"
+                        placeholder="eg., Professional Logo Design"
+                        value={form.title}
+                        onChange={(e) => setFormField("title", e.target.value)}
+                      />
+                    </div>
+
+                    <div className="csl-field">
+                      <label className="csl-label">Product Type</label>
+                      <div className="csl-selectWrap">
+                        <CustomSelect
+                          value={form.productType}
+                          onChange={(val) => setFormField("productType", val)}
+                          options={productTypes}
+                          placeholder="eg., Digital Service"
+                        />
+                      </div>
+                    </div>
                   </div>
 
                   <div className="csl-grid2">
                     <div className="csl-field">
                       <label className="csl-label">Category</label>
                       <div className="csl-selectWrap">
-                        <select
-                          className="csl-select"
+                        <CustomSelect
                           value={form.category}
-                          onChange={(e) =>
+                          onChange={(val) =>
                             setForm((p) => ({
                               ...p,
-                              category: e.target.value,
+                              category: val,
                               subCategory: "",
                             }))
                           }
-                        >
-                          <option value="">Select category</option>
-                          {categories.map((c) => (
-                            <option key={c} value={c}>
-                              {c}
-                            </option>
-                          ))}
-                        </select>
-                        <span className="csl-caret">▾</span>
+                          options={categories}
+                          placeholder="Select category"
+                        />
                       </div>
                     </div>
 
                     <div className="csl-field">
                       <label className="csl-label">Sub Category</label>
                       <div className="csl-selectWrap">
-                        <select
-                          className="csl-select"
+                        <CustomSelect
                           value={form.subCategory}
-                          onChange={(e) => setFormField("subCategory", e.target.value)}
+                          onChange={(val) => setFormField("subCategory", val)}
+                          options={subCategories}
+                          placeholder="Select sub category"
                           disabled={!form.category}
-                        >
-                          <option value="">Select sub category</option>
-                          {subCategories.map((sc) => (
-                            <option key={sc} value={sc}>
-                              {sc}
-                            </option>
-                          ))}
-                        </select>
-                        <span className="csl-caret">▾</span>
+                        />
                       </div>
                     </div>
                   </div>
@@ -397,24 +404,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     />
                   </div>
 
-                  <div className="csl-field">
-                    <label className="csl-label">Product Type</label>
-                    <div className="csl-selectWrap">
-                      <select
-                        className="csl-select"
-                        value={form.productType}
-                        onChange={(e) => setFormField("productType", e.target.value)}
-                      >
-                        <option value="">eg., Digital Service</option>
-                        {productTypes.map((pt) => (
-                          <option key={pt} value={pt}>
-                            {pt}
-                          </option>
-                        ))}
-                      </select>
-                      <span className="csl-caret">▾</span>
-                    </div>
-                  </div>
+
 
                   <div className="csl-field">
                     <label className="csl-label">Tags (multi-select)</label>
@@ -480,23 +470,19 @@ export default function CreateServiceListing({ theme, setTheme }) {
                   </div>
 
                   {mode === "Team" && (
-                    <div className="sp-field">
-                      <label className="sp-label">Team name</label>
-                      <div className="sp-selectWrap">
-                        <select
-                          className="sp-select"
-                          value={teamName}
-                          onChange={(e) => setTeamName(e.target.value)}
-                          disabled={mode !== "Team"}
-                        >
-                          {teamList.map((t) => (
-                            <option key={t} value={t}>
-                              {t}
-                            </option>
-                          ))}
-                        </select>
-                        <span className="sp-caret">▾</span>
+                    <div className="csl-grid2">
+                      <div className="sp-field">
+                        <label className="sp-label">Team name</label>
+                        <div className="sp-selectWrap">
+                          <CustomSelect
+                            value={teamName}
+                            onChange={(val) => setTeamName(val)}
+                            options={teamList}
+                            disabled={mode !== "Team"}
+                          />
+                        </div>
                       </div>
+                      <div></div>
                     </div>
                   )}
 
@@ -539,37 +525,65 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     <div className="sp-field">
                       <label className="sp-label">Delivery Time (days)</label>
                       <div className="sp-selectWrap">
-                        <select
-                          className="sp-select"
+                        <CustomSelect
                           value={current.deliveryDays}
-                          onChange={(e) => setPkgField("deliveryDays", e.target.value)}
-                        >
-                          {["1", "2", "3", "5", "7", "10", "14", "21", "30"].map((d) => (
-                            <option key={d} value={d}>
-                              {d}
-                            </option>
-                          ))}
-                        </select>
-                        <span className="sp-caret">▾</span>
+                          onChange={(val) => setPkgField("deliveryDays", val)}
+                          options={["1", "2", "3", "5", "7", "10", "14", "21", "30"]}
+                          placeholder="Select days"
+                        />
                       </div>
                     </div>
                   </div>
 
-                  <div className="sp-field">
-                    <label className="sp-label">No. of. Revisions</label>
-                    <div className="sp-selectWrap">
-                      <select
-                        className="sp-select"
-                        value={current.revisions}
-                        onChange={(e) => setPkgField("revisions", e.target.value)}
-                      >
-                        {["1", "2", "3", "5", "Unlimited"].map((r) => (
-                          <option key={r} value={r}>
-                            {r}
-                          </option>
-                        ))}
-                      </select>
-                      <span className="sp-caret">▾</span>
+                  <div className="csl-grid2">
+                    <div className="sp-field">
+                      <label className="sp-label">No. of. Revisions</label>
+                      <div className="sp-selectWrap">
+                        <CustomSelect
+                          value={current.revisions}
+                          onChange={(val) => setPkgField("revisions", val)}
+                          options={["1", "2", "3", "5", "Unlimited"]}
+                          placeholder="Select revisions"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="sp-field">
+                      <label className="sp-label">Delivery format</label>
+                      <div className="sp-selectWrap">
+                        <CustomSelect
+                          value={current.deliveryFormat}
+                          onChange={(val) => setPkgField("deliveryFormat", val)}
+                          options={deliveryFormats}
+                          placeholder="Select format"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="csl-grid2">
+                    <div className="sp-field">
+                      <label className="sp-label">Source File</label>
+                      <div className="sp-selectWrap">
+                        <CustomSelect
+                          value={current.sourceFile}
+                          onChange={(val) => setPkgField("sourceFile", val)}
+                          options={["Yes", "No"]}
+                          placeholder="Select"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="sp-field">
+                      <label className="sp-label">Commercial Use</label>
+                      <div className="sp-selectWrap">
+                        <CustomSelect
+                          value={current.commercialUse}
+                          onChange={(val) => setPkgField("commercialUse", val)}
+                          options={["Yes", "No"]}
+                          placeholder="Select"
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -701,23 +715,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     )}
                   </div>
 
-                  <div className="sp-field">
-                    <label className="sp-label">Delivery format</label>
-                    <div className="sp-selectWrap">
-                      <select
-                        className="sp-select"
-                        value={current.deliveryFormat}
-                        onChange={(e) => setPkgField("deliveryFormat", e.target.value)}
-                      >
-                        {deliveryFormats.map((d) => (
-                          <option key={d} value={d}>
-                            {d}
-                          </option>
-                        ))}
-                      </select>
-                      <span className="sp-caret">▾</span>
-                    </div>
-                  </div>
+
                 </div>
 
                 {/* ================= ADD-ONS + MEDIA ================= */}
@@ -859,6 +857,57 @@ export default function CreateServiceListing({ theme, setTheme }) {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/* ================= REUSABLE CUSTOM SELECT ================= */
+
+function CustomSelect({ value, onChange, options, placeholder, disabled = false }) {
+  const [open, setOpen] = React.useState(false);
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className={`onboarding-custom-select ${open ? "active" : ""} ${disabled ? "opacity-50 pointer-events-none" : ""}`} ref={ref}>
+      <div
+        className={`onboarding-selected-option ${open ? "open" : ""}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          if (!disabled) setOpen(!open);
+        }}
+      >
+        <span className={!value ? "opacity-70" : ""}>{value || placeholder}</span>
+        <span className="onboarding-arrow">▼</span>
+      </div>
+      {open && (
+        <ul className="onboarding-options-list dark:bg-[#1E1E1E]">
+          {placeholder && (
+            <li
+              className={!value ? "active" : ""}
+              onClick={() => { onChange(""); setOpen(false); }}
+            >
+              {placeholder}
+            </li>
+          )}
+          {options.map((opt) => (
+            <li
+              key={opt}
+              className={value === opt ? "active" : ""}
+              onClick={() => { onChange(opt); setOpen(false); }}
+            >
+              {opt}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
