@@ -127,8 +127,8 @@
 
 .csl-label {
   display: block;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   color: #222;
   margin-bottom: 6px;
 }
@@ -553,8 +553,8 @@
 
 .sp-label {
   display: block;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   color: #222;
   margin-bottom: 6px;
 }
@@ -803,8 +803,8 @@
 }
 
 .am-field label {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   display: block;
   margin-bottom: 6px;
 }
@@ -991,8 +991,8 @@
 
 .faq-label {
   display: block;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   color: #222;
   margin-bottom: 6px;
 }
