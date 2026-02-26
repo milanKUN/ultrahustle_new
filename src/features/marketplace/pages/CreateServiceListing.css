@@ -308,7 +308,6 @@
   flex-wrap: wrap;
   gap: 8px;
   background: #fff;
-  border: 1px solid #e4e4e4;
   border-radius: 6px;
   padding: 8px 35px 8px 10px;
   position: relative;
@@ -751,8 +750,8 @@
   flex-wrap: wrap;
   gap: 8px;
   background: #fff;
-  border: 1px solid #e4e4e4;
   border-radius: 6px;
+
   padding: 8px 35px 8px 10px;
   position: relative;
   width: 100%;
@@ -865,8 +864,7 @@
   flex-wrap: wrap;
   gap: 10px;
   background: #fff;
-  border: 1px solid var(--csl-border-2);
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 14px;
 }
 
