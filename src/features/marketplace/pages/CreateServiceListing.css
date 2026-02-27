@@ -1111,14 +1111,10 @@
 .user-page.dark .faq-input {
   background-color: transparent !important;
   color: #ffffff !important;
-  border-color: white !important;
+
 }
 
-.user-page.dark .csl-input:focus,
-.user-page.dark .csl-select:focus,
-.user-page.dark .csl-textarea:focus {
-  border-color: #CEFF1B !important;
-}
+
 
 .user-page.dark .csl-label,
 .user-page.dark .csl-stepTitle,
@@ -1191,7 +1187,7 @@
 }
 
 .user-page.dark .am-placeholder {
-  background: #2b2b2b !important;
+  background: #ceff1b !important;
 }
 
 /* MyPortfolio Component Overrides */
