@@ -924,11 +924,11 @@
 }
 
 .am-uploadBox {
-  border: 2px solid #e5e5e5;
+  border: 2px solid #CEFF1B;
   border-radius: 12px;
   padding: 14px;
   position: relative;
-  background-color: #FEFEFE40;
+  background-color: #fff;
   min-height: 220px;
   display: flex;
   align-items: center;

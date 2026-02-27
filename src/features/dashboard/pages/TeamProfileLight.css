@@ -225,10 +225,10 @@
   display: grid;
   grid-template-columns: 45% 1fr;
   gap: 40px;
-  background: #FEFEFE40;
+  background: #fff;
   padding: 30px;
   border-radius: 20px;
-  border: 0.5px solid #CEFF1B;
+  border: 2px solid #CEFF1B;
   margin-bottom: 20px;
 }
 
@@ -287,10 +287,10 @@
 
 /* Portfolio Grid Card */
 .portfolio-grid-card {
-  background: rgba(254, 254, 254, 0.60);
+  background: #fff;
   padding: 24px;
   border-radius: 20px;
-  border: 0.5px solid #CEFF1B;
+  border: 2px solid #CEFF1B;
 }
 
 .portfolio-grid {
