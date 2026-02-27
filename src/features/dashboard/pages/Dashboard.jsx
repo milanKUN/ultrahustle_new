@@ -29,6 +29,7 @@ const Dashboard = ({ theme, setTheme }) => {
             {/* NAVBAR */}
             <UserNavbar
                 toggleSidebar={() => setSidebarOpen((p) => !p)}
+                isSidebarOpen={sidebarOpen}
                 theme={theme}
             />
 

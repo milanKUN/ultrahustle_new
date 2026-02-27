@@ -344,20 +344,6 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     </div>
 
                     <div className="csl-field">
-                      <label className="csl-label">Product Type</label>
-                      <div className="csl-selectWrap">
-                        <CustomSelect
-                          value={form.productType}
-                          onChange={(val) => setFormField("productType", val)}
-                          options={productTypes}
-                          placeholder="eg., Digital Service"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="csl-grid2">
-                    <div className="csl-field">
                       <label className="csl-label">Category</label>
                       <div className="csl-selectWrap">
                         <CustomSelect
@@ -374,6 +360,10 @@ export default function CreateServiceListing({ theme, setTheme }) {
                         />
                       </div>
                     </div>
+                  </div>
+
+                  <div className="csl-grid2">
+
 
                     <div className="csl-field">
                       <label className="csl-label">Sub Category</label>
@@ -384,6 +374,17 @@ export default function CreateServiceListing({ theme, setTheme }) {
                           options={subCategories}
                           placeholder="Select sub category"
                           disabled={!form.category}
+                        />
+                      </div>
+                    </div>
+                    <div className="csl-field">
+                      <label className="csl-label">Product Type</label>
+                      <div className="csl-selectWrap">
+                        <CustomSelect
+                          value={form.productType}
+                          onChange={(val) => setFormField("productType", val)}
+                          options={productTypes}
+                          placeholder="eg., Digital Service"
                         />
                       </div>
                     </div>
@@ -781,12 +782,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
 
                   <div className="am-uploadBox">
                     {cover ? (
-                      <>
-                        <img src={cover} alt="cover" className="am-preview" />
-                        <button className="am-removeImg" onClick={() => setCover(null)}>
-                          ×
-                        </button>
-                      </>
+                      <img src={cover} alt="cover" className="am-preview" />
                     ) : (
                       <div className="am-placeholder">
                         <button className="am-uploadBtn" onClick={() => setUploadStep("grid")}>
@@ -794,6 +790,9 @@ export default function CreateServiceListing({ theme, setTheme }) {
                         </button>
                       </div>
                     )}
+                    <button className="am-removeImg" onClick={() => setCover(null)}>
+                      ×
+                    </button>
 
                     <input
                       type="file"
@@ -862,6 +861,11 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     </div>
                   ))}
                 </div>
+                {/* ================= ACTIONS ================= */}
+                <div className="faq-actions">
+                  <button type="button" className="faq-draft">Save as Draft</button>
+                  <button type="button" className="faq-save">Save</button>
+                </div>
               </div>
             </div>
           </div>
@@ -869,31 +873,37 @@ export default function CreateServiceListing({ theme, setTheme }) {
       </div>
 
       {/* ================= UPLOAD MODALS ================= */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 z-[900] bg-black/30 backdrop-blur-sm"
-          onClick={() => setUploadStep(null)}
-        />
-      )}
+      {
+        isModalOpen && (
+          <div
+            className="fixed inset-0 z-[900] bg-black/30 backdrop-blur-sm"
+            onClick={() => setUploadStep(null)}
+          />
+        )
+      }
 
-      {(uploadStep === "grid" || uploadStep === "success") && (
-        <UploadGrid
-          blurred={uploadStep === "success"}
-          onBack={() => setUploadStep(null)}
-          onSelect={(files) => {
-            if (files && files[0]) {
-              const reader = new FileReader();
-              reader.onload = () => setCover(reader.result);
-              reader.readAsDataURL(files[0]);
-            }
-            setUploadStep("success");
-          }}
-        />
-      )}
+      {
+        (uploadStep === "grid" || uploadStep === "success") && (
+          <UploadGrid
+            blurred={uploadStep === "success"}
+            onBack={() => setUploadStep(null)}
+            onSelect={(files) => {
+              if (files && files[0]) {
+                const reader = new FileReader();
+                reader.onload = () => setCover(reader.result);
+                reader.readAsDataURL(files[0]);
+              }
+              setUploadStep("success");
+            }}
+          />
+        )
+      }
 
-      {uploadStep === "success" && (
-        <UploadSuccess onBack={() => setUploadStep(null)} />
-      )}
+      {
+        uploadStep === "success" && (
+          <UploadSuccess onBack={() => setUploadStep(null)} />
+        )
+      }
     </div>
   );
 }

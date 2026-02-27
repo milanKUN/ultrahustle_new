@@ -28,10 +28,9 @@ const UserProfile = (props) => {
     });
   };
 
-  const [theme, setTheme] =
-    typeof props.theme === "string" && typeof props.setTheme === "function"
-      ? [props.theme, props.setTheme]
-      : useState("light");
+  const [localTheme, setLocalTheme] = useState("light");
+  const theme = props.theme || localTheme;
+  const setTheme = props.setTheme || setLocalTheme;
   const [isrequestsent, setIsRequestsent] = useState(false);
   const [favorites, setFavorites] = useState(new Set());
 
@@ -345,6 +344,7 @@ const UserProfile = (props) => {
       <NavbarLight
         className="create-team-navbar"
         toggleSidebar={() => setSidebarOpen((p) => !p)}
+        isSidebarOpen={sidebarOpen}
         theme={theme}
         onDropdownChange={handleDropdownChange}
       />

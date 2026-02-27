@@ -90,7 +90,7 @@ export default function App() {
           <Route path="/creator-profile-setup" element={<CreatorProfileSetup />} />
           <Route path="/client-profile-setup" element={<ClientProfileSetup />} />
           <Route path="/create-team" element={<CreateTeam theme={theme} setTheme={setTheme} />} />
-          <Route path="/team-profile" element={<TeamProfileLight />} />
+          <Route path="/team-profile" element={<TeamProfileLight theme={theme} setTheme={setTheme} />} />
           <Route path="/public-team-profile" element={<PublicTeamProfile theme={theme} setTheme={setTheme} />} />
           <Route path="/user-profile" element={<UserProfile theme={theme} setTheme={setTheme} />} />
           <Route path="/public-user-profile" element={<PublicUserProfile theme={theme} setTheme={setTheme} />} />

@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./NavbarLight.css";
 
-const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
+const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar, isSidebarOpen: externalIsSidebarOpen }) => {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -351,7 +351,7 @@ const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar }) => {
       <header className={`inreview-header ${theme}`}>
         <div className="header-left">
           <button className="hamburger-btn" onClick={handleSidebarToggle}>
-            {isSidebarOpen ? "✕" : "☰"}
+            {(externalIsSidebarOpen !== undefined ? externalIsSidebarOpen : isSidebarOpen) ? "✕" : "☰"}
           </button>
 
           <Link to="/">

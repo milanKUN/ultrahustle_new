@@ -218,7 +218,7 @@
 /* Custom Select Dropdown Dark Mode Adjustments */
 .user-page.dark .onboarding-options-list {
   background: #1e1e1e !important;
-  border: 1px solid #CEFF1B !important;
+  border: 1.6px solid #CEFF1B !important;
 }
 
 .user-page.dark .onboarding-options-list li {
@@ -699,8 +699,8 @@
   margin-top: 8px;
   height: 34px;
   padding: 0 14px;
-  border-radius: 4px;
-  border: 1px solid #bfe800;
+  border-radius: 10px;
+  border: 1px solid black;
   background: var(--csl-lime);
   color: #111;
   font-weight: 800;
@@ -910,6 +910,7 @@
   border-radius: 10px;
   display: flex;
   align-items: center;
+  background-color: #CEFF1B;
   justify-content: center;
 }
 
@@ -1027,30 +1028,48 @@
 .faq-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 14px;
+  gap: 16px;
+  margin-top: 40px;
+  width: 100%;
 }
 
 .faq-draft {
-  height: 34px;
-  padding: 0 16px;
-  border-radius: 6px;
-  border: 1px solid var(--csl-border-2);
-  background: #fff;
+  height: 44px;
+  padding: 0 30px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background: #f4f4f4;
   cursor: pointer;
   font-weight: 600;
+  font-size: 14px;
   color: #222;
+  transition: all 0.2s ease;
 }
 
 .faq-save {
-  height: 34px;
-  padding: 0 22px;
-  border-radius: 6px;
-  border: 1px solid #bfe800;
+  height: 44px;
+  padding: 0 45px;
+  border-radius: 10px;
+  border: 1px solid black;
   background: var(--csl-lime);
   cursor: pointer;
-  font-weight: 800;
+  font-weight: 700;
+  font-size: 14px;
   color: #111;
+  transition: all 0.2s ease;
+}
+
+
+
+.user-page.dark .faq-draft {
+  background: #2b2b2b;
+  border-color: #444;
+  color: #fff;
+}
+
+.user-page.dark .faq-save {
+  border-color: #bfe800;
+  color: #000;
 }
 
 /* =========================================
@@ -1092,7 +1111,7 @@
 .user-page.dark .faq-input {
   background-color: transparent !important;
   color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: white !important;
 }
 
 .user-page.dark .csl-input:focus,

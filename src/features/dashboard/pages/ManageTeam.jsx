@@ -12,10 +12,9 @@ import "../../../Darkuser.css";
 const ManageTeam = (props) => {
     const navigate = useNavigate();
 
-    const [theme, setTheme] =
-        typeof props.theme === "string" && typeof props.setTheme === "function"
-            ? [props.theme, props.setTheme]
-            : useState("light");
+    const [localTheme, setLocalTheme] = useState("light");
+    const theme = props.theme || localTheme;
+    const setTheme = props.setTheme || setLocalTheme;
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
@@ -113,6 +112,7 @@ const ManageTeam = (props) => {
             <NavbarLight
                 className="create-team-navbar"
                 toggleSidebar={() => setSidebarOpen((p) => !p)}
+                isSidebarOpen={sidebarOpen}
                 theme={theme}
                 onDropdownChange={handleDropdownChange}
             />
