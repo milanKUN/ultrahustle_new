@@ -186,10 +186,16 @@
   max-height: 420px;
   background: rgba(254, 254, 254, 0.80);
   border-radius: 6.225px;
-  box-shadow: 0 0.403px 6px 0 #CEFF1B;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(23.169px);
   z-index: 1000;
   overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-dropdown:hover,
+.search-dropdown:active {
+  box-shadow: 0 0.403px 6px 0 #CEFF1B;
 }
 
 .search-tabs {
@@ -320,11 +326,15 @@
   font-size: 12.8px;
   font-weight: 400;
   border-radius: 7.869px;
-  box-shadow: 3px 1px 8.1px 1px #FF5CE8,
-    -4px 2px 9.2px 0 #B67EFF;
-
+  box-shadow: none;
   white-space: nowrap;
   width: 130px;
+  transition: all 0.3s ease;
+}
+
+.search-result-item:hover .ai-powered-badge,
+.search-result-item:active .ai-powered-badge {
+  box-shadow: 3px 1px 8.1px 1px #FF5CE8, -4px 2px 9.2px 0 #B67EFF;
 }
 
 /* ✅ Ai Powered icon always visible */
