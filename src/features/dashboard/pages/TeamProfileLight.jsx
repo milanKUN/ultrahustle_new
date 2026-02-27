@@ -48,7 +48,8 @@ const TeamProfileLight = (props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // ✅ Sidebar state
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [showSettings, setShowSettings] = useState(false);
   const [activeSetting, setActiveSetting] = useState("basic");
 
   const contentRef = useRef(null);
@@ -334,11 +335,11 @@ const TeamProfileLight = (props) => {
         <Sidebar
           expanded={sidebarOpen}
           setExpanded={setSidebarOpen}
-          showSettings={false}
-          setShowSettings={() => { }}
+          showSettings={showSettings}
+          setShowSettings={setShowSettings}
           activeSetting={activeSetting}
           onSectionChange={handleSectionChange}
-          theme={theme}
+          theme={theme || "light"}
           setTheme={setTheme}
         />
 

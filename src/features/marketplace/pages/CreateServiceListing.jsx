@@ -281,6 +281,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
       {/* ✅ NAVBAR */}
       <UserNavbar
         toggleSidebar={() => setSidebarOpen((p) => !p)}
+        isSidebarOpen={sidebarOpen}
         theme={theme}
       />
 
@@ -289,8 +290,8 @@ export default function CreateServiceListing({ theme, setTheme }) {
         <Sidebar
           expanded={sidebarOpen}
           setExpanded={setSidebarOpen}
-          showSettings={false}
-          setShowSettings={() => { }}
+          showSettings={showSettings}
+          setShowSettings={setShowSettings}
           activeSetting={activeSetting}
           onSectionChange={handleSectionChange}
           theme={theme}
@@ -312,7 +313,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     </div>
 
                     <div className="csl-ai">
-                      <span className="csl-ai-pill">
+                      <span className={`csl-ai-pill ${aiPowered ? "active" : ""}`}>
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M11 2C11 2 11 10 19 10C11 10 11 18 11 18C11 18 11 10 3 10C11 10 11 2 11 2Z" />
                           <path d="M18 16C18 16 18 19 22 19C18 19 18 22 18 22C18 22 18 19 14 19C18 19 18 16 18 16Z" />

@@ -189,7 +189,7 @@ export default function Sidebar({
       setExpanded(false);
       setShowSettings(false);
     }
-  }, [isMobile, setExpanded, setShowSettings]);
+  }, [isMobile]);
 
   useEffect(() => {
     if (userType === "client") {

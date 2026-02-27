@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../../../pages/InReviewLight.css";
 import "./TeamProfileLight.css";
 import NavbarLight from "../../../components/layout/UserNavbar";
+import Sidebar from "../../../components/layout/Sidebar";
 import "../../../Darkuser.css";
 
 const PublicTeamProfile = (props) => {
@@ -24,10 +25,9 @@ const PublicTeamProfile = (props) => {
     });
   };
 
-  const [theme, setTheme] =
-    typeof props.theme === "string" && typeof props.setTheme === "function"
-      ? [props.theme, props.setTheme]
-      : useState("light");
+  const [localTheme, setLocalTheme] = useState("light");
+  const theme = props.theme || localTheme;
+  const setTheme = props.setTheme || setLocalTheme;
   const [isrequestsent, setIsrequestsent] = useState(false);
   const [favorites, setFavorites] = useState(new Set());
   const [activeItemIndex, setActiveItemIndex] = useState(null);
@@ -49,6 +49,7 @@ const PublicTeamProfile = (props) => {
 
   // ✅ Sidebar state
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [showSettings, setShowSettings] = useState(false);
   const [activeSetting, setActiveSetting] = useState("basic");
 
   const contentRef = useRef(null);
@@ -324,11 +325,22 @@ const PublicTeamProfile = (props) => {
       <NavbarLight
         className="create-team-navbar"
         toggleSidebar={() => setSidebarOpen((p) => !p)}
+        isSidebarOpen={sidebarOpen}
         theme={theme}
         onDropdownChange={handleDropdownChange}
       />
 
       <div className="pt-[85px] flex relative z-10">
+        <Sidebar
+          expanded={sidebarOpen}
+          setExpanded={setSidebarOpen}
+          showSettings={showSettings}
+          setShowSettings={setShowSettings}
+          activeSetting={activeSetting}
+          onSectionChange={handleSectionChange}
+          theme={theme || "light"}
+          setTheme={setTheme}
+        />
 
 
 
