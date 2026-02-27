@@ -354,6 +354,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                               ...p,
                               category: val,
                               subCategory: "",
+                              productType: "",
                             }))
                           }
                           options={categories}
@@ -367,11 +368,17 @@ export default function CreateServiceListing({ theme, setTheme }) {
 
 
                     <div className="csl-field">
-                      <label className="csl-label">Sub Category</label>
+                      <label className={`csl-label ${!form.category ? "opacity-50" : ""}`}>Sub Category</label>
                       <div className="csl-selectWrap">
                         <CustomSelect
                           value={form.subCategory}
-                          onChange={(val) => setFormField("subCategory", val)}
+                          onChange={(val) =>
+                            setForm((p) => ({
+                              ...p,
+                              subCategory: val,
+                              productType: "",
+                            }))
+                          }
                           options={subCategories}
                           placeholder="Select sub category"
                           disabled={!form.category}
@@ -379,13 +386,14 @@ export default function CreateServiceListing({ theme, setTheme }) {
                       </div>
                     </div>
                     <div className="csl-field">
-                      <label className="csl-label">Product Type</label>
+                      <label className={`csl-label ${!form.subCategory ? "opacity-50" : ""}`}>Product Type</label>
                       <div className="csl-selectWrap">
                         <CustomSelect
                           value={form.productType}
                           onChange={(val) => setFormField("productType", val)}
                           options={productTypes}
                           placeholder="eg., Digital Service"
+                          disabled={!form.subCategory}
                         />
                       </div>
                     </div>
