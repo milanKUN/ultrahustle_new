@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../../../pages/InReviewLight.css";
 import "./TeamProfileLight.css";
 import NavbarLight from "../../../components/layout/UserNavbar";
+import Sidebar from "../../../components/layout/Sidebar";
 import "../../../Darkuser.css";
 import "../../onboarding/components/OnboardingSelect.css";
 
@@ -58,10 +59,7 @@ const PublicUserProfile = (props) => {
   ]); // Sample activity dates in DD-MM-YYYY format
 
   // ✅ Sidebar state (standardized with localStorage)
-  const [sidebarOpen, setSidebarOpen] = useState(() => {
-    const saved = localStorage.getItem("sidebarOpen");
-    return saved ? JSON.parse(saved) : false;
-  });
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const [showSettings, setShowSettings] = useState(false);
   const [activeSetting, setActiveSetting] = useState("basic");
@@ -349,7 +347,16 @@ const PublicUserProfile = (props) => {
       />
 
       <div className="pt-[85px] flex relative z-10">
-        {/* ✅ SIDEBAR REMOVED FOR PUBLIC OR SEPARATE PAGE */}
+        <Sidebar
+          expanded={sidebarOpen}
+          setExpanded={setSidebarOpen}
+          showSettings={showSettings}
+          setShowSettings={setShowSettings}
+          activeSetting={activeSetting}
+          onSectionChange={handleSectionChange}
+          theme={theme}
+          setTheme={setTheme}
+        />
 
 
         {/* ✅ MAIN CONTENT WRAPPER */}
