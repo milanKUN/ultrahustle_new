@@ -870,6 +870,7 @@ MY PORTFOLIO – DARK MODE (FINAL SINGLE FIX)
 }
 
 /* Main portfolio cards */
+.user-page.dark .portfolio-card-edit,
 .user-page.dark .border-2.border-white {
   background: var(--bg-dark) !important;
   border-color: rgba(206, 255, 27, 0.45) !important;
@@ -896,6 +897,7 @@ MY PORTFOLIO – LABELS NEON (FOOLPROOF)
 ========================================= */
 
 /* Labels ONLY inside My Portfolio cards */
+.user-page.dark .portfolio-card-edit label,
 .user-page.dark .border-2.border-white label {
   color: #CEFF1B !important;
 }

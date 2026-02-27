@@ -350,6 +350,62 @@
   text-align: right;
 }
 
+/* ===============================
+   PORTFOLIO — DARK MODE
+=============================== */
+
+.user-page.dark .portfolio-title {
+  color: #CEFF1B !important;
+}
+
+.user-page.dark .portfolio-header-line {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Featured Card */
+.user-page.dark .portfolio-featured-card {
+  background: #141414 !important;
+  border-color: rgba(206, 255, 27, 0.4) !important;
+}
+
+.user-page.dark .portfolio-featured-title {
+  color: #ffffff !important;
+}
+
+.user-page.dark .portfolio-featured-desc {
+  color: #cfcfcf !important;
+}
+
+.user-page.dark .cost-label {
+  color: #CEFF1B !important;
+}
+
+.user-page.dark .cost-value {
+  color: #ffffff !important;
+}
+
+/* Grid Card */
+.user-page.dark .portfolio-grid-card {
+  background: #141414 !important;
+  border-color: rgba(206, 255, 27, 0.4) !important;
+}
+
+.user-page.dark .portfolio-item-title {
+  color: #ffffff !important;
+}
+
+.user-page.dark .portfolio-item-desc {
+  color: #cfcfcf !important;
+}
+
+.user-page.dark .portfolio-item-right .cost-label {
+  color: #CEFF1B !important;
+}
+
+.user-page.dark .portfolio-item-right .cost-value {
+  color: #ffffff !important;
+}
+
 /* Listings Section */
 .listings-section {
   padding: 30px 0;

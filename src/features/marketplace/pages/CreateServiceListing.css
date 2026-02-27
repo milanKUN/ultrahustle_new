@@ -321,12 +321,13 @@
 
 .csl-addBtn {
   height: 38px;
-  border: 1px solid #bfe800;
+  border: 1px solid black;
   background: var(--csl-lime);
   color: #111;
   font-weight: 700;
   border-radius: var(--csl-radius);
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .csl-addBtn:active {
@@ -761,9 +762,9 @@
 
 .sp-addBtnRight {
   height: 36px;
-  border: 1px solid #bfe800;
+  border: 1px solid black;
   background: var(--csl-lime);
-  border-radius: 6px;
+  border-radius: 10px;
   font-weight: 800;
   cursor: pointer;
 }
@@ -882,8 +883,8 @@
 .am-addBtn {
   margin-top: 14px;
   background: var(--csl-lime);
-  border: 1px solid #bfe800;
-  border-radius: 6px;
+  border: 1px solid black;
+  border-radius: 10px;
   padding: 8px 18px;
   font-weight: 700;
   cursor: pointer;
@@ -1129,6 +1130,7 @@
 .user-page.dark .csl-label,
 .user-page.dark .sp-label,
 .user-page.dark .am-field label,
+.user-page.dark .am-mediaLabel,
 .user-page.dark .faq-label {
   color: white !important;
 }
@@ -1215,7 +1217,8 @@
 }
 
 .user-page.dark .am-uploadBox {
-  border-color: rgba(255, 255, 255, 0.3) !important;
+  border-color: #CEFF1B !important;
+  background-color: #141414 !important;
 }
 
 .user-page.dark .am-placeholder {
@@ -1229,6 +1232,7 @@
   color: #ffffff !important;
 }
 
+.user-page.dark .am-mediaLabel,
 .user-page.dark .my-portfolio label {
   color: #CEFF1B !important;
 }

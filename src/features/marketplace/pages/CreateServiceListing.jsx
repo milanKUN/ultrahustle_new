@@ -403,7 +403,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     <label className="csl-label">Short Description</label>
                     <textarea
                       className="csl-textarea"
-                      placeholder="Short Portfolio"
+                      placeholder="Short Description"
                       value={form.shortDescription}
                       onChange={(e) => setFormField("shortDescription", e.target.value)}
                     />
@@ -567,6 +567,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     <textarea
                       className="sp-textarea"
                       value={current.scope}
+                      placeholder="Scope of work"
                       onChange={(e) => setPkgField("scope", e.target.value)}
                     />
                   </div>
