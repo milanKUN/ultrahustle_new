@@ -928,6 +928,7 @@
   border-radius: 12px;
   padding: 14px;
   position: relative;
+  background-color: #FEFEFE40;
   min-height: 220px;
   display: flex;
   align-items: center;

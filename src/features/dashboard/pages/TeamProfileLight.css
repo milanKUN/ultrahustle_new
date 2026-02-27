@@ -152,12 +152,12 @@
 }
 
 .user-page.dark .membersPanel {
-  background: #0b0b0b !important;
+  background-color: rgba(43, 43, 43, 0.6) !important;
   border-color: rgba(206, 255, 27, 0.35) !important;
 }
 
 .user-page.dark .memberCard {
-  background: #141414 !important;
+  background: #FEFEFE40 !important;
   border: 1px solid rgba(206, 255, 27, 0.18) !important;
 }
 
@@ -225,7 +225,7 @@
   display: grid;
   grid-template-columns: 45% 1fr;
   gap: 40px;
-  background: rgba(254, 254, 254, 0.60);
+  background: #FEFEFE40;
   padding: 30px;
   border-radius: 20px;
   border: 0.5px solid #CEFF1B;
@@ -1325,7 +1325,7 @@
 ================================ */
 
 .user-page-dark .teamsWrap {
-  background: #0b0b0b;
+  background-color: rgba(43, 43, 43, 0.6);
   border: 1px solid #ceff1b;
 }
 
@@ -1335,7 +1335,7 @@
 
 /* Team card */
 .user-page-dark .teamCard {
-  background: #141414;
+  background-color: rgba(43, 43, 43, 0.6);
   border: 1px solid #ceff1b;
 }
 
@@ -1880,7 +1880,7 @@ Works when wrapper has: .user-page.dark
 PROFILE TOP CARD
 --------------------------- */
 .user-page.dark .profile-card {
-  background: #141414 !important;
+  background-color: rgba(43, 43, 43, 0.6) !important;
   border: 1px solid rgba(206, 255, 27, 0.35) !important;
   border-radius: 20px;
 }
@@ -1924,7 +1924,7 @@ PROFILE TOP CARD
 TITLE + BADGES GRID
 --------------------------- */
 .user-page.dark .title-badges-section>div {
-  background: #0b0b0b !important;
+  background-color: rgba(43, 43, 43, 0.6) !important;
   border: 1px solid rgba(206, 255, 27, 0.35) !important;
   border-radius: 20px;
 }
@@ -1979,7 +1979,7 @@ TITLE + BADGES GRID
 STATS CARDS
 --------------------------- */
 .user-page.dark .stats-section .stat-card {
-  background: #141414 !important;
+  background-color: rgba(43, 43, 43, 0.6) !important;
   border: 1px solid rgba(206, 255, 27, 0.35) !important;
   border-radius: 20px;
 }
@@ -1996,7 +1996,7 @@ STATS CARDS
 ABOUT / WHAT WE DO content cards
 --------------------------- */
 .user-page.dark .content-card {
-  background: #0b0b0b !important;
+  background-color: rgba(43, 43, 43, 0.6);
   border: 1px solid rgba(206, 255, 27, 0.35) !important;
   border-radius: 20px;
 }
@@ -2047,7 +2047,7 @@ PORTFOLIO
 
 .user-page.dark .portfolio-featured-card,
 .user-page.dark .portfolio-grid-card {
-  background: #0b0b0b !important;
+  background-color: rgba(43, 43, 43, 0.6) !important;
   border: 1px solid rgba(206, 255, 27, 0.35) !important;
   border-radius: 20px;
 }

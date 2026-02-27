@@ -499,7 +499,7 @@ body {
 .portfolio-container {
     width: 100%;
     padding: 24px;
-    background: rgba(43, 43, 43, 0.00);
+    background: #FEFEFE40;
     border: 3px solid #FEFEFE;
     border-radius: 27px;
 

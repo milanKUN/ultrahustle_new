@@ -57,7 +57,7 @@ export default function MyPortfolio() {
         </div>
 
         {/* MAIN */}
-        <div className="border-2 border-white rounded-2xl p-6 mb-10">
+        <div className="border-2 border-white bg-[#FEFEFE40] rounded-2xl p-6 mb-10">
           <div className="grid md:grid-cols-2 gap-8">
             <div className="relative h-[417px] bg-gray-200 rounded-xl overflow-hidden">
               <button
@@ -88,7 +88,7 @@ export default function MyPortfolio() {
         </div>
 
         {/* PROJECTS GRID */}
-        <div className="border-2 border-white rounded-xl p-6 mb-6 flex flex-col">
+        <div className="border-2 border-white bg-[#FEFEFE40] rounded-xl p-6 mb-6 flex flex-col">
           <div className="max-h-[520px] overflow-y-auto px-4 pb-4 -mx-4 custom-scroll">
             <div className="grid md:grid-cols-3 gap-6">
               {projects.map((project) => (
