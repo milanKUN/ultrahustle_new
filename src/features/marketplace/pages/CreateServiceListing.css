@@ -127,7 +127,9 @@
 }
 
 .csl-ai-pill.active svg {
-  color: #ffffff;
+  color: #AC4BFA;
+  /* purple */
+  fill: currentColor;
 }
 
 .csl-ai-pill {
