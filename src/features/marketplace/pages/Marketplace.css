@@ -103,9 +103,10 @@
     color: #ffffff;
 }
 
-.dark .mp-heroSub .mp-highlight {
-    color: var(--mp-lime) !important;
-    font-weight: 700 !important;
+.dark .mp-highlight {
+    color: var(--mp-lime);
+    font-weight: 700;
+
 }
 
 .mp-heroImg {
@@ -260,18 +261,29 @@
 
 /* GRID */
 .mp-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    display: flex;
     gap: 24px;
+    overflow-x: auto;
+    padding: 10px 4px 24px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+.mp-grid::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari/Webkit */
 }
 
 /* CARD */
 .mp-card {
+    flex: 0 0 320px;
+    /* Fixed width for horizontal scrolling */
     background: transparent;
     border-radius: 16px;
     overflow: hidden;
-
-
     transition: all 0.3s ease;
 }
 
@@ -367,12 +379,11 @@
     background: linear-gradient(90deg, #d946ef, #8b5cf6);
     border-radius: 6px;
 
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-
     -webkit-mask-composite: xor;
     mask-composite: exclude;
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
 }
 
 /* icon glow */
@@ -489,7 +500,6 @@
 
 .mp-floatArrow {
     position: absolute;
-    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     width: 48px;
@@ -507,10 +517,52 @@
     transition: all 0.3s ease;
 }
 
+.mp-floatArrow.left {
+    left: 12px;
+}
+
+.mp-floatArrow.right {
+    right: 12px;
+}
+
 .mp-floatArrow:hover {
     transform: translateY(-50%) scale(1.1);
     background: #ceff1b;
     box-shadow: 0 0 20px #ceff1b;
+}
+
+.mp-viewAllRow {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    padding-bottom: 60px;
+}
+
+.mp-viewAllBtn {
+    background: #ceff1b;
+    color: #1a1a1a;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(206, 255, 27, 0.2);
+}
+
+.mp-viewAllBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(206, 255, 27, 0.4);
+    background: #d4ff33;
+}
+
+.dark .mp-viewAllBtn {
+    background: #ceff1b;
+    color: #000;
 }
 
 @media (max-width: 1200px) {

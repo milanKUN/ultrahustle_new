@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import UserNavbar from "../../../components/layout/UserNavbar";
 import Sidebar from "../../../components/layout/Sidebar";
 import heroImg from "../../../assets/marketplacehero.png";
@@ -19,6 +19,17 @@ export default function Marketplace({ theme, setTheme }) {
     }, [sidebarOpen]);
 
     const [activeCat, setActiveCat] = useState("Digital Products");
+    const gridRef = useRef(null);
+
+    const scrollGrid = (direction) => {
+        if (gridRef.current) {
+            const scrollAmount = window.innerWidth > 900 ? 500 : 300;
+            gridRef.current.scrollBy({
+                left: direction === "left" ? -scrollAmount : scrollAmount,
+                behavior: "smooth",
+            });
+        }
+    };
 
     const chips = useMemo(
         () => [
@@ -183,7 +194,7 @@ export default function Marketplace({ theme, setTheme }) {
 
                             <h2 className="mp-sectionTitle">All Products</h2>
 
-                            <div className="mp-grid">
+                            <div className="mp-grid" ref={gridRef}>
                                 {products.map((p) => (
                                     <article className="mp-card" key={p.id}>
                                         <div className="mp-imgWrap">
@@ -246,7 +257,32 @@ export default function Marketplace({ theme, setTheme }) {
                                 ))}
                             </div>
 
-                            <button className="mp-floatArrow" type="button" aria-label="Next">
+                            <div className="mp-viewAllRow">
+                                <button className="mp-viewAllBtn" type="button">
+                                    View All
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <button
+                                className="mp-floatArrow left"
+                                type="button"
+                                aria-label="Previous"
+                                onClick={() => scrollGrid("left")}
+                            >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                            </button>
+
+                            <button
+                                className="mp-floatArrow right"
+                                type="button"
+                                aria-label="Next"
+                                onClick={() => scrollGrid("right")}
+                            >
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                                     <polyline points="9 18 15 12 9 6"></polyline>
                                 </svg>
