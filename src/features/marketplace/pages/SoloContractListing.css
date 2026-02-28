@@ -64,7 +64,7 @@
 
 .cnc-card-title {
   margin: 0 0 18px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--text);
 }
@@ -216,39 +216,36 @@
 
 /* ================= Parties Involved ================= */
 
+.cnc-title-standalone {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.cnc-parties-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
 
 .cnc-subcard {
   background: #fff;
   border: 1.5px solid var(--accent);
-  border-radius: 16px;
-  padding: 16px;
-}
-
-.cnc-subTop {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
 }
 
 .cnc-subTitle {
-  font-size: 13px;
-  font-weight: 900;
-  color: #2a2a2a;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 20px;
 }
 
 .cnc-subGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 14px;
-}
-
-@media (min-width: 860px) {
-  .cnc-twoCards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    padding: 18px;
-  }
+  gap: 16px;
 }
 
 /* ================= Scope & Deliverables ================= */
@@ -575,6 +572,50 @@
 @media (max-width: 520px) {
   .cnc-del-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ================= Team Payout Configuration ================= */
+.cnc-teamPayoutCard {
+  border: 1px solid #e2f1b0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.cnc-payout-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cnc-payout-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.cnc-payout-input {
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  color: #888;
+  font-size: 14px;
+  height: 46px;
+  border-radius: 8px;
+}
+
+.user-page.dark .cnc-payout-input {
+  background: #1a1a1a;
+  border-color: #333;
+  color: #a0a0a0;
+}
+
+.user-page.dark .cnc-teamPayoutCard {
+  border-color: #333;
+}
+
+@media (max-width: 650px) {
+  .cnc-payout-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
 

@@ -106,30 +106,32 @@
 /* ✅ ON state — screenshot jaisa */
 .csl-ai-pill.active {
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 13px;
 
-  /* Black fill */
-  background: linear-gradient(#0b0b0b, #0b0b0b) padding-box,
-
-    /* Neon border */
+  /* Black fill with gradient border */
+  background:
+    linear-gradient(#0b0b0b, #0b0b0b) padding-box,
     linear-gradient(90deg, #df5ef3, #a210ff) border-box;
 
-  border: 2px solid transparent;
+  border: 1.5px solid transparent;
   border-radius: 10px;
 
   padding: 6px 14px;
   gap: 8px;
 
-  /* Purple glow */
+  /* INTENSE PURPLE NEON GLOW */
   box-shadow:
-    0 0 0 2px rgba(172, 75, 250, 0.55),
-    0 0 18px rgba(172, 75, 250, 0.75);
+    0 0 10px rgba(172, 75, 250, 0.7),
+    0 0 20px rgba(172, 75, 250, 0.5),
+    0 0 35px rgba(172, 75, 250, 0.3);
+
+  transition: all 0.3s ease;
 }
 
 .csl-ai-pill.active svg {
-  color: #AC4BFA;
-  /* purple */
-  fill: currentColor;
+  color: #df5ef3;
+  filter: drop-shadow(0 0 4px #df5ef3);
 }
 
 .csl-ai-pill {

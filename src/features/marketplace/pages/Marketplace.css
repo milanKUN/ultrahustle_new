@@ -350,62 +350,50 @@
 .mp-aiBadge {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    font-size: 10px;
+    gap: 6px;
+    font-size: 11px;
     font-weight: 700;
-    color: #fff;
-    padding: 4px 10px;
-    border-radius: 6px;
-    background: #2a2a2a;
-    border: 1px solid #444;
+    color: #ffffff;
+    padding: 5px 12px;
+    border-radius: 9px;
     position: relative;
-    overflow: hidden;
+    background: #000;
+    /* fallback */
 
-    /* ✅ CONSTANT PURPLE NEON */
+    /* Gradient Border Effect */
+    background:
+        linear-gradient(#1a1a1a, #1a1a1a) padding-box,
+        linear-gradient(90deg, #d946ef, #8b5cf6) border-box;
+    border: 1.5px solid transparent;
+
+    /* INTENSE PURPLE NEON GLOW */
     box-shadow:
-        0 0 6px rgba(139, 92, 246, 0.8),
-        0 0 14px rgba(139, 92, 246, 0.6),
-        0 0 22px rgba(217, 70, 239, 0.5);
+        0 0 8px rgba(139, 92, 246, 0.6),
+        0 0 16px rgba(139, 92, 246, 0.4),
+        0 0 32px rgba(217, 70, 239, 0.3);
 
     transition: all 0.3s ease;
-}
-
-/* gradient border */
-.mp-aiBadge::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    padding: 1px;
-    background: linear-gradient(90deg, #d946ef, #8b5cf6);
-    border-radius: 6px;
-
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
 }
 
 /* icon glow */
 .mp-aiBadge svg {
     color: #d946ef;
-    filter: drop-shadow(0 0 6px #d946ef);
+    filter: drop-shadow(0 0 4px #d946ef);
 }
 
 .dark .mp-aiBadge {
     background: #fff;
     color: #1a1a1a;
-    border: none;
-    box-shadow: 0 0 15px rgba(217, 70, 239, 0.8), 0 0 30px rgba(217, 70, 239, 0.4);
+    /* INTENSE NEON GLOW FOR DARK MODE */
+    box-shadow:
+        0 0 12px rgba(217, 70, 239, 0.8),
+        0 0 24px rgba(217, 70, 239, 0.5),
+        0 0 40px rgba(139, 92, 246, 0.3);
 }
 
 .dark .mp-aiBadge svg {
-    color: #a855f7;
-    filter: none;
-}
-
-.dark .mp-aiBadge::before {
-    display: none;
+    color: #d946ef;
+    filter: drop-shadow(0 0 4px #d946ef);
 }
 
 .mp-desc {

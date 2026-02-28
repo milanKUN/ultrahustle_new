@@ -56,6 +56,11 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
     finalCreatorName: "",
     clientAgree: false,
     creatorAgree: false,
+    teamPayouts: [
+      { id: "1", name: "Member A", role: "Design", percentage: "80%" },
+      { id: "2", name: "Member B", role: "Dev", percentage: "60%" },
+      { id: "3", name: "Member C", role: "QA", percentage: "50%" },
+    ],
   });
 
   // ✅ Sidebar & Settings state (matching standard layout)
@@ -81,6 +86,15 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
     setForm((p) => ({ ...p, [key]: e.target.value }));
 
   const onToggle = (key) => () => setForm((p) => ({ ...p, [key]: !p[key] }));
+
+  const handlePayoutChange = (id, field, value) => {
+    setForm((p) => ({
+      ...p,
+      teamPayouts: p.teamPayouts.map((pay) =>
+        pay.id === id ? { ...pay, [field]: value } : pay
+      ),
+    }));
+  };
 
   // Deliverables
   const [deliverableDraft, setDeliverableDraft] = useState({
@@ -324,96 +338,134 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                   </div>
                 </div>
 
-                {/* Parties Involved */}
-                <div className="cnc-card cnc-card--mt">
+                {/* Team Payout Configuration (Conditional) */}
+                {form.soloTeam && (
+                  <div className="cnc-card cnc-card--mt cnc-teamPayoutCard">
+                    <h2 className="cnc-card-title">Team Payout Configuration</h2>
+                    <div className="cnc-payout-list">
+                      {form.teamPayouts.map((payout) => (
+                        <div className="cnc-payout-row" key={payout.id}>
+                          <div className="cnc-field">
+                            <input
+                              className="cnc-input cnc-payout-input"
+                              placeholder="Member Name"
+                              value={payout.name}
+                              onChange={(e) => handlePayoutChange(payout.id, "name", e.target.value)}
+                            />
+                          </div>
+                          <div className="cnc-field">
+                            <input
+                              className="cnc-input cnc-payout-input"
+                              placeholder="Role"
+                              value={payout.role}
+                              onChange={(e) => handlePayoutChange(payout.id, "role", e.target.value)}
+                            />
+                          </div>
+                          <div className="cnc-field">
+                            <input
+                              className="cnc-input cnc-payout-input"
+                              placeholder="Percentage"
+                              value={payout.percentage}
+                              onChange={(e) => handlePayoutChange(payout.id, "percentage", e.target.value)}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-                  <div className="cnc-twoCards">
-                    <div className="cnc-subcard">
-                      <h2 className="cnc-card-title">Parties Involved</h2>
-                      <div className="cnc-subTop">
-                        <div className="cnc-subTitle">Client</div>
+                {/* Parties Involved */}
+                <h2 className="cnc-card-title cnc-title-standalone">Parties Involved</h2>
+                <div className="cnc-parties-wrapper">
+                  <div className="cnc-subcard">
+                    <div className="cnc-subTitle">Client</div>
+                    <div className="cnc-subGrid">
+                      <div className="cnc-field">
+                        <label className="cnc-label">Client username</label>
+                        <input
+                          className="cnc-input"
+                          placeholder="Client username"
+                          value={form.clientUsername}
+                          onChange={onChange("clientUsername")}
+                        />
                       </div>
-                      <div className="cnc-subGrid">
-                        <div className="cnc-field">
-                          <label className="cnc-label">Client username</label>
-                          <input
-                            className="cnc-input"
-                            placeholder="Client username"
-                            value={form.clientUsername}
-                            onChange={onChange("clientUsername")}
-                          />
-                        </div>
-                        <div className="cnc-field">
-                          <label className="cnc-label">Full name</label>
-                          <input
-                            className="cnc-input"
-                            placeholder="Full name"
-                            value={form.clientFullName}
-                            onChange={onChange("clientFullName")}
-                          />
-                        </div>
-                        <div className="cnc-field">
-                          <label className="cnc-label">Email</label>
-                          <input
-                            className="cnc-input"
-                            placeholder="Email"
-                            value={form.clientEmail}
-                            onChange={onChange("clientEmail")}
-                          />
-                        </div>
-                        <div className="cnc-field">
-                          <label className="cnc-label">Name and company</label>
-                          <input
-                            className="cnc-input"
-                            placeholder="Name and company"
-                            value={form.clientCompany}
-                            onChange={onChange("clientCompany")}
-                          />
-                        </div>
+                      <div className="cnc-field">
+                        <label className="cnc-label">Full name</label>
+                        <input
+                          className="cnc-input"
+                          placeholder="Full name"
+                          value={form.clientFullName}
+                          onChange={onChange("clientFullName")}
+                        />
+                      </div>
+                      <div className="cnc-field">
+                        <label className="cnc-label">Email</label>
+                        <input
+                          className="cnc-input"
+                          placeholder="Email"
+                          value={form.clientEmail}
+                          onChange={onChange("clientEmail")}
+                        />
+                      </div>
+                      <div className="cnc-field">
+                        <label className="cnc-label">Name and company</label>
+                        <input
+                          className="cnc-input"
+                          placeholder="Name and company"
+                          value={form.clientCompany}
+                          onChange={onChange("clientCompany")}
+                        />
                       </div>
                     </div>
+                  </div>
 
-                    <div className="cnc-subcard">
-                      <div className="cnc-subTop">
-                        <div className="cnc-subTitle">Service Provider</div>
+                  <div className="cnc-subcard">
+                    <div className="cnc-subTitle">
+                      {form.soloTeam ? "Team Details" : "Service Provider"}
+                    </div>
+                    <div className="cnc-subGrid">
+                      <div className="cnc-field">
+                        <label className="cnc-label">
+                          {form.soloTeam ? "Team" : "Creator"} username
+                        </label>
+                        <input
+                          className="cnc-input"
+                          placeholder={form.soloTeam ? "Team username" : "Creator username"}
+                          value={form.creatorUsername}
+                          onChange={onChange("creatorUsername")}
+                        />
                       </div>
-                      <div className="cnc-subGrid">
-                        <div className="cnc-field">
-                          <label className="cnc-label">Creator username</label>
-                          <input
-                            className="cnc-input"
-                            placeholder="Creator username"
-                            value={form.creatorUsername}
-                            onChange={onChange("creatorUsername")}
-                          />
-                        </div>
-                        <div className="cnc-field">
-                          <label className="cnc-label">Full name</label>
-                          <input
-                            className="cnc-input"
-                            placeholder="Full name"
-                            value={form.creatorFullName}
-                            onChange={onChange("creatorFullName")}
-                          />
-                        </div>
-                        <div className="cnc-field">
-                          <label className="cnc-label">Email</label>
-                          <input
-                            className="cnc-input"
-                            placeholder="Email"
-                            value={form.creatorEmail}
-                            onChange={onChange("creatorEmail")}
-                          />
-                        </div>
-                        <div className="cnc-field">
-                          <label className="cnc-label">Name and company</label>
-                          <input
-                            className="cnc-input"
-                            placeholder="Country"
-                            value={form.creatorCompany}
-                            onChange={onChange("creatorCompany")}
-                          />
-                        </div>
+                      <div className="cnc-field">
+                        <label className="cnc-label">
+                          {form.soloTeam ? "Team" : "Creator"} full name
+                        </label>
+                        <input
+                          className="cnc-input"
+                          placeholder={form.soloTeam ? "Team full name" : "Full name"}
+                          value={form.creatorFullName}
+                          onChange={onChange("creatorFullName")}
+                        />
+                      </div>
+                      <div className="cnc-field">
+                        <label className="cnc-label">
+                          {form.soloTeam ? "Team" : "Creator"} email
+                        </label>
+                        <input
+                          className="cnc-input"
+                          placeholder={form.soloTeam ? "Team email" : "Email"}
+                          value={form.creatorEmail}
+                          onChange={onChange("creatorEmail")}
+                        />
+                      </div>
+                      <div className="cnc-field">
+                        <label className="cnc-label">Name and company</label>
+                        <input
+                          className="cnc-input"
+                          placeholder="Country"
+                          value={form.creatorCompany}
+                          onChange={onChange("creatorCompany")}
+                        />
                       </div>
                     </div>
                   </div>
