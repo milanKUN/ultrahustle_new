@@ -129,8 +129,8 @@ export default function Sidebar({
     else if (path.includes("/setting") || path.includes("/settings")) {
       detectedMain = "Settings";
       detectedMenu = "Settings";
-      setExpanded(true);
-      setShowSettings(true);
+      setExpanded?.(true);
+      setShowSettings?.(true);
     }
 
     // ✅ MARKETPLACE (dropdown)
@@ -168,7 +168,7 @@ export default function Sidebar({
     // ✅ force client
     if (forceClient) {
       setUserType("client");
-      setShowSettings(false);
+      setShowSettings?.(false);
     }
   }, [path, forceClient, setExpanded, setShowSettings]);
 
@@ -186,10 +186,10 @@ export default function Sidebar({
 
   useEffect(() => {
     if (isMobile) {
-      setExpanded(false);
-      setShowSettings(false);
+      setExpanded?.(false);
+      setShowSettings?.(false);
     }
-  }, [isMobile]);
+  }, [isMobile, setExpanded, setShowSettings]);
 
   useEffect(() => {
     if (userType === "client") {
