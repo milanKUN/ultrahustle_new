@@ -30,7 +30,7 @@ const CREATOR_ITEMS = [
     label: "Marketplace",
     icon: Store,
     children: [
-      { label: "View Products", icon: Package, path: "/solo-contracts-listing" },
+      { label: "View Products", icon: Package, path: "/contracts-listing" },
       { label: "Add New Listings", icon: FilePlus, path: "/add-listing" },
     ],
   },

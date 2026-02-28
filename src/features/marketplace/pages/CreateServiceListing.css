@@ -1218,7 +1218,7 @@
 
 .user-page.dark .am-uploadBox {
   border-color: #CEFF1B !important;
-  background-color: #141414 !important;
+  background-color: rgba(43, 43, 43, 0.6) !important;
 }
 
 .user-page.dark .am-placeholder {

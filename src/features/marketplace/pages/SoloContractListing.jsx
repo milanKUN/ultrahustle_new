@@ -1,6 +1,6 @@
-// CreateNewContract.jsx
-import React, { useMemo, useState } from "react";
-import "./SoloContractListing.css";
+import React, { useMemo, useState, useRef, useEffect } from "react";
+import UserNavbar from "../../../components/layout/UserNavbar";
+import Sidebar from "../../../components/layout/Sidebar";
 import "./SoloContractListing.css";
 import '../../../Darkuser.css';
 
@@ -58,6 +58,25 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
     creatorAgree: false,
   });
 
+  // ✅ Sidebar & Settings state (matching standard layout)
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    const saved = localStorage.getItem("sidebarOpen");
+    return saved ? JSON.parse(saved) : true;
+  });
+  const [showSettings, setShowSettings] = useState(false);
+  const [activeSetting, setActiveSetting] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("sidebarOpen", JSON.stringify(sidebarOpen));
+  }, [sidebarOpen]);
+
+  const handleSectionChange = (id) => {
+    setActiveSetting(id);
+  };
+
+  const setFormField = (key, value) =>
+    setForm((p) => ({ ...p, [key]: value }));
+
   const onChange = (key) => (e) =>
     setForm((p) => ({ ...p, [key]: e.target.value }));
 
@@ -95,6 +114,9 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
     setDeliverableDraft({ title: "", format: "", qty: "", acceptance: "" });
   };
 
+  const removeDeliverable = (id) =>
+    setDeliverables((p) => p.filter((d) => d.id !== id));
+
   // Milestones
   const [milestoneDraft, setMilestoneDraft] = useState({
     name: "Milestone 1",
@@ -129,21 +151,130 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
   // Activity log dummy (same UI)
   const activity = useMemo(
     () => [
-      { ts: "2025-12-10 10:12", actor: "Client @acme", action: "Created contract", details: "Title: Landing Page Design" },
-      { ts: "2025-12-10 11:05", actor: "Team Owner @alpha", action: "Edited milestones", details: "Added Milestone 2 (₹25,000)" },
-      { ts: "2025-12-11 09:30", actor: "Team Admin @alpha", action: "Accepted & sent to client", details: "Review window: 3 days" },
-      { ts: "2025-12-12 14:02", actor: "Client @acme", action: "Resolution: Funded escrow", details: "Total: ₹75,000" },
     ],
     []
   );
 
+  // --- Dropdown state keys to manage open/close ---
+  const [openSelect, setOpenSelect] = useState(null); // Keeps track of which dropdown is open
+  const selectRefs = useRef({});
+
+  // --- Calendar state ---
+  const [calendarConfig, setCalendarConfig] = useState(null); // { id: string, value: string, onSelect: func }
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (openSelect && selectRefs.current[openSelect] && !selectRefs.current[openSelect].contains(event.target)) {
+        setOpenSelect(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [openSelect]);
+
+  const toggleSelect = (id) => {
+    setOpenSelect(openSelect === id ? null : id);
+  };
+
+  const handleSelectValue = (key, value) => {
+    setForm((p) => ({ ...p, [key]: value }));
+    setOpenSelect(null);
+  };
+
+  const SoloSelect = ({ id, label, value, options, placeholder = "Select one", onChange }) => {
+    const isOpen = openSelect === id;
+    const selectedOption = options.find((opt) => opt.value === value);
+
+    return (
+      <div className="cnc-field" ref={(el) => (selectRefs.current[id] = el)}>
+        <label className="cnc-label">{label}</label>
+        <div className={`onboarding-custom-select ${isOpen ? "active" : ""}`}>
+          <div
+            className={`onboarding-selected-option ${isOpen ? "open" : ""}`}
+            onClick={() => toggleSelect(id)}
+          >
+            <span className={!value ? "opacity-70" : ""}>
+              {selectedOption ? selectedOption.label : placeholder}
+            </span>
+            <span className="onboarding-arrow">▼</span>
+          </div>
+
+          {isOpen && (
+            <ul className="onboarding-options-list">
+              {options.map((opt) => (
+                <li
+                  key={opt.value}
+                  className={value === opt.value ? "active" : ""}
+                  onClick={() => onChange(opt.value)}
+                >
+                  {opt.label}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const DateInput = ({ label, value, onOpen }) => (
+    <div className="cnc-field">
+      <label className="cnc-label">{label}</label>
+      <div
+        className="cnc-input cnc-dateInputWrap"
+        onClick={onOpen}
+        tabIndex="0"
+      >
+        <span className={!value ? "opacity-70" : ""}>
+          {value || "DD-MM-YYYY"}
+        </span>
+        <span className="cnc-dateIcon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+        </span>
+      </div>
+    </div>
+  );
+
   return (
-    <div className={`create-team-page user-page ${theme} relative overflow-hidden`}>
-      <div className="flex relative z-10 w-full h-full">
+    <div className={`user-page ${theme} min-h-screen relative overflow-hidden`}>
+      {/* ---------- NAVBAR ---------- */}
+      <UserNavbar
+        toggleSidebar={() => setSidebarOpen((p) => !p)}
+        theme={theme}
+      />
+
+      <div className="pt-[85px] flex relative z-10 w-full h-full">
+        {/* ---------- SIDEBAR ---------- */}
+        <Sidebar
+          expanded={sidebarOpen}
+          setExpanded={setSidebarOpen}
+          showSettings={showSettings}
+          setShowSettings={setShowSettings}
+          activeSetting={activeSetting}
+          onSectionChange={handleSectionChange}
+          theme={theme}
+          setTheme={setTheme}
+        />
+
         {/* Main Content Wrapper */}
         <div className="relative flex-1 min-w-5 overflow-hidden">
           {/* Scrollable Area */}
-          <div className="relative z-10 overflow-y-auto h-full p-4">
+          <div className="relative z-10 overflow-y-auto h-[calc(100vh-85px)] p-4">
             <main className="cnc-main w-full">
               {/* Full width contract */}
               <div className="cnc-wrap">
@@ -390,75 +521,70 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                 <div className="cnc-card cnc-card--mt">
                   <h2 className="cnc-card-title">Timeline and Revisions</h2>
                   <div className="cnc-timelineGrid">
-                    <div className="cnc-field">
-                      <label className="cnc-label">Initial delivery deadline</label>
-                      <input
-                        className="cnc-input"
-                        type="date"
-                        value={form.initialDeliveryDeadline}
-                        onChange={onChange("initialDeliveryDeadline")}
-                      />
-                    </div>
-                    <div className="cnc-field">
-                      <label className="cnc-label">Client review window (1–7 days)</label>
-                      <select
-                        className="cnc-input cnc-select"
-                        value={form.clientReviewWindow}
-                        onChange={onChange("clientReviewWindow")}
-                      >
-                        <option value="">Select one</option>
-                        {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-                          <option key={n} value={String(n)}>
-                            {n} day{n > 1 ? "s" : ""}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="cnc-field">
-                      <label className="cnc-label">Included revision rounds</label>
-                      <select
-                        className="cnc-input cnc-select"
-                        value={form.includedRevisionRounds}
-                        onChange={onChange("includedRevisionRounds")}
-                      >
-                        <option value="">Select one</option>
-                        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
-                          <option key={n} value={String(n)}>
-                            {n}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="cnc-field">
-                      <label className="cnc-label">Revision turnaround time (days)</label>
-                      <select
-                        className="cnc-input cnc-select"
-                        value={form.revisionTurnaroundDays}
-                        onChange={onChange("revisionTurnaroundDays")}
-                      >
-                        <option value="">Select one</option>
-                        {[1, 2, 3, 4, 5, 7, 10, 14, 21, 30].map((n) => (
-                          <option key={n} value={String(n)}>
-                            {n} day{n > 1 ? "s" : ""}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                    {/* Initial delivery deadline */}
+                    <DateInput
+                      label="Initial delivery deadline"
+                      value={form.initialDeliveryDeadline}
+                      onOpen={() =>
+                        setCalendarConfig({
+                          value: form.initialDeliveryDeadline,
+                          onSelect: (val) =>
+                            setFormField("initialDeliveryDeadline", val),
+                        })
+                      }
+                    />
+
+                    {/* Client review window */}
+                    <SoloSelect
+                      id="clientReviewWindow"
+                      label="Client review window (1–7 days)"
+                      value={form.clientReviewWindow}
+                      options={[1, 2, 3, 4, 5, 6, 7].map((n) => ({
+                        value: String(n),
+                        label: `${n} day${n > 1 ? "s" : ""}`,
+                      }))}
+                      onChange={(val) => handleSelectValue("clientReviewWindow", val)}
+                    />
+
+                    {/* Included revision rounds */}
+                    <SoloSelect
+                      id="includedRevisionRounds"
+                      label="Included revision rounds"
+                      value={form.includedRevisionRounds}
+                      options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => ({
+                        value: String(n),
+                        label: String(n),
+                      }))}
+                      onChange={(val) => handleSelectValue("includedRevisionRounds", val)}
+                    />
+
+                    {/* Revision turnaround time */}
+                    <SoloSelect
+                      id="revisionTurnaroundDays"
+                      label="Revision turnaround time (days)"
+                      value={form.revisionTurnaroundDays}
+                      options={[1, 2, 3, 4, 5, 7, 10, 14, 21, 30].map((n) => ({
+                        value: String(n),
+                        label: `${n} day${n > 1 ? "s" : ""}`,
+                      }))}
+                      onChange={(val) => handleSelectValue("revisionTurnaroundDays", val)}
+                    />
                   </div>
-                  <div className="cnc-field cnc-lateConsequence">
-                    <label className="cnc-label">Late delivery consequence</label>
-                    <select
-                      className="cnc-input cnc-select"
+                  <div className="cnc-lateConsequence">
+                    <SoloSelect
+                      id="lateDeliveryConsequence"
+                      label="Late delivery consequence"
                       value={form.lateDeliveryConsequence}
-                      onChange={onChange("lateDeliveryConsequence")}
-                    >
-                      <option value="">Select</option>
-                      <option value="discount_5">5% discount</option>
-                      <option value="discount_10">10% discount</option>
-                      <option value="refund_partial">Partial refund</option>
-                      <option value="refund_full">Full refund</option>
-                      <option value="extend_deadline">Extend deadline</option>
-                    </select>
+                      options={[
+                        { value: "discount_5", label: "5% discount" },
+                        { value: "discount_10", label: "10% discount" },
+                        { value: "refund_partial", label: "Partial refund" },
+                        { value: "refund_full", label: "Full refund" },
+                        { value: "extend_deadline", label: "Extend deadline" },
+                      ]}
+                      placeholder="Select"
+                      onChange={(val) => handleSelectValue("lateDeliveryConsequence", val)}
+                    />
                   </div>
                 </div>
 
@@ -527,19 +653,17 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                 <div className="cnc-card cnc-card--mt">
                   <h2 className="cnc-card-title">Payment and Escrow</h2>
                   <div className="cnc-payTop">
-                    <div className="cnc-field">
-                      <label className="cnc-label">Payment Type</label>
-                      <select
-                        className="cnc-input cnc-select"
-                        value={form.paymentType}
-                        onChange={onChange("paymentType")}
-                      >
-                        <option value="">Select one</option>
-                        <option value="fixed">Fixed</option>
-                        <option value="milestone">Milestone based</option>
-                        <option value="hourly">Hourly</option>
-                      </select>
-                    </div>
+                    <SoloSelect
+                      id="paymentType"
+                      label="Payment Type"
+                      value={form.paymentType}
+                      options={[
+                        { value: "fixed", label: "Fixed" },
+                        { value: "milestone", label: "Milestone based" },
+                        { value: "hourly", label: "Hourly" },
+                      ]}
+                      onChange={(val) => handleSelectValue("paymentType", val)}
+                    />
                     <div className="cnc-field">
                       <label className="cnc-label">Project cost</label>
                       <input
@@ -581,15 +705,15 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                           onChange={onMilestoneDraftChange("amount")}
                         />
                       </div>
-                      <div className="cnc-field">
-                        <label className="cnc-label">Initial delivery deadline</label>
-                        <input
-                          className="cnc-input"
-                          type="date"
-                          value={milestoneDraft.deadline}
-                          onChange={onMilestoneDraftChange("deadline")}
-                        />
-                      </div>
+                      {/* Initial delivery deadline (Milestone) */}
+                      <DateInput
+                        label="Initial delivery deadline"
+                        value={milestoneDraft.deadline}
+                        onOpen={() => setCalendarConfig({
+                          value: milestoneDraft.deadline,
+                          onSelect: (val) => setMilestoneDraft(p => ({ ...p, deadline: val }))
+                        })}
+                      />
                       <div className="cnc-field cnc-trashWrap">
                         <label className="cnc-label" style={{ opacity: 0 }}>remove</label>
                         <button
@@ -722,6 +846,213 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
               </div>
             </main>
           </div>
+        </div>
+      </div>
+
+      {/* ================= CALENDAR MODAL ================= */}
+      {calendarConfig && (
+        <Calendar
+          initialDate={calendarConfig.value}
+          onClose={() => setCalendarConfig(null)}
+          onSelect={(date) => {
+            calendarConfig.onSelect(date);
+            setCalendarConfig(null);
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+/* ================= CALENDAR COMPONENT ================= */
+
+function Calendar({ onClose, onSelect, initialDate }) {
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+
+  const today = new Date();
+
+  // Parse initialDate if exists (DD-MM-YYYY)
+  const parseInit = () => {
+    if (!initialDate) return { month: today.getMonth(), year: today.getFullYear() };
+    const parts = initialDate.split("-");
+    if (parts.length !== 3) return { month: today.getMonth(), year: today.getFullYear() };
+    return { month: parseInt(parts[1]) - 1, year: parseInt(parts[2]) };
+  };
+
+  const initData = parseInit();
+
+  const [year, setYear] = useState(initData.year);
+  const [month, setMonth] = useState(initData.month);
+  const [openYear, setOpenYear] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(initialDate);
+  const yearRef = useRef(null);
+
+  const years = Array.from({ length: 101 }, (_, i) => 1950 + i);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (yearRef.current && !yearRef.current.contains(event.target)) {
+        setOpenYear(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const totalDays = new Date(year, month + 1, 0).getDate();
+  const prevMonthDays = new Date(year, month, 0).getDate();
+
+  const changeMonth = (dir) => {
+    if (dir === "prev") {
+      if (month === 0) {
+        setMonth(11);
+        setYear((y) => y - 1);
+      } else setMonth((m) => m - 1);
+    } else {
+      if (month === 11) {
+        setMonth(0);
+        setYear((y) => y + 1);
+      } else setMonth((m) => m + 1);
+    }
+  };
+
+  const changeYear = (dir) => {
+    if (dir === "prev") setYear((y) => y - 1);
+    else setYear((y) => y + 1);
+  };
+
+  const formatDate = (d) =>
+    `${String(d).padStart(2, "0")}-${String(month + 1).padStart(2, "0")}-${year}`;
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] bg-black/40 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white dark:bg-[#121212] w-full max-w-[350px] rounded-2xl flex flex-col relative border-2 border-[#CEFF1B] shadow-[0_0_40px_rgba(206,255,27,0.4)] overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* PREMIUM NEON HEADER */}
+        <div className="bg-[#CEFF1B] w-full py-3 px-4 flex justify-between items-center shrink-0">
+          <button
+            onClick={() => changeYear("prev")}
+            className="flex w-8 h-8 items-center justify-center hover:bg-black/10 rounded-full transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+          </button>
+
+          <div className="relative" ref={yearRef}>
+            <div
+              className={`flex items-center gap-2 cursor-pointer font-black text-lg text-black`}
+              onClick={() => setOpenYear(!openYear)}
+            >
+              <span>{year}</span>
+              <span className="text-[10px]">▼</span>
+            </div>
+
+            {openYear && (
+              <ul className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-24 max-h-48 overflow-y-auto bg-white dark:bg-[#1A1A1A] border border-black/10 rounded-lg shadow-xl z-50 py-1">
+                {years.map((y) => (
+                  <li
+                    key={y}
+                    onClick={() => {
+                      setYear(y);
+                      setOpenYear(false);
+                    }}
+                    className={`px-3 py-1.5 text-center cursor-pointer hover:bg-[#CEFF1B] hover:text-black transition-colors ${year === y ? "bg-[#CEFF1B] text-black font-bold" : "text-gray-700 dark:text-gray-300"}`}
+                  >
+                    {y}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <button
+            onClick={() => changeYear("next")}
+            className="flex w-8 h-8 items-center justify-center hover:bg-black/10 rounded-full transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+          </button>
+        </div>
+
+        {/* CALENDAR BODY */}
+        <div className="p-4 bg-white dark:bg-[#121212] transition-colors">
+          {/* MONTH HEADER */}
+          <div className="flex justify-between items-center mb-6 px-1">
+            <button
+              onClick={() => changeMonth("prev")}
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-[#2B2B2B] text-gray-600 dark:text-gray-300 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+            </button>
+            <span className="font-bold text-gray-800 dark:text-gray-100 text-base">
+              {months[month]}
+            </span>
+            <button
+              onClick={() => changeMonth("next")}
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-[#2B2B2B] text-gray-600 dark:text-gray-300 transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+            </button>
+          </div>
+
+          {/* WEEKDAYS */}
+          <div className="grid grid-cols-7 text-[10px] font-bold text-gray-400 dark:text-gray-500 mb-2 uppercase tracking-tighter">
+            {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((d) => (
+              <div key={d} className="text-center">
+                {d}
+              </div>
+            ))}
+          </div>
+
+          {/* DAYS GRID */}
+          <div className="grid grid-cols-7 gap-1">
+            {Array.from({ length: firstDay }).map((_, i) => (
+              <div
+                key={`empty-${i}`}
+                className="h-9 flex items-center justify-center text-[11px] text-gray-300 dark:text-gray-700 font-medium"
+              >
+                {prevMonthDays - firstDay + i + 1}
+              </div>
+            ))}
+
+            {Array.from({ length: totalDays }).map((_, i) => {
+              const day = i + 1;
+              const formatted = formatDate(day);
+              const isSelected = selectedDate === formatted;
+
+              return (
+                <div
+                  key={day}
+                  onClick={() => {
+                    setSelectedDate(formatted);
+                    onSelect(formatted);
+                  }}
+                  className={`h-9 w-9 mx-auto rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 text-sm font-semibold
+                    ${isSelected
+                      ? "bg-[#CEFF1B] text-black shadow-[0_0_15px_rgba(206,255,27,0.5)]"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2B2B2B] hover:text-black dark:hover:text-white"
+                    }`}
+                >
+                  {day}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* CLOSE BUTTON (DESKTOP) */}
+          {/* <button
+            onClick={onClose}
+            className="mt-6 w-full py-2.5 text-xs font-bold text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white transition-colors"
+          >
+            CANCEL
+          </button> */}
         </div>
       </div>
     </div>
