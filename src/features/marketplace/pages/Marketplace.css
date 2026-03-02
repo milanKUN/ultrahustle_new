@@ -248,6 +248,16 @@
     box-shadow: 0 0 10px rgba(206, 255, 27, 0.3);
 }
 
+/* open chip looks same as active */
+.mp-chip.open {
+    background: #ceff1b;
+    color: #1a1a1a;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(206, 255, 27, 0.3);
+}
+
 .mp-chipIcon {
     opacity: 0.6;
     flex-shrink: 0;
@@ -272,12 +282,12 @@
 /* MEGA DROPDOWN */
 .mp-megaDropdown {
     position: fixed;
-    left: 0;
-    right: 0;
+    left: 100px;
+    right: 100px;
     background: #fff;
-    border-top: 2px solid #e8e8e8;
-    border-bottom: 1px solid #e8e8e8;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     z-index: 9999;
     padding: 28px 48px 32px;
     animation: megaDropIn 0.18s ease;
@@ -315,15 +325,16 @@
 
 .mp-megaGroupTitle {
     margin: 0 0 8px;
-    font-size: 11px;
-    font-weight: 700;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 200%;
+    color: #2B2B2B;
 }
 
 .dark .mp-megaGroupTitle {
-    color: #555;
+    color: #cccccc;
 }
 
 .mp-megaItem {
@@ -333,7 +344,7 @@
     text-align: left;
     background: transparent;
     border: none;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 400;
     color: #222;
     cursor: pointer;
@@ -344,7 +355,7 @@
 }
 
 .mp-megaItem:hover {
-    color: #5a8a00;
+    color: #ceff1b;
     font-weight: 500;
 }
 
@@ -662,48 +673,495 @@
     color: #000;
 }
 
-@media (max-width: 1200px) {
-    .mp-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
+/* ===================== RESPONSIVE ===================== */
 
+/* Tablet: 900px and below */
 @media (max-width: 900px) {
+    :root {
+        --mp-header-h: 68px;
+    }
+
+    /* Hero */
     .mp-hero {
         height: auto;
-        padding: 60px 0;
+        min-height: 260px;
+        padding: 48px 0;
     }
 
     .mp-heroInner {
         flex-direction: column;
         padding: 0 24px;
         text-align: center;
+        gap: 24px;
     }
 
     .mp-heroTitle,
     .mp-heroSub {
-        font-size: 36px;
+        font-size: 32px;
     }
 
+    /* Shell */
     .mp-shell {
-        padding: 24px;
+        padding: 24px 20px 48px;
     }
 
-    .mp-grid {
-        grid-template-columns: repeat(2, 1fr);
+    /* Category pills — allow wrapping on tablet */
+    .mp-catRow {
+        gap: 8px;
+        margin-bottom: 16px;
     }
 
+    .mp-pill {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    /* Filter row */
+    .mp-filterRow {
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    /* Arrow buttons hidden */
     .mp-floatArrow {
         display: none;
     }
 
-    :root {
-        --mp-header-h: 68px;
+    /* Mega dropdown */
+    .mp-megaDropdown {
+        padding: 20px 24px 24px;
+        left: 0;
+        right: 0;
+    }
+
+    .mp-megaGrid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 20px 20px;
+    }
+
+    /* Cards */
+    .mp-card {
+        flex: 0 0 260px;
     }
 }
 
+/* Mobile: 600px and below */
 @media (max-width: 600px) {
-    .mp-grid {
-        grid-template-columns: 1fr;
+    :root {
+        --mp-header-h: 60px;
     }
+
+    /* Hero */
+    .mp-hero {
+        min-height: 220px;
+        padding: 36px 0;
+    }
+
+    .mp-heroTitle,
+    .mp-heroSub {
+        font-size: 24px;
+    }
+
+    .mp-heroInner {
+        padding: 0 16px;
+    }
+
+    /* Shell */
+    .mp-shell {
+        padding: 16px 16px 40px;
+    }
+
+    /* Pills scroll horizontally on mobile */
+    .mp-catRow {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .mp-catRow::-webkit-scrollbar {
+        display: none;
+    }
+
+    .mp-pill {
+        flex-shrink: 0;
+        padding: 7px 14px;
+        font-size: 11px;
+    }
+
+    /* Filter row: filter btn + chip scroller stack  */
+    .mp-filterRow {
+        gap: 8px;
+        margin-bottom: 16px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .mp-filterRow::-webkit-scrollbar {
+        display: none;
+    }
+
+    .mp-filterBtn {
+        flex-shrink: 0;
+        height: 32px;
+        padding: 0 12px;
+        font-size: 12px;
+    }
+
+    .mp-chip {
+        font-size: 12px;
+    }
+
+    /* Mega dropdown: full screen, scrollable */
+    .mp-megaDropdown {
+        padding: 16px 16px 20px;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+
+    .mp-megaGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px 12px;
+    }
+
+    .mp-megaGroupTitle {
+        font-size: 13px;
+        font-weight: 500px;
+    }
+
+    .mp-megaItem {
+        font-size: 12px;
+    }
+
+    /* Section title */
+    .mp-sectionTitle {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+
+    /* Cards */
+    .mp-card {
+        flex: 0 0 220px;
+    }
+
+    .mp-imgWrap {
+        height: 140px;
+    }
+}
+
+/* Small mobile: 400px and below */
+@media (max-width: 400px) {
+
+    .mp-heroTitle,
+    .mp-heroSub {
+        font-size: 20px;
+    }
+
+    .mp-megaGrid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .mp-card {
+        flex: 0 0 180px;
+    }
+
+    .mp-shell {
+        padding: 12px 12px 32px;
+    }
+}
+
+/* ========== FILTER DRAWER ========== */
+.mp-filterOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+.mp-filterDrawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 320px;
+    max-width: 90vw;
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    z-index: 1001;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+    animation: slideInLeft 0.22s ease;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.mp-filterHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+.mp-filterTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.mp-filterClose {
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.mp-filterClose:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.mp-filterSection {
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mp-filterLabel {
+    font-size: 13px;
+    font-weight: 700;
+    color: black;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dark .mp-filterLabel {
+    color: #ceff1b;
+}
+
+.mp-filterCatRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.mp-filterCatBtn {
+    padding: 7px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: #d0d0d0;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s;
+}
+
+.mp-filterCatBtn:hover {
+    border-color: #ceff1b;
+    color: #fff;
+}
+
+.mp-filterCatBtn.active {
+    background: #ceff1b;
+    color: #1a1a1a;
+    border-color: #ceff1b;
+    font-weight: 700;
+}
+
+/* Toggle switch */
+.mp-filterToggleRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.mp-toggle {
+    width: 42px;
+    height: 24px;
+    border-radius: 999px;
+    background: #444;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.mp-toggle.on {
+    background: #ceff1b;
+}
+
+.mp-toggleKnob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #5C5C5C;
+    transition: transform 0.2s;
+    display: block;
+}
+
+.mp-toggle.on .mp-toggleKnob {
+    transform: translateX(18px);
+    background: #1a1a1a;
+}
+
+.mp-filterToggleLabel {
+    font-size: 14px;
+    color: #d0d0d0;
+    font-weight: 500;
+}
+
+.mp-filterHint {
+    font-size: 11px;
+    color: #666;
+    margin: 0;
+}
+
+/* Price range */
+.mp-filterPriceRow {
+    display: flex;
+    gap: 10px;
+}
+
+.mp-filterPriceRow .mp-filterInput {
+    flex: 1 1 0;
+    min-width: 0;
+    width: 0;
+}
+
+
+.mp-filterInput {
+    flex: 1;
+    background: #2b2b2b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.mp-filterInput::placeholder {
+    color: #555;
+}
+
+.mp-filterInput:focus {
+    border-color: #ceff1b;
+}
+
+/* Sort by */
+.mp-filterSelect {
+    width: 100%;
+    background: #2b2b2b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px 14px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    appearance: auto;
+    transition: border 0.2s;
+}
+
+.mp-filterSelect:focus {
+    border-color: #ceff1b;
+}
+
+/* Footer */
+.mp-filterFooter {
+    margin-top: auto;
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.mp-filterApply {
+    width: 100%;
+    background: #ceff1b;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 18px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+}
+
+.mp-filterApply:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Light mode filter drawer */
+.light .mp-filterDrawer {
+    background: #fff;
+}
+
+.light .mp-filterDrawer .mp-filterTitle,
+.light .mp-filterDrawer .mp-filterToggleLabel {
+    color: #1a1a1a;
+}
+
+.light .mp-filterDrawer .mp-filterClose {
+    background: rgba(0, 0, 0, 0.06);
+    color: #1a1a1a;
+}
+
+.light .mp-filterDrawer .mp-filterHeader,
+.light .mp-filterDrawer .mp-filterSection {
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.light .mp-filterDrawer .mp-filterInput,
+.light .mp-filterDrawer .mp-filterSelect {
+    background: #f5f5f5;
+    border-color: rgba(0, 0, 0, 0.12);
+    color: #1a1a1a;
+}
+
+.light .mp-filterCatBtn {
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #333;
+}
+
+.light .mp-toggle {
+    background: #A3A3A3;
+}
+
+.light .mp-toggle.on {
+    background: #2B2B2B;
+    border-color: #AC4BFA;
+}
+
+.light .mp-toggle.on .mp-toggleKnob {
+    background: #AC4BFA;
 }

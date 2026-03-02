@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import UserNavbar from "../../../components/layout/UserNavbar";
-import Sidebar from "../../../components/layout/Sidebar";
 import heroImg from "../../../assets/marketplacehero.png";
 import heroImgDark from "../../../assets/marketplacedark.png";
 import filterIcon from "../../../assets/filtericon.svg";
@@ -661,475 +660,124 @@ const categories = [
     {
         label: "teams",
         chips: [
-            /* ===================== 1) BUSINESS & ENTREPRENEURSHIP ===================== */
             {
-                label: "Business & Entrepreneurship",
+                label: "Graphics & Design",
                 groups: [
-                    {
-                        title: "Startup & Growth Strategy",
-                        items: [
-                            "From Idea to Launch: Building Your First Startup",
-                            "MVP Mastery: How to Build, Test, and Validate Quickly",
-                            "Systemize Your Business: Scaling with SOPs & Automation",
-                            "Bootstrapping 101: Launch Without Funding",
-                            "Business in 2025: New-Age Models & Trends",
-                        ],
-                    },
-                    {
-                        title: "Freelancing & Agency Building",
-                        items: [
-                            "Freelance Freedom: Landing Your First 5 Clients",
-                            "Building an Agency from Scratch",
-                            "Client Communication Mastery",
-                            "Scaling from Solo to Team",
-                            "Managing Multiple Projects Without Burnout",
-                        ],
-                    },
-                    {
-                        title: "Business Operations",
-                        items: [
-                            "Time, Tasks & Tools: Creating a Productive Business Workflow",
-                            "Managing Remote Teams with AI Tools",
-                            "Project Management Simplified",
-                            "Delegation & Outsourcing Masterclass",
-                        ],
-                    },
-                    {
-                        title: "Legal & Compliance",
-                        items: [
-                            "Contracts Made Simple: Protecting Yourself & Clients",
-                            "Business Formation & Taxation for Solopreneurs",
-                            "Legal Pitfalls Every Freelancer Should Avoid",
-                        ],
-                    },
-                    {
-                        title: "Finance & Planning",
-                        items: [
-                            "Budgeting for Small Businesses",
-                            "Pricing Psychology & Profit Margins",
-                            "Cashflow Systems That Work",
-                            "Raising Capital: Investor Readiness 101",
-                        ],
-                    },
+                    { title: "Logo & Brand Identity", items: ["Logo Design", "Brand Style Guides", "Business Cards & Stationery", "Fonts & Typography", "Brand Naming & Strategy", "Art Direction", "Brand Collateral Kits"] },
+                    { title: "Web & App Design", items: ["Website Design", "App UI Design", "UX Research & Wireframing", "Landing Page Design", "Dashboard Design", "Icon Design", "Mobile Design Systems"] },
+                    { title: "Art & Illustration", items: ["Illustration", "Character Design", "Concept Art", "Portraits & Caricatures", "AI Art & Avatar Design", "Comic Book Illustration", "Children's Book Illustration", "Storyboards", "Tattoo Design", "Pattern Design", "Album & Cover Art"] },
+                    { title: "Print & Product Design", items: ["Brochure & Flyer Design", "Business Cards", "Packaging & Label Design", "Poster Design", "Menu Design", "Catalogs & Lookbooks", "Signage & Banners"] },
+                    { title: "Visual Design", items: ["Image Editing & Retouching", "Presentation Design", "Resume Design", "Infographic Design", "Vector Tracing", "Slide Decks"] },
+                    { title: "Marketing Design", items: ["Social Media Posts & Ads", "Email Design", "Display Ads", "Web Banners", "Promotional Graphics", "Campaign Branding"] },
+                    { title: "3D & Architecture Design", items: ["3D Modeling & Rendering", "3D Architecture", "Interior Design", "Landscape Design", "Product Mockups", "3D Printing & Characters", "Lighting & Spatial Design"] },
+                    { title: "Fashion & Merchandise", items: ["T-Shirt & Apparel Design", "Jewelry Design", "Accessory & Footwear Design", "Fashion Illustration", "Textile & Fabric Patterns"] },
+                    { title: "Miscellaneous Design", items: ["Design Consultation", "Style Adaptation", "Design Audits"] },
                 ],
             },
-
-            /* ===================== 2) MARKETING, SALES & BRANDING ===================== */
             {
-                label: "Marketing, Sales & Branding",
+                label: "Programming & Tech",
                 groups: [
-                    {
-                        title: "Digital Marketing Deep Dives",
-                        items: [
-                            "SEO in the Age of AI",
-                            "Mastering Performance Ads",
-                            "Social Media Growth for 2025",
-                            "Email Automation Systems",
-                            "Influencer & UGC Strategy",
-                        ],
-                    },
-                    {
-                        title: "Branding & Positioning",
-                        items: [
-                            "How to Build a Magnetic Brand Identity",
-                            "Personal Branding that Converts",
-                            "Visual Storytelling for Entrepreneurs",
-                            "Rebranding for Relevance",
-                        ],
-                    },
-                    {
-                        title: "Content & Copy",
-                        items: [
-                            "Copywriting that Sells: Live Workshop",
-                            "Hook Writing for Reels & Ads",
-                            "Storytelling for Growth",
-                            "Creating Content Pillars that Scale",
-                        ],
-                    },
-                    {
-                        title: "Funnels & Conversions",
-                        items: [
-                            "Building High-Converting Landing Pages",
-                            "Lead Generation Strategies That Actually Work",
-                            "Mastering Retargeting & Email Sequences",
-                        ],
-                    },
-                    {
-                        title: "Sales Mastery",
-                        items: [
-                            "Closing High-Value Clients",
-                            "Sales Psychology in 2025",
-                            "Building a Predictable Sales Pipeline",
-                        ],
-                    },
+                    { title: "Website Development", items: ["Business Websites", "E-Commerce Websites", "Portfolio & Personal Sites", "Landing Pages", "Custom Websites", "Dropshipping Stores"] },
+                    { title: "Web Platforms", items: ["WordPress", "Shopify", "Wix", "Webflow", "Bubble", "Squarespace", "Framer"] },
+                    { title: "Website Maintenance", items: ["Bug Fixes", "Backup & Migration", "Speed Optimization", "Hosting Setup", "Security Patches", "CMS Updates"] },
+                    { title: "Mobile App Development", items: ["iOS Development", "Android Development", "Flutter Development", "React Native Development", "Cross-Platform Apps", "App Maintenance & Debugging"] },
+                    { title: "Software Development", items: ["Web Applications", "Desktop Software", "APIs & Integrations", "Automations & Workflows", "Database Development", "Testing & QA", "SaaS Product Development"] },
+                    { title: "Game Development", items: ["2D/3D Game Design", "Unity Development", "Unreal Engine Development", "Roblox Games", "AR/VR Games", "Game Environment Design", "Game Character Design"] },
+                    { title: "AI Development", items: ["AI Websites & Apps", "Chatbots", "AI Automations & Agents", "AI Model Training & Fine-Tuning", "Prompt Engineering", "AI Technology Consulting", "Data Labeling & Tagging"] },
+                    { title: "Cloud & Cybersecurity", items: ["Cloud Setup (AWS, GCP, Azure)", "DevOps & Deployment", "Cybersecurity Audits", "Penetration Testing", "Data Backup & Recovery", "API & Server Management"] },
+                    { title: "Blockchain & Crypto", items: ["Smart Contract Development", "Token Launch Support", "NFT Minting", "dApp Development", "Wallet Integrations", "Blockchain Consulting"] },
+                    { title: "Miscellaneous Tech", items: ["Troubleshooting & Debugging", "Code Review", "IT Support & Consultation"] },
                 ],
             },
-
-            /* ===================== 3) DESIGN, BRANDING & CREATIVITY ===================== */
             {
-                label: "Design, Branding & Creativity",
+                label: "Digital Marketing",
                 groups: [
-                    {
-                        title: "Graphic Design Masterclasses",
-                        items: [
-                            "Designing for Social Media Virality",
-                            "Color, Contrast & Composition Simplified",
-                            "How to Build a Visual System that Sells",
-                            "Designing for AI-First Brands",
-                        ],
-                    },
-                    {
-                        title: "UI/UX & Product Design",
-                        items: [
-                            "UX for Founders & Marketers",
-                            "Building Design Systems in Figma",
-                            "Mobile-First UI Design Principles",
-                            "From Concept to Prototype: Live Demo",
-                        ],
-                    },
-                    {
-                        title: "Brand Identity Sessions",
-                        items: [
-                            "Logo Design Live Review & Breakdown",
-                            "Creating a Brand Guideline Kit",
-                            "Rebranding Strategy & Execution",
-                        ],
-                    },
-                    {
-                        title: "AI & Creative Tools",
-                        items: [
-                            "Designing with Midjourney & Leonardo",
-                            "AI Workflows for Designers",
-                            "Future of AI-Assisted Creativity",
-                        ],
-                    },
+                    { title: "Search & SEO", items: ["SEO Audit", "On-Page SEO", "Off-Page SEO", "Local SEO", "E-Commerce SEO", "Video SEO", "SEM & PPC Ads", "Generative Engine Optimization (AI SEO)"] },
+                    { title: "Social Media Marketing", items: ["Social Media Strategy", "Social Media Management", "Social Media Design", "Influencer Marketing", "UGC Content Creation", "Social Media Automation"] },
+                    { title: "Channel-Specific Marketing", items: ["Instagram Marketing", "TikTok Marketing", "YouTube Marketing", "LinkedIn Marketing", "Facebook Ads Campaigns", "Twitter/X Growth", "Pinterest Marketing", "Shopify Marketing"] },
+                    { title: "Email & Automation", items: ["Email Marketing", "Newsletter Creation", "Automation Workflows", "Drip Campaigns", "Cold Email Systems", "CRM Integration"] },
+                    { title: "Marketing Analytics & Strategy", items: ["Brand Strategy", "Marketing Funnels", "CRO (Conversion Optimization)", "Web Analytics", "Attribution Tracking", "Market Research"] },
+                    { title: "AI Marketing", items: ["AI Prompt Marketing", "AI-Powered Campaigns", "AI Ad Bidding Optimization", "AI Personalization", "Predictive Marketing"] },
+                    { title: "Industry-Specific", items: ["Music Promotion", "Podcast Promotion", "Book & eBook Marketing", "Course Launch Marketing", "App Store Optimization"] },
+                    { title: "Public Relations & Advertising", items: ["PR Campaigns", "Press Release Writing", "Display Advertising", "Sponsorship Strategy", "Media Buying"] },
                 ],
             },
-
-            /* ===================== 4) TECHNOLOGY, DEVELOPMENT & AUTOMATION ===================== */
             {
-                label: "Technology, Development & Automation",
+                label: "Writing & Translation",
                 groups: [
-                    {
-                        title: "Web & App Development",
-                        items: [
-                            "Building No-Code Websites in 2025",
-                            "Integrating APIs for Business Automation",
-                            "Building a Web App from Scratch (Live Coding)",
-                            "UI to Code: Figma to Webflow/Framer",
-                        ],
-                    },
-                    {
-                        title: "AI & Automation",
-                        items: [
-                            "Creating AI Agents for Business",
-                            "Make.com vs Zapier: Automation Battle",
-                            "n8n Deep Dive Workshop",
-                            "Building an AI Workflow from Google Sheets to Social Media",
-                        ],
-                    },
-                    {
-                        title: "App & Software Demos",
-                        items: [
-                            "How to Launch a SaaS Without a Dev Team",
-                            "Turning Scripts into Apps Using AI Builders",
-                            "Cloud Setup & Deployment Simplified",
-                        ],
-                    },
-                    {
-                        title: "Cybersecurity & Cloud",
-                        items: [
-                            "Protecting Your Freelance Business from Data Breaches",
-                            "Simple Cloud Storage & Automation Setup for Teams",
-                        ],
-                    },
+                    { title: "Content Writing", items: ["Blog & Article Writing", "Website Content", "Scriptwriting", "Creative Writing", "Ghostwriting", "Research Summaries"] },
+                    { title: "Copywriting", items: ["Ad Copy", "Email Copy", "Sales Copy", "Product Descriptions", "Case Studies", "Landing Page Copy"] },
+                    { title: "Editing & Proofreading", items: ["Grammar & Style Editing", "Copy Editing", "Formatting", "Academic Editing", "AI Content Polishing"] },
+                    { title: "Book & Publishing", items: ["Book & eBook Writing", "Book Editing", "Beta Reading", "Book Layout & Formatting", "Publishing Assistance"] },
+                    { title: "Translation & Transcription", items: ["Document Translation", "Website Localization", "Subtitles & Captions", "Proofreading", "Audio Transcription", "Live Interpretation"] },
+                    { title: "Industry Writing", items: ["Business & Finance Writing", "Technical Writing", "Medical Writing", "Real Estate Writing", "Marketing Writing"] },
+                    { title: "AI Writing", items: ["AI Prompt Writing", "AI Story Creation", "AI Editing & Review"] },
                 ],
             },
-
-            /* ===================== 5) AI & FUTURE TECH ===================== */
             {
-                label: "Artificial Intelligence & Future Tech",
+                label: "Video & Animation",
                 groups: [
-                    {
-                        title: "AI for Creators",
-                        items: [
-                            "Prompt Engineering Live Workshop",
-                            "AI Content Creation System (Reels/Posts/Carousels)",
-                            "Midjourney + Leonardo: Viral Visuals Live Demo",
-                            "AI for Passive Income: Products, Templates & Funnels",
-                        ],
-                    },
-                    {
-                        title: "AI for Business",
-                        items: [
-                            "Building AI-Powered Systems for Clients (End-to-End)",
-                            "Customer Support Chatbots (WhatsApp/Website)",
-                            "Custom GPTs for Your Brand / Team",
-                            "AI Analytics for Founders (Dashboards + Insights)",
-                        ],
-                    },
-                    {
-                        title: "AI Tools Live Demos",
-                        items: [
-                            "Runway + Pika: AI Video Workflow",
-                            "Sora: Storytelling & Scene Building",
-                            "AI Agents: Automations with n8n/Make/Zapier",
-                        ],
-                    },
-                    {
-                        title: "Ethics, Copyright & Policy",
-                        items: [
-                            "Copyright & Licensing in AI Content",
-                            "Ethical AI Workflows for Creators & Brands",
-                            "AI Compliance Basics for Agencies",
-                        ],
-                    },
+                    { title: "Video Editing", items: ["YouTube Editing", "Short-Form Reels & TikToks", "Visual Effects (VFX)", "Subtitles & Captions", "Multi-Cam Sync & Transitions"] },
+                    { title: "Animation & Motion Graphics", items: ["2D Animation", "3D Animation", "Motion Graphics", "Whiteboard Animation", "Lottie Animations", "NFT & Web3 Animation"] },
+                    { title: "Marketing & Social Videos", items: ["Ads & Commercials", "Explainer Videos", "Product Demos", "Slideshow Videos", "Music Videos"] },
+                    { title: "AI Video", items: ["AI Avatars", "Text-to-Video Creation", "Lip-Sync AI Videos", "AI UGC Content", "Virtual Presenter Videos"] },
+                    { title: "Filmed Video Production", items: ["Drone Videography", "Live Action Explainers", "Event Videography", "Corporate Videos"] },
+                    { title: "Product & App Videos", items: ["3D Product Animation", "App Previews", "E-Commerce Videos", "Kickstarter Videos"] },
+                    { title: "Miscellaneous", items: ["Game Trailers", "Book Trailers", "Meditation Videos", "Video Advice"] },
                 ],
             },
-
-            /* ===================== 6) VIDEO, ANIMATION & CONTENT CREATION ===================== */
             {
-                label: "Video, Animation & Content Creation",
+                label: "Music & Audio",
                 groups: [
-                    {
-                        title: "Video Editing & Production",
-                        items: [
-                            "YouTube Editing Like a Pro (Live Breakdown)",
-                            "Short-Form Storytelling for Reels/TikTok",
-                            "Transitions & Motion Editing Workshop",
-                            "CapCut + Premiere Workflow for Creators",
-                        ],
-                    },
-                    {
-                        title: "Motion Graphics & Animation",
-                        items: [
-                            "After Effects for Beginners (Live)",
-                            "Motion Graphics Simplified",
-                            "Logo Animation Bootcamp",
-                            "3D Product Animation Demo",
-                        ],
-                    },
-                    {
-                        title: "AI Video Creation",
-                        items: [
-                            "AI Avatars (HeyGen/Synthesia) Live Setup",
-                            "Text-to-Video Workflow with Sora",
-                            "AI Voice + Lip Sync Integration",
-                        ],
-                    },
-                    {
-                        title: "Creator Growth Series",
-                        items: [
-                            "YouTube SEO Live Breakdown",
-                            "Build Your Creator Studio Setup",
-                            "Reels that Reach Millions (Hooks + Retention)",
-                            "Content Repurposing System in 60 Minutes",
-                        ],
-                    },
+                    { title: "Music Production", items: ["Custom Music Composition", "Mixing & Mastering", "Songwriting & Lyrics", "Jingles & Intros", "Soundtracks"] },
+                    { title: "Voice Over & Narration", items: ["Commercial Voice", "Character Voice", "Audiobook Narration", "Podcast Intros"] },
+                    { title: "Audio Engineering", items: ["Audio Editing", "Vocal Tuning", "Restoration & Cleaning", "Sound Enhancement"] },
+                    { title: "Sound Design", items: ["Sound Effects", "Audio Logos & Sonic Branding", "Plugin & Patch Creation"] },
+                    { title: "DJ & Performance", items: ["DJ Mixing", "Drops & Tags", "Remixes"] },
+                    { title: "AI Audio", items: ["AI Voice Generation", "Text-to-Speech", "Voice Cloning", "AI Music Generation"] },
+                    { title: "Lessons", items: ["Music Theory", "Instrument Lessons", "Voice Coaching"] },
                 ],
             },
-
-            /* ===================== 7) MUSIC, AUDIO & PODCASTING ===================== */
             {
-                label: "Music, Audio & Podcasting",
+                label: "Business",
                 groups: [
-                    {
-                        title: "Music Production Workshops",
-                        items: [
-                            "Beat Making Live (FL Studio / Ableton)",
-                            "Mixing & Mastering Fundamentals",
-                            "Vocal Tuning Live Demo",
-                            "Music for Ads & Creators",
-                        ],
-                    },
-                    {
-                        title: "Podcasting Sessions",
-                        items: [
-                            "Start Your Podcast in One Day",
-                            "Podcast Branding & Positioning",
-                            "Monetizing Your Podcast",
-                            "Voice Training for Podcasters",
-                        ],
-                    },
-                    {
-                        title: "AI Audio Tools",
-                        items: [
-                            "AI Voice Generation for Creators",
-                            "Voice Cloning Demo + Use Cases",
-                            "AI Music Prompts & Sound Packs",
-                        ],
-                    },
-                    {
-                        title: "Sound Design",
-                        items: [
-                            "Sound Effects for Games & Film",
-                            "Cinematic Sound Design Techniques",
-                        ],
-                    },
+                    { title: "Business Formation", items: ["Company Registration", "Market Research", "Business Plans", "Financial Forecasting", "HR Consulting"] },
+                    { title: "Operations & Management", items: ["Virtual Assistant", "Project Management", "SOP Documentation", "Workflow Optimization", "Event Management"] },
+                    { title: "Legal & Compliance", items: ["Contract Drafting", "Legal Review", "Policy Creation", "IP & Trademark Services"] },
+                    { title: "Sales & Customer Care", items: ["Sales Strategy", "CRM Setup", "Customer Support", "Lead Generation"] },
+                    { title: "Analytics & Intelligence", items: ["Data Visualization", "Business Intelligence", "Market Analytics", "Reporting Dashboards"] },
+                    { title: "AI & Automation in Business", items: ["Process Automation", "AI Assistants for Operations", "Data-Driven Decision Tools"] },
                 ],
             },
-
-            /* ===================== 8) WRITING, CONTENT & COMMUNICATION ===================== */
             {
-                label: "Writing, Content & Communication",
+                label: "Finance & Accounting",
                 groups: [
-                    {
-                        title: "Writing Workshops",
-                        items: [
-                            "Storytelling for Creators & Founders",
-                            "Blog Writing that Ranks (SEO Live)",
-                            "Book Publishing Q&A",
-                            "Fiction Writing for Beginners",
-                        ],
-                    },
-                    {
-                        title: "Copywriting & Persuasion",
-                        items: [
-                            "Offers that Convert (Live Workshop)",
-                            "Sales Copy Breakdown (Real Examples)",
-                            "Cold Email Masterclass",
-                            "Landing Page Copy for High Conversions",
-                        ],
-                    },
-                    {
-                        title: "Communication Mastery",
-                        items: [
-                            "Public Speaking in the Creator Era",
-                            "Pitching Ideas with Impact",
-                            "Confidence on Camera",
-                            "Scriptwriting for Video & Podcast",
-                        ],
-                    },
-                    {
-                        title: "AI Writing Systems",
-                        items: [
-                            "ChatGPT for Copywriting",
-                            "AI Content Workflows (Research → Draft → Polish)",
-                            "Prompt-Based Writing Systems",
-                        ],
-                    },
+                    { title: "Accounting & Reporting", items: ["Bookkeeping", "Payroll Management", "Financial Statements", "CFO Consulting"] },
+                    { title: "Corporate Finance", items: ["Valuation", "M&A Advisory", "Due Diligence", "Fundraising Documents"] },
+                    { title: "Tax & Compliance", items: ["Tax Planning", "Filing & Returns", "Audit Support", "Compliance Reports"] },
+                    { title: "Personal Finance", items: ["Budgeting & Forecasting", "Investment Planning", "Retirement Planning", "Credit Score Advisory"] },
+                    { title: "Financial Analysis", items: ["Financial Modeling", "Cost Analysis", "Profitability Analysis"] },
                 ],
             },
-
-            /* ===================== 9) FINANCE, INVESTING & ECONOMICS ===================== */
             {
-                label: "Finance, Investing & Economics",
+                label: "Personal Growth & Lifestyle",
                 groups: [
-                    {
-                        title: "Business Finance",
-                        items: [
-                            "Accounting for Non-Finance Founders",
-                            "Pricing Your Services Strategically",
-                            "Financial Planning Templates Live",
-                        ],
-                    },
-                    {
-                        title: "Investing",
-                        items: [
-                            "Stock Market for Beginners",
-                            "Crypto in 2025: What's Next?",
-                            "Building a Personal Investment Plan",
-                            "Web3 Finance Explained",
-                        ],
-                    },
-                    {
-                        title: "Personal Finance",
-                        items: [
-                            "Money Management for Freelancers",
-                            "Budgeting with Notion / Sheets",
-                            "Smart Savings & Taxes Simplified",
-                        ],
-                    },
-                    {
-                        title: "Financial Tools & AI",
-                        items: [
-                            "AI for Expense Tracking",
-                            "Building Smart Financial Dashboards",
-                        ],
-                    },
+                    { title: "Coaching & Mentorship", items: ["Life Coaching", "Career Mentorship", "Business Mentorship", "Productivity Coaching", "Public Speaking"] },
+                    { title: "Wellness & Fitness", items: ["Fitness Training", "Nutrition Coaching", "Yoga & Meditation", "Wellness Programs"] },
+                    { title: "Fashion & Style", items: ["Personal Styling", "Modeling & Acting Coaching", "Beauty Consulting", "Wardrobe Strategy"] },
+                    { title: "Gaming & Entertainment", items: ["Game Coaching", "Streaming Setup", "Esports Strategy", "Gameplay Reviews"] },
+                    { title: "Leisure & Hobbies", items: ["Astrology & Tarot", "Art & Crafts", "DIY Projects", "Traveling Guidance"] },
                 ],
             },
-
-            /* ===================== 10) PERSONAL GROWTH, LIFESTYLE & CAREER ===================== */
             {
-                label: "Personal Growth, Lifestyle & Career",
+                label: "AI Services",
                 groups: [
-                    {
-                        title: "Mindset & Motivation",
-                        items: [
-                            "Goal Setting with Clarity",
-                            "Beating Procrastination (Live Workshop)",
-                            "Daily Systems for High Performance",
-                            "Mindset for Freelancers & Founders",
-                        ],
-                    },
-                    {
-                        title: "Career Growth",
-                        items: [
-                            "Personal Brand on LinkedIn (Live)",
-                            "Resume & Portfolio Review",
-                            "Interview Confidence Workshop",
-                            "Career Pivot in the Creator Economy",
-                        ],
-                    },
-                    {
-                        title: "Health & Wellness",
-                        items: [
-                            "Morning Routines that Transform Productivity",
-                            "Fitness for Busy Entrepreneurs",
-                            "Mindfulness & Focus Training",
-                            "Nutrition for Brain Power",
-                        ],
-                    },
-                    {
-                        title: "Lifestyle & Hobbies",
-                        items: [
-                            "Travel Creator Masterclass",
-                            "Photography for Social Media",
-                            "Fashion Styling for Creators",
-                            "Gaming & Esports Strategy Live",
-                        ],
-                    },
-                ],
-            },
-
-            /* ===================== 11) COMMUNITY, NETWORKING & PANEL EVENTS ===================== */
-            {
-                label: "Community, Networking & Panel Events",
-                groups: [
-                    {
-                        title: "Expert Panels",
-                        items: [
-                            "AI & the Future of Work",
-                            "The Creator Economy in 2025",
-                            "Women in Tech & Business",
-                            "Building Global Teams",
-                        ],
-                    },
-                    {
-                        title: "Founder Stories & Case Studies",
-                        items: [
-                            "Zero to One: Live Founder Interviews",
-                            "Building a Million-Dollar Freelance Agency",
-                            "Bootstrapped Success Stories",
-                        ],
-                    },
-                    {
-                        title: "Community AMAs",
-                        items: [
-                            "Ask the Expert (Monthly Live Q&A)",
-                            "Pitch Your Idea Sessions",
-                            "Skill Exchange Live (Peer to Peer)",
-                        ],
-                    },
-                    {
-                        title: "Collaboration Webinars",
-                        items: [
-                            "Partner-Led Tutorials",
-                            "Cross-Creator Case Study Breakdowns",
-                            "Guest Speaker Series",
-                        ],
-                    },
+                    { title: "AI Development", items: ["AI App Creation", "AI Websites", "AI Chatbots", "Automations & Agents", "API & Workflow Integration"] },
+                    { title: "AI Art & Design", items: ["Midjourney Design", "Stable Diffusion Illustration", "AI Avatar Design", "AI Image Editing"] },
+                    { title: "AI Video", items: ["AI Avatars", "AI Music Videos", "AI Video Art", "Text-to-Video"] },
+                    { title: "AI Writing & Content", items: ["Prompt Writing", "AI Storytelling", "Article Generation", "AI Copywriting"] },
+                    { title: "AI Data & Analytics", items: ["Data Collection", "Data Annotation", "Model Training", "Machine Learning Setup"] },
+                    { title: "AI Consulting", items: ["AI Strategy & Integration", "AI Education & Workshops"] },
                 ],
             },
         ],
@@ -2216,6 +1864,20 @@ export default function Marketplace({ theme, setTheme }) {
     const chipRowRef = useRef(null);
     const filterRowRef = useRef(null);
 
+    // filter panel state
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [filterCats, setFilterCats] = useState([]);
+    const [aiOnly, setAiOnly] = useState(false);
+    const [priceMin, setPriceMin] = useState("");
+    const [priceMax, setPriceMax] = useState("");
+    const [sortBy, setSortBy] = useState("most_relevant");
+
+    const toggleFilterCat = (cat) => {
+        setFilterCats((prev) =>
+            prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
+        );
+    };
+
     const scrollGrid = (direction) => {
         if (gridRef.current) {
             const scrollAmount = window.innerWidth > 900 ? 500 : 300;
@@ -2342,213 +2004,263 @@ export default function Marketplace({ theme, setTheme }) {
     );
 
     return (
-        <div className={`mp-page user-page ${theme} h-screen relative overflow-hidden`}>
-            {/* NAVBAR */}
-            <UserNavbar
-                toggleSidebar={() => setSidebarOpen((p) => !p)}
-                isSidebarOpen={sidebarOpen}
-                theme={theme}
-            />
-
-            <div className="mp-content-wrapper flex flex-1 relative z-10">
-                {/* SIDEBAR */}
-                <Sidebar
-                    expanded={sidebarOpen}
-                    setExpanded={setSidebarOpen}
+        <>
+            <div className={`mp-page user-page ${theme} h-screen relative overflow-hidden`}>
+                {/* NAVBAR */}
+                <UserNavbar
+                    toggleSidebar={() => setSidebarOpen((p) => !p)}
+                    isSidebarOpen={sidebarOpen}
                     theme={theme}
-                    setTheme={setTheme}
                 />
 
-                {/* MAIN CONTENT */}
-                <div className="relative flex-1 min-w-5 overflow-hidden">
-                    <div className="mp-scroll-area relative z-10 overflow-y-auto h-full">
-                        <section className="mp-hero">
-                            <img
-                                src={theme === "dark" ? heroImgDark : heroImg}
-                                alt="Marketplace Hero"
-                                className="mp-heroImg"
-                            />
-                            <div className="mp-heroOverlay" />
-                            <div className="mp-heroInner">
-                                <div className="mp-heroText">
-                                    <h1 className="mp-heroTitle">Welcome back, Name!</h1>
-                                    <h1 className="mp-heroSub">Your <span className="mp-highlight">hustle</span> starts here.</h1>
+                <div className="mp-content-wrapper flex flex-1 relative z-10">
+                    {/* SIDEBAR */}
+
+
+                    {/* MAIN CONTENT */}
+                    <div className="relative flex-1 min-w-5 overflow-hidden">
+                        <div className="mp-scroll-area relative z-10 overflow-y-auto h-full">
+                            <section className="mp-hero">
+                                <img
+                                    src={theme === "dark" ? heroImgDark : heroImg}
+                                    alt="Marketplace Hero"
+                                    className="mp-heroImg"
+                                />
+                                <div className="mp-heroOverlay" />
+                                <div className="mp-heroInner">
+                                    <div className="mp-heroText">
+                                        <h1 className="mp-heroTitle">Welcome back, Name!</h1>
+                                        <h1 className="mp-heroSub">Your <span className="mp-highlight">hustle</span> starts here.</h1>
+                                    </div>
+
+
+
                                 </div>
+                            </section>
 
-
-
-                            </div>
-                        </section>
-
-                        <div className="mp-shell">
-                            <div className="mp-catRow">
-                                {categories.map((cat) => (
-                                    <button
-                                        key={cat.label}
-                                        className={`mp-pill ${activeCat === cat.label ? "active" : ""}`}
-                                        onClick={() => { setActiveCat(cat.label); setOpenChip(null); }}
-                                        type="button"
-                                    >
-                                        {cat.label}
-                                    </button>
-                                ))}
-                            </div>
-
-                            <div className="mp-filterRow" ref={filterRowRef}>
-                                <button className="mp-filterBtn" type="button">
-                                    <span>Filter</span>
-                                    <img src={filterIcon} alt="filtericon" />
-                                </button>
-
-                                <div className="mp-chipScroller" ref={chipRowRef}>
-                                    {chips.map((chip, idx) => (
-                                        <div className="mp-chipWrap" key={chip.label}>
-                                            <button
-                                                className={`mp-chip ${idx === 0 ? "active" : ""} ${openChip === chip.label ? "open" : ""}`}
-                                                type="button"
-                                                onClick={() => handleChipClick(chip.label)}
-                                            >
-                                                {chip.label}
-                                                <svg className="mp-chipIcon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                                </svg>
-                                            </button>
-                                        </div>
+                            <div className="mp-shell">
+                                <div className="mp-catRow">
+                                    {categories.map((cat) => (
+                                        <button
+                                            key={cat.label}
+                                            className={`mp-pill ${activeCat === cat.label ? "active" : ""}`}
+                                            onClick={() => { setActiveCat(cat.label); setOpenChip(null); }}
+                                            type="button"
+                                        >
+                                            {cat.label}
+                                        </button>
                                     ))}
                                 </div>
-                            </div>
 
-                            <h2 className="mp-sectionTitle">All Products</h2>
+                                <div className="mp-filterRow" ref={filterRowRef}>
+                                    <button className="mp-filterBtn" type="button" onClick={() => setIsFilterOpen(true)}>
+                                        <span>Filter</span>
+                                        <img src={filterIcon} alt="filtericon" />
+                                    </button>
 
-                            <div className="mp-grid" ref={gridRef}>
-                                {products.map((p) => (
-                                    <article className="mp-card" key={p.id}>
-                                        <div className="mp-imgWrap">
-                                            <img className="mp-img" src={p.image} alt="" />
-                                        </div>
-
-                                        <div className="mp-cardBody">
-                                            <div className="mp-topLine">
-                                                <div className="mp-user">
-                                                    <div className="mp-avatar"></div>
-                                                    <span className="mp-userName">{p.name}</span>
-                                                    {p.verified && (
-                                                        <svg className="mp-verifyIcon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                                            <path
-                                                                fill="#1DA1F2"
-                                                                d="M22.5 12.5c0-1.58-.88-2.95-2.18-3.7.54-1.51.26-3.23-.97-4.46-1.23-1.23-2.95-1.51-4.46-.97C14.13 2.08 12.76 1.2 11.18 1.2c-1.58 0-2.95.88-3.7 2.18-1.51-.54-3.23-.26-4.46.97-1.23 1.23-1.51 2.95-.97 4.46C.88 9.55 0 10.92 0 12.5c0 1.58.88 2.95 2.18 3.7-.54 1.51-.26 3.23.97 4.46 1.23 1.23 2.95 1.51 4.46.97 0.74 1.3 2.11 2.18 3.69 2.18 1.58 0 2.95-.88 3.7-2.18 1.51.54 3.23.26 4.46-.97 1.23-1.23 1.51-2.95.97-4.46 1.3-.75 2.18-2.12 2.18-3.7z"
-                                                            />
-                                                            <path
-                                                                stroke="#FFF"
-                                                                strokeWidth="3"
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                d="M8 12.5l3 3 5-5"
-                                                            />
-                                                        </svg>
-                                                    )}
-                                                </div>
-
-                                                {p.ai && (
-                                                    <span className="mp-aiBadge">
-                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                                            <path d="M12 3c.4 4.1 3.5 7.2 7.6 7.6-.4.4-3.5 3.5-3.9 7.6-.4-4.1-3.5-7.2-7.6-7.6 4.1-.4 7.2-3.5 7.6-7.6zM6 16.5c.2 1.9 1.6 3.3 3.5 3.5-.2.2-1.6 1.6-1.8 3.5-.2-1.9-1.6-3.3-3.5-3.5 1.9-.2 3.3-1.6 3.5-3.5z" />
-                                                        </svg>
-                                                        Ai Powered
-                                                    </span>
-                                                )}
-                                            </div>
-
-                                            <p className="mp-desc">{p.title}</p>
-
-                                            <div className="mp-metaRow">
-                                                <div className="mp-rating">
-                                                    <span className="mp-star">★</span>
-                                                    <span>{p.rating.toFixed(1)}</span>
-                                                    <span className="mp-rev">({p.reviews})</span>
-                                                </div>
-                                            </div>
-
-                                            <div className="mp-bottomRow">
-                                                <div className="mp-price">Price: ₹ 24,000</div>
-                                                <button className="mp-cta" type="button">
-                                                    {p.cta}
-                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
-                                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    <div className="mp-chipScroller" ref={chipRowRef}>
+                                        {chips.map((chip, idx) => (
+                                            <div className="mp-chipWrap" key={chip.label}>
+                                                <button
+                                                    className={`mp-chip ${openChip === chip.label ? "active open" : ""}`}
+                                                    type="button"
+                                                    onClick={() => handleChipClick(chip.label)}
+                                                >
+                                                    {chip.label}
+                                                    <svg className="mp-chipIcon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                        <polyline points="6 9 12 15 18 9"></polyline>
                                                     </svg>
                                                 </button>
                                             </div>
-                                        </div>
-                                    </article>
-                                ))}
-                            </div>
+                                        ))}
+                                    </div>
+                                </div>
 
-                            <div className="mp-viewAllRow">
-                                <button className="mp-viewAllBtn" type="button">
-                                    View All
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <h2 className="mp-sectionTitle">All Products</h2>
+
+                                <div className="mp-grid" ref={gridRef}>
+                                    {products.map((p) => (
+                                        <article className="mp-card" key={p.id}>
+                                            <div className="mp-imgWrap">
+                                                <img className="mp-img" src={p.image} alt="" />
+                                            </div>
+
+                                            <div className="mp-cardBody">
+                                                <div className="mp-topLine">
+                                                    <div className="mp-user">
+                                                        <div className="mp-avatar"></div>
+                                                        <span className="mp-userName">{p.name}</span>
+                                                        {p.verified && (
+                                                            <svg className="mp-verifyIcon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                                                <path
+                                                                    fill="#1DA1F2"
+                                                                    d="M22.5 12.5c0-1.58-.88-2.95-2.18-3.7.54-1.51.26-3.23-.97-4.46-1.23-1.23-2.95-1.51-4.46-.97C14.13 2.08 12.76 1.2 11.18 1.2c-1.58 0-2.95.88-3.7 2.18-1.51-.54-3.23-.26-4.46.97-1.23 1.23-1.51 2.95-.97 4.46C.88 9.55 0 10.92 0 12.5c0 1.58.88 2.95 2.18 3.7-.54 1.51-.26 3.23.97 4.46 1.23 1.23 2.95 1.51 4.46.97 0.74 1.3 2.11 2.18 3.69 2.18 1.58 0 2.95-.88 3.7-2.18 1.51.54 3.23.26 4.46-.97 1.23-1.23 1.51-2.95.97-4.46 1.3-.75 2.18-2.12 2.18-3.7z"
+                                                                />
+                                                                <path
+                                                                    stroke="#FFF"
+                                                                    strokeWidth="3"
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    d="M8 12.5l3 3 5-5"
+                                                                />
+                                                            </svg>
+                                                        )}
+                                                    </div>
+
+                                                    {p.ai && (
+                                                        <span className="mp-aiBadge">
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path d="M12 3c.4 4.1 3.5 7.2 7.6 7.6-.4.4-3.5 3.5-3.9 7.6-.4-4.1-3.5-7.2-7.6-7.6 4.1-.4 7.2-3.5 7.6-7.6zM6 16.5c.2 1.9 1.6 3.3 3.5 3.5-.2.2-1.6 1.6-1.8 3.5-.2-1.9-1.6-3.3-3.5-3.5 1.9-.2 3.3-1.6 3.5-3.5z" />
+                                                            </svg>
+                                                            Ai Powered
+                                                        </span>
+                                                    )}
+                                                </div>
+
+                                                <p className="mp-desc">{p.title}</p>
+
+                                                <div className="mp-metaRow">
+                                                    <div className="mp-rating">
+                                                        <span className="mp-star">★</span>
+                                                        <span>{p.rating.toFixed(1)}</span>
+                                                        <span className="mp-rev">({p.reviews})</span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="mp-bottomRow">
+                                                    <div className="mp-price">Price: ₹ 24,000</div>
+                                                    <button className="mp-cta" type="button">
+                                                        {p.cta}
+                                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
+                                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    ))}
+                                </div>
+
+                                <div className="mp-viewAllRow">
+                                    <button className="mp-viewAllBtn" type="button">
+                                        View All
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <button
+                                    className="mp-floatArrow left"
+                                    type="button"
+                                    aria-label="Previous"
+                                    onClick={() => scrollGrid("left")}
+                                >
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                        <polyline points="15 18 9 12 15 6"></polyline>
+                                    </svg>
+                                </button>
+
+                                <button
+                                    className="mp-floatArrow right"
+                                    type="button"
+                                    aria-label="Next"
+                                    onClick={() => scrollGrid("right")}
+                                >
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                                         <polyline points="9 18 15 12 9 6"></polyline>
                                     </svg>
                                 </button>
                             </div>
-
-                            <button
-                                className="mp-floatArrow left"
-                                type="button"
-                                aria-label="Previous"
-                                onClick={() => scrollGrid("left")}
-                            >
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                    <polyline points="15 18 9 12 15 6"></polyline>
-                                </svg>
-                            </button>
-
-                            <button
-                                className="mp-floatArrow right"
-                                type="button"
-                                aria-label="Next"
-                                onClick={() => scrollGrid("right")}
-                            >
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
-                                </svg>
-                            </button>
                         </div>
                     </div>
                 </div>
+                {/* CHIP FILTER MEGA DROPDOWN — root level, escapes overflow */}
+                {openChip && (() => {
+                    const chip = chips.find(c => c.label === openChip);
+                    return chip ? (
+                        <div
+                            className="mp-megaDropdown"
+                            style={{ top: dropdownTop }}
+                            onWheel={(e) => {
+                                const scrollEl = document.querySelector(".mp-scroll-area");
+                                if (scrollEl) scrollEl.scrollTop += e.deltaY;
+                            }}
+                        >
+                            <div className="mp-megaGrid">
+                                {chip.groups.map((grp) => (
+                                    <div className="mp-megaGroup" key={grp.title}>
+                                        <p className="mp-megaGroupTitle">{grp.title}</p>
+                                        {grp.items.map((item) => (
+                                            <button
+                                                key={item}
+                                                className="mp-megaItem"
+                                                type="button"
+                                                onClick={() => setOpenChip(null)}
+                                            >
+                                                {item}
+                                            </button>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ) : null;
+                })()}
             </div>
-            {/* CHIP FILTER MEGA DROPDOWN — root level, escapes overflow */}
-            {openChip && (() => {
-                const chip = chips.find(c => c.label === openChip);
-                return chip ? (
-                    <div
-                        className="mp-megaDropdown"
-                        style={{ top: dropdownTop }}
-                        onWheel={(e) => {
-                            const scrollEl = document.querySelector(".mp-scroll-area");
-                            if (scrollEl) scrollEl.scrollTop += e.deltaY;
-                        }}
-                    >
-                        <div className="mp-megaGrid">
-                            {chip.groups.map((grp) => (
-                                <div className="mp-megaGroup" key={grp.title}>
-                                    <p className="mp-megaGroupTitle">{grp.title}</p>
-                                    {grp.items.map((item) => (
-                                        <button
-                                            key={item}
-                                            className="mp-megaItem"
-                                            type="button"
-                                            onClick={() => setOpenChip(null)}
-                                        >
-                                            {item}
-                                        </button>
-                                    ))}
-                                </div>
-                            ))}
+
+            {/* FILTER DRAWER */}
+            {isFilterOpen && (
+                <div className="mp-filterOverlay" onClick={() => setIsFilterOpen(false)}>
+                    <div className="mp-filterDrawer" onClick={(e) => e.stopPropagation()}>
+                        <div className="mp-filterHeader">
+                            <span className="mp-filterTitle">Filters</span>
+                            <button className="mp-filterClose" type="button" onClick={() => setIsFilterOpen(false)}>✕</button>
+                        </div>
+
+                        <div className="mp-filterSection">
+                            <div className="mp-filterLabel">Product Categories</div>
+                            <div className="mp-filterCatRow">
+                                {["Course", "Digital Product", "Services"].map((cat) => (
+                                    <button key={cat} type="button" className={`mp-filterCatBtn ${filterCats.includes(cat) ? "active" : ""}`} onClick={() => toggleFilterCat(cat)}>{cat}</button>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="mp-filterSection">
+                            <div className="mp-filterLabel">Trust Filter</div>
+                            <div className="mp-filterToggleRow">
+                                <button type="button" className={`mp-toggle ${aiOnly ? "on" : ""}`} onClick={() => setAiOnly((p) => !p)} aria-pressed={aiOnly}><span className="mp-toggleKnob" /></button>
+                                <span className="mp-filterToggleLabel">AI-Powered only</span>
+                            </div>
+                            <p className="mp-filterHint">* Use "Apply filters" to apply AI.</p>
+                        </div>
+
+                        <div className="mp-filterSection">
+                            <div className="mp-filterLabel">Price Range ($)</div>
+                            <div className="mp-filterPriceRow">
+                                <input className="mp-filterInput" type="number" placeholder="Min" value={priceMin} onChange={(e) => setPriceMin(e.target.value)} />
+                                <input className="mp-filterInput" type="number" placeholder="Max" value={priceMax} onChange={(e) => setPriceMax(e.target.value)} />
+                            </div>
+                        </div>
+
+                        <div className="mp-filterSection">
+                            <div className="mp-filterLabel">Sort By</div>
+                            <select className="mp-filterSelect" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                                <option value="most_relevant">Most Relevant</option>
+                                <option value="newest">Newest</option>
+                                <option value="price_low">Price: Low to High</option>
+                                <option value="price_high">Price: High to Low</option>
+                                <option value="top_rated">Top Rated</option>
+                            </select>
+                        </div>
+
+                        <div className="mp-filterFooter">
+                            <button type="button" className="mp-filterApply" onClick={() => setIsFilterOpen(false)}>Apply filters</button>
                         </div>
                     </div>
-                ) : null;
-            })()}
-        </div>
+                </div>
+            )}
+        </>
     );
 }
