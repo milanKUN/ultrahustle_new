@@ -1871,6 +1871,37 @@ export default function Marketplace({ theme, setTheme }) {
     const [priceMin, setPriceMin] = useState("");
     const [priceMax, setPriceMax] = useState("");
     const [sortBy, setSortBy] = useState("most_relevant");
+    const [isSortOpen, setIsSortOpen] = useState(false);
+    const sortRef = useRef(null);
+
+    const sortOptions = useMemo(
+        () => [
+            { value: "most_relevant", label: "Most Relevant" },
+            { value: "newest", label: "Newest" },
+            { value: "price_low", label: "Price: Low to High" },
+            { value: "price_high", label: "Price: High to Low" },
+            { value: "top_rated", label: "Top Rated" },
+        ],
+        []
+    );
+
+    const selectedSortLabel =
+        sortOptions.find((opt) => opt.value === sortBy)?.label || "Select Sort";
+
+    // Outside click for sort dropdown
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (sortRef.current && !sortRef.current.contains(event.target)) {
+                setIsSortOpen(false);
+            }
+        };
+        if (isSortOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isSortOpen]);
 
     const toggleFilterCat = (cat) => {
         setFilterCats((prev) =>
@@ -2246,13 +2277,37 @@ export default function Marketplace({ theme, setTheme }) {
 
                         <div className="mp-filterSection">
                             <div className="mp-filterLabel">Sort By</div>
-                            <select className="mp-filterSelect" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                                <option value="most_relevant">Most Relevant</option>
-                                <option value="newest">Newest</option>
-                                <option value="price_low">Price: Low to High</option>
-                                <option value="price_high">Price: High to Low</option>
-                                <option value="top_rated">Top Rated</option>
-                            </select>
+                            <div className="mp-custom-select" ref={sortRef}>
+                                <div
+                                    className={`mp-selected-option ${isSortOpen ? "open" : ""}`}
+                                    onClick={() => setIsSortOpen((v) => !v)}
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter" || e.key === " ") setIsSortOpen((v) => !v);
+                                    }}
+                                >
+                                    {selectedSortLabel}
+                                    <span className="mp-arrow">▼</span>
+                                </div>
+
+                                {isSortOpen && (
+                                    <ul className="mp-options-list">
+                                        {sortOptions.map((option) => (
+                                            <li
+                                                key={option.value}
+                                                className={sortBy === option.value ? "active" : ""}
+                                                onClick={() => {
+                                                    setSortBy(option.value);
+                                                    setIsSortOpen(false);
+                                                }}
+                                            >
+                                                {option.label}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </div>
                         </div>
 
                         <div className="mp-filterFooter">
