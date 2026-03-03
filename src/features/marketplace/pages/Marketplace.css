@@ -1268,7 +1268,6 @@
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 0 15px rgba(206, 255, 27, 0.4);
 }
 
 .mp-filterApply:hover {
