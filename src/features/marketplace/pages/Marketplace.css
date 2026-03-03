@@ -205,12 +205,21 @@
     font-size: 13px;
     font-weight: 500;
     color: #333;
+    transition: all 0.2s ease;
+}
+
+.mp-filterBtn:hover {
+    box-shadow: 0 0 15px #CEFF1B;
 }
 
 .dark .mp-filterBtn {
     background: #ceff1b;
     border-color: #ceff1b;
     color: #1a1a1a;
+}
+
+.dark .mp-filterBtn:hover {
+    box-shadow: 0 0 15px #CEFF1B;
 }
 
 .mp-chipScroller-wrapper {
@@ -798,9 +807,15 @@
         flex-wrap: wrap;
     }
 
-    /* Arrow buttons hidden */
+    /* Arrow buttons smaller on mobile */
     .mp-floatArrow {
-        display: none;
+        width: 36px;
+        height: 36px;
+    }
+
+    .mp-floatArrow svg {
+        width: 18px;
+        height: 18px;
     }
 
     /* Mega dropdown */
@@ -1019,7 +1034,8 @@
 }
 
 .mp-filterClose:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: #CEFF1B;
+    color: black
 }
 
 .mp-filterSection {
@@ -1091,7 +1107,13 @@
 }
 
 .mp-toggle.on {
-    background: #ceff1b;
+    background: #2b2b2b;
+    border: 1.5px solid #AC4BFA;
+}
+
+.mp-toggle.on .mp-toggleKnob {
+    background: #AC4BFA;
+    transform: translateX(18px);
 }
 
 .mp-toggleKnob {
@@ -1104,11 +1126,6 @@
     background: #5C5C5C;
     transition: transform 0.2s;
     display: block;
-}
-
-.mp-toggle.on .mp-toggleKnob {
-    transform: translateX(18px);
-    background: #1a1a1a;
 }
 
 .mp-filterToggleLabel {
@@ -1208,7 +1225,7 @@
     padding: 6px;
     background: #1a1a1a;
     border: 1px solid rgba(206, 255, 27, 0.3);
-    border-radius: 12px;
+    border-radius: 0px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
     z-index: 100;
 }
@@ -1218,13 +1235,13 @@
     font-size: 13px;
     color: #d0d0d0;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 0px;
     transition: all 0.15s ease;
 }
 
 .mp-options-list li:hover {
-    background: rgba(206, 255, 27, 0.1);
-    color: #CEFF1B;
+    background: #CEFF1B;
+    color: #1a1a1a;
 }
 
 .mp-options-list li.active {
@@ -1250,12 +1267,14 @@
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 15px rgba(206, 255, 27, 0.4);
 }
 
 .mp-filterApply:hover {
     opacity: 0.9;
     transform: translateY(-1px);
+    box-shadow: 0 0 20px #CEFF1B;
 }
 
 /* Light mode filter drawer */
@@ -1270,6 +1289,11 @@
 
 .light .mp-filterDrawer .mp-filterClose {
     background: rgba(0, 0, 0, 0.06);
+    color: #1a1a1a;
+}
+
+.light .mp-filterDrawer .mp-filterClose:hover {
+    background: #CEFF1B;
     color: #1a1a1a;
 }
 
@@ -1313,17 +1337,4 @@
 .light .mp-filterCatBtn {
     border-color: rgba(0, 0, 0, 0.15);
     color: #333;
-}
-
-.light .mp-toggle {
-    background: #A3A3A3;
-}
-
-.light .mp-toggle.on {
-    background: #2B2B2B;
-    border-color: #AC4BFA;
-}
-
-.light .mp-toggle.on .mp-toggleKnob {
-    background: #AC4BFA;
 }

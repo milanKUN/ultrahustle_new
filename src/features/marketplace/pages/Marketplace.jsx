@@ -2284,7 +2284,7 @@ export default function Marketplace({ theme, setTheme }) {
                         <div className="mp-filterSection">
                             <div className="mp-filterLabel">Product Categories</div>
                             <div className="mp-filterCatRow">
-                                {["Course", "Digital Product", "Services"].map((cat) => (
+                                {["Service", "Digital Product", "Course", "Webinar", "Teams"].map((cat) => (
                                     <button key={cat} type="button" className={`mp-filterCatBtn ${filterCats.includes(cat) ? "active" : ""}`} onClick={() => toggleFilterCat(cat)}>{cat}</button>
                                 ))}
                             </div>
