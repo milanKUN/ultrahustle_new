@@ -1993,10 +1993,13 @@
   }
 
   /* Details Tab (Invoice) */
-  .msd-tr {
-    grid-template-columns: 1fr 1fr;
-    /* 2 columns for smaller screens? */
-    gap: 6px;
+  .msd-tr,
+  .msd-sum,
+  .msd-total {
+    min-width: 650px;
+    grid-template-columns: 1.4fr 0.4fr 0.7fr 0.7fr;
+    font-size: 14px;
+    gap: 10px;
   }
 
   /* Stack the invoice rows differently if needed, 
@@ -2007,9 +2010,9 @@
     overflow-x: auto;
   }
 
-  .msd-tr {
-    min-width: 500px;
-    /* Ensure table content doesn't get squashed */
+  .msd-sum .span3,
+  .msd-total .span3 {
+    grid-column: 1 / span 3;
   }
 
   /* Stack Milestone Details and Split Grid */
@@ -2037,5 +2040,83 @@
     flex-wrap: wrap;
     gap: 4px;
     white-space: normal;
+  }
+}
+
+/* ================= DARK MODE OVERRIDES ================= */
+.user-page.dark .msd-title,
+.user-page.dark .msd-cardTitle {
+  color: var(--d-text);
+}
+
+.user-page.dark .msd-sub,
+.user-page.dark .msd-muted,
+.user-page.dark .msd-cardDate,
+.user-page.dark .msd-help,
+.user-page.dark .msd-miniRow {
+  color: var(--d-muted);
+}
+
+.user-page.dark .msd-card {
+  background: var(--d-card);
+  border-color: var(--d-border);
+}
+
+.user-page.dark .msd-cardHead {
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom-color: var(--d-border);
+}
+
+.user-page.dark .msd-tr {
+  border-bottom-color: var(--d-border);
+  color: var(--d-text);
+}
+
+.user-page.dark .msd-tr:not(.msd-th):hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.user-page.dark .msd-mini {
+  background: var(--d-card);
+}
+
+.user-page.dark .msd-miniTitle {
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom-color: var(--d-border);
+  color: var(--d-text);
+}
+
+.user-page.dark .msd-splitHead {
+  border-bottom-color: var(--accent);
+  color: var(--d-text);
+}
+
+.user-page.dark .msd-sum,
+.user-page.dark .msd-total {
+  border-top-color: var(--d-border);
+  color: var(--d-text);
+}
+
+/* Mobile Responsiveness Improvements */
+@media (max-width: 768px) {
+  .msd-title {
+    font-size: 22px;
+  }
+
+  .msd-sub,
+  .msd-muted {
+    font-size: 14px;
+  }
+
+  .msd-cardHead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 12px;
+  }
+
+  .msd-cardDate {
+    margin-right: 0;
+    font-size: 14px;
   }
 }
