@@ -217,8 +217,15 @@
 /* ================= Parties Involved ================= */
 
 .cnc-title-standalone {
-  margin-top: 24px;
   margin-bottom: 12px;
+}
+
+.cnc-parties-outer-box {
+  border: 1.5px solid var(--accent);
+  border-radius: 20px;
+  padding: 26px;
+  margin-top: 16px;
+  background: #fff;
 }
 
 .cnc-parties-wrapper {
@@ -229,7 +236,7 @@
 
 .cnc-subcard {
   background: #fff;
-  border: 1.5px solid var(--accent);
+  border: 1px solid #CEFF1B;
   border-radius: 20px;
   padding: 24px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
@@ -275,6 +282,7 @@
 
 .cnc-deliverables {
   margin-top: 16px;
+  margin-bottom: 20px;
 }
 
 .cnc-del-title {
@@ -646,12 +654,17 @@
 .user-page.dark .cnc-input,
 .user-page.dark .cnc-textarea,
 .user-page.dark .cnc-subcard,
+.user-page.dark .cnc-parties-outer-box,
 .user-page.dark .cnc-mil-item,
 .user-page.dark .cnc-del-item,
 .user-page.dark .cnc-table {
-  background: #0f0f0f;
+  background: #121212;
   color: var(--d-text);
-  border-color: var(--d-border);
+  border-color: #CEFF1B;
+}
+
+.user-page.dark .cnc-parties-outer-box {
+  border-color: var(--accent);
 }
 
 .user-page.dark .cnc-input::placeholder,

@@ -376,96 +376,98 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                 )}
 
                 {/* Parties Involved */}
-                <h2 className="cnc-card-title cnc-title-standalone">Parties Involved</h2>
-                <div className="cnc-parties-wrapper">
-                  <div className="cnc-subcard">
-                    <div className="cnc-subTitle">Client</div>
-                    <div className="cnc-subGrid">
-                      <div className="cnc-field">
-                        <label className="cnc-label">Client username</label>
-                        <input
-                          className="cnc-input"
-                          placeholder="Client username"
-                          value={form.clientUsername}
-                          onChange={onChange("clientUsername")}
-                        />
-                      </div>
-                      <div className="cnc-field">
-                        <label className="cnc-label">Full name</label>
-                        <input
-                          className="cnc-input"
-                          placeholder="Full name"
-                          value={form.clientFullName}
-                          onChange={onChange("clientFullName")}
-                        />
-                      </div>
-                      <div className="cnc-field">
-                        <label className="cnc-label">Email</label>
-                        <input
-                          className="cnc-input"
-                          placeholder="Email"
-                          value={form.clientEmail}
-                          onChange={onChange("clientEmail")}
-                        />
-                      </div>
-                      <div className="cnc-field">
-                        <label className="cnc-label">Name and company</label>
-                        <input
-                          className="cnc-input"
-                          placeholder="Name and company"
-                          value={form.clientCompany}
-                          onChange={onChange("clientCompany")}
-                        />
+                <div className="cnc-parties-outer-box">
+                  <h2 className="cnc-card-title cnc-title-standalone">Parties Involved</h2>
+                  <div className="cnc-parties-wrapper">
+                    <div className="cnc-subcard">
+                      <div className="cnc-subTitle">Client</div>
+                      <div className="cnc-subGrid">
+                        <div className="cnc-field">
+                          <label className="cnc-label">Client username</label>
+                          <input
+                            className="cnc-input"
+                            placeholder="Client username"
+                            value={form.clientUsername}
+                            onChange={onChange("clientUsername")}
+                          />
+                        </div>
+                        <div className="cnc-field">
+                          <label className="cnc-label">Full name</label>
+                          <input
+                            className="cnc-input"
+                            placeholder="Full name"
+                            value={form.clientFullName}
+                            onChange={onChange("clientFullName")}
+                          />
+                        </div>
+                        <div className="cnc-field">
+                          <label className="cnc-label">Email</label>
+                          <input
+                            className="cnc-input"
+                            placeholder="Email"
+                            value={form.clientEmail}
+                            onChange={onChange("clientEmail")}
+                          />
+                        </div>
+                        <div className="cnc-field">
+                          <label className="cnc-label">Name and company</label>
+                          <input
+                            className="cnc-input"
+                            placeholder="Name and company"
+                            value={form.clientCompany}
+                            onChange={onChange("clientCompany")}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="cnc-subcard">
-                    <div className="cnc-subTitle">
-                      {form.soloTeam ? "Team Details" : "Service Provider"}
-                    </div>
-                    <div className="cnc-subGrid">
-                      <div className="cnc-field">
-                        <label className="cnc-label">
-                          {form.soloTeam ? "Team" : "Creator"} username
-                        </label>
-                        <input
-                          className="cnc-input"
-                          placeholder={form.soloTeam ? "Team username" : "Creator username"}
-                          value={form.creatorUsername}
-                          onChange={onChange("creatorUsername")}
-                        />
+                    <div className="cnc-subcard">
+                      <div className="cnc-subTitle">
+                        {form.soloTeam ? "Team Details" : "Service Provider"}
                       </div>
-                      <div className="cnc-field">
-                        <label className="cnc-label">
-                          {form.soloTeam ? "Team" : "Creator"} full name
-                        </label>
-                        <input
-                          className="cnc-input"
-                          placeholder={form.soloTeam ? "Team full name" : "Full name"}
-                          value={form.creatorFullName}
-                          onChange={onChange("creatorFullName")}
-                        />
-                      </div>
-                      <div className="cnc-field">
-                        <label className="cnc-label">
-                          {form.soloTeam ? "Team" : "Creator"} email
-                        </label>
-                        <input
-                          className="cnc-input"
-                          placeholder={form.soloTeam ? "Team email" : "Email"}
-                          value={form.creatorEmail}
-                          onChange={onChange("creatorEmail")}
-                        />
-                      </div>
-                      <div className="cnc-field">
-                        <label className="cnc-label">Name and company</label>
-                        <input
-                          className="cnc-input"
-                          placeholder="Country"
-                          value={form.creatorCompany}
-                          onChange={onChange("creatorCompany")}
-                        />
+                      <div className="cnc-subGrid">
+                        <div className="cnc-field">
+                          <label className="cnc-label">
+                            {form.soloTeam ? "Team" : "Creator"} username
+                          </label>
+                          <input
+                            className="cnc-input"
+                            placeholder={form.soloTeam ? "Team username" : "Creator username"}
+                            value={form.creatorUsername}
+                            onChange={onChange("creatorUsername")}
+                          />
+                        </div>
+                        <div className="cnc-field">
+                          <label className="cnc-label">
+                            {form.soloTeam ? "Team" : "Creator"} full name
+                          </label>
+                          <input
+                            className="cnc-input"
+                            placeholder={form.soloTeam ? "Team full name" : "Full name"}
+                            value={form.creatorFullName}
+                            onChange={onChange("creatorFullName")}
+                          />
+                        </div>
+                        <div className="cnc-field">
+                          <label className="cnc-label">
+                            {form.soloTeam ? "Team" : "Creator"} email
+                          </label>
+                          <input
+                            className="cnc-input"
+                            placeholder={form.soloTeam ? "Team email" : "Email"}
+                            value={form.creatorEmail}
+                            onChange={onChange("creatorEmail")}
+                          />
+                        </div>
+                        <div className="cnc-field">
+                          <label className="cnc-label">Name and company</label>
+                          <input
+                            className="cnc-input"
+                            placeholder="Country"
+                            value={form.creatorCompany}
+                            onChange={onChange("creatorCompany")}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -972,90 +974,74 @@ function Calendar({ onClose, onSelect, initialDate }) {
     }
   };
 
-  const changeYear = (dir) => {
-    if (dir === "prev") setYear((y) => y - 1);
-    else setYear((y) => y + 1);
-  };
-
   const formatDate = (d) =>
     `${String(d).padStart(2, "0")}-${String(month + 1).padStart(2, "0")}-${year}`;
 
   return (
     <div
-      className="fixed inset-0 z-[9999] bg-black/40 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+      className="fixed inset-0 z-[9999] bg-black/20 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center cursor-pointer p-4"
       onClick={onClose}
     >
       <div
-        className="bg-white dark:bg-[#121212] w-full max-w-[350px] rounded-2xl flex flex-col relative border-2 border-[#CEFF1B] shadow-[0_0_40px_rgba(206,255,27,0.4)] overflow-hidden"
+        className="bg-white dark:bg-[#2B2B2B] w-[95%] max-w-[335px] h-[350px] rounded-xl p-3 shadow-lg calendar-outer cursor-default"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* PREMIUM NEON HEADER */}
-        <div className="bg-[#CEFF1B] w-full py-3 px-4 flex justify-between items-center shrink-0">
-          <button
-            onClick={() => changeYear("prev")}
-            className="flex w-8 h-8 items-center justify-center hover:bg-black/10 rounded-full transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
-          </button>
+        <div className="bg-white dark:bg-[#2B2B2B] w-full h-full rounded-lg p-3 flex flex-col text-black dark:text-[#f0f0f0] calendar-inner">
+          {/* YEAR DROPDOWN */}
+          <div className="relative mb-6 z-20 w-full" ref={yearRef}>
+            <div className={`onboarding-custom-select ${openYear ? "active" : ""}`}>
+              <div
+                className={`onboarding-selected-option ${openYear ? "open" : ""}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpenYear(!openYear);
+                }}
+                style={{ background: "#CEFF1B", color: "black", fontWeight: "bold" }}
+              >
+                <span>{year} :</span>
+                <span className="onboarding-arrow">▼</span>
+              </div>
 
-          <div className="relative" ref={yearRef}>
-            <div
-              className={`flex items-center gap-2 cursor-pointer font-black text-lg text-black`}
-              onClick={() => setOpenYear(!openYear)}
-            >
-              <span>{year}</span>
-              <span className="text-[10px]">▼</span>
+              {openYear && (
+                <ul className="onboarding-options-list dark:bg-[#1E1E1E]">
+                  {years.map((y) => (
+                    <li
+                      key={y}
+                      className={y === year ? "active" : ""}
+                      onClick={() => {
+                        setYear(y);
+                        setOpenYear(false);
+                      }}
+                    >
+                      {y}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
-
-            {openYear && (
-              <ul className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-24 max-h-48 overflow-y-auto bg-white dark:bg-[#1A1A1A] border border-black/10 rounded-lg shadow-xl z-50 py-1">
-                {years.map((y) => (
-                  <li
-                    key={y}
-                    onClick={() => {
-                      setYear(y);
-                      setOpenYear(false);
-                    }}
-                    className={`px-3 py-1.5 text-center cursor-pointer hover:bg-[#CEFF1B] hover:text-black transition-colors ${year === y ? "bg-[#CEFF1B] text-black font-bold" : "text-gray-700 dark:text-gray-300"}`}
-                  >
-                    {y}
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
 
-          <button
-            onClick={() => changeYear("next")}
-            className="flex w-8 h-8 items-center justify-center hover:bg-black/10 rounded-full transition-colors"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-          </button>
-        </div>
-
-        {/* CALENDAR BODY */}
-        <div className="p-4 bg-white dark:bg-[#121212] transition-colors">
           {/* MONTH HEADER */}
-          <div className="flex justify-between items-center mb-6 px-1">
-            <button
+          <div className="flex justify-between items-center text-sm font-medium -mt-2 mb-2 px-1">
+            <span
               onClick={() => changeMonth("prev")}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-[#2B2B2B] text-gray-600 dark:text-gray-300 transition-colors"
+              className="cursor-pointer text-lg font-bold w-8 h-8 flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/5 rounded-full"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
-            </button>
-            <span className="font-bold text-gray-800 dark:text-gray-100 text-base">
-              {months[month]}
+              ‹
             </span>
-            <button
+            <span className="font-bold">
+              {months[month]} {year}
+            </span>
+            <span
               onClick={() => changeMonth("next")}
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-[#2B2B2B] text-gray-600 dark:text-gray-300 transition-colors"
+              className="cursor-pointer text-lg font-bold w-8 h-8 flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/5 rounded-full"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-            </button>
+              ›
+            </span>
           </div>
 
-          {/* WEEKDAYS */}
-          <div className="grid grid-cols-7 text-[10px] font-bold text-gray-400 dark:text-gray-500 mb-2 uppercase tracking-tighter">
+          {/* WEEK */}
+          <div className="grid grid-cols-7 text-[10px] text-black dark:text-gray-400 mb-2 font-bold uppercase">
             {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((d) => (
               <div key={d} className="text-center">
                 {d}
@@ -1063,12 +1049,12 @@ function Calendar({ onClose, onSelect, initialDate }) {
             ))}
           </div>
 
-          {/* DAYS GRID */}
-          <div className="grid grid-cols-7 gap-1">
+          {/* DAYS */}
+          <div className="grid grid-cols-7 gap-2 text-sm flex-1">
             {Array.from({ length: firstDay }).map((_, i) => (
               <div
                 key={`empty-${i}`}
-                className="h-9 flex items-center justify-center text-[11px] text-gray-300 dark:text-gray-700 font-medium"
+                className="text-center text-gray-300 dark:text-gray-700"
               >
                 {prevMonthDays - firstDay + i + 1}
               </div>
@@ -1086,10 +1072,10 @@ function Calendar({ onClose, onSelect, initialDate }) {
                     setSelectedDate(formatted);
                     onSelect(formatted);
                   }}
-                  className={`h-9 w-9 mx-auto rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 text-sm font-semibold
+                  className={`mx-auto w-7 h-7 rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 font-bold
                     ${isSelected
-                      ? "bg-[#CEFF1B] text-black shadow-[0_0_15px_rgba(206,255,27,0.5)]"
-                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#2B2B2B] hover:text-black dark:hover:text-white"
+                      ? "bg-[#CEFF1B] text-black shadow-[0_0_10px_rgba(206,255,27,0.4)]"
+                      : "text-black dark:text-gray-300 hover:bg-[#CEFF1B] hover:text-black"
                     }`}
                 >
                   {day}
@@ -1097,14 +1083,6 @@ function Calendar({ onClose, onSelect, initialDate }) {
               );
             })}
           </div>
-
-          {/* CLOSE BUTTON (DESKTOP) */}
-          {/* <button
-            onClick={onClose}
-            className="mt-6 w-full py-2.5 text-xs font-bold text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white transition-colors"
-          >
-            CANCEL
-          </button> */}
         </div>
       </div>
     </div>

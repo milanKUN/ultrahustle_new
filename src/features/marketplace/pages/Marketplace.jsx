@@ -1879,6 +1879,36 @@ export default function Marketplace({ theme, setTheme }) {
     const [isSortOpen, setIsSortOpen] = useState(false);
     const sortRef = useRef(null);
 
+    // Searchable Filter States
+    const [langSearch, setLangSearch] = useState("");
+    const [tagSearch, setTagSearch] = useState("");
+
+    const allLanguages = useMemo(() => [
+        "English", "Hindi", "Tamil", "Spanish", "French", "German", "Japanese",
+        "Chinese", "Arabic", "Portuguese", "Russian", "Italian", "Korean", "Dutch",
+        "Turkish", "Bengali", "Marathi", "Telugu", "Gujarati", "Punjabi"
+    ], []);
+
+    const allTags = useMemo(() => [
+        "Ai", "Automation", "Branding", "Web Dev", "Copywriting", "Design", "Video",
+        "Voiceover", "3D Design", "SEO", "Marketing", "SaaS", "Mobile App", "BlockChain",
+        "UX/UI", "Illustrations", "Social Media", "Cybersecurity", "E-commerce", "Consulting"
+    ], []);
+
+    const filteredLangSuggestions = useMemo(() => {
+        if (!langSearch.trim()) return [];
+        return allLanguages.filter(l =>
+            l.toLowerCase().includes(langSearch.toLowerCase()) && !filterLangs.includes(l)
+        );
+    }, [langSearch, allLanguages, filterLangs]);
+
+    const filteredTagSuggestions = useMemo(() => {
+        if (!tagSearch.trim()) return [];
+        return allTags.filter(t =>
+            t.toLowerCase().includes(tagSearch.toLowerCase()) && !filterTags.includes(t)
+        );
+    }, [tagSearch, allTags, filterTags]);
+
     const sortOptions = useMemo(
         () => [
             { value: "most_relevant", label: "Most Relevant" },
@@ -2661,32 +2691,89 @@ export default function Marketplace({ theme, setTheme }) {
 
                             <div className="mp-filterSection">
                                 <div className="mp-filterLabel">Language</div>
-                                <div className="mp-filterCatRow">
-                                    {["English", "Hindi", "Tamil", "Spanish", "French", "German"].map((lang) => (
+                                <div className="mp-searchWrapper">
+                                    <input
+                                        type="text"
+                                        placeholder="Search language..."
+                                        className="mp-filterSearchInput"
+                                        value={langSearch}
+                                        onChange={(e) => setLangSearch(e.target.value)}
+                                    />
+                                    {filteredLangSuggestions.length > 0 && (
+                                        <div className="mp-filterSuggestions">
+                                            {filteredLangSuggestions.map(lang => (
+                                                <div
+                                                    key={lang}
+                                                    className="mp-suggestionItem"
+                                                    onClick={() => {
+                                                        setFilterLangs(prev => [...prev, lang]);
+                                                        setLangSearch("");
+                                                    }}
+                                                >
+                                                    {lang}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="mp-filterCatRow mt-3">
+                                    {filterLangs.map((lang) => (
                                         <button
                                             key={lang}
                                             type="button"
-                                            className={`mp-filterCatBtn ${filterLangs.includes(lang) ? "active" : ""}`}
-                                            onClick={() => setFilterLangs((prev) =>
-                                                prev.includes(lang) ? prev.filter((l) => l !== lang) : [...prev, lang]
-                                            )}
-                                        >{lang}</button>
+                                            className="mp-filterCatBtn active"
+                                            onClick={() => setFilterLangs((prev) => prev.filter((l) => l !== lang))}
+                                        >
+                                            {lang} ✕
+                                        </button>
                                     ))}
+                                    {!langSearch && filterLangs.length === 0 && (
+                                        <div className="mp-searchHint"></div>
+                                    )}
                                 </div>
                             </div>
+
                             <div className="mp-filterSection">
                                 <div className="mp-filterLabel">Tags</div>
-                                <div className="mp-filterCatRow">
-                                    {["Ai", "Automation", "Branding", "Web Dev", "Copywriting", "Design", "Video", "Voiceover"].map((Tag) => (
+                                <div className="mp-searchWrapper">
+                                    <input
+                                        type="text"
+                                        placeholder="Search tags..."
+                                        className="mp-filterSearchInput"
+                                        value={tagSearch}
+                                        onChange={(e) => setTagSearch(e.target.value)}
+                                    />
+                                    {filteredTagSuggestions.length > 0 && (
+                                        <div className="mp-filterSuggestions">
+                                            {filteredTagSuggestions.map(tag => (
+                                                <div
+                                                    key={tag}
+                                                    className="mp-suggestionItem"
+                                                    onClick={() => {
+                                                        setFilterTags(prev => [...prev, tag]);
+                                                        setTagSearch("");
+                                                    }}
+                                                >
+                                                    {tag}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="mp-filterCatRow mt-3">
+                                    {filterTags.map((tag) => (
                                         <button
-                                            key={Tag}
+                                            key={tag}
                                             type="button"
-                                            className={`mp-filterCatBtn ${filterTags.includes(Tag) ? "active" : ""}`}
-                                            onClick={() => setFilterTags((prev) =>
-                                                prev.includes(Tag) ? prev.filter((l) => l !== Tag) : [...prev, Tag]
-                                            )}
-                                        >{Tag}</button>
+                                            className="mp-filterCatBtn active"
+                                            onClick={() => setFilterTags((prev) => prev.filter((t) => t !== tag))}
+                                        >
+                                            {tag} ✕
+                                        </button>
                                     ))}
+                                    {!tagSearch && filterTags.length === 0 && (
+                                        <div className="mp-searchHint"></div>
+                                    )}
                                 </div>
                             </div>
 
@@ -2696,13 +2783,13 @@ export default function Marketplace({ theme, setTheme }) {
                                     <button type="button" className={`mp-toggle ${aiOnly ? "on" : ""}`} onClick={() => setAiOnly((p) => !p)} aria-pressed={aiOnly}><span className="mp-toggleKnob" /></button>
                                     <span className="mp-filterToggleLabel">AI-Powered only</span>
                                 </div>
-                                <p className="mp-filterHint">* Use "Apply filters" to apply AI.</p>
+
                             </div>
 
                             <div className="mp-filterSection">
                                 <div className="mp-filterHeaderPrice">
                                     <div className="mp-filterLabel">Price Range</div>
-                                    <div className="mp-filterValueText">₹{priceMin || 0} — ₹{priceMax || 50000}</div>
+                                    <div className="mp-filterValueText">${priceMin || 0} — ${priceMax || 50000}</div>
                                 </div>
                                 <div className="mp-price-slider-container">
                                     <div
