@@ -213,11 +213,19 @@
     color: #1a1a1a;
 }
 
+.mp-chipScroller-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
 .mp-chipScroller {
     display: flex;
     gap: 14px;
     overflow: auto;
-    padding-bottom: 4px;
+    padding: 0 4px 4px;
     scrollbar-width: none;
     flex: 1;
 }
@@ -290,7 +298,7 @@
     left: 100px;
     right: 100px;
     background: #fff;
-    border: 1px solid #e8e8e8;
+    border-top: 1px solid black;
     border-radius: 16px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     z-index: 9999;
@@ -644,6 +652,43 @@
     box-shadow: 0 0 20px #ceff1b;
 }
 
+/* CHIP ARROWS */
+.chip-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ceff1b;
+    color: #1a1a1a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.chip-arrow.left {
+    left: 0;
+}
+
+.chip-arrow.right {
+    right: 0;
+}
+
+.chip-arrow:hover {
+    background: #ceff1b;
+    box-shadow: 0 0 10px #ceff1b;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.mp-chipScroller-wrapper .mp-chipScroller {
+    padding: 0 32px 4px;
+}
+
 .mp-viewAllRow {
     display: flex;
     justify-content: flex-end;
@@ -833,6 +878,10 @@
 
     .mp-filterRow::-webkit-scrollbar {
         display: none;
+    }
+
+    .mp-chipScroller-wrapper .mp-chipScroller {
+        padding: 0 32px 4px;
     }
 
     .mp-filterBtn {
@@ -1104,7 +1153,8 @@
 }
 
 .mp-filterInput:focus {
-    border-color: #ceff1b;
+    border-color: transparent !important;
+    box-shadow: 0 0 15px #CEFF1B !important;
 }
 
 /* Custom Sort Dropdown */
@@ -1133,8 +1183,8 @@
 }
 
 .mp-selected-option.open {
-    border-color: #CEFF1B;
-    box-shadow: 0 0 0 3px rgba(206, 255, 27, 0.15);
+    border-color: transparent !important;
+    box-shadow: 0 0 15px #CEFF1B !important;
 }
 
 .mp-arrow {

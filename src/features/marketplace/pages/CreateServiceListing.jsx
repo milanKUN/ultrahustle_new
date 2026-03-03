@@ -315,8 +315,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     <div className="csl-ai">
                       <span className={`csl-ai-pill ${aiPowered ? "active" : ""}`}>
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M11 2C11 2 11 10 19 10C11 10 11 18 11 18C11 18 11 10 3 10C11 10 11 2 11 2Z" />
-                          <path d="M18 16C18 16 18 19 22 19C18 19 18 22 18 22C18 22 18 19 14 19C18 19 18 16 18 16Z" />
+                          <path d="M7 2L9 6.81l4.89 2L9 10.81 7 15.62l-2-4.81-4.81-2 4.81-2L7 2zM17.5 15l1.25 3.01 3 1.25-3 1.25-1.25 3-1.25-3-3-1.25 3-1.25L17.5 15z" />
                         </svg>
                         Ai Powered
                       </span>

@@ -1919,6 +1919,16 @@ export default function Marketplace({ theme, setTheme }) {
         }
     };
 
+    const scrollChips = (direction) => {
+        if (chipRowRef.current) {
+            const scrollAmount = 300;
+            chipRowRef.current.scrollBy({
+                left: direction === "left" ? -scrollAmount : scrollAmount,
+                behavior: "smooth",
+            });
+        }
+    };
+
     // close chip dropdown on outside click
     useEffect(() => {
         const handler = (e) => {
@@ -2089,21 +2099,43 @@ export default function Marketplace({ theme, setTheme }) {
                                         <img src={filterIcon} alt="filtericon" />
                                     </button>
 
-                                    <div className="mp-chipScroller" ref={chipRowRef}>
-                                        {chips.map((chip, idx) => (
-                                            <div className="mp-chipWrap" key={chip.label}>
-                                                <button
-                                                    className={`mp-chip ${openChip === chip.label ? "active open" : ""}`}
-                                                    type="button"
-                                                    onClick={() => handleChipClick(chip.label)}
-                                                >
-                                                    {chip.label}
-                                                    <svg className="mp-chipIcon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        ))}
+                                    <div className="mp-chipScroller-wrapper">
+                                        <button
+                                            className="chip-arrow left"
+                                            type="button"
+                                            onClick={() => scrollChips("left")}
+                                        >
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                <polyline points="15 18 9 12 15 6"></polyline>
+                                            </svg>
+                                        </button>
+
+                                        <div className="mp-chipScroller" ref={chipRowRef}>
+                                            {chips.map((chip, idx) => (
+                                                <div className="mp-chipWrap" key={chip.label}>
+                                                    <button
+                                                        className={`mp-chip ${openChip === chip.label ? "active open" : ""}`}
+                                                        type="button"
+                                                        onClick={() => handleChipClick(chip.label)}
+                                                    >
+                                                        {chip.label}
+                                                        <svg className="mp-chipIcon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <button
+                                            className="chip-arrow right"
+                                            type="button"
+                                            onClick={() => scrollChips("right")}
+                                        >
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                            </svg>
+                                        </button>
                                     </div>
                                 </div>
 
@@ -2141,7 +2173,7 @@ export default function Marketplace({ theme, setTheme }) {
                                                     {p.ai && (
                                                         <span className="mp-aiBadge">
                                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                                                <path d="M12 3c.4 4.1 3.5 7.2 7.6 7.6-.4.4-3.5 3.5-3.9 7.6-.4-4.1-3.5-7.2-7.6-7.6 4.1-.4 7.2-3.5 7.6-7.6zM6 16.5c.2 1.9 1.6 3.3 3.5 3.5-.2.2-1.6 1.6-1.8 3.5-.2-1.9-1.6-3.3-3.5-3.5 1.9-.2 3.3-1.6 3.5-3.5z" />
+                                                                <path d="M7 2L9 6.81l4.89 2L9 10.81 7 15.62l-2-4.81-4.81-2 4.81-2L7 2zM17.5 15l1.25 3.01 3 1.25-3 1.25-1.25 3-1.25-3-3-1.25 3-1.25L17.5 15z" />
                                                             </svg>
                                                             Ai Powered
                                                         </span>
