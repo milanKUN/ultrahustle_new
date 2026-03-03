@@ -658,131 +658,6 @@ const categories = [
         ],
     },
     {
-        label: "teams",
-        chips: [
-            {
-                label: "Graphics & Design",
-                groups: [
-                    { title: "Logo & Brand Identity", items: ["Logo Design", "Brand Style Guides", "Business Cards & Stationery", "Fonts & Typography", "Brand Naming & Strategy", "Art Direction", "Brand Collateral Kits"] },
-                    { title: "Web & App Design", items: ["Website Design", "App UI Design", "UX Research & Wireframing", "Landing Page Design", "Dashboard Design", "Icon Design", "Mobile Design Systems"] },
-                    { title: "Art & Illustration", items: ["Illustration", "Character Design", "Concept Art", "Portraits & Caricatures", "AI Art & Avatar Design", "Comic Book Illustration", "Children's Book Illustration", "Storyboards", "Tattoo Design", "Pattern Design", "Album & Cover Art"] },
-                    { title: "Print & Product Design", items: ["Brochure & Flyer Design", "Business Cards", "Packaging & Label Design", "Poster Design", "Menu Design", "Catalogs & Lookbooks", "Signage & Banners"] },
-                    { title: "Visual Design", items: ["Image Editing & Retouching", "Presentation Design", "Resume Design", "Infographic Design", "Vector Tracing", "Slide Decks"] },
-                    { title: "Marketing Design", items: ["Social Media Posts & Ads", "Email Design", "Display Ads", "Web Banners", "Promotional Graphics", "Campaign Branding"] },
-                    { title: "3D & Architecture Design", items: ["3D Modeling & Rendering", "3D Architecture", "Interior Design", "Landscape Design", "Product Mockups", "3D Printing & Characters", "Lighting & Spatial Design"] },
-                    { title: "Fashion & Merchandise", items: ["T-Shirt & Apparel Design", "Jewelry Design", "Accessory & Footwear Design", "Fashion Illustration", "Textile & Fabric Patterns"] },
-                    { title: "Miscellaneous Design", items: ["Design Consultation", "Style Adaptation", "Design Audits"] },
-                ],
-            },
-            {
-                label: "Programming & Tech",
-                groups: [
-                    { title: "Website Development", items: ["Business Websites", "E-Commerce Websites", "Portfolio & Personal Sites", "Landing Pages", "Custom Websites", "Dropshipping Stores"] },
-                    { title: "Web Platforms", items: ["WordPress", "Shopify", "Wix", "Webflow", "Bubble", "Squarespace", "Framer"] },
-                    { title: "Website Maintenance", items: ["Bug Fixes", "Backup & Migration", "Speed Optimization", "Hosting Setup", "Security Patches", "CMS Updates"] },
-                    { title: "Mobile App Development", items: ["iOS Development", "Android Development", "Flutter Development", "React Native Development", "Cross-Platform Apps", "App Maintenance & Debugging"] },
-                    { title: "Software Development", items: ["Web Applications", "Desktop Software", "APIs & Integrations", "Automations & Workflows", "Database Development", "Testing & QA", "SaaS Product Development"] },
-                    { title: "Game Development", items: ["2D/3D Game Design", "Unity Development", "Unreal Engine Development", "Roblox Games", "AR/VR Games", "Game Environment Design", "Game Character Design"] },
-                    { title: "AI Development", items: ["AI Websites & Apps", "Chatbots", "AI Automations & Agents", "AI Model Training & Fine-Tuning", "Prompt Engineering", "AI Technology Consulting", "Data Labeling & Tagging"] },
-                    { title: "Cloud & Cybersecurity", items: ["Cloud Setup (AWS, GCP, Azure)", "DevOps & Deployment", "Cybersecurity Audits", "Penetration Testing", "Data Backup & Recovery", "API & Server Management"] },
-                    { title: "Blockchain & Crypto", items: ["Smart Contract Development", "Token Launch Support", "NFT Minting", "dApp Development", "Wallet Integrations", "Blockchain Consulting"] },
-                    { title: "Miscellaneous Tech", items: ["Troubleshooting & Debugging", "Code Review", "IT Support & Consultation"] },
-                ],
-            },
-            {
-                label: "Digital Marketing",
-                groups: [
-                    { title: "Search & SEO", items: ["SEO Audit", "On-Page SEO", "Off-Page SEO", "Local SEO", "E-Commerce SEO", "Video SEO", "SEM & PPC Ads", "Generative Engine Optimization (AI SEO)"] },
-                    { title: "Social Media Marketing", items: ["Social Media Strategy", "Social Media Management", "Social Media Design", "Influencer Marketing", "UGC Content Creation", "Social Media Automation"] },
-                    { title: "Channel-Specific Marketing", items: ["Instagram Marketing", "TikTok Marketing", "YouTube Marketing", "LinkedIn Marketing", "Facebook Ads Campaigns", "Twitter/X Growth", "Pinterest Marketing", "Shopify Marketing"] },
-                    { title: "Email & Automation", items: ["Email Marketing", "Newsletter Creation", "Automation Workflows", "Drip Campaigns", "Cold Email Systems", "CRM Integration"] },
-                    { title: "Marketing Analytics & Strategy", items: ["Brand Strategy", "Marketing Funnels", "CRO (Conversion Optimization)", "Web Analytics", "Attribution Tracking", "Market Research"] },
-                    { title: "AI Marketing", items: ["AI Prompt Marketing", "AI-Powered Campaigns", "AI Ad Bidding Optimization", "AI Personalization", "Predictive Marketing"] },
-                    { title: "Industry-Specific", items: ["Music Promotion", "Podcast Promotion", "Book & eBook Marketing", "Course Launch Marketing", "App Store Optimization"] },
-                    { title: "Public Relations & Advertising", items: ["PR Campaigns", "Press Release Writing", "Display Advertising", "Sponsorship Strategy", "Media Buying"] },
-                ],
-            },
-            {
-                label: "Writing & Translation",
-                groups: [
-                    { title: "Content Writing", items: ["Blog & Article Writing", "Website Content", "Scriptwriting", "Creative Writing", "Ghostwriting", "Research Summaries"] },
-                    { title: "Copywriting", items: ["Ad Copy", "Email Copy", "Sales Copy", "Product Descriptions", "Case Studies", "Landing Page Copy"] },
-                    { title: "Editing & Proofreading", items: ["Grammar & Style Editing", "Copy Editing", "Formatting", "Academic Editing", "AI Content Polishing"] },
-                    { title: "Book & Publishing", items: ["Book & eBook Writing", "Book Editing", "Beta Reading", "Book Layout & Formatting", "Publishing Assistance"] },
-                    { title: "Translation & Transcription", items: ["Document Translation", "Website Localization", "Subtitles & Captions", "Proofreading", "Audio Transcription", "Live Interpretation"] },
-                    { title: "Industry Writing", items: ["Business & Finance Writing", "Technical Writing", "Medical Writing", "Real Estate Writing", "Marketing Writing"] },
-                    { title: "AI Writing", items: ["AI Prompt Writing", "AI Story Creation", "AI Editing & Review"] },
-                ],
-            },
-            {
-                label: "Video & Animation",
-                groups: [
-                    { title: "Video Editing", items: ["YouTube Editing", "Short-Form Reels & TikToks", "Visual Effects (VFX)", "Subtitles & Captions", "Multi-Cam Sync & Transitions"] },
-                    { title: "Animation & Motion Graphics", items: ["2D Animation", "3D Animation", "Motion Graphics", "Whiteboard Animation", "Lottie Animations", "NFT & Web3 Animation"] },
-                    { title: "Marketing & Social Videos", items: ["Ads & Commercials", "Explainer Videos", "Product Demos", "Slideshow Videos", "Music Videos"] },
-                    { title: "AI Video", items: ["AI Avatars", "Text-to-Video Creation", "Lip-Sync AI Videos", "AI UGC Content", "Virtual Presenter Videos"] },
-                    { title: "Filmed Video Production", items: ["Drone Videography", "Live Action Explainers", "Event Videography", "Corporate Videos"] },
-                    { title: "Product & App Videos", items: ["3D Product Animation", "App Previews", "E-Commerce Videos", "Kickstarter Videos"] },
-                    { title: "Miscellaneous", items: ["Game Trailers", "Book Trailers", "Meditation Videos", "Video Advice"] },
-                ],
-            },
-            {
-                label: "Music & Audio",
-                groups: [
-                    { title: "Music Production", items: ["Custom Music Composition", "Mixing & Mastering", "Songwriting & Lyrics", "Jingles & Intros", "Soundtracks"] },
-                    { title: "Voice Over & Narration", items: ["Commercial Voice", "Character Voice", "Audiobook Narration", "Podcast Intros"] },
-                    { title: "Audio Engineering", items: ["Audio Editing", "Vocal Tuning", "Restoration & Cleaning", "Sound Enhancement"] },
-                    { title: "Sound Design", items: ["Sound Effects", "Audio Logos & Sonic Branding", "Plugin & Patch Creation"] },
-                    { title: "DJ & Performance", items: ["DJ Mixing", "Drops & Tags", "Remixes"] },
-                    { title: "AI Audio", items: ["AI Voice Generation", "Text-to-Speech", "Voice Cloning", "AI Music Generation"] },
-                    { title: "Lessons", items: ["Music Theory", "Instrument Lessons", "Voice Coaching"] },
-                ],
-            },
-            {
-                label: "Business",
-                groups: [
-                    { title: "Business Formation", items: ["Company Registration", "Market Research", "Business Plans", "Financial Forecasting", "HR Consulting"] },
-                    { title: "Operations & Management", items: ["Virtual Assistant", "Project Management", "SOP Documentation", "Workflow Optimization", "Event Management"] },
-                    { title: "Legal & Compliance", items: ["Contract Drafting", "Legal Review", "Policy Creation", "IP & Trademark Services"] },
-                    { title: "Sales & Customer Care", items: ["Sales Strategy", "CRM Setup", "Customer Support", "Lead Generation"] },
-                    { title: "Analytics & Intelligence", items: ["Data Visualization", "Business Intelligence", "Market Analytics", "Reporting Dashboards"] },
-                    { title: "AI & Automation in Business", items: ["Process Automation", "AI Assistants for Operations", "Data-Driven Decision Tools"] },
-                ],
-            },
-            {
-                label: "Finance & Accounting",
-                groups: [
-                    { title: "Accounting & Reporting", items: ["Bookkeeping", "Payroll Management", "Financial Statements", "CFO Consulting"] },
-                    { title: "Corporate Finance", items: ["Valuation", "M&A Advisory", "Due Diligence", "Fundraising Documents"] },
-                    { title: "Tax & Compliance", items: ["Tax Planning", "Filing & Returns", "Audit Support", "Compliance Reports"] },
-                    { title: "Personal Finance", items: ["Budgeting & Forecasting", "Investment Planning", "Retirement Planning", "Credit Score Advisory"] },
-                    { title: "Financial Analysis", items: ["Financial Modeling", "Cost Analysis", "Profitability Analysis"] },
-                ],
-            },
-            {
-                label: "Personal Growth & Lifestyle",
-                groups: [
-                    { title: "Coaching & Mentorship", items: ["Life Coaching", "Career Mentorship", "Business Mentorship", "Productivity Coaching", "Public Speaking"] },
-                    { title: "Wellness & Fitness", items: ["Fitness Training", "Nutrition Coaching", "Yoga & Meditation", "Wellness Programs"] },
-                    { title: "Fashion & Style", items: ["Personal Styling", "Modeling & Acting Coaching", "Beauty Consulting", "Wardrobe Strategy"] },
-                    { title: "Gaming & Entertainment", items: ["Game Coaching", "Streaming Setup", "Esports Strategy", "Gameplay Reviews"] },
-                    { title: "Leisure & Hobbies", items: ["Astrology & Tarot", "Art & Crafts", "DIY Projects", "Traveling Guidance"] },
-                ],
-            },
-            {
-                label: "AI Services",
-                groups: [
-                    { title: "AI Development", items: ["AI App Creation", "AI Websites", "AI Chatbots", "Automations & Agents", "API & Workflow Integration"] },
-                    { title: "AI Art & Design", items: ["Midjourney Design", "Stable Diffusion Illustration", "AI Avatar Design", "AI Image Editing"] },
-                    { title: "AI Video", items: ["AI Avatars", "AI Music Videos", "AI Video Art", "Text-to-Video"] },
-                    { title: "AI Writing & Content", items: ["Prompt Writing", "AI Storytelling", "Article Generation", "AI Copywriting"] },
-                    { title: "AI Data & Analytics", items: ["Data Collection", "Data Annotation", "Model Training", "Machine Learning Setup"] },
-                    { title: "AI Consulting", items: ["AI Strategy & Integration", "AI Education & Workshops"] },
-                ],
-            },
-        ],
-    },
-    {
         label: "Courses",
         chips: [
             {
@@ -1369,6 +1244,8 @@ const categories = [
             },
         ],
     },
+
+
     {
         label: "Webinars",
         chips: [
@@ -1845,6 +1722,131 @@ const categories = [
             },
         ],
     },
+    {
+        label: "Teams",
+        chips: [
+            {
+                label: "Graphics & Design",
+                groups: [
+                    { title: "Logo & Brand Identity", items: ["Logo Design", "Brand Style Guides", "Business Cards & Stationery", "Fonts & Typography", "Brand Naming & Strategy", "Art Direction", "Brand Collateral Kits"] },
+                    { title: "Web & App Design", items: ["Website Design", "App UI Design", "UX Research & Wireframing", "Landing Page Design", "Dashboard Design", "Icon Design", "Mobile Design Systems"] },
+                    { title: "Art & Illustration", items: ["Illustration", "Character Design", "Concept Art", "Portraits & Caricatures", "AI Art & Avatar Design", "Comic Book Illustration", "Children's Book Illustration", "Storyboards", "Tattoo Design", "Pattern Design", "Album & Cover Art"] },
+                    { title: "Print & Product Design", items: ["Brochure & Flyer Design", "Business Cards", "Packaging & Label Design", "Poster Design", "Menu Design", "Catalogs & Lookbooks", "Signage & Banners"] },
+                    { title: "Visual Design", items: ["Image Editing & Retouching", "Presentation Design", "Resume Design", "Infographic Design", "Vector Tracing", "Slide Decks"] },
+                    { title: "Marketing Design", items: ["Social Media Posts & Ads", "Email Design", "Display Ads", "Web Banners", "Promotional Graphics", "Campaign Branding"] },
+                    { title: "3D & Architecture Design", items: ["3D Modeling & Rendering", "3D Architecture", "Interior Design", "Landscape Design", "Product Mockups", "3D Printing & Characters", "Lighting & Spatial Design"] },
+                    { title: "Fashion & Merchandise", items: ["T-Shirt & Apparel Design", "Jewelry Design", "Accessory & Footwear Design", "Fashion Illustration", "Textile & Fabric Patterns"] },
+                    { title: "Miscellaneous Design", items: ["Design Consultation", "Style Adaptation", "Design Audits"] },
+                ],
+            },
+            {
+                label: "Programming & Tech",
+                groups: [
+                    { title: "Website Development", items: ["Business Websites", "E-Commerce Websites", "Portfolio & Personal Sites", "Landing Pages", "Custom Websites", "Dropshipping Stores"] },
+                    { title: "Web Platforms", items: ["WordPress", "Shopify", "Wix", "Webflow", "Bubble", "Squarespace", "Framer"] },
+                    { title: "Website Maintenance", items: ["Bug Fixes", "Backup & Migration", "Speed Optimization", "Hosting Setup", "Security Patches", "CMS Updates"] },
+                    { title: "Mobile App Development", items: ["iOS Development", "Android Development", "Flutter Development", "React Native Development", "Cross-Platform Apps", "App Maintenance & Debugging"] },
+                    { title: "Software Development", items: ["Web Applications", "Desktop Software", "APIs & Integrations", "Automations & Workflows", "Database Development", "Testing & QA", "SaaS Product Development"] },
+                    { title: "Game Development", items: ["2D/3D Game Design", "Unity Development", "Unreal Engine Development", "Roblox Games", "AR/VR Games", "Game Environment Design", "Game Character Design"] },
+                    { title: "AI Development", items: ["AI Websites & Apps", "Chatbots", "AI Automations & Agents", "AI Model Training & Fine-Tuning", "Prompt Engineering", "AI Technology Consulting", "Data Labeling & Tagging"] },
+                    { title: "Cloud & Cybersecurity", items: ["Cloud Setup (AWS, GCP, Azure)", "DevOps & Deployment", "Cybersecurity Audits", "Penetration Testing", "Data Backup & Recovery", "API & Server Management"] },
+                    { title: "Blockchain & Crypto", items: ["Smart Contract Development", "Token Launch Support", "NFT Minting", "dApp Development", "Wallet Integrations", "Blockchain Consulting"] },
+                    { title: "Miscellaneous Tech", items: ["Troubleshooting & Debugging", "Code Review", "IT Support & Consultation"] },
+                ],
+            },
+            {
+                label: "Digital Marketing",
+                groups: [
+                    { title: "Search & SEO", items: ["SEO Audit", "On-Page SEO", "Off-Page SEO", "Local SEO", "E-Commerce SEO", "Video SEO", "SEM & PPC Ads", "Generative Engine Optimization (AI SEO)"] },
+                    { title: "Social Media Marketing", items: ["Social Media Strategy", "Social Media Management", "Social Media Design", "Influencer Marketing", "UGC Content Creation", "Social Media Automation"] },
+                    { title: "Channel-Specific Marketing", items: ["Instagram Marketing", "TikTok Marketing", "YouTube Marketing", "LinkedIn Marketing", "Facebook Ads Campaigns", "Twitter/X Growth", "Pinterest Marketing", "Shopify Marketing"] },
+                    { title: "Email & Automation", items: ["Email Marketing", "Newsletter Creation", "Automation Workflows", "Drip Campaigns", "Cold Email Systems", "CRM Integration"] },
+                    { title: "Marketing Analytics & Strategy", items: ["Brand Strategy", "Marketing Funnels", "CRO (Conversion Optimization)", "Web Analytics", "Attribution Tracking", "Market Research"] },
+                    { title: "AI Marketing", items: ["AI Prompt Marketing", "AI-Powered Campaigns", "AI Ad Bidding Optimization", "AI Personalization", "Predictive Marketing"] },
+                    { title: "Industry-Specific", items: ["Music Promotion", "Podcast Promotion", "Book & eBook Marketing", "Course Launch Marketing", "App Store Optimization"] },
+                    { title: "Public Relations & Advertising", items: ["PR Campaigns", "Press Release Writing", "Display Advertising", "Sponsorship Strategy", "Media Buying"] },
+                ],
+            },
+            {
+                label: "Writing & Translation",
+                groups: [
+                    { title: "Content Writing", items: ["Blog & Article Writing", "Website Content", "Scriptwriting", "Creative Writing", "Ghostwriting", "Research Summaries"] },
+                    { title: "Copywriting", items: ["Ad Copy", "Email Copy", "Sales Copy", "Product Descriptions", "Case Studies", "Landing Page Copy"] },
+                    { title: "Editing & Proofreading", items: ["Grammar & Style Editing", "Copy Editing", "Formatting", "Academic Editing", "AI Content Polishing"] },
+                    { title: "Book & Publishing", items: ["Book & eBook Writing", "Book Editing", "Beta Reading", "Book Layout & Formatting", "Publishing Assistance"] },
+                    { title: "Translation & Transcription", items: ["Document Translation", "Website Localization", "Subtitles & Captions", "Proofreading", "Audio Transcription", "Live Interpretation"] },
+                    { title: "Industry Writing", items: ["Business & Finance Writing", "Technical Writing", "Medical Writing", "Real Estate Writing", "Marketing Writing"] },
+                    { title: "AI Writing", items: ["AI Prompt Writing", "AI Story Creation", "AI Editing & Review"] },
+                ],
+            },
+            {
+                label: "Video & Animation",
+                groups: [
+                    { title: "Video Editing", items: ["YouTube Editing", "Short-Form Reels & TikToks", "Visual Effects (VFX)", "Subtitles & Captions", "Multi-Cam Sync & Transitions"] },
+                    { title: "Animation & Motion Graphics", items: ["2D Animation", "3D Animation", "Motion Graphics", "Whiteboard Animation", "Lottie Animations", "NFT & Web3 Animation"] },
+                    { title: "Marketing & Social Videos", items: ["Ads & Commercials", "Explainer Videos", "Product Demos", "Slideshow Videos", "Music Videos"] },
+                    { title: "AI Video", items: ["AI Avatars", "Text-to-Video Creation", "Lip-Sync AI Videos", "AI UGC Content", "Virtual Presenter Videos"] },
+                    { title: "Filmed Video Production", items: ["Drone Videography", "Live Action Explainers", "Event Videography", "Corporate Videos"] },
+                    { title: "Product & App Videos", items: ["3D Product Animation", "App Previews", "E-Commerce Videos", "Kickstarter Videos"] },
+                    { title: "Miscellaneous", items: ["Game Trailers", "Book Trailers", "Meditation Videos", "Video Advice"] },
+                ],
+            },
+            {
+                label: "Music & Audio",
+                groups: [
+                    { title: "Music Production", items: ["Custom Music Composition", "Mixing & Mastering", "Songwriting & Lyrics", "Jingles & Intros", "Soundtracks"] },
+                    { title: "Voice Over & Narration", items: ["Commercial Voice", "Character Voice", "Audiobook Narration", "Podcast Intros"] },
+                    { title: "Audio Engineering", items: ["Audio Editing", "Vocal Tuning", "Restoration & Cleaning", "Sound Enhancement"] },
+                    { title: "Sound Design", items: ["Sound Effects", "Audio Logos & Sonic Branding", "Plugin & Patch Creation"] },
+                    { title: "DJ & Performance", items: ["DJ Mixing", "Drops & Tags", "Remixes"] },
+                    { title: "AI Audio", items: ["AI Voice Generation", "Text-to-Speech", "Voice Cloning", "AI Music Generation"] },
+                    { title: "Lessons", items: ["Music Theory", "Instrument Lessons", "Voice Coaching"] },
+                ],
+            },
+            {
+                label: "Business",
+                groups: [
+                    { title: "Business Formation", items: ["Company Registration", "Market Research", "Business Plans", "Financial Forecasting", "HR Consulting"] },
+                    { title: "Operations & Management", items: ["Virtual Assistant", "Project Management", "SOP Documentation", "Workflow Optimization", "Event Management"] },
+                    { title: "Legal & Compliance", items: ["Contract Drafting", "Legal Review", "Policy Creation", "IP & Trademark Services"] },
+                    { title: "Sales & Customer Care", items: ["Sales Strategy", "CRM Setup", "Customer Support", "Lead Generation"] },
+                    { title: "Analytics & Intelligence", items: ["Data Visualization", "Business Intelligence", "Market Analytics", "Reporting Dashboards"] },
+                    { title: "AI & Automation in Business", items: ["Process Automation", "AI Assistants for Operations", "Data-Driven Decision Tools"] },
+                ],
+            },
+            {
+                label: "Finance & Accounting",
+                groups: [
+                    { title: "Accounting & Reporting", items: ["Bookkeeping", "Payroll Management", "Financial Statements", "CFO Consulting"] },
+                    { title: "Corporate Finance", items: ["Valuation", "M&A Advisory", "Due Diligence", "Fundraising Documents"] },
+                    { title: "Tax & Compliance", items: ["Tax Planning", "Filing & Returns", "Audit Support", "Compliance Reports"] },
+                    { title: "Personal Finance", items: ["Budgeting & Forecasting", "Investment Planning", "Retirement Planning", "Credit Score Advisory"] },
+                    { title: "Financial Analysis", items: ["Financial Modeling", "Cost Analysis", "Profitability Analysis"] },
+                ],
+            },
+            {
+                label: "Personal Growth & Lifestyle",
+                groups: [
+                    { title: "Coaching & Mentorship", items: ["Life Coaching", "Career Mentorship", "Business Mentorship", "Productivity Coaching", "Public Speaking"] },
+                    { title: "Wellness & Fitness", items: ["Fitness Training", "Nutrition Coaching", "Yoga & Meditation", "Wellness Programs"] },
+                    { title: "Fashion & Style", items: ["Personal Styling", "Modeling & Acting Coaching", "Beauty Consulting", "Wardrobe Strategy"] },
+                    { title: "Gaming & Entertainment", items: ["Game Coaching", "Streaming Setup", "Esports Strategy", "Gameplay Reviews"] },
+                    { title: "Leisure & Hobbies", items: ["Astrology & Tarot", "Art & Crafts", "DIY Projects", "Traveling Guidance"] },
+                ],
+            },
+            {
+                label: "AI Services",
+                groups: [
+                    { title: "AI Development", items: ["AI App Creation", "AI Websites", "AI Chatbots", "Automations & Agents", "API & Workflow Integration"] },
+                    { title: "AI Art & Design", items: ["Midjourney Design", "Stable Diffusion Illustration", "AI Avatar Design", "AI Image Editing"] },
+                    { title: "AI Video", items: ["AI Avatars", "AI Music Videos", "AI Video Art", "Text-to-Video"] },
+                    { title: "AI Writing & Content", items: ["Prompt Writing", "AI Storytelling", "Article Generation", "AI Copywriting"] },
+                    { title: "AI Data & Analytics", items: ["Data Collection", "Data Annotation", "Model Training", "Machine Learning Setup"] },
+                    { title: "AI Consulting", items: ["AI Strategy & Integration", "AI Education & Workshops"] },
+                ],
+            },
+        ],
+    },
 ];
 
 export default function Marketplace({ theme, setTheme }) {
@@ -1867,6 +1869,7 @@ export default function Marketplace({ theme, setTheme }) {
     // filter panel state
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [filterCats, setFilterCats] = useState([]);
+    const [filterLangs, setFilterLangs] = useState([]);
     const [aiOnly, setAiOnly] = useState(false);
     const [priceMin, setPriceMin] = useState("");
     const [priceMax, setPriceMax] = useState("");
@@ -1881,6 +1884,185 @@ export default function Marketplace({ theme, setTheme }) {
             { value: "price_low", label: "Price: Low to High" },
             { value: "price_high", label: "Price: High to Low" },
             { value: "top_rated", label: "Top Rated" },
+        ],
+        []
+    );
+    const logoGridRef = useRef(null);
+    const webGridRef = useRef(null);
+
+    const scrollGridRef = (ref, direction) => {
+        if (!ref.current) return;
+        const scrollAmount = window.innerWidth > 900 ? 500 : 300;
+        ref.current.scrollBy({
+            left: direction === "left" ? -scrollAmount : scrollAmount,
+            behavior: "smooth",
+        });
+    };
+
+    const logoDesigns = useMemo(
+        () => [
+            {
+                id: "l1",
+                name: "Abigail",
+                verified: true,
+                ai: true,
+                title: "Modern minimalist logo + brand kit for your business",
+                rating: 4.8,
+                reviews: 342,
+                priceLabel: "Price: ₹ 6,999",
+                cta: "Know More",
+                image:
+                    "https://images.unsplash.com/photo-1526481280695-3c687fd5432c?q=80&w=1400&auto=format&fit=crop",
+            },
+            {
+                id: "l2",
+                name: "Abigail",
+                verified: true,
+                ai: false,
+                title: "Luxury logo design with 3 concepts + revisions",
+                rating: 4.7,
+                reviews: 210,
+                priceLabel: "Price: ₹ 9,999",
+                cta: "Buy Now",
+                image:
+                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1400&auto=format&fit=crop",
+            },
+            {
+                id: "l3",
+                name: "Abigail",
+                verified: true,
+                ai: true,
+                title: "Mascot logo + social media kit (AI assisted)",
+                rating: 4.6,
+                reviews: 188,
+                priceLabel: "Price: ₹ 12,499",
+                cta: "Know More",
+                image:
+                    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop",
+            },
+            {
+                id: "l3",
+                name: "Abigail",
+                verified: true,
+                ai: true,
+                title: "Mascot logo + social media kit (AI assisted)",
+                rating: 4.6,
+                reviews: 188,
+                priceLabel: "Price: ₹ 12,499",
+                cta: "Know More",
+                image:
+                    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop",
+            },
+            {
+                id: "l3",
+                name: "Abigail",
+                verified: true,
+                ai: true,
+                title: "Mascot logo + social media kit (AI assisted)",
+                rating: 4.6,
+                reviews: 188,
+                priceLabel: "Price: ₹ 12,499",
+                cta: "Know More",
+                image:
+                    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop",
+            },
+            {
+                id: "l3",
+                name: "Abigail",
+                verified: true,
+                ai: true,
+                title: "Mascot logo + social media kit (AI assisted)",
+                rating: 4.6,
+                reviews: 188,
+                priceLabel: "Price: ₹ 12,499",
+                cta: "Know More",
+                image:
+                    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop",
+            },
+        ],
+        []
+    );
+
+    const webDesigns = useMemo(
+        () => [
+            {
+                id: "w1",
+                name: "Abigail",
+                verified: true,
+                ai: true,
+                title: "High-converting landing page design (Figma/Canva)",
+                rating: 4.9,
+                reviews: 401,
+                priceLabel: "Price: ₹ 14,999",
+                cta: "Know More",
+                image:
+                    "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1400&auto=format&fit=crop",
+            },
+            {
+                id: "w2",
+                name: "Abigail",
+                verified: true,
+                ai: false,
+                title: "Full website UI (5 pages) + responsive components",
+                rating: 4.7,
+                reviews: 156,
+                priceLabel: "Price: From ₹ 29,999",
+                cta: "Buy Now",
+                image:
+                    "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?q=80&w=1400&auto=format&fit=crop",
+            },
+            {
+                id: "w3",
+                name: "Abigail",
+                verified: true,
+                ai: true,
+                title: "Web + app UI kit for SaaS dashboard (AI assisted)",
+                rating: 4.6,
+                reviews: 98,
+                priceLabel: "Price: ₹ 24,000",
+                cta: "Know More",
+                image:
+                    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1400&auto=format&fit=crop",
+            },
+            {
+                id: "w3",
+                name: "Abigail",
+                verified: true,
+                ai: true,
+                title: "Web + app UI kit for SaaS dashboard (AI assisted)",
+                rating: 4.6,
+                reviews: 98,
+                priceLabel: "Price: ₹ 24,000",
+                cta: "Know More",
+                image:
+                    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1400&auto=format&fit=crop",
+            },
+            {
+                id: "w3",
+                name: "Abigail",
+                verified: true,
+                ai: true,
+                title: "Web + app UI kit for SaaS dashboard (AI assisted)",
+                rating: 4.6,
+                reviews: 98,
+                priceLabel: "Price: ₹ 24,000",
+                cta: "Know More",
+                image:
+                    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1400&auto=format&fit=crop",
+            },
+            {
+                id: "w3",
+                name: "Abigail",
+                verified: true,
+                ai: true,
+                title: "Web + app UI kit for SaaS dashboard (AI assisted)",
+                rating: 4.6,
+                reviews: 98,
+                priceLabel: "Price: ₹ 24,000",
+                cta: "Know More",
+                image:
+                    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1400&auto=format&fit=crop",
+            },
         ],
         []
     );
@@ -1909,15 +2091,6 @@ export default function Marketplace({ theme, setTheme }) {
         );
     };
 
-    const scrollGrid = (direction) => {
-        if (gridRef.current) {
-            const scrollAmount = window.innerWidth > 900 ? 500 : 300;
-            gridRef.current.scrollBy({
-                left: direction === "left" ? -scrollAmount : scrollAmount,
-                behavior: "smooth",
-            });
-        }
-    };
 
     const scrollChips = (direction) => {
         if (chipRowRef.current) {
@@ -2139,101 +2312,278 @@ export default function Marketplace({ theme, setTheme }) {
                                     </div>
                                 </div>
 
-                                <h2 className="mp-sectionTitle">All Products</h2>
+                                <div className="mp-listing-container">
+                                    <h2 className="mp-sectionTitle">All Products</h2>
 
-                                <div className="mp-grid" ref={gridRef}>
-                                    {products.map((p) => (
-                                        <article className="mp-card" key={p.id}>
-                                            <div className="mp-imgWrap">
-                                                <img className="mp-img" src={p.image} alt="" />
-                                            </div>
+                                    <div className="mp-grid" ref={gridRef}>
+                                        {products.map((p) => (
+                                            <article className="mp-card" key={p.id}>
+                                                <div className="mp-imgWrap">
+                                                    <img className="mp-img" src={p.image} alt="" />
+                                                </div>
 
-                                            <div className="mp-cardBody">
-                                                <div className="mp-topLine">
-                                                    <div className="mp-user">
-                                                        <div className="mp-avatar"></div>
-                                                        <span className="mp-userName">{p.name}</span>
-                                                        {p.verified && (
-                                                            <svg className="mp-verifyIcon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                                                <path
-                                                                    fill="#1DA1F2"
-                                                                    d="M22.5 12.5c0-1.58-.88-2.95-2.18-3.7.54-1.51.26-3.23-.97-4.46-1.23-1.23-2.95-1.51-4.46-.97C14.13 2.08 12.76 1.2 11.18 1.2c-1.58 0-2.95.88-3.7 2.18-1.51-.54-3.23-.26-4.46.97-1.23 1.23-1.51 2.95-.97 4.46C.88 9.55 0 10.92 0 12.5c0 1.58.88 2.95 2.18 3.7-.54 1.51-.26 3.23.97 4.46 1.23 1.23 2.95 1.51 4.46.97 0.74 1.3 2.11 2.18 3.69 2.18 1.58 0 2.95-.88 3.7-2.18 1.51.54 3.23.26 4.46-.97 1.23-1.23 1.51-2.95.97-4.46 1.3-.75 2.18-2.12 2.18-3.7z"
-                                                                />
-                                                                <path
-                                                                    stroke="#FFF"
-                                                                    strokeWidth="3"
-                                                                    strokeLinecap="round"
-                                                                    strokeLinejoin="round"
-                                                                    d="M8 12.5l3 3 5-5"
-                                                                />
-                                                            </svg>
+                                                <div className="mp-cardBody">
+                                                    <div className="mp-topLine">
+                                                        <div className="mp-user">
+                                                            <div className="mp-avatar"></div>
+                                                            <span className="mp-userName">{p.name}</span>
+                                                            {p.verified && (
+                                                                <svg className="mp-verifyIcon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                                                    <path
+                                                                        fill="#1DA1F2"
+                                                                        d="M22.5 12.5c0-1.58-.88-2.95-2.18-3.7.54-1.51.26-3.23-.97-4.46-1.23-1.23-2.95-1.51-4.46-.97C14.13 2.08 12.76 1.2 11.18 1.2c-1.58 0-2.95.88-3.7 2.18-1.51-.54-3.23-.26-4.46.97-1.23 1.23-1.51 2.95-.97 4.46C.88 9.55 0 10.92 0 12.5c0 1.58.88 2.95 2.18 3.7-.54 1.51-.26 3.23.97 4.46 1.23 1.23 2.95 1.51 4.46.97 0.74 1.3 2.11 2.18 3.69 2.18 1.58 0 2.95-.88 3.7-2.18 1.51.54 3.23.26 4.46-.97 1.23-1.23 1.51-2.95.97-4.46 1.3-.75 2.18-2.12 2.18-3.7z"
+                                                                    />
+                                                                    <path
+                                                                        stroke="#FFF"
+                                                                        strokeWidth="3"
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        d="M8 12.5l3 3 5-5"
+                                                                    />
+                                                                </svg>
+                                                            )}
+                                                        </div>
+
+                                                        {p.ai && (
+                                                            <span className="mp-aiBadge">
+                                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                    <path d="M7 2L9 6.81l4.89 2L9 10.81 7 15.62l-2-4.81-4.81-2 4.81-2L7 2zM17.5 15l1.25 3.01 3 1.25-3 1.25-1.25 3-1.25-3-3-1.25 3-1.25L17.5 15z" />
+                                                                </svg>
+                                                                Ai Powered
+                                                            </span>
                                                         )}
                                                     </div>
 
-                                                    {p.ai && (
-                                                        <span className="mp-aiBadge">
-                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                                                <path d="M7 2L9 6.81l4.89 2L9 10.81 7 15.62l-2-4.81-4.81-2 4.81-2L7 2zM17.5 15l1.25 3.01 3 1.25-3 1.25-1.25 3-1.25-3-3-1.25 3-1.25L17.5 15z" />
+                                                    <p className="mp-desc">{p.title}</p>
+
+                                                    <div className="mp-metaRow">
+                                                        <div className="mp-rating">
+                                                            <span className="mp-star">★</span>
+                                                            <span>{p.rating.toFixed(1)}</span>
+                                                            <span className="mp-rev">({p.reviews})</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="mp-bottomRow">
+                                                        <div className="mp-price">Price: ₹ 24,000</div>
+                                                        <button className="mp-cta" type="button">
+                                                            {p.cta}
+                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
+                                                                <polyline points="9 18 15 12 9 6"></polyline>
                                                             </svg>
-                                                            Ai Powered
-                                                        </span>
-                                                    )}
-                                                </div>
-
-                                                <p className="mp-desc">{p.title}</p>
-
-                                                <div className="mp-metaRow">
-                                                    <div className="mp-rating">
-                                                        <span className="mp-star">★</span>
-                                                        <span>{p.rating.toFixed(1)}</span>
-                                                        <span className="mp-rev">({p.reviews})</span>
+                                                        </button>
                                                     </div>
                                                 </div>
+                                            </article>
+                                        ))}
+                                    </div>
 
-                                                <div className="mp-bottomRow">
-                                                    <div className="mp-price">Price: ₹ 24,000</div>
-                                                    <button className="mp-cta" type="button">
-                                                        {p.cta}
-                                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
-                                                            <polyline points="9 18 15 12 9 6"></polyline>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    ))}
-                                </div>
+                                    <button
+                                        className="mp-floatArrow left"
+                                        type="button"
+                                        aria-label="Previous"
+                                        onClick={() => scrollGridRef(gridRef, "left")}
+                                    >
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="15 18 9 12 15 6"></polyline>
+                                        </svg>
+                                    </button>
 
-                                <div className="mp-viewAllRow">
-                                    <button className="mp-viewAllBtn" type="button">
-                                        View All
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <button
+                                        className="mp-floatArrow right"
+                                        type="button"
+                                        aria-label="Next"
+                                        onClick={() => scrollGridRef(gridRef, "right")}
+                                    >
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                                             <polyline points="9 18 15 12 9 6"></polyline>
                                         </svg>
                                     </button>
+
+                                    <div className="mp-viewAllRow">
+                                        <button className="mp-viewAllBtn" type="button">
+                                            View All
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="mp-listing-container">
+                                    <h2 className="mp-sectionTitle">Logo Design</h2>
+
+                                    <div className="mp-grid" ref={logoGridRef}>
+                                        {logoDesigns.map((p) => (
+                                            <article className="mp-card" key={p.id}>
+                                                <div className="mp-imgWrap">
+                                                    <img className="mp-img" src={p.image} alt="" />
+                                                </div>
+
+                                                <div className="mp-cardBody">
+                                                    <div className="mp-topLine">
+                                                        <div className="mp-user">
+                                                            <div className="mp-avatar"></div>
+                                                            <span className="mp-userName">{p.name}</span>
+                                                            {p.verified && (
+                                                                <svg className="mp-verifyIcon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                                                    <path
+                                                                        fill="#1DA1F2"
+                                                                        d="M22.5 12.5c0-1.58-.88-2.95-2.18-3.7.54-1.51.26-3.23-.97-4.46-1.23-1.23-2.95-1.51-4.46-.97C14.13 2.08 12.76 1.2 11.18 1.2c-1.58 0-2.95.88-3.7 2.18-1.51-.54-3.23-.26-4.46.97-1.23 1.23-1.51 2.95-.97 4.46C.88 9.55 0 10.92 0 12.5c0 1.58.88 2.95 2.18 3.7-.54 1.51-.26 3.23.97 4.46 1.23 1.23 2.95 1.51 4.46.97 0.74 1.3 2.11 2.18 3.69 2.18 1.58 0 2.95-.88 3.7-2.18 1.51.54 3.23.26 4.46-.97 1.23-1.23 1.51-2.95.97-4.46 1.3-.75 2.18-2.12 2.18-3.7z"
+                                                                    />
+                                                                    <path
+                                                                        stroke="#FFF"
+                                                                        strokeWidth="3"
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        d="M8 12.5l3 3 5-5"
+                                                                    />
+                                                                </svg>
+                                                            )}
+                                                        </div>
+
+                                                        {p.ai && (
+                                                            <span className="mp-aiBadge">
+                                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                    <path d="M7 2L9 6.81l4.89 2L9 10.81 7 15.62l-2-4.81-4.81-2 4.81-2L7 2zM17.5 15l1.25 3.01 3 1.25-3 1.25-1.25 3-1.25-3-3-1.25 3-1.25L17.5 15z" />
+                                                                </svg>
+                                                                Ai Powered
+                                                            </span>
+                                                        )}
+                                                    </div>
+
+                                                    <p className="mp-desc">{p.title}</p>
+
+                                                    <div className="mp-metaRow">
+                                                        <div className="mp-rating">
+                                                            <span className="mp-star">★</span>
+                                                            <span>{p.rating.toFixed(1)}</span>
+                                                            <span className="mp-rev">({p.reviews})</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="mp-bottomRow">
+                                                        <div className="mp-price">{p.priceLabel}</div>
+                                                        <button className="mp-cta" type="button">
+                                                            {p.cta}
+                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
+                                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        ))}
+                                    </div>
+
+                                    <button className="mp-floatArrow left" type="button" aria-label="Previous" onClick={() => scrollGridRef(logoGridRef, "left")}>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="15 18 9 12 15 6"></polyline>
+                                        </svg>
+                                    </button>
+
+                                    <button className="mp-floatArrow right" type="button" aria-label="Next" onClick={() => scrollGridRef(logoGridRef, "right")}>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg>
+                                    </button>
+
+                                    <div className="mp-viewAllRow">
+                                        <button className="mp-viewAllBtn" type="button">
+                                            View All Logo Designs
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
 
-                                <button
-                                    className="mp-floatArrow left"
-                                    type="button"
-                                    aria-label="Previous"
-                                    onClick={() => scrollGrid("left")}
-                                >
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                        <polyline points="15 18 9 12 15 6"></polyline>
-                                    </svg>
-                                </button>
+                                <div className="mp-listing-container">
+                                    <h2 className="mp-sectionTitle">Web Design</h2>
 
-                                <button
-                                    className="mp-floatArrow right"
-                                    type="button"
-                                    aria-label="Next"
-                                    onClick={() => scrollGrid("right")}
-                                >
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                        <polyline points="9 18 15 12 9 6"></polyline>
-                                    </svg>
-                                </button>
+                                    <div className="mp-grid" ref={webGridRef}>
+                                        {webDesigns.map((p) => (
+                                            <article className="mp-card" key={p.id}>
+                                                <div className="mp-imgWrap">
+                                                    <img className="mp-img" src={p.image} alt="" />
+                                                </div>
+
+                                                <div className="mp-cardBody">
+                                                    <div className="mp-topLine">
+                                                        <div className="mp-user">
+                                                            <div className="mp-avatar"></div>
+                                                            <span className="mp-userName">{p.name}</span>
+                                                            {p.verified && (
+                                                                <svg className="mp-verifyIcon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                                                    <path
+                                                                        fill="#1DA1F2"
+                                                                        d="M22.5 12.5c0-1.58-.88-2.95-2.18-3.7.54-1.51.26-3.23-.97-4.46-1.23-1.23-2.95-1.51-4.46-.97C14.13 2.08 12.76 1.2 11.18 1.2c-1.58 0-2.95.88-3.7 2.18-1.51-.54-3.23-.26-4.46.97-1.23 1.23-1.51 2.95-.97 4.46C.88 9.55 0 10.92 0 12.5c0 1.58.88 2.95 2.18 3.7-.54 1.51-.26 3.23.97 4.46 1.23 1.23 2.95 1.51 4.46.97 0.74 1.3 2.11 2.18 3.69 2.18 1.58 0 2.95-.88 3.7-2.18 1.51.54 3.23.26 4.46-.97 1.23-1.23 1.51-2.95.97-4.46 1.3-.75 2.18-2.12 2.18-3.7z"
+                                                                    />
+                                                                    <path
+                                                                        stroke="#FFF"
+                                                                        strokeWidth="3"
+                                                                        strokeLinecap="round"
+                                                                        strokeLinejoin="round"
+                                                                        d="M8 12.5l3 3 5-5"
+                                                                    />
+                                                                </svg>
+                                                            )}
+                                                        </div>
+
+                                                        {p.ai && (
+                                                            <span className="mp-aiBadge">
+                                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                    <path d="M7 2L9 6.81l4.89 2L9 10.81 7 15.62l-2-4.81-4.81-2 4.81-2L7 2zM17.5 15l1.25 3.01 3 1.25-3 1.25-1.25 3-1.25-3-3-1.25 3-1.25L17.5 15z" />
+                                                                </svg>
+                                                                Ai Powered
+                                                            </span>
+                                                        )}
+                                                    </div>
+
+                                                    <p className="mp-desc">{p.title}</p>
+
+                                                    <div className="mp-metaRow">
+                                                        <div className="mp-rating">
+                                                            <span className="mp-star">★</span>
+                                                            <span>{p.rating.toFixed(1)}</span>
+                                                            <span className="mp-rev">({p.reviews})</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="mp-bottomRow">
+                                                        <div className="mp-price">{p.priceLabel}</div>
+                                                        <button className="mp-cta" type="button">
+                                                            {p.cta}
+                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
+                                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        ))}
+                                    </div>
+
+                                    <button className="mp-floatArrow left" type="button" aria-label="Previous" onClick={() => scrollGridRef(webGridRef, "left")}>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="15 18 9 12 15 6"></polyline>
+                                        </svg>
+                                    </button>
+
+                                    <button className="mp-floatArrow right" type="button" aria-label="Next" onClick={() => scrollGridRef(webGridRef, "right")}>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                            <polyline points="9 18 15 12 9 6"></polyline>
+                                        </svg>
+                                    </button>
+
+                                    <div className="mp-viewAllRow">
+                                        <button className="mp-viewAllBtn" type="button">
+                                            View All Web Designs
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                <polyline points="9 18 15 12 9 6"></polyline>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2281,64 +2631,125 @@ export default function Marketplace({ theme, setTheme }) {
                             <button className="mp-filterClose" type="button" onClick={() => setIsFilterOpen(false)}>✕</button>
                         </div>
 
-                        <div className="mp-filterSection">
-                            <div className="mp-filterLabel">Product Categories</div>
-                            <div className="mp-filterCatRow">
-                                {["Service", "Digital Product", "Course", "Webinar", "Teams"].map((cat) => (
-                                    <button key={cat} type="button" className={`mp-filterCatBtn ${filterCats.includes(cat) ? "active" : ""}`} onClick={() => toggleFilterCat(cat)}>{cat}</button>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="mp-filterSection">
-                            <div className="mp-filterLabel">Trust Filter</div>
-                            <div className="mp-filterToggleRow">
-                                <button type="button" className={`mp-toggle ${aiOnly ? "on" : ""}`} onClick={() => setAiOnly((p) => !p)} aria-pressed={aiOnly}><span className="mp-toggleKnob" /></button>
-                                <span className="mp-filterToggleLabel">AI-Powered only</span>
-                            </div>
-                            <p className="mp-filterHint">* Use "Apply filters" to apply AI.</p>
-                        </div>
-
-                        <div className="mp-filterSection">
-                            <div className="mp-filterLabel">Price Range ($)</div>
-                            <div className="mp-filterPriceRow">
-                                <input className="mp-filterInput" type="number" placeholder="Min" value={priceMin} onChange={(e) => setPriceMin(e.target.value)} />
-                                <input className="mp-filterInput" type="number" placeholder="Max" value={priceMax} onChange={(e) => setPriceMax(e.target.value)} />
-                            </div>
-                        </div>
-
-                        <div className="mp-filterSection">
-                            <div className="mp-filterLabel">Sort By</div>
-                            <div className="mp-custom-select" ref={sortRef}>
-                                <div
-                                    className={`mp-selected-option ${isSortOpen ? "open" : ""}`}
-                                    onClick={() => setIsSortOpen((v) => !v)}
-                                    role="button"
-                                    tabIndex={0}
-                                    onKeyDown={(e) => {
-                                        if (e.key === "Enter" || e.key === " ") setIsSortOpen((v) => !v);
-                                    }}
-                                >
-                                    {selectedSortLabel}
-                                    <span className="mp-arrow">▼</span>
+                        <div className="mp-filter-scroll-body">
+                            <div className="mp-filterSection">
+                                <div className="mp-filterLabel">Product Categories</div>
+                                <div className="mp-filterCatRow">
+                                    {["Service", "Digital Product", "Course", "Webinar", "Teams"].map((cat) => (
+                                        <button key={cat} type="button" className={`mp-filterCatBtn ${filterCats.includes(cat) ? "active" : ""}`} onClick={() => toggleFilterCat(cat)}>{cat}</button>
+                                    ))}
                                 </div>
+                            </div>
 
-                                {isSortOpen && (
-                                    <ul className="mp-options-list">
-                                        {sortOptions.map((option) => (
-                                            <li
-                                                key={option.value}
-                                                className={sortBy === option.value ? "active" : ""}
-                                                onClick={() => {
-                                                    setSortBy(option.value);
-                                                    setIsSortOpen(false);
-                                                }}
-                                            >
-                                                {option.label}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )}
+                            <div className="mp-filterSection">
+                                <div className="mp-filterLabel">Language</div>
+                                <div className="mp-filterCatRow">
+                                    {["English", "Hindi", "Tamil", "Spanish", "French", "German"].map((lang) => (
+                                        <button
+                                            key={lang}
+                                            type="button"
+                                            className={`mp-filterCatBtn ${filterLangs.includes(lang) ? "active" : ""}`}
+                                            onClick={() => setFilterLangs((prev) =>
+                                                prev.includes(lang) ? prev.filter((l) => l !== lang) : [...prev, lang]
+                                            )}
+                                        >{lang}</button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="mp-filterSection">
+                                <div className="mp-filterLabel">Trust Filter</div>
+                                <div className="mp-filterToggleRow">
+                                    <button type="button" className={`mp-toggle ${aiOnly ? "on" : ""}`} onClick={() => setAiOnly((p) => !p)} aria-pressed={aiOnly}><span className="mp-toggleKnob" /></button>
+                                    <span className="mp-filterToggleLabel">AI-Powered only</span>
+                                </div>
+                                <p className="mp-filterHint">* Use "Apply filters" to apply AI.</p>
+                            </div>
+
+                            <div className="mp-filterSection">
+                                <div className="mp-filterHeaderPrice">
+                                    <div className="mp-filterLabel">Price Range</div>
+                                    <div className="mp-filterValueText">₹{priceMin || 0} — ₹{priceMax || 50000}</div>
+                                </div>
+                                <div className="mp-price-slider-container">
+                                    <div
+                                        className="mp-slider-track"
+                                        style={{
+                                            background: `linear-gradient(to right, 
+                                            rgba(255, 255, 255, 0.1) ${((priceMin || 0) / 50000) * 100}%, 
+                                            #ceff1b ${((priceMin || 0) / 50000) * 100}%, 
+                                            #ceff1b ${((priceMax || 50000) / 50000) * 100}%, 
+                                            rgba(255, 255, 255, 0.1) ${((priceMax || 50000) / 50000) * 100}%)`
+                                        }}
+                                    />
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max="50000"
+                                        value={priceMin || 0}
+                                        onChange={(e) => {
+                                            const value = Math.min(Number(e.target.value), (priceMax || 50000) - 100);
+                                            setPriceMin(value);
+                                        }}
+                                        className="mp-range-input mp-range-min"
+                                    />
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max="50000"
+                                        value={priceMax || 50000}
+                                        onChange={(e) => {
+                                            const value = Math.max(Number(e.target.value), (priceMin || 0) + 100);
+                                            setPriceMax(value);
+                                        }}
+                                        className="mp-range-input mp-range-max"
+                                    />
+                                </div>
+                                <div className="mp-price-labels">
+                                    <div className="mp-price-label-item">
+                                        <span>Min</span>
+                                        <div className="mp-price-label-box">₹{priceMin || 0}</div>
+                                    </div>
+                                    <div className="mp-price-label-item">
+                                        <span>Max</span>
+                                        <div className="mp-price-label-box">₹{priceMax || 50000}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="mp-filterSection">
+                                <div className="mp-filterLabel">Sort By</div>
+                                <div className="mp-custom-select" ref={sortRef}>
+                                    <div
+                                        className={`mp-selected-option ${isSortOpen ? "open" : ""}`}
+                                        onClick={() => setIsSortOpen((v) => !v)}
+                                        role="button"
+                                        tabIndex={0}
+                                        onKeyDown={(e) => {
+                                            if (e.key === "Enter" || e.key === " ") setIsSortOpen((v) => !v);
+                                        }}
+                                    >
+                                        {selectedSortLabel}
+                                        <span className="mp-arrow">▼</span>
+                                    </div>
+
+                                    {isSortOpen && (
+                                        <ul className="mp-options-list">
+                                            {sortOptions.map((option) => (
+                                                <li
+                                                    key={option.value}
+                                                    className={sortBy === option.value ? "active" : ""}
+                                                    onClick={() => {
+                                                        setSortBy(option.value);
+                                                        setIsSortOpen(false);
+                                                    }}
+                                                >
+                                                    {option.label}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
                             </div>
                         </div>
 

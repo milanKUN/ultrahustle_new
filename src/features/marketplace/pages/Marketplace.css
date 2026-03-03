@@ -628,6 +628,12 @@
     transition: all 0.3s ease;
 }
 
+/* Listing Container for Relative Positioning */
+.mp-listing-container {
+    position: relative;
+    margin-bottom: 24px;
+}
+
 .mp-floatArrow {
     position: absolute;
     top: 50%;
@@ -642,23 +648,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    z-index: 100;
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    transition: all 0.2s ease;
 }
 
 .mp-floatArrow.left {
-    left: 12px;
+    left: -24px;
 }
 
 .mp-floatArrow.right {
-    right: 12px;
+    right: -24px;
 }
 
 .mp-floatArrow:hover {
+    background: #d4ff33;
     transform: translateY(-50%) scale(1.1);
-    background: #ceff1b;
-    box-shadow: 0 0 20px #ceff1b;
 }
 
 /* CHIP ARROWS */
@@ -807,10 +812,20 @@
         flex-wrap: wrap;
     }
 
-    /* Arrow buttons smaller on mobile */
+    /* Arrow buttons visible on mobile */
     .mp-floatArrow {
         width: 36px;
         height: 36px;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .mp-floatArrow.left {
+        left: -10px;
+    }
+
+    .mp-floatArrow.right {
+        right: -10px;
     }
 
     .mp-floatArrow svg {
@@ -993,6 +1008,22 @@
     animation: slideInLeft 0.22s ease;
 }
 
+.mp-filter-scroll-body {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.mp-filter-scroll-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mp-filter-scroll-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
 @keyframes slideInLeft {
     from {
         transform: translateX(-100%);
@@ -1053,7 +1084,7 @@
 }
 
 .dark .mp-filterLabel {
-    color: #ceff1b;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .mp-filterCatRow {
@@ -1065,9 +1096,9 @@
 .mp-filterCatBtn {
     padding: 7px 16px;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     background: transparent;
-    color: #d0d0d0;
+    color: #1a1a1a;
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
@@ -1075,6 +1106,16 @@
 }
 
 .mp-filterCatBtn:hover {
+    border-color: #ceff1b;
+    color: #000;
+}
+
+.dark .mp-filterCatBtn {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #eee;
+}
+
+.dark .mp-filterCatBtn:hover {
     border-color: #ceff1b;
     color: #fff;
 }
@@ -1084,6 +1125,23 @@
     color: #1a1a1a;
     border-color: #ceff1b;
     font-weight: 700;
+}
+
+/* Light mode button overrides */
+.light .mp-filterCatBtn {
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #555;
+}
+
+.light .mp-filterCatBtn:hover {
+    border-color: #ceff1b;
+    color: #000;
+}
+
+.light .mp-filterCatBtn.active {
+    background: #ceff1b;
+    color: #1a1a1a;
+    border-color: #ceff1b;
 }
 
 /* Toggle switch */
@@ -1138,6 +1196,19 @@
     font-size: 11px;
     color: #666;
     margin: 0;
+}
+
+/* Light mode toggle & hint overrides */
+.light .mp-toggle {
+    background: #e0e0e0;
+}
+
+.light .mp-toggle.on {
+    background: #f0f0f0;
+}
+
+.light .mp-filterHint {
+    color: #888;
 }
 
 /* Price range */
@@ -1250,6 +1321,33 @@
     font-weight: 600;
 }
 
+/* Light mode Select overrides */
+.light .mp-selected-option {
+    background: #f5f5f5;
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.light .mp-selected-option:hover {
+    border-color: rgba(206, 255, 27, 0.8);
+}
+
+.light .mp-options-list {
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.light .mp-options-list li {
+    color: #555;
+}
+
+.light .mp-options-list li:hover,
+.light .mp-options-list li.active {
+    background: #CEFF1B;
+    color: #1a1a1a;
+}
+
 /* Footer */
 .mp-filterFooter {
     margin-top: auto;
@@ -1301,39 +1399,172 @@
     border-color: rgba(0, 0, 0, 0.08);
 }
 
-.light .mp-filterDrawer .mp-filterInput {
-    background: #f5f5f5;
-    border-color: rgba(0, 0, 0, 0.12);
-    color: #1a1a1a;
+/* Price Slider Styles */
+.mp-filterHeaderPrice {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.light .mp-selected-option {
-    background: #f5f5f5;
-    border-color: rgba(0, 0, 0, 0.1);
-    color: #1a1a1a;
+.mp-filterValueText {
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
 }
 
-.light .mp-options-list {
-    background: #fff;
-    border-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+.mp-price-slider-container {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    --mp-neon-range: #ceff1b;
+    --mp-neon-min: #00f3ff;
+    --mp-neon-max: #d946ef;
 }
 
-.light .mp-options-list li {
-    color: #444;
+.mp-slider-track {
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    z-index: 1;
+    box-shadow:
+        inset 0 0 4px rgba(0, 0, 0, 0.4),
+        0 0 12px rgba(0, 243, 255, 0.15),
+        0 0 20px rgba(217, 70, 239, 0.1);
+    transition: box-shadow 0.3s ease;
 }
 
-.light .mp-options-list li:hover {
+.mp-range-input {
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    z-index: 2;
+    margin: 0;
+}
+
+/* Base thumb styles */
+.mp-range-input::-webkit-slider-thumb {
+    pointer-events: auto;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2.5px solid rgba(255, 255, 255, 0.9);
+    cursor: grab;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Min Thumb - Black */
+.mp-range-min::-webkit-slider-thumb {
+    background: #000;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Max Thumb - Black */
+.mp-range-max::-webkit-slider-thumb {
+    background: #000;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+.mp-range-input::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    border-width: 3px;
+    cursor: grabbing;
+}
+
+/* Firefox Support */
+.mp-range-min::-moz-range-thumb {
+    pointer-events: auto;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #000;
+    border: 2px solid #fff;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+.mp-range-max::-moz-range-thumb {
+    pointer-events: auto;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #000;
+    border: 2px solid #fff;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+.mp-price-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.mp-price-label-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 45%;
+}
+
+.mp-price-label-item span {
+    font-size: 11px;
+    color: var(--mp-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.mp-price-label-box {
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.mp-price-label-item:first-child .mp-price-label-box {
+    border-color: black;
+    color: var(--mp-neon-min);
+    background: transparent;
+    background-color: #CEFF1B;
+
+}
+
+.mp-price-label-item:last-child .mp-price-label-box {
+    border-color: 1px solid black;
+    color: var(--mp-neon-max);
     background: #CEFF1B;
+}
+
+/* Light mode overrides */
+.light .mp-price-label-box {
+    background: #f8f8f8;
     color: #1a1a1a;
 }
 
-.light .mp-options-list li.active {
-    background: #CEFF1B;
-    color: #1a1a1a;
+.light .mp-slider-track {
+    background: rgba(0, 0, 0, 0.05);
 }
 
-.light .mp-filterCatBtn {
-    border-color: rgba(0, 0, 0, 0.15);
-    color: #333;
+.light .mp-price-label-item span {
+    color: #666;
+}
+
+.light .mp-filterValueText {
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 }
