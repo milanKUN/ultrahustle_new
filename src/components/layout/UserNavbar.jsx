@@ -367,8 +367,8 @@ const NavbarLight = ({ onDropdownChange, theme = "light", toggleSidebar, isSideb
               <span className={`nav-pill ${location.pathname === "/dashboard" ? "active" : ""}`}></span>
               <span className="nav-text">Dashboard</span>
             </Link>
-            <Link to="/contracts-listing" className="nav-item">
-              <span className={`nav-pill ${location.pathname === "/contracts-listing" ? "active" : ""}`}></span>
+            <Link to="/marketplace" className="nav-item">
+              <span className={`nav-pill ${location.pathname === "/marketplace" ? "active" : ""}`}></span>
               <span className="nav-text">Marketplace</span>
             </Link>
           </nav>

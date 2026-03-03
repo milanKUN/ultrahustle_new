@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import UserNavbar from "../../../components/layout/UserNavbar";
+import MobileBottomNav from "../../../components/layout/MobileBottomNav";
 import heroImg from "../../../assets/marketplacehero.png";
 import heroImgDark from "../../../assets/marketplacedark.png";
 import filterIcon from "../../../assets/filtericon.svg";
@@ -1870,6 +1871,7 @@ export default function Marketplace({ theme, setTheme }) {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [filterCats, setFilterCats] = useState([]);
     const [filterLangs, setFilterLangs] = useState([]);
+    const [filterTags, setFilterTags] = useState([]);
     const [aiOnly, setAiOnly] = useState(false);
     const [priceMin, setPriceMin] = useState("");
     const [priceMax, setPriceMax] = useState("");
@@ -2489,7 +2491,7 @@ export default function Marketplace({ theme, setTheme }) {
 
                                     <div className="mp-viewAllRow">
                                         <button className="mp-viewAllBtn" type="button">
-                                            View All Logo Designs
+                                            View All
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                                 <polyline points="9 18 15 12 9 6"></polyline>
                                             </svg>
@@ -2577,7 +2579,7 @@ export default function Marketplace({ theme, setTheme }) {
 
                                     <div className="mp-viewAllRow">
                                         <button className="mp-viewAllBtn" type="button">
-                                            View All Web Designs
+                                            View All
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                                 <polyline points="9 18 15 12 9 6"></polyline>
                                             </svg>
@@ -2628,7 +2630,23 @@ export default function Marketplace({ theme, setTheme }) {
                     <div className="mp-filterDrawer" onClick={(e) => e.stopPropagation()}>
                         <div className="mp-filterHeader">
                             <span className="mp-filterTitle">Filters</span>
-                            <button className="mp-filterClose" type="button" onClick={() => setIsFilterOpen(false)}>✕</button>
+                            <div className="flex items-center gap-4">
+                                <button
+                                    className="mp-clearBtn"
+                                    type="button"
+                                    onClick={() => {
+                                        setFilterCats([]);
+                                        setFilterLangs([]);
+                                        setFilterTags([]);
+                                        setAiOnly(false);
+                                        setPriceMin("");
+                                        setPriceMax("");
+                                    }}
+                                >
+                                    Clear All
+                                </button>
+                                <button className="mp-filterClose" type="button" onClick={() => setIsFilterOpen(false)}>✕</button>
+                            </div>
                         </div>
 
                         <div className="mp-filter-scroll-body">
@@ -2653,6 +2671,21 @@ export default function Marketplace({ theme, setTheme }) {
                                                 prev.includes(lang) ? prev.filter((l) => l !== lang) : [...prev, lang]
                                             )}
                                         >{lang}</button>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="mp-filterSection">
+                                <div className="mp-filterLabel">Tags</div>
+                                <div className="mp-filterCatRow">
+                                    {["Ai", "Automation", "Branding", "Web Dev", "Copywriting", "Design", "Video", "Voiceover"].map((Tag) => (
+                                        <button
+                                            key={Tag}
+                                            type="button"
+                                            className={`mp-filterCatBtn ${filterTags.includes(Tag) ? "active" : ""}`}
+                                            onClick={() => setFilterTags((prev) =>
+                                                prev.includes(Tag) ? prev.filter((l) => l !== Tag) : [...prev, Tag]
+                                            )}
+                                        >{Tag}</button>
                                     ))}
                                 </div>
                             </div>
@@ -2759,6 +2792,9 @@ export default function Marketplace({ theme, setTheme }) {
                     </div>
                 </div>
             )}
+
+            {/* MOBILE BOTTOM NAV */}
+            <MobileBottomNav theme={theme} />
         </>
     );
 }
