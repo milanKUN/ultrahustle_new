@@ -262,7 +262,7 @@
     position: sticky;
     top: 120px;
     background: var(--tsl-card-bg);
-    border: 1px solid var(--tsl-lime);
+    border: 1px solid #eee;
     border-radius: 16px;
     box-shadow: var(--tsl-card-shadow);
     overflow: hidden;
@@ -271,29 +271,29 @@
 .tsl-pricing-tabs {
     display: flex;
     background: var(--tsl-lime);
-    padding: 8px;
-    border-radius: 12px;
+    padding: 6px;
+    border-radius: 8px;
     margin: 16px;
-    gap: 8px;
+    gap: 6px;
 }
 
 .tsl-tab {
     flex: 1;
     border: none;
-    padding: 12px 10px;
+    padding: 10px 8px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
     background: transparent;
     color: #1a1a1a;
-    transition: all 0.3s ease;
-    border-radius: 8px;
+    transition: all 0.2s ease;
+    border-radius: 6px;
 }
 
 .tsl-tab.active {
     background: #ffffff !important;
     color: #000000 !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .tsl-pricing-content {
@@ -304,75 +304,93 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .tsl-price {
-    font-size: 32px;
-    font-weight: 700;
+    font-size: 38px;
+    font-weight: 800;
+    color: #1a1a1a;
+    display: block;
 }
 
 .tsl-delivery-info {
     text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.tsl-delivery-label {
     font-size: 13px;
-    color: var(--tsl-muted);
+    color: #888;
+}
+
+.tsl-delivery-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
 }
 
 .tsl-pkg-desc {
     font-size: 14px;
-    color: var(--tsl-muted);
-    margin-bottom: 16px;
+    color: #666;
+    margin-bottom: 24px;
+    font-weight: 500;
 }
 
 .tsl-revs {
-    font-size: 13px;
-    color: var(--tsl-muted);
+    font-size: 14px;
+    color: #888;
     margin-bottom: 20px;
 }
 
-.tsl-inclusions-title {
+.tsl-inclusions-title,
+.tsl-addons-title {
+    font-size: 16px;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     display: block;
+    color: #1a1a1a;
 }
 
 .tsl-inclusions-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 24px;
+    gap: 12px;
+    margin-bottom: 32px;
 }
 
 .tsl-inclusion-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 14px;
+    gap: 12px;
+    font-size: 15px;
+    color: #666;
 }
 
-.tsl-inclusion-item i {
-    color: var(--tsl-text);
+.tsl-check-circle {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #1a1a1a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .tsl-divider {
     height: 1px;
-    background: var(--tsl-border);
-    margin: 20px 0;
+    background: #ccc;
+    margin: 32px 0;
 }
 
 /* Add-ons */
-.tsl-addons-title {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    display: block;
-}
-
 .tsl-addons-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: 16px;
+    margin-bottom: 48px;
 }
 
 .tsl-addon-item {
@@ -383,83 +401,111 @@
 
 .tsl-addon-left {
     display: flex;
-    gap: 10px;
-    font-size: 14px;
+    align-items: center;
+    gap: 12px;
 }
 
-.tsl-addon-meta {
-    display: block;
+.tsl-addon-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--tsl-lime);
+    cursor: pointer;
+}
+
+.tsl-addon-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.tsl-addon-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.tsl-addon-sub {
     font-size: 12px;
-    color: var(--tsl-muted);
+    color: #888;
 }
 
 .tsl-addon-price {
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
+    color: #333;
 }
 
 /* sticky card buttons */
 .tsl-pricing-actions {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 .tsl-btn-primary {
-    background: var(--tsl-lime);
+    background: #ceff1b;
     color: #000;
     border: none;
     width: 100%;
-    padding: 14px;
+    padding: 16px;
     border-radius: 12px;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 16px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .tsl-btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(206, 255, 27, 0.3);
+    box-shadow: 0 8px 24px rgba(206, 255, 27, 0.4);
 }
 
 .tsl-btn-outline {
-    background: transparent;
-    color: var(--tsl-text);
-    border: 1px solid var(--tsl-text);
+    background: #f8f8f8;
+    color: #000;
+    border: 1px solid #ccc;
     width: 100%;
-    padding: 14px;
+    padding: 16px;
     border-radius: 12px;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 16px;
     cursor: pointer;
+    transition: all 0.2s;
 }
 
-.dark .tsl-btn-outline {
+.tsl-btn-outline:hover {
+    background: #f0f0f0;
+    border-color: #bbb;
+}
+
+.dark .tsl-price,
+.dark .tsl-delivery-value,
+.dark .tsl-inclusions-title,
+.dark .tsl-addons-title {
+    color: #fff;
+}
+
+.dark .tsl-pkg-desc,
+.dark .tsl-inclusion-item,
+.dark .tsl-addon-name,
+.dark .tsl-addon-price {
+    color: #ccc;
+}
+
+.dark .tsl-check-circle {
     border-color: #fff;
 }
 
-/* Responsive */
-@media (max-width: 1100px) {
-    .tsl-container {
-        grid-template-columns: 1fr;
-    }
-
-    .tsl-pricing-card {
-        position: static;
-    }
+.dark .tsl-btn-outline {
+    background: #1a1a1a;
+    color: #fff;
+    border-color: #444;
 }
 
-@media (max-width: 768px) {
-    .tsl-header {
-        flex-direction: column;
-        gap: 16px;
-    }
-
-    .tsl-title {
-        font-size: 24px;
-    }
+.dark .tsl-btn-outline:hover {
+    background: #252525;
 }
+
+
 
 /* Detailed Team Profile Card */
 .tsl-team-profile-card {
@@ -599,58 +645,82 @@
 }
 
 .tsl-stat-card {
-    background: var(--tsl-bg);
-    border: 1px solid var(--tsl-border);
-    padding: 16px;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.stat-icon {
-    font-size: 20px;
-}
-
-.stat-info {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    padding: 24px;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
+    gap: 8px;
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+}
+
+.stat-icon-svg {
+    opacity: 0.6;
 }
 
 .stat-label {
-    font-size: 12px;
-    color: var(--tsl-muted);
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .stat-value {
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 700;
+    color: #1a1a1a;
 }
 
 .tsl-skills-panel {
-    background: var(--tsl-bg);
-    border: 1px solid var(--tsl-border);
-    padding: 24px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 32px;
     border-radius: 20px;
 }
 
 .tsl-skills-panel h4 {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .tsl-skills-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px;
 }
 
 .tsl-skill-tag {
-    padding: 8px 16px;
-    background: var(--tsl-lime);
+    padding: 10px 20px;
+    background: #ceff1b;
     color: #000;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
+    border: 1px solid #bce618;
+}
+
+.dark .tsl-stat-card {
+    background: #1e1e1e;
+    border-color: #333;
+}
+
+.dark .tsl-stat-card .stat-value {
+    color: #fff;
+}
+
+.dark .tsl-skills-panel {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+.dark .tsl-skills-panel h4 {
+    color: #fff;
 }
 
 /* FAQ Section */
@@ -725,11 +795,6 @@
 }
 
 /* Responsive for Team Card */
-@media (max-width: 900px) {
-    .tsl-team-profile-card {
-        grid-template-columns: 1fr;
-    }
-}
 
 /* Compare Packages Section */
 .compare-packages-section {
@@ -1059,6 +1124,199 @@
     background: #d4ff33;
     transform: translateY(-50%) scale(1.1);
     box-shadow: 0 6px 20px rgba(206, 255, 27, 0.4);
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+/* Large Tablets & Small Laptops */
+@media (max-width: 1100px) {
+    .tsl-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .tsl-pricing-card {
+        position: static;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+/* Tablets & Large Phones */
+@media (max-width: 768px) {
+    .tsl-page {
+        padding: 24px 16px;
+    }
+
+    .tsl-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .tsl-title {
+        font-size: 24px;
+        text-align: left;
+    }
+
+    .tsl-header-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    /* Team Profile Card Mobile */
+    .tsl-team-profile-card {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 24px;
+    }
+
+    .tsl-profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .tsl-avatar-container {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+    }
+
+    .tsl-rating-row {
+        justify-content: center;
+    }
+
+    .tsl-lang-tags {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .tsl-full-profile-btn {
+        width: 100%;
+        padding: 12px;
+        display: block;
+        text-align: center;
+    }
+
+    .tsl-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .tsl-skills-panel {
+        padding: 16px;
+    }
+
+    /* FAQ Section Mobile */
+    .faq-header {
+        gap: 12px;
+    }
+
+    .faq-title {
+        font-size: 20px;
+    }
+
+    .faq-question {
+        padding: 16px;
+        font-size: 16px;
+    }
+
+    .faq-answer {
+        padding: 16px;
+        font-size: 14px;
+    }
+
+    /* Compare Table Mobile */
+    .compare-header {
+        gap: 12px;
+    }
+
+    .compare-title {
+        font-size: 20px;
+    }
+
+    .compare-table th,
+    .compare-table td {
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    .compare-table thead th {
+        font-size: 14px;
+    }
+
+    .compare-table .feature-name {
+        width: 120px;
+        font-size: 13px;
+    }
+
+    /* Marketplace Sections Mobile */
+    .tsl-sectionTitle {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .tsl-mp-grid {
+        gap: 16px;
+        padding-bottom: 20px;
+    }
+
+    .tsl-mp-card {
+        flex: 0 0 260px;
+    }
+
+    .tsl-mp-floatArrow {
+        display: none;
+    }
+
+    /* Members Grid Responsiveness */
+    .membersGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Extra Small Phones */
+@media (max-width: 480px) {
+    .tsl-main-img-box {
+        aspect-ratio: 4 / 3;
+    }
+
+    .tsl-thumb {
+        width: 60px;
+        height: 40px;
+    }
+
+    .tsl-pricing-tabs {
+        flex-wrap: wrap;
+        padding: 4px;
+    }
+
+    .tsl-tab {
+        font-size: 12px;
+        padding: 8px 4px;
+    }
+
+    .tsl-price {
+        font-size: 24px;
+    }
+
+    .tsl-price-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .tsl-delivery-info {
+        text-align: center;
+    }
+
+    .tsl-btn-primary,
+    .tsl-btn-outline {
+        padding: 12px;
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 900px) {

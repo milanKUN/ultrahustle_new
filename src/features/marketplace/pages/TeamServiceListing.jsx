@@ -10,6 +10,7 @@ import {
     Check,
     Star,
     ChevronDown,
+    Clock,
 } from 'lucide-react';
 import './TeamServiceListing.css';
 import UserNavbar from '../../../components/layout/UserNavbar';
@@ -446,21 +447,25 @@ const TeamServiceListing = ({ theme, setTheme }) => {
 
                                     <div className="tsl-pricing-content">
                                         <div className="tsl-price-row">
-                                            <span className="tsl-price">${packages[activeTab].price}</span>
+                                            <div className="tsl-price-box">
+                                                <span className="tsl-price">${packages[activeTab].price}</span>
+                                                <p className="tsl-pkg-desc">{packages[activeTab].desc}</p>
+                                            </div>
                                             <div className="tsl-delivery-info">
-                                                <span>Delivery</span>
-                                                <br />
-                                                <b>{packages[activeTab].delivery}</b>
+                                                <span className="tsl-delivery-label">Delivery</span>
+                                                <span className="tsl-delivery-value">{packages[activeTab].delivery}</span>
                                             </div>
                                         </div>
-                                        <p className="tsl-pkg-desc">{packages[activeTab].desc}</p>
+
                                         <p className="tsl-revs">{packages[activeTab].revisions} Revisions</p>
 
-                                        <span className="tsl-inclusions-title">What's included</span>
+                                        <h4 className="tsl-inclusions-title">What's included</h4>
                                         <div className="tsl-inclusions-list">
                                             {packages[activeTab].inclusions.map((item, idx) => (
                                                 <div key={idx} className="tsl-inclusion-item">
-                                                    <Check size={16} />
+                                                    <div className="tsl-check-circle">
+                                                        <Check size={12} strokeWidth={3} />
+                                                    </div>
                                                     <span>{item}</span>
                                                 </div>
                                             ))}
@@ -468,27 +473,34 @@ const TeamServiceListing = ({ theme, setTheme }) => {
 
                                         <div className="tsl-divider"></div>
 
-                                        <span className="tsl-addons-title">Add-ons</span>
+                                        <h4 className="tsl-addons-title">Add-ons</h4>
                                         <div className="tsl-addons-list">
                                             <div className="tsl-addon-item">
                                                 <div className="tsl-addon-left">
-                                                    <input type="checkbox" />
-                                                    <div>
-                                                        <span>Extra revision</span>
-                                                        <span className="tsl-addon-meta"></span>
-                                                    </div>
+                                                    <input type="checkbox" className="tsl-addon-checkbox" />
+                                                    <span className="tsl-addon-name">Extra revision</span>
                                                 </div>
                                                 <span className="tsl-addon-price">+$25</span>
                                             </div>
                                             <div className="tsl-addon-item">
                                                 <div className="tsl-addon-left">
-                                                    <input type="checkbox" />
-                                                    <div>
-                                                        <span>Superfast delivery</span>
-                                                        <span className="tsl-addon-meta">-2days</span>
+                                                    <input type="checkbox" className="tsl-addon-checkbox" />
+                                                    <div className="tsl-addon-info">
+                                                        <span className="tsl-addon-name">Superfast delivery</span>
+                                                        <span className="tsl-addon-sub">-2days</span>
                                                     </div>
                                                 </div>
-                                                <span className="tsl-addon-price">+$150</span>
+                                                <span className="tsl-addon-price">+$75</span>
+                                            </div>
+                                            <div className="tsl-addon-item">
+                                                <div className="tsl-addon-left">
+                                                    <input type="checkbox" className="tsl-addon-checkbox" />
+                                                    <div className="tsl-addon-info">
+                                                        <span className="tsl-addon-name">Additional 5 screens</span>
+                                                        <span className="tsl-addon-sub">+2days</span>
+                                                    </div>
+                                                </div>
+                                                <span className="tsl-addon-price">+$120</span>
                                             </div>
                                         </div>
 
@@ -833,12 +845,17 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                                         </div>
                                         <div className="tsl-profile-title-box">
                                             <h3>Name of the team</h3>
-                                            <p className="tsl-location">San Francisco, CA</p>
+                                            <p className="tsl-location">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{ marginRight: '4px', verticalAlign: 'middle', color: '#ccc' }}>
+                                                    <circle cx="12" cy="12" r="10" />
+                                                </svg>
+                                                San Francisco, CA
+                                            </p>
                                             <div className="tsl-rating-row">
                                                 <div className="tsl-stars">
-                                                    {[1, 2, 3, 4, 5].map(s => <Star key={s} size={14} fill="#CEFF1B" color="#CEFF1B" />)}
+                                                    {[1, 2, 3, 4, 5].map(s => <Star key={s} size={16} fill="#CEFF1B" color="#CEFF1B" />)}
                                                 </div>
-                                                <span className="tsl-rating-text">4.9 (247 reviews)</span>
+                                                <span className="tsl-rating-text">4.9(247 reviews)</span>
                                             </div>
                                         </div>
                                     </div>
@@ -862,32 +879,32 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                                 <div className="tsl-profile-right">
                                     <div className="tsl-stats-grid">
                                         <div className="tsl-stat-card">
-                                            <span className="stat-icon">🕒</span>
-                                            <div className="stat-info">
+                                            <div className="stat-header">
+                                                <Clock size={16} className="stat-icon-svg" />
                                                 <span className="stat-label">Karma</span>
-                                                <span className="stat-value">1,284</span>
                                             </div>
+                                            <span className="stat-value">1,284</span>
                                         </div>
                                         <div className="tsl-stat-card">
-                                            <span className="stat-icon">✅</span>
-                                            <div className="stat-info">
+                                            <div className="stat-header">
+                                                <Clock size={16} className="stat-icon-svg" />
                                                 <span className="stat-label">Projects Completed</span>
-                                                <span className="stat-value">98%</span>
                                             </div>
+                                            <span className="stat-value">98%</span>
                                         </div>
                                         <div className="tsl-stat-card">
-                                            <span className="stat-icon">⚡</span>
-                                            <div className="stat-info">
+                                            <div className="stat-header">
+                                                <Clock size={16} className="stat-icon-svg" />
                                                 <span className="stat-label">Average Response Speed</span>
-                                                <span className="stat-value">1 hr</span>
                                             </div>
+                                            <span className="stat-value">1 hr</span>
                                         </div>
                                         <div className="tsl-stat-card">
-                                            <span className="stat-icon">👤</span>
-                                            <div className="stat-info">
+                                            <div className="stat-header">
+                                                <Clock size={16} className="stat-icon-svg" />
                                                 <span className="stat-label">Member Since</span>
-                                                <span className="stat-value">January 2018</span>
                                             </div>
+                                            <span className="stat-value">January 2018</span>
                                         </div>
                                     </div>
 
