@@ -500,27 +500,32 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                     {deliverables.length > 0 && (
                       <div className="cnc-del-list">
                         {deliverables.map((d) => (
-                          <div className="cnc-del-item" key={d.id}>
-                            <div className="cnc-del-row">
-                              <div className="cnc-del-pill">
-                                <b>Title:</b> {d.title || "-"}
+                          <div className="cnc-del-item-card" key={d.id}>
+                            <div className="cnc-del-tag-list">
+                              <div className="cnc-del-tag">
+                                <span className="cnc-tag-lbl">Title:</span> {d.title || "-"}
+                                <span className="cnc-tag-x">✕</span>
                               </div>
-                              <div className="cnc-del-pill">
-                                <b>Format:</b> {d.format || "-"}
+                              <div className="cnc-del-tag">
+                                <span className="cnc-tag-lbl">Format:</span> {d.format || "-"}
+                                <span className="cnc-tag-x">✕</span>
                               </div>
-                              <div className="cnc-del-pill">
-                                <b>Qty:</b> {d.qty || "-"}
+                              <div className="cnc-del-tag">
+                                <span className="cnc-tag-lbl">Qty:</span> {d.qty || "-"}
+                                <span className="cnc-tag-x">✕</span>
                               </div>
-                              <div className="cnc-del-pill">
-                                <b>Acceptance:</b> {d.acceptance || "-"}
+                              <div className="cnc-del-tag">
+                                <span className="cnc-tag-lbl">Acceptance:</span> {d.acceptance || "-"}
+                                <span className="cnc-tag-x">✕</span>
                               </div>
                             </div>
                             <button
                               type="button"
-                              className="cnc-del-remove"
+                              className="cnc-del-close-btn"
                               onClick={() => removeDeliverable(d.id)}
+                              title="Remove deliverable"
                             >
-                              Remove
+                              ✕
                             </button>
                           </div>
                         ))}
@@ -591,8 +596,8 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                       }))}
                       onChange={(val) => handleSelectValue("revisionTurnaroundDays", val)}
                     />
-                  </div>
-                  <div className="cnc-lateConsequence">
+
+                    {/* Late delivery consequence */}
                     <SoloSelect
                       id="lateDeliveryConsequence"
                       label="Late delivery consequence"
@@ -695,7 +700,7 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                         onChange={onChange("projectCost")}
                       />
                     </div>
-                    <div className="cnc-field">
+                    <div className="cnc-field cnc-span-all">
                       <label className="cnc-label">Escrow Rules</label>
                       <input
                         className="cnc-input"
@@ -728,25 +733,17 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                         />
                       </div>
                       {/* Initial delivery deadline (Milestone) */}
-                      <DateInput
-                        label="Initial delivery deadline"
-                        value={milestoneDraft.deadline}
-                        onOpen={() => setCalendarConfig({
-                          value: milestoneDraft.deadline,
-                          onSelect: (val) => setMilestoneDraft(p => ({ ...p, deadline: val }))
-                        })}
-                      />
-                      <div className="cnc-field cnc-trashWrap">
-                        <label className="cnc-label" style={{ opacity: 0 }}>remove</label>
-                        <button
-                          type="button"
-                          className="cnc-trashBtn"
-                          disabled
-                          title="Remove is available after adding"
-                        >
-                          🗑
-                        </button>
+                      <div className="cnc-span-all">
+                        <DateInput
+                          label="Initial delivery deadline"
+                          value={milestoneDraft.deadline}
+                          onOpen={() => setCalendarConfig({
+                            value: milestoneDraft.deadline,
+                            onSelect: (val) => setMilestoneDraft(p => ({ ...p, deadline: val }))
+                          })}
+                        />
                       </div>
+
                     </div>
                     <button type="button" className="cnc-addBtn" onClick={addMilestone}>
                       + Add Milestone
@@ -754,20 +751,27 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                     {milestones.length > 0 && (
                       <div className="cnc-mil-list">
                         {milestones.map((m) => (
-                          <div className="cnc-mil-item" key={m.id}>
-                            <div className="cnc-mil-left">
-                              <div className="cnc-del-pill"><b>{m.name || "-"}</b></div>
-                              <div className="cnc-del-pill"><b>Amount:</b> {m.amount || "-"}</div>
-                              <div className="cnc-del-pill"><b>Deadline:</b> {m.deadline || "-"}</div>
+                          <div className="cnc-del-item-card" key={m.id}>
+                            <div className="cnc-del-tag-list">
+                              <div className="cnc-del-tag">
+                                <span className="cnc-tag-lbl">Name:</span> {m.name || "-"}
+                                <span className="cnc-tag-x">✕</span>
+                              </div>
+                              <div className="cnc-del-tag">
+                                <span className="cnc-tag-lbl">Amount:</span> {m.amount || "-"}
+                                <span className="cnc-tag-x">✕</span>
+                              </div>
+                              <div className="cnc-del-tag">
+                                <span className="cnc-tag-lbl">Deadline:</span> {m.deadline || "-"}
+                                <span className="cnc-tag-x">✕</span>
+                              </div>
                             </div>
                             <button
                               type="button"
-                              className="cnc-trashBtn"
+                              className="cnc-del-close-btn"
                               onClick={() => removeMilestone(m.id)}
-                              aria-label="Remove milestone"
-                              title="Remove milestone"
                             >
-                              🗑
+                              ✕
                             </button>
                           </div>
                         ))}
