@@ -2828,11 +2828,11 @@ export default function Marketplace({ theme, setTheme }) {
                                 <div className="mp-price-labels">
                                     <div className="mp-price-label-item">
                                         <span>Min</span>
-                                        <div className="mp-price-label-box">₹{priceMin || 0}</div>
+                                        <div className="mp-price-label-box">${priceMin || 0}</div>
                                     </div>
                                     <div className="mp-price-label-item">
                                         <span>Max</span>
-                                        <div className="mp-price-label-box">₹{priceMax || 50000}</div>
+                                        <div className="mp-price-label-box">${priceMax || 50000}</div>
                                     </div>
                                 </div>
                             </div>
