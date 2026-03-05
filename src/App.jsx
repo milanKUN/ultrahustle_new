@@ -32,6 +32,7 @@ import SoloMilestonesPage from "./features/marketplace/pages/SoloMilestonesPage"
 import CreateServiceListing from "./features/marketplace/pages/CreateServiceListing";
 import AddNewListing from "./features/marketplace/pages/AddNewListing";
 import Marketplace from "./features/marketplace/pages/Marketplace";
+import TeamServiceListing from "./features/marketplace/pages/TeamServiceListing";
 
 export default function App() {
   const THEME_KEY = "user-theme";
@@ -83,6 +84,7 @@ export default function App() {
           <Route path="/manage-team" element={<ManageTeam theme={theme} setTheme={setTheme} />} />
           <Route path="/add-listing" element={<AddNewListing theme={theme} setTheme={setTheme} />} />
           <Route path="/marketplace" element={<Marketplace theme={theme} setTheme={setTheme} />} />
+          <Route path="/team-service-listing" element={<TeamServiceListing theme={theme} setTheme={setTheme} />} />
         </Routes>
       </div>
     </Router>
