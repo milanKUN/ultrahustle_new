@@ -165,6 +165,9 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
   // Activity log dummy (same UI)
   const activity = useMemo(
     () => [
+      { ts: "2025-11-20 10:00", actor: "Client @acme_corp", action: "Contract Created", details: "Initial draft submitted" },
+      { ts: "2025-11-21 14:30", actor: "Creator @alex_design", action: "Terms Negotiated", details: "Updated milestones and delivery timeline" },
+      { ts: "2025-11-22 09:15", actor: "Client @acme_corp", action: "Contract Approved", details: "Ready for escrow funding" }
     ],
     []
   );
@@ -338,42 +341,7 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                   </div>
                 </div>
 
-                {/* Team Payout Configuration (Conditional) */}
-                {form.soloTeam && (
-                  <div className="cnc-card cnc-card--mt cnc-teamPayoutCard">
-                    <h2 className="cnc-card-title">Team Payout Configuration</h2>
-                    <div className="cnc-payout-list">
-                      {form.teamPayouts.map((payout) => (
-                        <div className="cnc-payout-row" key={payout.id}>
-                          <div className="cnc-field">
-                            <input
-                              className="cnc-input cnc-payout-input"
-                              placeholder="Member Name"
-                              value={payout.name}
-                              onChange={(e) => handlePayoutChange(payout.id, "name", e.target.value)}
-                            />
-                          </div>
-                          <div className="cnc-field">
-                            <input
-                              className="cnc-input cnc-payout-input"
-                              placeholder="Role"
-                              value={payout.role}
-                              onChange={(e) => handlePayoutChange(payout.id, "role", e.target.value)}
-                            />
-                          </div>
-                          <div className="cnc-field">
-                            <input
-                              className="cnc-input cnc-payout-input"
-                              placeholder="Percentage"
-                              value={payout.percentage}
-                              onChange={(e) => handlePayoutChange(payout.id, "percentage", e.target.value)}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+
 
                 {/* Parties Involved */}
                 <div className="cnc-parties-outer-box">
@@ -807,66 +775,106 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                     )}
                   </div>
                 </div>
-
-                {/* Final Confirmation */}
-                <div className="cnc-confirmRow cnc-card--mt">
-                  <div className="cnc-confirmCard">
-                    <div className="cnc-confirmTitle">Final Confirmation (Client)</div>
-                    <div className="cnc-field">
-                      <label className="cnc-label">Full Name</label>
-                      <input
-                        className="cnc-input"
-                        placeholder="Full Name"
-                        value={form.finalClientName}
-                        onChange={onChange("finalClientName")}
-                      />
-                    </div>
-                    <label className="cnc-checkRow">
-                      <input
-                        type="checkbox"
-                        checked={form.clientAgree}
-                        onChange={onToggle("clientAgree")}
-                      />
-                      <span>
-                        I accept and agree to the <a href="#">terms and conditions</a>
-                      </span>
-                    </label>
-                    <button type="button" className="cnc-primaryBtn">
-                      Ready to fund escrow
-                    </button>
-                    <div className="cnc-confirmActions">
-                      <button type="button" className="cnc-ghostBtn">Send for review</button>
-                      <button type="button" className="cnc-ghostBtn">Edit Contract</button>
+                {/* Team Payout Configuration (Conditional) */}
+                {form.soloTeam && (
+                  <div className="cnc-card cnc-card--mt cnc-teamPayoutCard">
+                    <h2 className="cnc-card-title">Team Payout Configuration</h2>
+                    <div className="cnc-payout-list">
+                      {form.teamPayouts.map((payout) => (
+                        <div className="cnc-payout-row" key={payout.id}>
+                          <div className="cnc-field">
+                            <input
+                              className="cnc-input cnc-payout-input"
+                              placeholder="Member Name"
+                              value={payout.name}
+                              onChange={(e) => handlePayoutChange(payout.id, "name", e.target.value)}
+                            />
+                          </div>
+                          <div className="cnc-field">
+                            <input
+                              className="cnc-input cnc-payout-input"
+                              placeholder="Role"
+                              value={payout.role}
+                              onChange={(e) => handlePayoutChange(payout.id, "role", e.target.value)}
+                            />
+                          </div>
+                          <div className="cnc-field">
+                            <input
+                              className="cnc-input cnc-payout-input"
+                              placeholder="Percentage"
+                              value={payout.percentage}
+                              onChange={(e) => handlePayoutChange(payout.id, "percentage", e.target.value)}
+                            />
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
+                )}
 
-                  <div className="cnc-confirmCard">
-                    <div className="cnc-confirmTitle">Final Confirmation (Creator)</div>
-                    <div className="cnc-field">
-                      <label className="cnc-label">Full Name</label>
-                      <input
-                        className="cnc-input"
-                        placeholder="Full Name"
-                        value={form.finalCreatorName}
-                        onChange={onChange("finalCreatorName")}
-                      />
+                {/* Final Confirmation Section */}
+                <div className="cnc-confirmArea cnc-card--mt">
+                  <div className="cnc-confirmRow">
+                    {/* Client Box */}
+                    <div className="cnc-confirmCard">
+                      <div className="cnc-confirmTitle">Final Confirmation (Client)</div>
+                      <div className="cnc-field">
+                        <label className="cnc-label">Full Name</label>
+                        <input
+                          className="cnc-input"
+                          placeholder="Full Name"
+                          value={form.finalClientName}
+                          onChange={onChange("finalClientName")}
+                        />
+                      </div>
+                      <label className="cnc-checkRow">
+                        <input
+                          type="checkbox"
+                          checked={form.clientAgree}
+                          onChange={onToggle("clientAgree")}
+                        />
+                        <span>
+                          I accept and agree to the <a href="#">terms and conditions</a>
+                        </span>
+                      </label>
+                      <button type="button" className="cnc-primaryBtn">
+                        Ready to fund escrow
+                      </button>
+                      <div className="cnc-confirmActions">
+                        <button type="button" className="cnc-ghostBtn">Send for review</button>
+                        <button type="button" className="cnc-ghostBtn">Edit Contract</button>
+                      </div>
                     </div>
-                    <label className="cnc-checkRow">
-                      <input
-                        type="checkbox"
-                        checked={form.creatorAgree}
-                        onChange={onToggle("creatorAgree")}
-                      />
-                      <span>
-                        I accept and agree to the <a href="#">terms and conditions</a>
-                      </span>
-                    </label>
-                    <button type="button" className="cnc-primaryBtn">
-                      Accept contract
-                    </button>
-                    <div className="cnc-confirmActions">
-                      <button type="button" className="cnc-ghostBtn">Cancelled</button>
-                      <button type="button" className="cnc-ghostBtn">Decline</button>
+
+                    {/* Team Box */}
+                    <div className="cnc-confirmCard">
+                      <div className="cnc-confirmTitle">Final Confirmation (Team)</div>
+                      <div className="cnc-field">
+                        <label className="cnc-label">Team Name</label>
+                        <input
+                          className="cnc-input"
+                          placeholder="Team Name"
+                          value={form.finalCreatorName}
+                          onChange={onChange("finalCreatorName")}
+                        />
+                      </div>
+                      <label className="cnc-checkRow">
+                        <input
+                          type="checkbox"
+                          checked={form.creatorAgree}
+                          onChange={onToggle("creatorAgree")}
+                        />
+                        <span>
+                          I accept and agree to the <a href="#">terms and conditions</a>
+                        </span>
+                      </label>
+                      <button type="button" className="cnc-primaryBtn">
+                        Accept contract
+                      </button>
+                      <div className="cnc-confirmActions">
+                        <button type="button" className="cnc-ghostBtn">Cancelled</button>
+                        <button type="button" className="cnc-ghostBtn">Decline</button>
+                      </div>
                     </div>
                   </div>
                 </div>

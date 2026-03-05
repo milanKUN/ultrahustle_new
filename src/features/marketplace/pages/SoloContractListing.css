@@ -433,26 +433,46 @@
   gap: 8px;
 }
 
-/* ================= Final Confirmation ================= */
+.cnc-confirmArea {
+  background: #f9f9f9;
+  border: 1.5px solid var(--accent);
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.user-page.dark .cnc-confirmArea {
+  background: #1a1a1a;
+}
+
 .cnc-confirmRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
+  gap: 24px;
 }
 
 .cnc-confirmCard {
-  background: #fff;
-  border: 1.5px solid var(--accent);
-  border-radius: 18px;
-  padding: 18px;
+  background: #ffffff;
+  border: 1px solid #CEFF1B;
+  border-radius: 20px;
+  padding: 24px;
   box-shadow: var(--shadow);
 }
 
+.user-page.dark .cnc-confirmCard {
+  background: #121212 !important;
+  border-color: #333 !important;
+  box-shadow: none !important;
+}
+
 .cnc-confirmTitle {
-  font-size: 13px;
-  font-weight: 900;
-  color: var(--text);
-  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 20px;
+}
+
+.user-page.dark .cnc-confirmTitle {
+  color: var(--accent) !important;
 }
 
 .cnc-checkRow {
@@ -634,13 +654,16 @@
 }
 
 .user-page.dark .cnc-title,
-.user-page.dark .cnc-card-title,
-.user-page.dark .cnc-confirmTitle {
+.user-page.dark .cnc-card-title {
   color: var(--d-text);
 }
 
-.user-page.dark .cnc-card,
-.user-page.dark .cnc-confirmCard {
+/* Overridden by specific selector above */
+.user-page.dark .cnc-confirmTitle {
+  color: var(--accent) !important;
+}
+
+.user-page.dark .cnc-card {
   background: var(--d-card);
   box-shadow: none;
 }
