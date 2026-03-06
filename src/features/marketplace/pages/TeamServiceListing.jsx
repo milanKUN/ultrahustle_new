@@ -17,9 +17,9 @@ import {
 } from 'lucide-react';
 import './TeamServiceListing.css';
 import UserNavbar from '../../../components/layout/UserNavbar';
-import Sidebar from '../../../components/layout/Sidebar';
 import '../../../Darkuser.css';
 import '../../dashboard/pages/TeamProfileLight.css';
+import MobileBottomNav from "../../../components/layout/MobileBottomNav";
 
 const TeamServiceListing = ({ theme, setTheme }) => {
     const [activeTab, setActiveTab] = useState('Basic');
@@ -359,17 +359,7 @@ const TeamServiceListing = ({ theme, setTheme }) => {
             />
 
             <div className="pt-[85px] flex relative z-10 transition-all duration-300">
-                {/* SIDEBAR */}
-                <Sidebar
-                    expanded={sidebarOpen}
-                    setExpanded={setSidebarOpen}
-                    showSettings={showSettings}
-                    setShowSettings={setShowSettings}
-                    activeSetting={activeSetting}
-                    onSectionChange={setActiveSetting}
-                    theme={theme}
-                    setTheme={setTheme}
-                />
+
 
                 {/* MAIN CONTENT */}
                 <div className="relative flex-1 min-w-0 overflow-hidden">
@@ -1299,6 +1289,7 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                     </div>
                 </div>
             </div>
+            <MobileBottomNav theme={theme} />
         </div>
     );
 };

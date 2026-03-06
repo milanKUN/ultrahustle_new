@@ -62,21 +62,21 @@ export default function MobileBottomNav({ active, setActive, theme = "light" }) 
     })();
 
   return (
-   <div
-    className={`
+    <div
+      className={`
       fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] px-3
       transition-all duration-300 ease-in-out
       min-[550px]:hidden
     `}
-    style={{
-      transform: isVisible
-        ? "translateX(-50%) translateY(0)"
-        : "translateX(-50%) translateY(140%)",
-      opacity: isVisible ? 1 : 0,
-      pointerEvents: isVisible ? "auto" : "none",
-    }}
-  >
-    
+      style={{
+        transform: isVisible
+          ? "translateX(-50%) translateY(0)"
+          : "translateX(-50%) translateY(140%)",
+        opacity: isVisible ? 1 : 0,
+        pointerEvents: isVisible ? "auto" : "none",
+      }}
+    >
+
       <div
         className={`
           w-[400px] max-w-[92vw]
@@ -84,7 +84,7 @@ export default function MobileBottomNav({ active, setActive, theme = "light" }) 
           flex items-center justify-between
           px-3 py-3
           backdrop-blur-xl
-          ${isDark ? "bg-[#0f1115]/85" : "bg-white/75"}
+          ${isDark ? "bg-[#0b0b0b]/85" : "bg-white/75"}
         `}
         style={{
           border: "2px solid #CEFF1B", // Slightly thicker for visibility

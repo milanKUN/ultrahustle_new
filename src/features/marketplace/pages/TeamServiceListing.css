@@ -1052,9 +1052,11 @@
 
 .compare-table-container {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border-radius: 16px;
     border: 1px solid var(--tsl-border);
     background: var(--tsl-card-bg);
+    margin-top: 32px;
 }
 
 .compare-table {
@@ -1062,6 +1064,7 @@
     border-collapse: collapse;
     text-align: left;
     font-size: 14px;
+    min-width: 600px;
 }
 
 .compare-table th,
@@ -1409,14 +1412,18 @@
 @media (max-width: 1100px) {
     .tsl-container {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 32px;
     }
 
     .tsl-pricing-card {
         position: static;
         width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .tsl-listing-container {
+        padding: 0;
     }
 }
 
@@ -1439,12 +1446,13 @@
     .tsl-header-actions {
         width: 100%;
         justify-content: flex-start;
+        flex-wrap: wrap;
     }
 
     /* Team Profile Card Mobile */
     .tsl-team-profile-card {
         grid-template-columns: 1fr;
-        padding: 24px;
+        padding: 20px;
         gap: 24px;
     }
 
@@ -1467,6 +1475,36 @@
     .tsl-lang-tags {
         justify-content: center;
         flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    /* Mini Profile Card Stacking */
+    .tsl-profile-mini-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .tsl-pmc-left {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .tsl-pmc-name-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .tsl-pmc-role-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .tsl-pmc-view-btn {
+        width: 100%;
+        justify-content: center;
     }
 
     .tsl-full-profile-btn {
