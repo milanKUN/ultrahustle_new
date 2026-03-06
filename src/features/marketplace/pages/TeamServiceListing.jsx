@@ -11,6 +11,9 @@ import {
     Star,
     ChevronDown,
     Clock,
+    Infinity,
+    CheckCircle2,
+    User,
 } from 'lucide-react';
 import './TeamServiceListing.css';
 import UserNavbar from '../../../components/layout/UserNavbar';
@@ -24,6 +27,7 @@ const TeamServiceListing = ({ theme, setTheme }) => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [showSettings, setShowSettings] = useState(false);
     const [activeSetting, setActiveSetting] = useState('basic');
+    const [showMoreListings, setShowMoreListings] = useState(false);
 
     // Portfolio & Listing State (same as UserProfile.jsx)
     const [activeItem, setActiveItem] = useState(null);
@@ -412,6 +416,40 @@ const TeamServiceListing = ({ theme, setTheme }) => {
 
 
 
+                                    {/* Profile Card */}
+                                    <div className="tsl-profile-mini-card">
+                                        <div className="tsl-pmc-left">
+                                            <div className="tsl-pmc-avatar-wrap">
+                                                <div className="tsl-pmc-avatar-bg"></div>
+                                                <div className="tsl-pmc-status-dot"></div>
+                                            </div>
+                                            <div className="tsl-pmc-info">
+                                                <div className="tsl-pmc-name-row">
+                                                    <span className="tsl-pmc-name">Sarah Anderson</span>
+                                                    <div className="tsl-pmc-online-badge">
+                                                        <div className="tsl-pmc-online-dot"></div>
+                                                        <span>Online</span>
+                                                    </div>
+                                                </div>
+                                                <div className="tsl-pmc-meta">
+                                                    <Clock size={14} />
+                                                    <span>Avg response: 1 hour</span>
+                                                </div>
+                                                <div className="tsl-pmc-role-row">
+                                                    <span className="tsl-pmc-role">Full Stack Developer</span>
+                                                    <div className="tsl-pmc-rating">
+                                                        <Star size={14} fill="#CEFF1B" color="#CEFF1B" />
+                                                        <span>4.9(247 reviews)</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button className="tsl-pmc-view-btn">
+                                            View profile
+                                            <ChevronRight size={18} />
+                                        </button>
+                                    </div>
+
                                     {/* Description */}
                                     <div className="tsl-section">
                                         <h2>Description</h2>
@@ -674,6 +712,55 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                                 </div>
                             </section>
 
+                            {/* Compare Packages Section */}
+                            <section className="compare-packages-section">
+                                <div className="compare-header">
+                                    <h3 className="compare-title">Compare Packages</h3>
+                                    <div className="compare-header-line"></div>
+                                </div>
+
+                                <div className="compare-table-container">
+                                    <table className="compare-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Package Features</th>
+                                                <th>Basic</th>
+                                                <th>Standard</th>
+                                                <th>Premium</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {comparisonData.map((row, idx) => (
+                                                <tr key={idx}>
+                                                    <td className="feature-name">{row.feature}</td>
+                                                    <td>
+                                                        {Array.isArray(row.basic) ? (
+                                                            <ul className="compare-list">
+                                                                {row.basic.map((item, i) => <li key={i}>{item}</li>)}
+                                                            </ul>
+                                                        ) : row.basic}
+                                                    </td>
+                                                    <td>
+                                                        {Array.isArray(row.standard) ? (
+                                                            <ul className="compare-list">
+                                                                {row.standard.map((item, i) => <li key={i}>{item}</li>)}
+                                                            </ul>
+                                                        ) : row.standard}
+                                                    </td>
+                                                    <td>
+                                                        {Array.isArray(row.premium) ? (
+                                                            <ul className="compare-list">
+                                                                {row.premium.map((item, i) => <li key={i}>{item}</li>)}
+                                                            </ul>
+                                                        ) : row.premium}
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
 
                             {/* Listings Section */}
                             <section style={{ width: "100%" }}>
@@ -689,43 +776,25 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                                     {/* Switch */}
                                     <div
                                         style={{
-                                            maxWidth: "560px",
-                                            height: "56px",
+                                            width: "164.404px",
+                                            height: "60.002px",
                                             background: "#CEFF1B",
                                             borderRadius: "18px",
-                                            padding: "6px",
-                                            display: "grid",
-                                            gridTemplateColumns: "1fr 1fr",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            marginBottom: "8px"
                                         }}
                                     >
-                                        <button
-                                            onClick={() => setMainTab("listings")}
+                                        <span
                                             style={{
-                                                background: mainTab === "listings" ? "#fff" : "transparent",
-                                                borderRadius: "14px",
-                                                border: "none",
-                                                fontSize: "16px",
-                                                fontWeight: "600",
+                                                fontSize: "21px",
+                                                fontWeight: "400",
                                                 color: "#000",
-                                                cursor: "pointer",
                                             }}
                                         >
                                             Listings
-                                        </button>
-                                        <button
-                                            onClick={() => setMainTab("projects")}
-                                            style={{
-                                                background: mainTab === "projects" ? "#fff" : "transparent",
-                                                borderRadius: "14px",
-                                                border: "none",
-                                                fontSize: "16px",
-                                                fontWeight: "600",
-                                                color: "#000",
-                                                cursor: "pointer",
-                                            }}
-                                        >
-                                            Projects
-                                        </button>
+                                        </span>
                                     </div>
 
                                     {/* Pills */}
@@ -761,80 +830,118 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                                 </div>
 
                                 {/* ================= CONTENT ================= */}
-                                {mainTab === "listings" ? (
-                                    <div className="listings-grid">
-                                        {listingsData
-                                            .filter((l) => {
-                                                if (filter === "All") return true;
-                                                return l.type === filter.slice(0, -1);
-                                            })
-                                            .map((listing, index) => (
-                                                <div key={index} className="listing-card">
-                                                    <div className="listing-image">
-                                                        <img src={listing.image} alt={listing.title} />
 
-                                                        <button className="listing-nav-btn left">
-                                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                                                <path d="m15 18-6-6 6-6" />
-                                                            </svg>
-                                                        </button>
-                                                        <button className="listing-nav-btn right">
-                                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                                                <path d="m9 18 6-6-6-6" />
-                                                            </svg>
-                                                        </button>
+                                <div className="listings-grid">
+                                    {listingsData
+                                        .filter((l) => {
+                                            if (filter === "All") return true;
+                                            return l.type === filter.slice(0, -1);
+                                        })
+                                        .slice(0, showMoreListings ? listingsData.length : 6)
+                                        .map((listing, index) => (
+                                            <div key={index} className="listing-card">
+                                                <div className="listing-image">
+                                                    <img src={listing.image} alt={listing.title} />
+
+                                                    <button className="listing-nav-btn left">
+                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                            <path d="m15 18-6-6 6-6" />
+                                                        </svg>
+                                                    </button>
+                                                    <button className="listing-nav-btn right">
+                                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                            <path d="m9 18 6-6-6-6" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+
+                                                <div className="listing-info">
+                                                    <div className="listing-title-row">
+                                                        <h4 className="listing-title">{listing.title}</h4>
+                                                        <span className="listing-type">{listing.type}</span>
                                                     </div>
 
-                                                    <div className="listing-info">
-                                                        <div className="listing-title-row">
-                                                            <h4 className="listing-title">{listing.title}</h4>
-                                                            <span className="listing-type">{listing.type}</span>
-                                                        </div>
-
-                                                        <div className="listing-meta">
-                                                            <div className="listing-views">
-                                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                                                                    <circle cx="12" cy="12" r="3" />
-                                                                </svg>
-                                                                <span>{listing.views} views</span>
-                                                            </div>
-                                                            <div className="listing-price">{listing.price}</div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="listing-actions">
-                                                        <button className="btn-view-listing">View Listing</button>
-                                                        <button
-                                                            className="btn-favorite"
-                                                            onClick={() => toggleFavorite(index)}
-                                                        >
-                                                            <svg width="20" height="20" viewBox="0 0 24 24"
-                                                                fill={favorites.has(index) ? "#ef4444" : "none"}
-                                                                stroke={favorites.has(index) ? "#ef4444" : "currentColor"}
-                                                                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                                                            >
-                                                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                                                    <div className="listing-meta">
+                                                        <div className="listing-views">
+                                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                                                                <circle cx="12" cy="12" r="3" />
                                                             </svg>
-                                                        </button>
+                                                            <span>{listing.views} views</span>
+                                                        </div>
+                                                        <div className="listing-price">{listing.price}</div>
                                                     </div>
                                                 </div>
-                                            ))}
-                                    </div>
-                                ) : (
-                                    /* ================= EMPTY PROJECTS ================= */
-                                    <div
-                                        style={{
-                                            padding: "80px 20px",
-                                            textAlign: "center",
-                                            color: "#777",
-                                            fontSize: "16px",
-                                        }}
-                                    >
-                                        No projects / purchases yet.
-                                    </div>
-                                )}
+
+                                                <div className="listing-actions">
+                                                    <button className="btn-view-listing">View Listing</button>
+                                                    <button
+                                                        className="btn-favorite"
+                                                        onClick={() => toggleFavorite(index)}
+                                                    >
+                                                        <svg width="20" height="20" viewBox="0 0 24 24"
+                                                            fill={favorites.has(index) ? "#ef4444" : "none"}
+                                                            stroke={favorites.has(index) ? "#ef4444" : "currentColor"}
+                                                            strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                                        >
+                                                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                </div>
                             </section>
+
+                            {/* Show More Button */}
+                            <div style={{ display: 'flex', justifyContent: 'center', margin: '40px 0' }}>
+                                <button
+                                    onClick={() => setShowMoreListings(!showMoreListings)}
+                                    style={{
+                                        width: '50px',
+                                        height: '50px',
+                                        background: '#CEFF1B',
+                                        borderRadius: '50%',
+                                        border: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        cursor: 'pointer',
+                                        boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+                                        transition: 'all 0.3s ease',
+                                        transform: showMoreListings ? 'rotate(180deg)' : 'rotate(0deg)'
+                                    }}
+                                >
+                                    <ChevronDown size={20} color="#000" />
+                                </button>
+                            </div>
+
+
+                            {/* Members Section */}
+                            <section className="membersWrap">
+                                <div className="membersHeader">
+                                    <h3 className="membersTitle">Members</h3>
+                                    <div className="membersLine" />
+                                </div>
+                                <div className="membersPanel">
+                                    <div className="membersGrid">
+                                        {members.map((m) => (
+                                            <div key={m.id} className="memberCard">
+                                                <div className="memberTop">
+                                                    <div className="avatar" />
+                                                    <div className="memberInfo">
+                                                        <div className="memberName">{m.name}</div>
+                                                        <div className="memberRole">{m.role}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="memberTag">{m.tag}</div>
+                                                <button className="viewBtn" type="button">View Profile</button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </section>
+
                             {/* Detailed Team Card */}
                             <div className="tsl-team-profile-card">
                                 <div className="tsl-profile-left">
@@ -880,14 +987,14 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                                     <div className="tsl-stats-grid">
                                         <div className="tsl-stat-card">
                                             <div className="stat-header">
-                                                <Clock size={16} className="stat-icon-svg" />
+                                                <Infinity size={16} className="stat-icon-svg" />
                                                 <span className="stat-label">Karma</span>
                                             </div>
                                             <span className="stat-value">1,284</span>
                                         </div>
                                         <div className="tsl-stat-card">
                                             <div className="stat-header">
-                                                <Clock size={16} className="stat-icon-svg" />
+                                                <CheckCircle2 size={16} className="stat-icon-svg" />
                                                 <span className="stat-label">Projects Completed</span>
                                             </div>
                                             <span className="stat-value">98%</span>
@@ -901,7 +1008,7 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                                         </div>
                                         <div className="tsl-stat-card">
                                             <div className="stat-header">
-                                                <Clock size={16} className="stat-icon-svg" />
+                                                <User size={16} className="stat-icon-svg" />
                                                 <span className="stat-label">Member Since</span>
                                             </div>
                                             <span className="stat-value">January 2018</span>
@@ -1053,79 +1160,9 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                                 </div>
                             </section>
 
-                            {/* Members Section */}
-                            <section className="membersWrap">
-                                <div className="membersHeader">
-                                    <h3 className="membersTitle">Members</h3>
-                                    <div className="membersLine" />
-                                </div>
-                                <div className="membersPanel">
-                                    <div className="membersGrid">
-                                        {members.map((m) => (
-                                            <div key={m.id} className="memberCard">
-                                                <div className="memberTop">
-                                                    <div className="avatar" />
-                                                    <div className="memberInfo">
-                                                        <div className="memberName">{m.name}</div>
-                                                        <div className="memberRole">{m.role}</div>
-                                                    </div>
-                                                </div>
-                                                <div className="memberTag">{m.tag}</div>
-                                                <button className="viewBtn" type="button">View Profile</button>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </section>
 
-                            {/* Compare Packages Section */}
-                            <section className="compare-packages-section">
-                                <div className="compare-header">
-                                    <h3 className="compare-title">Compare Packages</h3>
-                                    <div className="compare-header-line"></div>
-                                </div>
 
-                                <div className="compare-table-container">
-                                    <table className="compare-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Package Features</th>
-                                                <th>Basic</th>
-                                                <th>Standard</th>
-                                                <th>Premium</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {comparisonData.map((row, idx) => (
-                                                <tr key={idx}>
-                                                    <td className="feature-name">{row.feature}</td>
-                                                    <td>
-                                                        {Array.isArray(row.basic) ? (
-                                                            <ul className="compare-list">
-                                                                {row.basic.map((item, i) => <li key={i}>{item}</li>)}
-                                                            </ul>
-                                                        ) : row.basic}
-                                                    </td>
-                                                    <td>
-                                                        {Array.isArray(row.standard) ? (
-                                                            <ul className="compare-list">
-                                                                {row.standard.map((item, i) => <li key={i}>{item}</li>)}
-                                                            </ul>
-                                                        ) : row.standard}
-                                                    </td>
-                                                    <td>
-                                                        {Array.isArray(row.premium) ? (
-                                                            <ul className="compare-list">
-                                                                {row.premium.map((item, i) => <li key={i}>{item}</li>)}
-                                                            </ul>
-                                                        ) : row.premium}
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </section>
+
 
                             {/* Recommended Section */}
                             <div className="tsl-listing-container">
@@ -1258,7 +1295,6 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                                     <ChevronRight size={24} />
                                 </button>
                             </div>
-
                         </div>
                     </div>
                 </div>

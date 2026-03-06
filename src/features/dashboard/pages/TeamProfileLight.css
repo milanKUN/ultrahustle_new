@@ -31,6 +31,8 @@
   border: 1px solid #ceff1b;
   border-radius: 14px;
   padding: 18px;
+  background-color: #FFF;
+  margin-bottom: 30px;
 }
 
 /* grid */
@@ -41,7 +43,7 @@
 }
 
 .memberCard {
-  background: rgba(254, 254, 254, 0.25);
+  background: #D6D6D6;
 
   border-radius: 16px;
   padding: 18px;

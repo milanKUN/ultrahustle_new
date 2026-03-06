@@ -1,6 +1,6 @@
 .tsl-page {
     --tsl-lime: #ceff1b;
-    --tsl-bg: #ffffff;
+    --tsl-bg: #f2f2f2;
     --tsl-text: #1a1a1a;
     --tsl-muted: #666666;
     --tsl-border: #eeeeee;
@@ -10,17 +10,17 @@
     min-height: 100vh;
     background: var(--tsl-bg);
     color: var(--tsl-text);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Roboto', system-ui, -apple-system, sans-serif;
     padding: 40px 5%;
     overflow-x: hidden;
 }
 
-.dark .tsl-page {
-    --tsl-bg: #121212;
+.tsl-page.dark {
+    --tsl-bg: #0b0b0b;
     --tsl-text: #ffffff;
     --tsl-muted: #aaaaaa;
     --tsl-border: #2e2e2e;
-    --tsl-card-bg: #1e1e1e;
+    --tsl-card-bg: #141414;
     --tsl-card-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
 }
 
@@ -64,7 +64,7 @@
     color: var(--tsl-text);
 }
 
-.dark .tsl-icon-btn:hover {
+.tsl-page.dark .tsl-icon-btn:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
@@ -101,7 +101,7 @@
     position: relative;
 }
 
-.dark .tsl-main-img-box {
+.tsl-page.dark .tsl-main-img-box {
     background: #252525;
 }
 
@@ -153,17 +153,19 @@
     display: flex;
     gap: 12px;
     margin-top: 16px;
+    width: 100%;
 }
 
 .tsl-thumb {
-    width: 100px;
-    height: 60px;
+    flex: 1;
+    height: 70px;
     background: #eee;
     border-radius: 4px;
     cursor: pointer;
     opacity: 0.6;
     transition: opacity 0.2s;
     object-fit: cover;
+    min-width: 0;
 }
 
 .tsl-thumb.active {
@@ -171,7 +173,7 @@
     border: 2px solid var(--tsl-lime);
 }
 
-.dark .tsl-thumb {
+.tsl-page.dark .tsl-thumb {
     background: #333;
 }
 
@@ -244,17 +246,168 @@
     gap: 8px;
 }
 
+.tsl-view-profile-btn:hover {
+    background: #bce618;
+}
+
+/* Mini Profile Card Added Above Description */
+.tsl-profile-mini-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border: 1px solid #ceff1b;
+    border-radius: 20px;
+    background: var(--tsl-card-bg);
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.tsl-page.dark .tsl-profile-mini-card {
+    border: 1.5px solid #ceff1b !important;
+    box-shadow: 0 0 15px rgba(206, 255, 27, 0.3), 0 4px 25px rgba(0, 0, 0, 0.4);
+}
+
+.tsl-pmc-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.tsl-pmc-avatar-wrap {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.tsl-pmc-avatar-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #e0e0e0;
+}
+
+.dark .tsl-pmc-avatar-bg {
+    background: #333;
+}
+
+.tsl-pmc-status-dot {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 22px;
+    height: 22px;
+    background: #4caf50;
+    border: 4px solid var(--tsl-card-bg);
+    border-radius: 50%;
+}
+
+.tsl-pmc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tsl-pmc-name-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tsl-pmc-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--tsl-text);
+}
+
+.tsl-pmc-online-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #666;
+}
+
+.dark .tsl-pmc-online-badge {
+    color: #aaa;
+}
+
+.tsl-pmc-online-dot {
+    width: 8px;
+    height: 8px;
+    background: #4caf50;
+    border-radius: 50%;
+}
+
+.tsl-pmc-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #666;
+}
+
+.dark .tsl-pmc-meta {
+    color: #aaa;
+}
+
+.tsl-pmc-role-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.tsl-pmc-role {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--tsl-text);
+}
+
+.tsl-pmc-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tsl-text);
+}
+
+.tsl-pmc-view-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #ceff1b;
+    border: 1px solid black;
+    border-radius: 12px;
+    color: #000;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tsl-pmc-view-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(206, 255, 27, 0.3);
+}
+
 /* Content Sections */
 .tsl-section h2 {
     font-size: 24px;
-    margin-bottom: 16px;
+    margin-bottom: 5px;
+    font-weight: 600;
 }
 
 .tsl-section p {
     color: var(--tsl-muted);
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 24px;
+}
+
+.tsl-page.dark .tsl-section p {
+    color: #ffffff;
 }
 
 /* Pricing Card (Sticky) */
@@ -262,7 +415,7 @@
     position: sticky;
     top: 120px;
     background: var(--tsl-card-bg);
-    border: 1px solid #eee;
+    border: 1px solid #ceff1b;
     border-radius: 16px;
     box-shadow: var(--tsl-card-shadow);
     overflow: hidden;
@@ -444,7 +597,7 @@
 .tsl-btn-primary {
     background: #ceff1b;
     color: #000;
-    border: none;
+    border: 1px solid black;
     width: 100%;
     padding: 16px;
     border-radius: 12px;
@@ -477,31 +630,64 @@
     border-color: #bbb;
 }
 
-.dark .tsl-price,
-.dark .tsl-delivery-value,
-.dark .tsl-inclusions-title,
-.dark .tsl-addons-title {
-    color: #fff;
-}
-
-.dark .tsl-pkg-desc,
-.dark .tsl-inclusion-item,
-.dark .tsl-addon-name,
-.dark .tsl-addon-price {
-    color: #ccc;
-}
-
-.dark .tsl-check-circle {
-    border-color: #fff;
-}
-
-.dark .tsl-btn-outline {
+.tsl-page.dark .tsl-pricing-card {
     background: #1a1a1a;
-    color: #fff;
-    border-color: #444;
+    border: 1.5px solid #ceff1b;
 }
 
-.dark .tsl-btn-outline:hover {
+.tsl-page.dark .tsl-pricing-tabs {
+    background: #ceff1b;
+}
+
+.tsl-page.dark .tsl-tab {
+    color: #000000;
+}
+
+.tsl-page.dark .tsl-tab.active {
+    background: #ffffff !important;
+    color: #000000 !important;
+}
+
+.tsl-page.dark .tsl-price,
+.tsl-page.dark .tsl-delivery-value,
+.tsl-page.dark .tsl-inclusions-title,
+.tsl-page.dark .tsl-addons-title {
+    color: #ceff1b;
+}
+
+.tsl-page.dark .tsl-pkg-desc,
+.tsl-page.dark .tsl-inclusion-item,
+.tsl-page.dark .tsl-addon-name,
+.tsl-page.dark .tsl-addon-price {
+    color: #ffffff;
+}
+
+.tsl-page.dark .tsl-check-circle {
+    border-color: #ceff1b;
+    color: #ceff1b;
+}
+
+.tsl-page.dark .tsl-check-circle svg {
+    color: #ceff1b;
+}
+
+.tsl-page.dark .tsl-addon-checkbox {
+    accent-color: #ceff1b;
+}
+
+.tsl-page.dark .tsl-btn-primary {
+    background: #ceff1b;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+.tsl-page.dark .tsl-btn-outline {
+    background: #1a1a1a;
+    color: #ffffff;
+    border: 1px solid #444444;
+}
+
+.tsl-page.dark .tsl-btn-outline:hover {
     background: #252525;
 }
 
@@ -514,7 +700,7 @@
     gap: 32px;
     padding: 32px;
     background: var(--tsl-card-bg);
-    border: 1px solid var(--tsl-border);
+    border: 1.5px solid #ceff1b;
     border-radius: 24px;
     margin-bottom: 24px;
 }
@@ -566,6 +752,9 @@
     color: var(--tsl-muted);
     font-size: 14px;
     margin: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .tsl-rating-row {
@@ -613,10 +802,14 @@
 
 .tsl-lang-tags span {
     padding: 8px 24px;
-    background: rgba(206, 255, 27, 0.1);
     border-radius: 12px;
     font-size: 14px;
     color: var(--tsl-text);
+}
+
+.tsl-page.dark .tsl-lang-tags span {
+    background: #ffffff;
+    color: #000000;
 }
 
 .tsl-full-profile-btn {
@@ -630,6 +823,7 @@
     font-size: 15px;
     cursor: pointer;
     width: fit-content;
+    border: 1px solid black;
 }
 
 .tsl-profile-right {
@@ -651,6 +845,7 @@
     border-radius: 12px;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 8px;
 }
 
@@ -665,6 +860,11 @@
     opacity: 0.6;
 }
 
+.dark .stat-icon-svg {
+    color: #ffffff !important;
+    opacity: 1;
+}
+
 .stat-label {
     font-size: 14px;
     font-weight: 500;
@@ -674,10 +874,14 @@
     font-size: 24px;
     font-weight: 700;
     color: #1a1a1a;
+    text-align: left;
+    align-self: flex-start;
+    display: block;
+    width: 100%;
 }
 
 .tsl-skills-panel {
-    background: #f9f9f9;
+    background: #FFF;
     border: 1px solid #ddd;
     padding: 32px;
     border-radius: 20px;
@@ -702,12 +906,12 @@
     border-radius: 8px;
     font-size: 13px;
     font-weight: 600;
-    border: 1px solid #bce618;
+    border: 1px solid black;
 }
 
 .dark .tsl-stat-card {
     background: #1e1e1e;
-    border-color: #333;
+    border-color: #ceff1b;
 }
 
 .dark .tsl-stat-card .stat-value {
@@ -716,7 +920,24 @@
 
 .dark .tsl-skills-panel {
     background: #1a1a1a;
-    border-color: #333;
+    border-color: #ceff1b;
+}
+
+/* Headings color in dark mode */
+.tsl-page.dark .tsl-profile-title-box h3,
+.tsl-page.dark .tsl-profile-details h4,
+.tsl-page.dark .tsl-languages-section h5,
+.tsl-page.dark .tsl-skills-panel h4 {
+    color: #ceff1b !important;
+}
+
+/* Numbers color in dark mode */
+.tsl-page.dark .tsl-price,
+.tsl-page.dark .tsl-delivery-value,
+.tsl-page.dark .stat-value,
+.tsl-page.dark .tsl-mp-price,
+.tsl-page.dark .tsl-addon-price {
+    color: #ceff1b !important;
 }
 
 .dark .tsl-skills-panel h4 {
@@ -745,7 +966,11 @@
 .faq-header-line {
     flex: 1;
     height: 1px;
-    background: var(--tsl-border);
+    background: black;
+}
+
+.tsl-page.dark .faq-header-line {
+    background: #ceff1b;
 }
 
 .faq-container {
@@ -756,10 +981,14 @@
 
 .faq-item {
     background: var(--tsl-card-bg);
-    border: 1px solid var(--tsl-border);
+    border: 1px solid black;
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.3s ease;
+}
+
+.tsl-page.dark .faq-item {
+    border-color: #ceff1b;
 }
 
 .faq-item.active {
@@ -869,7 +1098,7 @@
 
 .compare-table tbody td:not(.feature-name) {
     text-align: center;
-    color: var(--tsl-muted);
+    color: #000000;
     line-height: 1.6;
     vertical-align: top;
     min-width: 200px;
@@ -886,22 +1115,65 @@
 .compare-list {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    align-items: center;
 }
 
 .compare-list li {
     display: flex;
     align-items: center;
     gap: 8px;
+    text-align: left;
 }
 
 .compare-list li::before {
     content: "✓";
     color: var(--tsl-lime);
     font-weight: bold;
+}
+
+.tsl-page.dark .compare-header-line {
+    background: #ceff1b;
+    box-shadow: 0 0 10px rgba(206, 255, 27, 0.5);
+}
+
+.tsl-page.dark .compare-table-container {
+    background: #1a1a1a;
+    border-color: #333;
+}
+
+.tsl-page.dark .compare-table td {
+    border-color: #333;
+}
+
+.tsl-page.dark .compare-table thead th {
+    background: #ceff1b;
+    color: #000;
+}
+
+.tsl-page.dark .compare-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.tsl-page.dark .compare-table .feature-name {
+    color: #ffffff;
+}
+
+.tsl-page.dark .compare-table tbody td:not(.feature-name) {
+    color: #ffffff;
+}
+
+/* Specific styling for Price row in dark mode */
+.tsl-page.dark .compare-table tbody tr:first-child td:not(.feature-name) {
+    color: #ceff1b;
+    text-shadow: 0 0 10px rgba(206, 255, 27, 0.3);
+}
+
+.tsl-page.dark .compare-list li {
+    color: #ffffff;
 }
 
 /* Marketplace-style Sections in TeamServiceListing */
@@ -952,7 +1224,7 @@
     overflow: hidden;
 }
 
-.dark .tsl-mp-imgWrap {
+.tsl-page.dark .tsl-mp-imgWrap {
     background: #252525;
 }
 
@@ -985,14 +1257,14 @@
 }
 
 .tsl-mp-avatar {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: #333;
 }
 
 .tsl-mp-userName {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
     color: var(--tsl-text);
 }
@@ -1009,13 +1281,18 @@
     background: linear-gradient(#1a1a1a, #1a1a1a) padding-box,
         linear-gradient(90deg, #d946ef, #8b5cf6) border-box;
     border: 1.5px solid transparent;
-    box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.7), 0 0 40px rgba(217, 70, 239, 0.35);
 }
 
-.dark .tsl-mp-aiBadge {
+.tsl-page.dark .tsl-mp-aiBadge {
     background: linear-gradient(#ffffff, #ffffff) padding-box,
         linear-gradient(90deg, #d946ef, #8b5cf6) border-box;
     color: #1a1a1a;
+}
+
+.tsl-mp-aiBadge svg {
+    color: #b060ff;
+    fill: #b060ff;
 }
 
 .tsl-mp-desc {
@@ -1049,7 +1326,7 @@
     color: #FFA500;
 }
 
-.dark .tsl-mp-star {
+.tsl-page.dark .tsl-mp-star {
     color: var(--tsl-lime);
 }
 
