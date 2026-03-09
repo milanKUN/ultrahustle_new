@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import "../../../onboarding/components/OnboardingSelect.css";
 
-export default function PersonalInformation() {
+export default function PersonalInformation({ theme }) {
   const ABOUT_LIMIT = 700;
   const Hashtag_LIMIT = 100;
   const Availability_LIMIT = 100;
@@ -465,14 +466,17 @@ export default function PersonalInformation() {
         </div>
       </div>
       {/* ================= CALENDAR MODAL ================= */}
-      {openCalendar && (
-        <Calendar
-          onClose={() => setOpenCalendar(false)}
-          onSelect={(date) => {
-            setDob(date);
-            setOpenCalendar(false);
-          }}
-        />
+      {openCalendar && createPortal(
+        <div className={`user-page ${theme || 'light'}`}>
+          <Calendar
+            onClose={() => setOpenCalendar(false)}
+            onSelect={(date) => {
+              setDob(date);
+              setOpenCalendar(false);
+            }}
+          />
+        </div>,
+        document.body
       )}
     </>
   );
@@ -529,7 +533,7 @@ function Calendar({ onClose, onSelect }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/20 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+      className="fixed inset-0 z-[9999] bg-black/20 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center cursor-pointer"
       onClick={onClose}
     >
       {/* OUTER CARD */}

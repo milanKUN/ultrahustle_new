@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
+import { createPortal } from "react-dom";
 
-export default function ProfileForm() {
+export default function ProfileForm({ theme }) {
   const TITLE_LIMIT = 40;
   const BIO_LIMIT = 160;
 
@@ -27,99 +28,30 @@ export default function ProfileForm() {
   return (
     <>
       {/* ================= PROFILE FORM ================= */}
-      <div
-        className="
-
-        "
-      >
+      <div className="">
         {/* HEADER */}
-        <div
-          className="
-            flex
-            mb-6
-            items-center gap-4
-          "
-        >
-          <h3
-            className="
-              text-xl font-semibold
-            "
-          >
-            My Profile
-          </h3>
-          <div
-            className="
-              flex-1
-              h-px
-              bg-[#2B2B2B]
-            "
-          />
+        <div className="flex mb-6 items-center gap-4">
+          <h3 className="text-xl font-semibold">My Profile</h3>
+          <div className="flex-1 h-px bg-[#2B2B2B]" />
         </div>
 
         {/* PROFILE BAR */}
-        {/* PROFILE BAR */}
-        <div
-          className="
-    flex flex-col
-    w-full
-    px-6 py-6
-    bg-[#FEFEFE]
-    rounded-xl
-    border-[0.5px] border-[#CEFF1B]
-    relative
-    gap-6
-    backdrop-blur-3xl
-    profile-card
-    md:flex-row md:items-center md:justify-between
-  "
-        >
+        <div className="flex flex-col w-full px-6 py-6 bg-[#FEFEFE] rounded-xl border-[0.5px] border-[#CEFF1B] relative gap-6 backdrop-blur-3xl profile-card md:flex-row md:items-center md:justify-between">
           {/* LEFT */}
           <div className="flex items-center gap-3">
             {/* AVATAR */}
             <div
               onClick={() => setOpenImageModal(true)}
-              className="
-    relative
-    w-20 h-20
-    rounded-full
-    bg-[#D9D9D9]
-    cursor-pointer
-    flex items-center justify-center
-  "
+              className="relative w-20 h-20 rounded-full bg-[#D9D9D9] cursor-pointer flex items-center justify-center"
             >
               {/* EDIT BADGE */}
-              <span
-                className="
-    absolute
-    bottom-0 right-0
-    w-7 h-7
-    rounded-full
-    flex items-center justify-center
-    shadow-lg
-    bg-white
-    profile-avatar-badge
-  "
-              >
-                <img
-                  src="/edit.svg"
-                  alt="Edit"
-                  className="w-4 h-4"
-                />
+              <span className="absolute bottom-0 right-0 w-7 h-7 rounded-full flex items-center justify-center shadow-lg bg-white profile-avatar-badge">
+                <img src="/edit.svg" alt="Edit" className="w-4 h-4" />
               </span>
-
-
             </div>
 
-
             {/* NAME */}
-            <span
-              className="
-        text-[22px]
-        font-semibold
-        text-gray-900
-        profile-name
-      "
-            >
+            <span className="text-[22px] font-semibold text-gray-900 profile-name">
               Abigail
             </span>
           </div>
@@ -127,198 +59,116 @@ export default function ProfileForm() {
           {/* RIGHT */}
           <button
             onClick={() => setOpenFriends(true)}
-            className="
-      flex
-      px-6 py-2.5
-      font-medium
-      bg-[#CEFF1B]
-      rounded-lg
-      border border-[#2B2B2B]
-      items-center justify-center
-      gap-2
-      hover:opacity-90
-      self-start
-      md:self-center
-    "
+            className="flex px-6 py-2.5 font-medium bg-[#CEFF1B] rounded-lg border border-[#2B2B2B] items-center justify-center gap-2 hover:opacity-90 self-start md:self-center"
           >
-            <img
-              src="/Vector.svg"
-              alt="Friends"
-              className="w-5 h-5"
-            />
+            <img src="/Vector.svg" alt="Friends" className="w-5 h-5" />
             Friend List
           </button>
         </div>
-
 
         {/* FORM */}
       </div>
 
       {/* ================= IMAGE MODAL ================= */}
-      {openImageModal && (
-        <div
-          className="
-            z-50 flex
-            md:mt-20 p-4 md:p-0
-            fixed inset-0 items-center justify-center image-modal
-            backdrop-blur-sm bg-black/30
-          "
-        >
-          <div
-            className="
-              flex flex-col items-center
-              w-[90%] max-w-[380px] h-auto max-h-[90vh] overflow-y-auto
-              p-5 md:p-6
-              rounded-2xl
-              image-modal-card relative
-            "
-          >
-            <button
-              onClick={() => setOpenImageModal(false)}
-              className="
-                text-red-500 font-bold
-                absolute top-4 right-4
-              "
-            >
-              ✕
-            </button>
-
-            <h3
-              className="
-                mb-6
-                text-center font-semibold text-gray-800
-              "
-            >
-              Resize and adjust <br /> your photo
-            </h3>
-
-            <div
-              className="
-                flex
-                w-full aspect-square max-w-[280px]
-                mb-5 mx-auto
-                bg-[#2B2B2B]
-                rounded-xl
-                items-center justify-center
-                relative overflow-hidden
-              "
-            >
-              {selectedImage ? (
-                <>
-                  <img
-                    src={selectedImage}
-                    alt="Preview"
-                    className="preview-image w-full h-full object-cover transition-transform duration-200"
-                    style={{ transform: `scale(${1 + zoom / 100})` }}
-                  />
-                  {/* CIRCULAR PREVIEW OVERLAY */}
-                  <div
-                    className="
-                      absolute inset-0
-                      pointer-events-none
-                      flex items-center justify-center
-                    "
-                  // style={{
-                  //   background: "radial-gradient(circle, transparent 130px, rgba(0,0,0,0.5) 130px)"
-                  // }}
-                  >
-                    <div
-                      className="
-                        w-[230px] h-[230px] md:w-[250px] md:h-[250px]
-                        rounded-full
-                        border-2 border-white/50
-                      "
-                    />
-                  </div>
-                </>
-              ) : (
+      {openImageModal &&
+        createPortal(
+          <div className={`user-page ${theme || "light"}`}>
+            <div className="z-[9999] flex md:mt-0 p-4 md:p-0 fixed inset-0 items-center justify-center image-modal backdrop-blur-sm bg-black/30">
+              <div className="flex flex-col items-center w-[90%] max-w-[380px] h-auto max-h-[90vh] overflow-y-auto p-5 md:p-6 rounded-2xl image-modal-card relative bg-white dark:bg-[#1A1A1A]">
                 <button
-                  onClick={() => fileRef.current.click()}
-                  className="
-                    w-[157px] h-[58.41px]
-                    text-sm
-                    bg-white
-                    rounded
-                  "
+                  onClick={() => setOpenImageModal(false)}
+                  className="text-red-500 font-bold absolute top-4 right-4"
                 >
-                  Select Image
+                  ✕
                 </button>
-              )}
-              <input type="file" ref={fileRef} hidden onChange={handleFileChange} />
+
+                <h3 className="mb-6 text-center font-semibold text-gray-800 dark:text-white">
+                  Resize and adjust <br /> your photo
+                </h3>
+
+                <div className="flex w-full aspect-square max-w-[280px] mb-5 mx-auto bg-[#2B2B2B] rounded-xl items-center justify-center relative overflow-hidden">
+                  {selectedImage ? (
+                    <>
+                      <img
+                        src={selectedImage}
+                        alt="Preview"
+                        className="preview-image w-full h-full object-cover transition-transform duration-200"
+                        style={{ transform: `scale(${1 + zoom / 100})` }}
+                      />
+                      {/* CIRCULAR PREVIEW OVERLAY */}
+                      <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+                        <div className="w-[230px] h-[230px] md:w-[250px] md:h-[250px] rounded-full border-2 border-white/50" />
+                      </div>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => fileRef.current.click()}
+                      className="w-[157px] h-[58.41px] text-sm bg-white rounded"
+                    >
+                      Select Image
+                    </button>
+                  )}
+                  <input
+                    type="file"
+                    ref={fileRef}
+                    hidden
+                    onChange={handleFileChange}
+                  />
+                </div>
+
+                <p className="mb-2 text-xs text-center text-red-500 -mt-6">
+                  Maximum upload size: 10 MB
+                </p>
+                <div className="flex w-full max-w-[280px] mx-auto mb-6 items-center justify-between gap-3 zoom-bar">
+                  <button
+                    onClick={() => setZoom(Math.max(0, zoom - 10))}
+                    className="p-2 flex-shrink-0 hover:bg-black/5 dark:hover:bg-white/10 rounded transition-colors flex items-center justify-center"
+                  >
+                    <img
+                      src="/minus.svg"
+                      alt="Decrease"
+                      className="w-8 h-8 sm:w-6 sm:h-6 object-contain"
+                    />
+                  </button>
+
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={zoom}
+                    onChange={(e) => setZoom(parseInt(e.target.value))}
+                    className="flex-1 accent-[#CEFF1B]"
+                  />
+
+                  <button
+                    onClick={() => setZoom(Math.min(100, zoom + 10))}
+                    className="p-2 flex-shrink-0 hover:bg-black/5 dark:hover:bg-white/10 rounded transition-colors flex items-center justify-center"
+                  >
+                    <img
+                      src="/plus.svg"
+                      alt="Increase"
+                      className="w-8 h-8 sm:w-6 sm:h-6 object-contain"
+                    />
+                  </button>
+                </div>
+
+                <button className="w-full mt-auto py-3 font-medium bg-[#CEFF1B] rounded-md">
+                  Upload Photo
+                </button>
+              </div>
             </div>
-
-            <p
-              className="
-                mb-2
-                text-xs text-center text-red-500
-                -mt-6
-              "
-            >
-              Maximum upload size: 10 MB
-            </p>
-            <div
-              className="
-                flex w-full max-w-[280px] mx-auto
-                mb-6
-                items-center justify-between gap-3
-                zoom-bar
-              "
-            >
-              {/* MINUS */}
-              <button
-                onClick={() => setZoom(Math.max(0, zoom - 10))}
-                className="p-2 flex-shrink-0 hover:bg-black/5 dark:hover:bg-white/10 rounded transition-colors flex items-center justify-center"
-              >
-                <img
-                  src="/minus.svg"
-                  alt="Decrease"
-                  className="w-8 h-8 sm:w-6 sm:h-6 object-contain"
-                />
-              </button>
-
-              {/* RANGE */}
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={zoom}
-                onChange={(e) => setZoom(parseInt(e.target.value))}
-                className="
-                  flex-1
-                  accent-[#CEFF1B]
-                "
-              />
-
-              {/* PLUS */}
-              <button
-                onClick={() => setZoom(Math.min(100, zoom + 10))}
-                className="p-2 flex-shrink-0 hover:bg-black/5 dark:hover:bg-white/10 rounded transition-colors flex items-center justify-center"
-              >
-                <img
-                  src="/plus.svg"
-                  alt="Increase"
-                  className="w-8 h-8 sm:w-6 sm:h-6 object-contain"
-                />
-              </button>
-            </div>
-
-            <button
-              className="
-                w-full
-                mt-auto py-3
-                font-medium
-                bg-[#CEFF1B]
-                rounded-md
-              "
-            >
-              Upload Photo
-            </button>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
 
       {/* ================= FRIEND LIST MODAL ================= */}
-      {openFriends && <FriendListModal onClose={() => setOpenFriends(false)} />}
+      {openFriends &&
+        createPortal(
+          <div className={`user-page ${theme || "light"}`}>
+            <FriendListModal onClose={() => setOpenFriends(false)} />
+          </div>,
+          document.body
+        )}
     </>
   );
 }
@@ -355,8 +205,8 @@ function FriendListModal({ onClose }) {
   return (
     <div
       className="
-        z-50 flex
-        md:mt-20 p-4 md:p-0
+        z-[9999] flex
+        md:mt-0 p-4 md:p-0
         bg-black/60
         backdrop-blur-sm
         fixed inset-0 items-center justify-center friend-modal

@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 let nextId = 4; // counter for unique IDs
 
-export default function MyPortfolio() {
+export default function MyPortfolio({ theme }) {
   const [projects, setProjects] = useState([
     { id: 1, title: "", desc: "", cost: "" },
     { id: 2, title: "", desc: "", cost: "" },
@@ -149,33 +150,32 @@ export default function MyPortfolio() {
         </div>
       </div>
 
-      {/* ================= BACKDROP (BLUR DARK) =================
-          ✅ behind UploadGrid but above page
-      */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 z-[900] bg-black/30 backdrop-blur-sm"
-          onClick={() => setUploadStep(null)}
-        />
-      )}
+      {/* ================= PORTAL FOR MODALS ================= */}
+      {isModalOpen && createPortal(
+        <div className={`user-page ${theme || 'light'}`}>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 z-[9998] bg-black/30 backdrop-blur-sm"
+            onClick={() => setUploadStep(null)}
+          />
 
-      {/* ================= UPLOAD GRID =================
-          ✅ grid stays visible in BOTH "grid" and "success"
-          ✅ when "success" => grid becomes blurred + disabled
-      */}
-      {(uploadStep === "grid" || uploadStep === "success") && (
-        <UploadGrid
-          blurred={uploadStep === "success"}
-          onBack={() => setUploadStep(null)}
-          onSelect={() => setUploadStep("success")}
-        />
-      )}
+          {/* UPLOAD GRID */}
+          {(uploadStep === "grid" || uploadStep === "success") && (
+            <UploadGrid
+              blurred={uploadStep === "success"}
+              onBack={() => setUploadStep(null)}
+              onSelect={() => setUploadStep("success")}
+            />
+          )}
 
-      {/* ================= SUCCESS MODAL (TOP) ================= */}
-      {uploadStep === "success" && (
-        <UploadSuccess
-          onBack={() => setUploadStep(null)}
-        />
+          {/* SUCCESS MODAL */}
+          {uploadStep === "success" && (
+            <UploadSuccess
+              onBack={() => setUploadStep(null)}
+            />
+          )}
+        </div>,
+        document.body
       )}
     </>
   );
@@ -207,9 +207,9 @@ function UploadGrid({ onSelect, onBack, blurred }) {
   };
 
   return (
-    <div className="fixed inset-0 z-[950] flex items-center justify-center pointer-events-auto">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto">
       <div
-        className={`upload-card rounded-2xl p-4 w-[95%] max-w-[820px] h-auto max-h-[90vh] flex flex-col bg-white shadow-[0_0_20px_#CEFF1B] transition-all duration-200
+        className={`upload-card rounded-2xl p-4 w-[95%] max-w-[820px] h-auto max-h-[90vh] flex flex-col bg-white dark:bg-[#1A1A1A] shadow-[0_0_20px_#CEFF1B] transition-all duration-200
         ${blurred
             ? "blur-sm scale-[0.98] pointer-events-none select-none opacity-95"
             : ""

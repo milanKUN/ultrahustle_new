@@ -117,35 +117,35 @@ function User({ theme, setTheme }) {
               </section>
 
               <section ref={refs.profile} id="profile">
-                <PersonalInfo />
+                <PersonalInfo theme={theme} />
               </section>
 
               <section ref={refs.security} id="security">
-                <Security />
+                <Security theme={theme} />
               </section>
 
               <section ref={refs.portfolio} id="portfolio">
-                <MyPortfolio />
+                <MyPortfolio theme={theme} />
               </section>
 
               <section ref={refs.notifications} id="notifications">
-                <Notification />
+                <Notification theme={theme} />
               </section>
 
               <section ref={refs.payments} id="payments">
-                <Payments />
+                <Payments theme={theme} />
               </section>
 
               <section ref={refs.verification} id="verification">
-                <Veriffication />
+                <Veriffication theme={theme} />
               </section>
 
               <section ref={refs.apps} id="apps">
-                <ConnectedApps />
+                <ConnectedApps theme={theme} />
               </section>
 
               <section ref={refs.delete} id="delete">
-                <DeleteAccount />
+                <DeleteAccount theme={theme} />
               </section>
             </div>
           </div>
