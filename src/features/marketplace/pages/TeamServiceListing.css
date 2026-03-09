@@ -413,7 +413,7 @@
 /* Pricing Card (Sticky) */
 .tsl-pricing-card {
     position: sticky;
-    top: 120px;
+    top: 103px;
     background: var(--tsl-card-bg);
     border: 1px solid #ceff1b;
     border-radius: 16px;
@@ -458,6 +458,16 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 4px;
+}
+
+.tsl-price-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.tsl-price-label {
+    font-size: 13px;
+    color: #888;
 }
 
 .tsl-price {
@@ -573,7 +583,9 @@
 
 .tsl-addon-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
 }
 
 .tsl-addon-sub {
@@ -658,7 +670,8 @@
 .tsl-page.dark .tsl-pkg-desc,
 .tsl-page.dark .tsl-inclusion-item,
 .tsl-page.dark .tsl-addon-name,
-.tsl-page.dark .tsl-addon-price {
+.tsl-page.dark .tsl-addon-price,
+.tsl-page.dark .tsl-price-label {
     color: #ffffff;
 }
 
@@ -1805,6 +1818,7 @@
     height: 100%;
     object-fit: cover;
 }
+
 /* Mobile Responsiveness for Modal */
 @media (max-width: 768px) {
     .tsl-modal-close-btn {

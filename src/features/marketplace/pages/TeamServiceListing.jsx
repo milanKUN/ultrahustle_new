@@ -31,6 +31,7 @@ const TeamServiceListing = ({ theme, setTheme }) => {
     const [showMoreListings, setShowMoreListings] = useState(false);
     const [showImageModal, setShowImageModal] = useState(false);
     const [modalImgIndex, setModalImgIndex] = useState(0);
+    const [isLiked, setIsLiked] = useState(false);
 
     // Portfolio & Listing State (same as UserProfile.jsx)
     const [activeItem, setActiveItem] = useState(null);
@@ -375,7 +376,9 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                                 <div className="tsl-header-actions">
                                     <button className="tsl-icon-btn"><Share2 size={20} /></button>
                                     <button className="tsl-icon-btn"><Flag size={20} /></button>
-                                    <button className="tsl-icon-btn"><Heart size={20} /></button>
+                                    <button className="tsl-icon-btn" onClick={() => setIsLiked(!isLiked)}>
+                                        <Heart size={20} fill={isLiked ? "red" : "none"} color={isLiked ? "red" : "currentColor"} />
+                                    </button>
                                 </div>
                             </div>
 
@@ -486,15 +489,17 @@ const TeamServiceListing = ({ theme, setTheme }) => {
 
                                     <div className="tsl-pricing-content">
                                         <div className="tsl-price-row">
-                                            <div className="tsl-price-box">
+                                            <div className="tsl-price-info">
+                                                <span className="tsl-price-label">Price</span>
                                                 <span className="tsl-price">${packages[activeTab].price}</span>
-                                                <p className="tsl-pkg-desc">{packages[activeTab].desc}</p>
                                             </div>
                                             <div className="tsl-delivery-info">
                                                 <span className="tsl-delivery-label">Delivery</span>
                                                 <span className="tsl-delivery-value">{packages[activeTab].delivery}</span>
                                             </div>
                                         </div>
+
+                                        <p className="tsl-pkg-desc">{packages[activeTab].desc}</p>
 
                                         <p className="tsl-revs">{packages[activeTab].revisions} Revisions</p>
 
