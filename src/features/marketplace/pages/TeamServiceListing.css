@@ -1659,7 +1659,10 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
+    /* background: rgba(0, 0, 0, 0.85); */
+    /* Slightly less opaque to show blur */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -1682,7 +1685,7 @@
     position: absolute;
     top: 24px;
     right: 24px;
-    background: rgba(255, 255, 255, 0.1);
+    background: black;
     color: white;
     border: none;
     border-radius: 50%;
@@ -1713,7 +1716,7 @@
 }
 
 .tsl-modal-nav-btn {
-    background: rgba(255, 255, 255, 0.1);
+    background: black;
     color: white;
     border: none;
     border-radius: 50%;
@@ -1748,7 +1751,8 @@
     max-height: 100%;
     object-fit: contain;
     border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px #ceff1b, 0 0 30px rgba(206, 255, 27, 0.6), 0 0 60px rgba(206, 255, 27, 0.3), 0 20px 40px rgba(0, 0, 0, 0.7);
+    border: 3px solid #ceff1b;
     animation: tslZoomIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
