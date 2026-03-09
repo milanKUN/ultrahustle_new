@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from "react";
 import "./CreateServiceListing.css";
 import UserNavbar from "../../../components/layout/UserNavbar";
-import Sidebar from "../../../components/layout/Sidebar";
+// import Sidebar from "../../../components/layout/Sidebar";
 import MyPortfolio from "../../dashboard/components/UserProfile/MyPortfolio";
 import "../../../Darkuser.css";
 import "../../onboarding/components/OnboardingSelect.css";
@@ -287,7 +287,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
 
       <div className={`pt-[85px] flex relative z-10 transition-all duration-300 ${isModalOpen ? "blur-sm pointer-events-none select-none" : ""}`}>
         {/* ✅ SIDEBAR */}
-        <Sidebar
+        {/* <Sidebar
           expanded={sidebarOpen}
           setExpanded={setSidebarOpen}
           showSettings={showSettings}
@@ -296,7 +296,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
           onSectionChange={handleSectionChange}
           theme={theme}
           setTheme={setTheme}
-        />
+        /> */}
 
         {/* ✅ MAIN CONTENT WRAPPER */}
         <div className="relative flex-1 min-w-5 overflow-hidden">
