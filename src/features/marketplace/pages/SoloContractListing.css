@@ -337,8 +337,8 @@
 }
 
 .user-page.dark .cnc-del-item-card {
-  background: #5E5E5E;
-  border-color: #333;
+  background: #5E5E5E !important;
+  border-color: #333 !important;
 }
 
 .cnc-del-tag-list {
@@ -361,9 +361,9 @@
 }
 
 .user-page.dark .cnc-del-tag {
-  background: transparent;
-  border-color: var(--accent);
-  color: var(--accent);
+  background: #5E5E5E !important;
+  border-color: #ceff1b !important;
+  color: #ceff1b !important;
 }
 
 .cnc-tag-lbl {
@@ -383,8 +383,8 @@
 }
 
 .user-page.dark .cnc-tag-x {
-  color: var(--accent);
-  opacity: 0.8;
+  color: #ceff1b !important;
+  opacity: 1 !important;
 }
 
 .cnc-del-close-btn {
@@ -411,7 +411,7 @@
 }
 
 .user-page.dark .cnc-del-close-btn {
-  color: var(--accent);
+  color: #ceff1b !important;
 }
 
 .user-page.dark .cnc-del-close-btn:hover {

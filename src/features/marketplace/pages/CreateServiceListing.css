@@ -918,10 +918,7 @@
   transition: all 0.2s ease;
 }
 
-.am-item-remove:hover {
-  color: #ff4747;
-  transform: translateY(-50%) scale(1.1);
-}
+
 
 .am-addBtn {
   margin-top: 16px;
@@ -945,27 +942,24 @@
 }
 
 .user-page.dark .am-item-row {
-  background: #1a1a1a;
-  border-color: #333;
+  background: #5E5E5E !important;
+  border-color: #333 !important;
 }
 
 .user-page.dark .am-item-chip {
-  background: #252525;
-  border-color: #CEFF1B;
-  color: #fff;
+  background: #5E5E5E !important;
+  border-color: #CEFF1B !important;
+  color: #CEFF1B !important;
 }
 
 .user-page.dark .am-chip-lbl {
-  color: #CEFF1B;
+  color: #CEFF1B !important;
 }
 
 .user-page.dark .am-item-remove {
-  color: rgba(255, 255, 255, 0.3);
+  color: #CEFF1B !important;
 }
 
-.user-page.dark .am-item-remove:hover {
-  color: #ff5555;
-}
 
 .am-mediaLabel {
   font-size: 12px;
@@ -1219,8 +1213,7 @@
 }
 
 .user-page.dark .csl-chips,
-.user-page.dark .sp-chipRow,
-.user-page.dark .am-addOnList {
+.user-page.dark .sp-chipRow {
   background-color: #5C5C5C !important;
   border: none !important;
 }
