@@ -76,12 +76,14 @@
     padding: 0 48px;
     display: flex;
     align-items: center;
+    justify-content: center;
     z-index: 3;
 }
 
 .mp-heroText {
     flex: 1.2;
     z-index: 2;
+    text-align: center;
 }
 
 .mp-heroTitle {
@@ -467,14 +469,14 @@
 }
 
 .mp-avatar {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: #333;
 }
 
 .mp-userName {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
     color: #1a1a1a;
 }
