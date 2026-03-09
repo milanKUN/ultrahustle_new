@@ -538,13 +538,13 @@
 
 .sp-switch input:checked+.sp-slider {
   background: #ffffff;
-  border: 1.5px solid #AC4BFA;
+  border: 1.5px solid #ceff1b;
 }
 
 .sp-switch input:checked+.sp-slider::before {
   transform: translate(22px, -50%);
-  background: #AC4BFA;
-  box-shadow: 0 0 8px #AC4BFA;
+  background: #ceff1b;
+  box-shadow: 0 0 8px #ceff1b;
 }
 
 
