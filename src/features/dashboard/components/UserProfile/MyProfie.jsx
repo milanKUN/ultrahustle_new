@@ -267,12 +267,12 @@ export default function ProfileForm() {
               {/* MINUS */}
               <button
                 onClick={() => setZoom(Math.max(0, zoom - 10))}
-                className="p-1 hover:bg-gray-100 rounded"
+                className="p-2 flex-shrink-0 hover:bg-black/5 dark:hover:bg-white/10 rounded transition-colors flex items-center justify-center"
               >
                 <img
                   src="/minus.svg"
                   alt="Decrease"
-                  className="w-5 h-5 filter invert brightness-0"
+                  className="w-8 h-8 sm:w-6 sm:h-6 object-contain"
                 />
               </button>
 
@@ -292,12 +292,12 @@ export default function ProfileForm() {
               {/* PLUS */}
               <button
                 onClick={() => setZoom(Math.min(100, zoom + 10))}
-                className="p-1 hover:bg-gray-100 rounded"
+                className="p-2 flex-shrink-0 hover:bg-black/5 dark:hover:bg-white/10 rounded transition-colors flex items-center justify-center"
               >
                 <img
                   src="/plus.svg"
                   alt="Increase"
-                  className="w-5 h-5 filter invert brightness-0"
+                  className="w-8 h-8 sm:w-6 sm:h-6 object-contain"
                 />
               </button>
             </div>
