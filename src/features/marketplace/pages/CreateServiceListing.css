@@ -1188,7 +1188,7 @@
 .user-page.dark .faq-input {
   background-color: transparent !important;
   color: #ffffff !important;
-
+  border: 1px solid #ffffff !important;
 }
 
 
