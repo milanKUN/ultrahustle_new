@@ -497,9 +497,7 @@ body {
     color: #333;
 }
 
-.btn-invite:hover {
-    background-color: #f0f0f0;
-}
+
 
 .btn-invite.active {
     background-color: var(--lime-glow);
