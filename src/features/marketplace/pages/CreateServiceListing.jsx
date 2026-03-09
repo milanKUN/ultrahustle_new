@@ -785,9 +785,24 @@ export default function CreateServiceListing({ theme, setTheme }) {
                   {addOns.length > 0 && (
                     <div className="am-addOnList">
                       {addOns.map((item, idx) => (
-                        <div key={idx} className="am-chip">
-                          {item.name} – ${item.price} – {item.days} days
-                          <button onClick={() => removeAddOn(idx)}>×</button>
+                        <div key={idx} className="am-item-row">
+                          <div className="am-item-chip">
+                            <span className="am-chip-lbl">Name:</span> {item.name}
+                          </div>
+                          <div className="am-item-chip">
+                            <span className="am-chip-lbl">Price:</span> ${item.price}
+                          </div>
+                          <div className="am-item-chip">
+                            <span className="am-chip-lbl">Duration:</span> {item.days} days
+                          </div>
+                          <button
+                            type="button"
+                            className="am-item-remove"
+                            onClick={() => setAddOns(addOns.filter((_, i) => i !== idx))}
+                            title="Remove add-on"
+                          >
+                            ×
+                          </button>
                         </div>
                       ))}
                     </div>

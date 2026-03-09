@@ -861,31 +861,110 @@
 }
 
 .am-addOnList {
-  margin-top: 12px;
+  margin-top: 16px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  background: #fff;
-  border-radius: 6px;
-  padding: 14px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.am-chip {
+.am-item-row {
+  position: relative;
+  border: 1px solid #eeeeee;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 48px 14px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.am-item-chip {
   background: #fff;
-  border: 1px solid #eee;
-  padding: 6px 12px;
+  border: 1px solid #e5e5e5;
   border-radius: 8px;
-  font-size: 11px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #111;
   display: flex;
   align-items: center;
   gap: 8px;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
-.am-chip button {
+.am-chip-lbl {
+  font-weight: 700;
+  color: #333;
+}
+
+.am-item-remove {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
   border: none;
   background: transparent;
+  color: #bbbbbb;
+  font-size: 20px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.am-item-remove:hover {
+  color: #ff4747;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.am-addBtn {
+  margin-top: 16px;
+  height: 42px;
+  padding: 0 20px;
+  border: 1px solid #1b1b1b;
+  background: #CEFF1B;
+  color: #0b0b0b;
+  font-weight: 800;
   font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(206, 255, 27, 0.2);
+}
+
+.am-addBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(206, 255, 27, 0.4);
+}
+
+.user-page.dark .am-item-row {
+  background: #1a1a1a;
+  border-color: #333;
+}
+
+.user-page.dark .am-item-chip {
+  background: #252525;
+  border-color: #CEFF1B;
+  color: #fff;
+}
+
+.user-page.dark .am-chip-lbl {
+  color: #CEFF1B;
+}
+
+.user-page.dark .am-item-remove {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.user-page.dark .am-item-remove:hover {
+  color: #ff5555;
 }
 
 .am-mediaLabel {
