@@ -1706,8 +1706,8 @@
 }
 
 .tsl-modal-content-wrap {
-    width: 90%;
-    height: 70%;
+    width: 95%;
+    height: 85%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1743,16 +1743,17 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
+    /* Removed overflow: hidden to prevent glow clipping */
 }
 
 .tsl-modal-main-img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 95%;
+    /* Increased for larger view */
+    max-height: 95%;
     object-fit: contain;
     border-radius: 12px;
-    box-shadow: 0 0 15px #ceff1b, 0 0 30px rgba(206, 255, 27, 0.6), 0 0 60px rgba(206, 255, 27, 0.3), 0 20px 40px rgba(0, 0, 0, 0.7);
-    border: 3px solid #ceff1b;
+    box-shadow: 0 0 10px #ceff1b, 0 0 20px rgba(206, 255, 27, 0.4), 0 0 40px rgba(206, 255, 27, 0.2);
+    border: 2px solid #ceff1b;
     animation: tslZoomIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -1803,4 +1804,45 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+/* Mobile Responsiveness for Modal */
+@media (max-width: 768px) {
+    .tsl-modal-close-btn {
+        top: 16px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .tsl-modal-nav-btn {
+        width: 44px;
+        height: 44px;
+        background: black;
+    }
+
+    .tsl-modal-content-wrap {
+        width: 100%;
+        height: 60%;
+        gap: 5px;
+    }
+
+    .tsl-modal-main-img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .tsl-modal-thumbs-strip {
+        margin-top: 20px;
+        gap: 8px;
+        padding: 5px;
+        width: 95%;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .tsl-modal-thumb-item {
+        width: 60px;
+        height: 40px;
+        flex-shrink: 0;
+    }
 }
