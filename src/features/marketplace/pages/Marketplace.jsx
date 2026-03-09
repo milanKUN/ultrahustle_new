@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import UserNavbar from "../../../components/layout/UserNavbar";
+import Sidebar from "../../../components/layout/Sidebar";
 import MobileBottomNav from "../../../components/layout/MobileBottomNav";
 import heroImg from "../../../assets/marketplacehero.png";
 import heroImgDark from "../../../assets/marketplacedark.png";
@@ -2261,7 +2262,12 @@ export default function Marketplace({ theme, setTheme }) {
 
                 <div className="mp-content-wrapper flex flex-1 relative z-10">
                     {/* SIDEBAR */}
-
+                    <Sidebar
+                        expanded={sidebarOpen}
+                        setExpanded={setSidebarOpen}
+                        theme={theme}
+                        setTheme={setTheme}
+                    />
 
                     {/* MAIN CONTENT */}
                     <div className="relative flex-1 min-w-5 overflow-hidden">

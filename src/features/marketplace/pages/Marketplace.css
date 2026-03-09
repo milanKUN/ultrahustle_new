@@ -34,9 +34,9 @@
     flex-direction: column;
 }
 
-/* Hide sidebar hamburger button — no sidebar on this page */
+/* Sidebar hamburger button visible */
 .mp-page .hamburger-btn {
-    display: none !important;
+    display: flex !important;
 }
 
 .mp-content-wrapper {
@@ -747,7 +747,8 @@
     .mp-heroInner {
         flex-direction: column;
         padding: 0 24px;
-        text-align: center;
+        text-align: left;
+        align-items: flex-start;
         gap: 24px;
     }
 
@@ -858,6 +859,7 @@
     .mp-heroTitle,
     .mp-heroSub {
         font-size: 24px;
+        text-align: left !important;
     }
 
     .mp-heroInner {
@@ -959,6 +961,7 @@
     .mp-heroTitle,
     .mp-heroSub {
         font-size: 20px;
+        text-align: left !important;
     }
 
     .mp-megaGrid {
