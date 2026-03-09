@@ -351,7 +351,7 @@ function UploadGrid({ onSelect, onBack, blurred }) {
 
 function UploadSuccess({ onBack }) {
   return (
-    <div className="fixed inset-0 z-[1001] flex items-center justify-center pointer-events-auto p-4">
+    <div className="fixed inset-0 z-[10001] flex items-center justify-center pointer-events-auto p-4">
       <div className="upload-success-card rounded-2xl w-[90%] max-w-[600px] h-auto min-h-[300px] md:h-[400px] py-10 flex flex-col items-center justify-center shadow-[0_0_20px_#CEFF1B] bg-white dark:bg-[#2B2B2B]">
         <div className="w-24 h-24 bg-[#CEFF1B] rounded-full flex items-center justify-center mb-6">
           <img src="/right.svg" alt="" />

@@ -482,7 +482,11 @@
 
 .sp-mode.active {
   color: #111;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.user-page.dark .sp-mode.active {
+  color: var(--csl-lime);
 }
 
 /* Switch */
@@ -1189,22 +1193,6 @@
 
 .user-page.dark .am-placeholder {
   background: #ceff1b !important;
-}
-
-/* MyPortfolio Component Overrides */
-.user-page.dark .my-portfolio input,
-.user-page.dark .my-portfolio textarea {
-  border-color: rgba(255, 255, 255, 0.2) !important;
-  color: #ffffff !important;
-}
-
-.user-page.dark .am-mediaLabel,
-.user-page.dark .my-portfolio label {
-  color: #CEFF1B !important;
-}
-
-.user-page.dark .my-portfolio .border-2.border-white {
-  border-color: rgba(206, 255, 27, 0.35) !important;
 }
 
 .user-page.dark .my-portfolio .bg-gray-200 {

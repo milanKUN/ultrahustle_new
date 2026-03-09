@@ -470,7 +470,12 @@ export default function CreateServiceListing({ theme, setTheme }) {
                     </div>
 
                     <div className="sp-topRight">
-                      <span className={`sp-mode ${mode === "Solo" ? "active" : ""}`}>Solo</span>
+                      <span
+                        className={`sp-mode cursor-pointer ${mode === "Solo" ? "active" : ""}`}
+                        onClick={() => setMode("Solo")}
+                      >
+                        Solo
+                      </span>
                       <label className="sp-switch">
                         <input
                           type="checkbox"
@@ -479,7 +484,12 @@ export default function CreateServiceListing({ theme, setTheme }) {
                         />
                         <span className="sp-slider" />
                       </label>
-                      <span className={`sp-mode ${mode === "Team" ? "active" : ""}`}>Team</span>
+                      <span
+                        className={`sp-mode cursor-pointer ${mode === "Team" ? "active" : ""}`}
+                        onClick={() => setMode("Team")}
+                      >
+                        Team
+                      </span>
                     </div>
                   </div>
 
@@ -815,7 +825,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
 
                 {/* Portfolio Section */}
                 <div className="csl-portfolio-wrap">
-                  <MyPortfolio />
+                  < MyPortfolio theme={theme} />
                 </div>
 
                 {/* ================= FAQ ================= */}

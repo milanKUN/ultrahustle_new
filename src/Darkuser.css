@@ -876,6 +876,18 @@ MY PORTFOLIO – DARK MODE (FINAL SINGLE FIX)
   border-color: rgba(206, 255, 27, 0.45) !important;
 }
 
+.user-page.dark .portfolio-card-edit input,
+.user-page.dark .portfolio-card-edit textarea {
+  border-color: rgba(206, 255, 27, 0.45) !important;
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+.user-page.dark .portfolio-card-edit input::placeholder,
+.user-page.dark .portfolio-card-edit textarea::placeholder {
+  color: #888 !important;
+}
+
 
 
 

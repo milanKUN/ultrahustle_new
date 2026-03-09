@@ -113,7 +113,7 @@ function User({ theme, setTheme }) {
           >
             <div className="p-8 space-y-28 w-full">
               <section ref={refs.account} id="account">
-                <MyProfile />
+                <MyProfile theme={theme} />
               </section>
 
               <section ref={refs.profile} id="profile">

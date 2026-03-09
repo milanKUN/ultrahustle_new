@@ -103,7 +103,7 @@ export default function ProfileForm({ theme }) {
                   ) : (
                     <button
                       onClick={() => fileRef.current.click()}
-                      className="w-[157px] h-[58.41px] text-sm bg-white rounded"
+                      className="w-[157px] h-[58.41px] text-sm bg-white dark:bg-[#2B2B2B] dark:text-white dark:border dark:border-[#CEFF1B] rounded"
                     >
                       Select Image
                     </button>
@@ -116,7 +116,7 @@ export default function ProfileForm({ theme }) {
                   />
                 </div>
 
-                <p className="mb-2 text-xs text-center text-red-500 -mt-6">
+                <p className="mb-2 text-xs text-center text-red-500 dark:text-red-400 -mt-6">
                   Maximum upload size: 10 MB
                 </p>
                 <div className="flex w-full max-w-[280px] mx-auto mb-6 items-center justify-between gap-3 zoom-bar">
