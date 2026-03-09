@@ -411,9 +411,8 @@
     padding: 10px 4px 24px;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    /* Firefox */
     -ms-overflow-style: none;
-    /* IE/Edge */
+    scroll-snap-type: x mandatory;
 }
 
 .mp-grid::-webkit-scrollbar {
@@ -424,11 +423,11 @@
 /* CARD */
 .mp-card {
     flex: 0 0 320px;
-    /* Fixed width for horizontal scrolling */
     background: transparent;
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.3s ease;
+    scroll-snap-align: center;
 }
 
 .dark .mp-card {
@@ -787,15 +786,15 @@
 
     /* AI badge smaller on mobile */
     .mp-aiBadge {
-        font-size: 10px;
-        padding: 4px 10px;
-        gap: 5px;
-        border-radius: 8px;
+        font-size: 9px;
+        padding: 3px 8px;
+        gap: 4px;
+        border-radius: 7px;
     }
 
     .mp-aiBadge svg {
-        width: 12px !important;
-        height: 12px !important;
+        width: 11px !important;
+        height: 11px !important;
     }
 
     /* Filter row */
@@ -841,15 +840,6 @@
     /* Cards */
     .mp-card {
         flex: 0 0 260px;
-    }
-
-    .mp-topLine {
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-
-    .mp-userName {
-        font-size: 16px;
     }
 }
 
@@ -948,27 +938,14 @@
         font-size: 12px;
     }
 
-    /* Section title */
-    .mp-sectionTitle {
-        font-size: 18px;
-        margin-bottom: 16px;
-    }
-
     /* Cards */
+    .mp-grid {
+        padding: 10px 30px 24px;
+        gap: 15px;
+    }
+
     .mp-card {
-        flex: 0 0 220px;
-    }
-
-    .mp-aiBadge {
-        font-size: 9px;
-        padding: 3px 8px;
-        gap: 4px;
-        border-radius: 6px;
-    }
-
-    .mp-aiBadge svg {
-        width: 10px !important;
-        height: 10px !important;
+        flex: 0 0 calc(100vw - 60px);
     }
 
     .mp-imgWrap {
@@ -990,23 +967,16 @@
     }
 
     .mp-card {
-        flex: 0 0 260px;
+        flex: 0 0 calc(100vw - 40px);
+    }
+
+    .mp-grid {
+        padding: 10px 20px 24px;
+        gap: 10px;
     }
 
     .mp-shell {
         padding: 12px 12px 32px;
-    }
-
-    .mp-aiBadge {
-        font-size: 8px;
-        padding: 2px 6px;
-        gap: 3px;
-        border-radius: 5px;
-    }
-
-    .mp-aiBadge svg {
-        width: 9px !important;
-        height: 9px !important;
     }
 }
 
