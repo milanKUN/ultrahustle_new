@@ -76,14 +76,14 @@
     padding: 0 48px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     z-index: 3;
 }
 
 .mp-heroText {
     flex: 1.2;
     z-index: 2;
-    text-align: center;
+    text-align: left;
 }
 
 .mp-heroTitle {
@@ -663,10 +663,6 @@
     right: -24px;
 }
 
-.mp-floatArrow:hover {
-    background: #d4ff33;
-    transform: translateY(-50%) scale(1.1);
-}
 
 /* CHIP ARROWS */
 .chip-arrow {
@@ -695,11 +691,6 @@
     right: 0;
 }
 
-.chip-arrow:hover {
-    background: #ceff1b;
-    box-shadow: 0 0 10px #ceff1b;
-    transform: translateY(-50%) scale(1.1);
-}
 
 .mp-chipScroller-wrapper .mp-chipScroller {
     padding: 0 32px 4px;
@@ -796,15 +787,15 @@
 
     /* AI badge smaller on mobile */
     .mp-aiBadge {
-        font-size: 9px;
-        padding: 3px 8px;
-        gap: 4px;
-        border-radius: 7px;
+        font-size: 10px;
+        padding: 4px 10px;
+        gap: 5px;
+        border-radius: 8px;
     }
 
     .mp-aiBadge svg {
-        width: 11px !important;
-        height: 11px !important;
+        width: 12px !important;
+        height: 12px !important;
     }
 
     /* Filter row */
@@ -850,6 +841,15 @@
     /* Cards */
     .mp-card {
         flex: 0 0 260px;
+    }
+
+    .mp-topLine {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .mp-userName {
+        font-size: 16px;
     }
 }
 
@@ -959,6 +959,18 @@
         flex: 0 0 220px;
     }
 
+    .mp-aiBadge {
+        font-size: 9px;
+        padding: 3px 8px;
+        gap: 4px;
+        border-radius: 6px;
+    }
+
+    .mp-aiBadge svg {
+        width: 10px !important;
+        height: 10px !important;
+    }
+
     .mp-imgWrap {
         height: 140px;
     }
@@ -978,11 +990,23 @@
     }
 
     .mp-card {
-        flex: 0 0 180px;
+        flex: 0 0 260px;
     }
 
     .mp-shell {
         padding: 12px 12px 32px;
+    }
+
+    .mp-aiBadge {
+        font-size: 8px;
+        padding: 2px 6px;
+        gap: 3px;
+        border-radius: 5px;
+    }
+
+    .mp-aiBadge svg {
+        width: 9px !important;
+        height: 9px !important;
     }
 }
 
