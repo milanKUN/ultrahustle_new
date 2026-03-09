@@ -590,7 +590,7 @@ const TeamServiceListing = ({ theme, setTheme }) => {
 
                                 {/* ✅ IMAGE POPUP MODAL */}
                                 {showImageModal && createPortal(
-                                    <div className="tsl-image-modal-backdrop" onClick={() => setShowImageModal(false)}>
+                                    <div className={`tsl-image-modal-backdrop ${theme}`} onClick={() => setShowImageModal(false)}>
                                         <button
                                             className="tsl-modal-close-btn"
                                             onClick={() => setShowImageModal(false)}
