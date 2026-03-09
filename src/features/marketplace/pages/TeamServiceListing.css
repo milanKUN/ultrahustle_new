@@ -1846,3 +1846,7 @@
         flex-shrink: 0;
     }
 }
+
+.tsl-page.dark .tsl-expand-btn {
+    color: #000 !important;
+}
