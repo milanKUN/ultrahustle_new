@@ -457,10 +457,10 @@ export default function PersonalInformation({ theme }) {
 
         {/* ================= ACTIONS ================= */}
         <div className="flex justify-end gap-4 mt-10">
-          <button className="px-4 py-2 rounded-lg text-sm border border-black">
+          <button className="px-4 py-2 rounded-lg text-sm border border-black text-black">
             Discard
           </button>
-          <button className="px-4 py-2 bg-[#CEFF1B] rounded-lg text-sm font-medium border border-black">
+          <button className="px-4 py-2 bg-[#CEFF1B] rounded-lg text-sm font-medium border border-black text-black">
             Save Changes
           </button>
         </div>
@@ -662,7 +662,7 @@ function Section({ title, children }) {
 }
 
 function Label({ children }) {
-  return <label className="block mb-1 font-medium">{children}</label>;
+  return <label className="block mb-1 font-medium text-black">{children}</label>;
 }
 
 function TwoCol({ children }) {

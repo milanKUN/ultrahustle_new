@@ -435,10 +435,7 @@ textarea:focus {
   font-weight: bold;
 }
 
-/* ---------- TITLE ---------- */
-.user-page.dark .image-modal-card h3 {
-  color: #ffffff;
-}
+
 
 /* ---------- IMAGE PREVIEW ---------- */
 .user-page.dark .image-preview {

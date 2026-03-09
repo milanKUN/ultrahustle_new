@@ -82,7 +82,7 @@ export default function ProfileForm({ theme }) {
                   ✕
                 </button>
 
-                <h3 className="mb-6 text-center font-semibold text-gray-800 dark:text-white">
+                <h3 className="mb-6 text-center font-semibold text-black dark:text-white">
                   Resize and adjust <br /> your photo
                 </h3>
 
@@ -103,7 +103,7 @@ export default function ProfileForm({ theme }) {
                   ) : (
                     <button
                       onClick={() => fileRef.current.click()}
-                      className="w-[157px] h-[58.41px] text-sm bg-white dark:bg-[#2B2B2B] dark:text-white dark:border dark:border-[#CEFF1B] rounded"
+                      className="w-[157px] h-[58.41px] text-sm bg-white text-black dark:bg-[#2B2B2B] dark:text-white dark:border dark:border-[#CEFF1B] rounded"
                     >
                       Select Image
                     </button>
@@ -152,7 +152,7 @@ export default function ProfileForm({ theme }) {
                   </button>
                 </div>
 
-                <button className="w-full mt-auto py-3 font-medium bg-[#CEFF1B] rounded-md">
+                <button className="w-full mt-auto py-3 font-medium bg-[#CEFF1B] text-black rounded-md">
                   Upload Photo
                 </button>
               </div>

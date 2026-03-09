@@ -64,7 +64,7 @@ export default function MyPortfolio({ theme }) {
               <button
                 type="button"
                 onClick={() => setUploadStep("grid")}
-                className="absolute inset-0 m-auto bg-[#CEFF1B] px-4 py-2 rounded"
+                className="absolute inset-0 m-auto bg-[#CEFF1B] text-black px-4 py-2 rounded"
               >
                 Upload Photo
               </button>
@@ -98,7 +98,7 @@ export default function MyPortfolio({ theme }) {
                     <button
                       type="button"
                       onClick={() => setUploadStep("grid")}
-                      className="absolute inset-0 m-auto bg-[#CEFF1B] px-3 py-1 rounded text-xs"
+                      className="absolute inset-0 m-auto bg-[#CEFF1B] text-black px-3 py-1 rounded text-xs"
                     >
                       Change Photo
                     </button>
@@ -126,7 +126,7 @@ export default function MyPortfolio({ theme }) {
             <button
               type="button"
               onClick={addProject}
-              className="bg-[#CEFF1B] border-[0.6px] border-black px-4 py-2 rounded"
+              className="bg-[#CEFF1B] text-black border-[0.6px] border-black px-4 py-2 rounded"
             >
               Add more
             </button>
@@ -137,13 +137,13 @@ export default function MyPortfolio({ theme }) {
         <div className="flex justify-end gap-4">
           <button
             type="button"
-            className="px-4 py-2 border-[0.6px] border-black rounded"
+            className="px-4 py-2 border-[0.6px] border-black text-black rounded"
           >
             Discard
           </button>
           <button
             type="button"
-            className="bg-[#CEFF1B] border-[0.6px] border-black px-4 py-2 rounded"
+            className="bg-[#CEFF1B] border-[0.6px] border-black text-black px-4 py-2 rounded"
           >
             Save Changes
           </button>
