@@ -150,12 +150,19 @@
 }
 
 /* ================= Contract Type Switch Toggle ================= */
+.cnc-type-input-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  cursor: default;
+}
+
 .cnc-type-switch-wrapper {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 12px;
-  height: 50px;
+  width: 100%;
 }
 
 .cnc-type-label {
@@ -167,10 +174,6 @@
 
 .cnc-type-label.active {
   color: #111;
-}
-
-.cnc-contract-type-field {
-  text-align: right;
 }
 
 /* Toggle Switch */
@@ -372,7 +375,7 @@
 .cnc-del-row-remove {
   background: transparent;
   border: none;
-  color: #ff4747;
+  color: #fff;
   font-size: 20px;
   cursor: pointer;
   opacity: 0.6;
@@ -391,7 +394,7 @@
 }
 
 .user-page.dark .cnc-del-row-remove {
-  color: #ff5c5c;
+  color: #fff;
 }
 
 .cnc-del-list {
@@ -529,7 +532,7 @@
 .cnc-mil-row-remove {
   background: transparent;
   border: none;
-  color: #ff4747;
+  color: #fff;
   font-size: 20px;
   cursor: pointer;
   opacity: 0.6;
@@ -548,7 +551,7 @@
 }
 
 .user-page.dark .cnc-mil-row-remove {
-  color: #ff5c5c;
+  color: #fff;
 }
 
 .cnc-mil-list {
@@ -636,14 +639,15 @@
 }
 
 .cnc-ghostBtn {
-  height: 32px;
+  height: 45px;
+  width: 149px;
   padding: 0 12px;
   border-radius: 8px;
   border: 1px solid #cfcfcf;
   background: #fff;
   cursor: pointer;
   font-weight: 800;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 /* ================= Activity table ================= */
@@ -690,6 +694,22 @@
     display: none;
   }
 
+  .cnc-del-row-wrapper,
+  .cnc-mil-row-wrapper {
+    position: relative;
+    border: 1px solid #d7d7d7;
+    border-radius: 8px;
+    padding: 32px 14px 14px;
+    margin-bottom: 16px;
+    background: #f9f9f9;
+  }
+
+  .user-page.dark .cnc-del-row-wrapper,
+  .user-page.dark .cnc-mil-row-wrapper {
+    border-color: #333;
+    background: #1a1a1a;
+  }
+
   .cnc-del-grid,
   .cnc-mil-grid {
     grid-template-columns: 1fr 1fr;
@@ -699,7 +719,7 @@
   .cnc-del-row-remove,
   .cnc-mil-row-remove {
     position: absolute;
-    right: 8px;
+    left: 8px;
     top: 8px;
     height: 32px;
   }
@@ -729,7 +749,7 @@
 
 /* ================= Team Payout Configuration ================= */
 .cnc-teamPayoutCard {
-  border: 1px solid #e2f1b0;
+  border: 2px solid #CEFF1B;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
@@ -790,6 +810,7 @@
 .user-page.dark .cnc-card {
   background: var(--d-card);
   box-shadow: none;
+  border: 1px solid #ceff1b;
 }
 
 .user-page.dark .cnc-label,
@@ -800,8 +821,6 @@
 
 .user-page.dark .cnc-input,
 .user-page.dark .cnc-textarea,
-.user-page.dark .cnc-subcard,
-.user-page.dark .cnc-parties-outer-box,
 .user-page.dark .cnc-mil-item,
 .user-page.dark .cnc-del-item,
 .user-page.dark .cnc-table {
@@ -810,8 +829,18 @@
   border: 1px solid #ffffff !important;
 }
 
+.user-page.dark .cnc-subcard {
+  background: #121212;
+  color: var(--d-text);
+  border: 2px solid #CEFF1B !important;
+  /* box-shadow: 0 0 10px rgba(206, 255, 27, 0.4), inset 0 0 5px rgba(206, 255, 27, 0.2) !important; */
+}
+
 .user-page.dark .cnc-parties-outer-box {
-  border-color: var(--accent);
+  background: #121212;
+  color: var(--d-text);
+  border: 2px solid #CEFF1B !important;
+  /* box-shadow: 0 0 15px rgba(206, 255, 27, 0.6), inset 0 0 8px rgba(206, 255, 27, 0.3) !important; */
 }
 
 .user-page.dark .cnc-input::placeholder,
@@ -862,22 +891,7 @@
     grid-template-columns: 1fr !important;
   }
 
-  /* Prevent tabular inputs from squeezing */
-  .cnc-deliverables,
-  .cnc-milestones {
-    overflow-x: auto;
-    padding-bottom: 12px;
-  }
 
-  .cnc-del-header,
-  .cnc-del-grid {
-    min-width: 650px;
-  }
-
-  .cnc-mil-header,
-  .cnc-mil-grid {
-    min-width: 550px;
-  }
 
   .cnc-card,
   .cnc-parties-outer-box,

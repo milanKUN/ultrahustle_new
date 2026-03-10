@@ -230,7 +230,7 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
 
   const DateInput = ({ label, value, onOpen }) => (
     <div className="cnc-field">
-      <label className="cnc-label">{label}</label>
+      {label && <label className="cnc-label">{label}</label>}
       <div
         className="cnc-input cnc-dateInputWrap"
         onClick={onOpen}
@@ -285,7 +285,7 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
         {/* Main Content Wrapper */}
         <div className="relative flex-1 min-w-5 overflow-hidden">
           {/* Scrollable Area */}
-          <div className="relative z-10 overflow-y-auto h-[calc(100vh-85px)] p-4">
+          <div className="relative z-10 overflow-y-auto h-[calc(100vh-85px)] px-0 py-4 md:p-4">
             <main className="cnc-main w-full">
               {/* Full width contract */}
               <div className="cnc-wrap">
@@ -304,24 +304,26 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                         onChange={onChange("title")}
                       />
                     </div>
-                    <div className="cnc-field cnc-contract-type-field">
+                    <div className="cnc-field">
                       <label className="cnc-label">Contract Type</label>
-                      <div className="cnc-type-switch-wrapper">
-                        <span className={`cnc-type-label ${!form.soloTeam ? "active" : ""}`}>
-                          Solo
-                        </span>
-                        <button
-                          type="button"
-                          className={`cnc-switch ${form.soloTeam ? "is-on" : ""}`}
-                          onClick={onToggle("soloTeam")}
-                          aria-pressed={form.soloTeam}
-                          aria-label="Solo/team toggle"
-                        >
-                          <span className="cnc-knob" />
-                        </button>
-                        <span className={`cnc-type-label ${form.soloTeam ? "active" : ""}`}>
-                          Team
-                        </span>
+                      <div className="cnc-input cnc-type-input-wrapper">
+                        <div className="cnc-type-switch-wrapper">
+                          <span className={`cnc-type-label ${!form.soloTeam ? "active" : ""}`}>
+                            Solo
+                          </span>
+                          <button
+                            type="button"
+                            className={`cnc-switch ${form.soloTeam ? "is-on" : ""}`}
+                            onClick={onToggle("soloTeam")}
+                            aria-pressed={form.soloTeam}
+                            aria-label="Solo/team toggle"
+                          >
+                            <span className="cnc-knob" />
+                          </button>
+                          <span className={`cnc-type-label ${form.soloTeam ? "active" : ""}`}>
+                            Team
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div className="cnc-field">
@@ -418,15 +420,17 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                             onChange={onChange("creatorEmail")}
                           />
                         </div>
-                        <div className="cnc-field">
-                          <label className="cnc-label">Name and company</label>
-                          <input
-                            className="cnc-input"
-                            placeholder="Country"
-                            value={form.creatorCompany}
-                            onChange={onChange("creatorCompany")}
-                          />
-                        </div>
+                        {!form.soloTeam && (
+                          <div className="cnc-field">
+                            <label className="cnc-label">Name and company</label>
+                            <input
+                              className="cnc-input"
+                              placeholder="Country"
+                              value={form.creatorCompany}
+                              onChange={onChange("creatorCompany")}
+                            />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
