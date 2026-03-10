@@ -437,16 +437,16 @@
 }
 
 .user-page.dark .mylis-tabs-wrap {
-    background: #1e2500;
-    border: 1px solid rgba(206, 255, 27, 0.2);
+    background: var(--mylis-accent);
+    border: none;
 }
 
 .user-page.dark .mylis-tab {
-    color: var(--mylis-accent);
+    color: #111;
 }
 
 .user-page.dark .mylis-tab.active {
-    background: var(--mylis-accent);
+    background: #fff;
     color: #111;
 }
 

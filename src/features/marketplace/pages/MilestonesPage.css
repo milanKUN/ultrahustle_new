@@ -1311,19 +1311,28 @@
   background: transparent;
 }
 
-/* Keep disabled fields looking normal (no grey) */
+/* Keep disabled fields looking normal (no grey) or readonly fields looking active */
 .ms-contract-page.is-viewonly input:disabled,
 .ms-contract-page.is-viewonly textarea:disabled,
-.ms-contract-page.is-viewonly select:disabled {
+.ms-contract-page.is-viewonly select:disabled,
+.ms-contract-override.is-viewonly input,
+.ms-contract-override.is-viewonly textarea,
+.ms-contract-override.is-viewonly select,
+.ms-contract-override.is-viewonly .cnc-input,
+.ms-contract-override.is-viewonly .cnc-textarea {
   opacity: 1;
   cursor: default;
   -webkit-text-fill-color: currentColor;
 }
 
 /* Keep disabled buttons looking normal */
-.ms-contract-page.is-viewonly button:disabled {
-  opacity: 1;
+.ms-contract-page.is-viewonly button:disabled,
+.ms-contract-override.is-viewonly button:disabled,
+.ms-contract-override.is-viewonly .cnc-primaryBtn:disabled,
+.ms-contract-override.is-viewonly .cnc-ghostBtn:disabled {
+  opacity: 0.6;
   filter: none;
+  cursor: not-allowed;
 }
 
 /* View only active state */
@@ -1720,6 +1729,22 @@
   background: #0f0f0f;
   border-color: #2a2a2a;
   color: #fff;
+}
+
+/* Keep disabled/readonly fields looking normal in dark mode */
+.user-page.dark .ms-contract-page.is-viewonly input:disabled,
+.user-page.dark .ms-contract-page.is-viewonly textarea:disabled,
+.user-page.dark .ms-contract-page.is-viewonly select:disabled,
+.user-page.dark .ms-contract-override.is-viewonly input,
+.user-page.dark .ms-contract-override.is-viewonly textarea,
+.user-page.dark .ms-contract-override.is-viewonly select,
+.user-page.dark .ms-contract-override.is-viewonly .cnc-input,
+.user-page.dark .ms-contract-override.is-viewonly .cnc-textarea {
+  opacity: 1;
+  background: #0f0f0f;
+  color: #fff;
+  border-color: #2a2a2a;
+  -webkit-text-fill-color: #fff;
 }
 
 .user-page.dark .ms-ct-check {
