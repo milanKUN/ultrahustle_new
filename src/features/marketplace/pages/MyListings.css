@@ -23,8 +23,7 @@
 .mylis-main {
     flex: 1;
     padding: 30px 40px;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
 }
 
 /* Header Section */
@@ -82,7 +81,7 @@
 
 .mylis-search-input:focus {
     border-color: #999;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+    box-shadow: #CEFF1B;
 }
 
 .mylis-status-wrap {
@@ -340,8 +339,8 @@
     transition: color 0.2s;
 }
 
-.mylis-dropdown-item:hover {
-    color: var(--mylis-text);
+.mylis-dropdown-item:not(.danger):hover {
+    background: var(--mylis-accent);
 }
 
 .mylis-dropdown-item svg {
@@ -484,24 +483,19 @@
     color: #bbb;
 }
 
-/* Dark mode dropdown */
+/* Dark mode dropdown - matches light mode */
 .user-page.dark .mylis-dropdown-menu {
-    background: rgba(20, 20, 20, 0.6);
+    background: transparent;
     border: none;
     box-shadow: 0 1px 4px 0 var(--mylis-accent);
 }
 
 .user-page.dark .mylis-dropdown-header {
-    color: #cecece;
+    color: #5C5C5C;
 }
 
 .user-page.dark .mylis-dropdown-item {
-    color: #cecece;
-}
-
-.user-page.dark .mylis-dropdown-item:hover {
-    color: #ffffff;
-    background: transparent;
+    color: #5C5C5C;
 }
 
 .user-page.dark .mylis-dropdown-divider {

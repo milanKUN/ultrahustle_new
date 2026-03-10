@@ -450,7 +450,7 @@
 
 .user-page.dark .cnc-del-box {
   border-color: #333;
-  background: #1e1e1e;
+  background: transparent;
 }
 
 .cnc-del-box-remove {
@@ -721,7 +721,8 @@
 
 .cnc-ghostBtn {
   height: 45px;
-  width: 149px;
+  flex: 1;
+  min-width: 0;
   padding: 0 12px;
   border-radius: 8px;
   border: 1px solid #cfcfcf;
@@ -731,15 +732,32 @@
   font-size: 15px;
 }
 
+@media (max-width: 480px) {
+  .cnc-primaryBtn {
+    width: 100%;
+  }
+
+  .cnc-confirmActions {
+    flex-direction: column;
+  }
+
+  .cnc-ghostBtn {
+    width: 100%;
+    flex: unset;
+  }
+}
+
 /* ================= Activity table ================= */
 .cnc-tableWrap {
   border: 1.5px solid var(--accent);
   border-radius: 14px;
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .cnc-table {
   width: 100%;
+  min-width: 500px;
   border-collapse: collapse;
   font-size: 12px;
   background: #fff;
@@ -906,7 +924,6 @@
 .user-page.dark .cnc-del-item {
   background: #121212;
   color: var(--d-text);
-  border: 1px solid #ffffff !important;
 }
 
 .user-page.dark .cnc-table {
@@ -972,8 +989,7 @@
   .cnc-subGrid,
   .cnc-timelineGrid,
   .cnc-slaGrid,
-  .cnc-twoCards,
-  .cnc-tableWrap {
+  .cnc-twoCards {
     grid-template-columns: 1fr !important;
   }
 
