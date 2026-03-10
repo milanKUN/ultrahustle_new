@@ -305,12 +305,13 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                       />
                     </div>
                     <div className="cnc-field">
-                      <label className="cnc-label">Contract Type</label>
-                      <div className="cnc-input cnc-type-input-wrapper">
-                        <div className="cnc-type-switch-wrapper">
-                          <span className={`cnc-type-label ${!form.soloTeam ? "active" : ""}`}>
-                            Solo
-                          </span>
+                      <div className="cnc-contract-type-box">
+                        <div className="cnc-ct-left">
+                          <span className="cnc-ct-title">Contract Type</span>
+                          <span className="cnc-ct-desc">Solo/ Team service</span>
+                        </div>
+                        <div className="cnc-ct-right">
+                          <span className={`cnc-ct-status ${!form.soloTeam ? "active" : ""}`}>Solo</span>
                           <button
                             type="button"
                             className={`cnc-switch ${form.soloTeam ? "is-on" : ""}`}
@@ -320,9 +321,7 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                           >
                             <span className="cnc-knob" />
                           </button>
-                          <span className={`cnc-type-label ${form.soloTeam ? "active" : ""}`}>
-                            Team
-                          </span>
+                          <span className={`cnc-ct-status ${form.soloTeam ? "active" : ""}`}>Team</span>
                         </div>
                       </div>
                     </div>
@@ -452,19 +451,17 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                   <div className="cnc-deliverables">
                     <div className="cnc-del-title">Deliverables</div>
 
-                    {deliverables.length > 0 && (
-                      <div className="cnc-del-header">
-                        <label className="cnc-label">Title</label>
-                        <label className="cnc-label">Format/file type</label>
-                        <label className="cnc-label">Quantity</label>
-                        <label className="cnc-label">Acceptance Criteria</label>
-                        <div /> {/* remove btn space */}
-                      </div>
-                    )}
-
                     {deliverables.map((d, index) => (
-                      <div className="cnc-del-row-wrapper" key={d.id}>
-                        <div className="cnc-del-grid">
+                      <div className="cnc-del-box" key={d.id}>
+                        <button
+                          type="button"
+                          className="cnc-del-box-remove"
+                          onClick={() => removeDeliverable(d.id)}
+                          title="Remove deliverable"
+                        >
+                          ✕
+                        </button>
+                        <div className="cnc-del-box-inputs">
                           <input
                             className="cnc-input"
                             placeholder="Title"
@@ -489,14 +486,6 @@ export default function SoloContractListing({ theme = "light", setTheme }) {
                             value={d.acceptance}
                             onChange={(e) => updateDeliverable(index, "acceptance", e.target.value)}
                           />
-                          <button
-                            type="button"
-                            className="cnc-del-row-remove"
-                            onClick={() => removeDeliverable(d.id)}
-                            title="Remove row"
-                          >
-                            ✕
-                          </button>
                         </div>
                       </div>
                     ))}
