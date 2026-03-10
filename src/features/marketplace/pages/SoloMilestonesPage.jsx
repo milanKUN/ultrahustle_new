@@ -446,26 +446,25 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                   <div className="cnc-wrap">
                     {/* Header */}
                     <div className="ms-contract-top mb-6">
-                      <h1 className="cnc-title !mb-0">Create New Contract</h1>
+                      <h1 className="cnc-title !mb-0">Main Contract</h1>
 
                       <div className="ms-contract-actions">
                         <button type="button" className="ms-ct-btn lime">
                           View PDF
                         </button>
 
-                        <button
-                          type="button"
-                          className={`ms-ct-btn lime outline ${isViewOnly ? "active" : ""}`}
-                          onClick={() => setIsViewOnly((p) => !p)}
+                        <div
+                          className={`ms-ct-btn lime outline active`}
+                          style={{ cursor: 'default' }}
                         >
                           <span className="ms-eye">👁</span>
-                          View Only
-                        </button>
+                          Only View
+                        </div>
                       </div>
                     </div>
 
                     <div className="relative">
-                       {isViewOnly && <div className="ms-ct-lockOverlay" style={{ zIndex: 100 }} />}
+                      {isViewOnly && <div className="ms-ct-lockOverlay" style={{ zIndex: 100 }} />}
 
                       {/* Contract Basics */}
                       <div className="cnc-card">

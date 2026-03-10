@@ -103,7 +103,6 @@
   border-color: transparent !important;
   outline: none;
   box-shadow: 0 0 12px #CEFF1B !important;
-  border: none !important;
 }
 
 .cnc-dateInputWrap {
@@ -334,9 +333,8 @@
 
 /* ✅ Neon focus effect */
 .cnc-textarea:focus {
-  border-color: transparent;
+  border-color: transparent !important;
   outline: none;
-  border: none;
   box-shadow:
     0 0 0 2px rgba(206, 255, 27, 0.4),
     0 0 18px rgba(206, 255, 27, 0.8);
@@ -443,7 +441,8 @@
   position: relative;
   border: 1px solid #d0d0d0;
   border-radius: 8px;
-  padding: 16px 48px 16px 16px; /* Space for cross on the right */
+  padding: 16px 48px 16px 16px;
+  /* Space for cross on the right */
   background: #ffffff;
   margin-bottom: 16px;
 }
@@ -925,6 +924,13 @@
 .user-page.dark .cnc-del-item {
   background: #121212;
   color: var(--d-text);
+  border: 1px solid white !important;
+}
+
+.user-page.dark .cnc-input:focus,
+.user-page.dark .cnc-textarea:focus {
+  border-color: transparent !important;
+  box-shadow: 0 0 12px #CEFF1B !important;
 }
 
 .user-page.dark .cnc-table {

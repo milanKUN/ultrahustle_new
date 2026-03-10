@@ -80,8 +80,8 @@
 }
 
 .mylis-search-input:focus {
-    border-color: #999;
-    box-shadow: #CEFF1B;
+    border-color: transparent !important;
+    box-shadow: 0 0 15px rgba(206, 255, 27, 0.6);
 }
 
 .mylis-status-wrap {
@@ -403,7 +403,8 @@
 
 .user-page.dark .mylis-search-input {
     background: #121212;
-    border-color: var(--d-mylis-border);
+    border: 1px solid white !important;
+
     color: var(--d-mylis-text);
 }
 
@@ -414,8 +415,8 @@
 }
 
 .user-page.dark .mylis-search-input:focus {
-    border-color: #555;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+    border-color: transparent !important;
+    box-shadow: 0 0 20px rgba(206, 255, 27, 0.5);
 }
 
 .user-page.dark .mylis-status-btn .arrow {
