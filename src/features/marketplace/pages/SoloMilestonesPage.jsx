@@ -488,10 +488,33 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
         <div className="relative flex-1 min-w-5 overflow-hidden">
           <div className="relative z-10 overflow-y-auto h-[calc(100vh-85px)]">
-            {isResolutionModalOpen ? (
-              <div style={{ borderTop: '2px solid #CEFF1B', padding: '50px 20px', minHeight: '100%', display: 'flex', flexDirection: 'column', background: theme === 'dark' ? '#0a0a0a' : '#f5f5f5' }}>
-                <div style={{ maxWidth: '800px', width: '100%', margin: '0 auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  
+            {isResolutionModalOpen && (
+              <div
+                style={{
+                  position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 9999,
+                  background: theme === 'dark' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.1)',
+                  backdropFilter: 'blur(12px)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px'
+                }}
+                onClick={() => setIsResolutionModalOpen(false)}
+              >
+                <div
+                  style={{
+                    background: theme === 'dark' ? '#1a1a1a' : '#fff',
+                    border: '1px solid #CEFF1B', borderRadius: '16px', padding: '40px',
+                    maxWidth: '800px', width: '100%', maxHeight: '90vh', overflowY: 'auto',
+                    display: 'flex', flexDirection: 'column', position: 'relative', marginTop: '80px',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.2)'
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    onClick={() => setIsResolutionModalOpen(false)}
+                    style={{ position: 'absolute', top: '20px', right: '20px', background: 'transparent', border: 'none', color: theme === 'dark' ? '#fff' : '#000', fontSize: '20px', cursor: 'pointer', zIndex: 10 }}
+                  >
+                    ✕
+                  </button>
+
                   <div className="ms-res-header">
                     <h2 className="msd-title" style={{ textAlign: 'left', fontWeight: 'bold', color: '#CEFF1B', fontSize: '28px' }}>UltraHustle Resolution Center</h2>
                     <p className="ms-uploadSub" style={{ textAlign: 'left', fontSize: '15px', marginTop: '12px', color: theme === 'dark' ? '#eee' : '#333' }}>Predictable outcomes. Timer-driven. No hidden actions.</p>
@@ -541,14 +564,14 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                       </div>
 
                       <div className="ms-deliverFoot" style={{ marginTop: '40px', justifyContent: 'flex-end', display: 'flex', gap: '16px' }}>
-                        <button 
-                          style={{ width: '140px', padding: '12px', fontSize: '15px', background: '#CEFF1B', border: 'none', borderRadius: '8px', color: '#111', fontWeight: '700', cursor: 'pointer' }} 
+                        <button
+                          style={{ width: '140px', padding: '12px', fontSize: '15px', background: '#CEFF1B', border: 'none', borderRadius: '8px', color: '#111', fontWeight: '700', cursor: 'pointer' }}
                           onClick={() => setResolutionStep(2)}
                         >
                           Next
                         </button>
-                        <button 
-                          style={{ width: '140px', padding: '12px', fontSize: '15px', background: '#fff', border: 'none', borderRadius: '8px', color: '#111', fontWeight: '700', cursor: 'pointer' }} 
+                        <button
+                          style={{ width: '140px', padding: '12px', fontSize: '15px', background: '#fff', border: 'none', borderRadius: '8px', color: '#111', fontWeight: '700', cursor: 'pointer' }}
                           onClick={() => setIsResolutionModalOpen(false)}
                         >
                           Confirm
@@ -571,29 +594,23 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                             <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#111' }}>Extension request</h3>
                             <div className="cnc-field" style={{ marginBottom: 0, position: 'relative' }}>
                               <label className="cnc-label" style={{ fontSize: '14px', fontWeight: '700', color: theme === 'dark' ? '#fff' : '#111', marginBottom: '8px', display: 'block' }}>Days</label>
-                              <div className={`custom-select ${isDaysOpen ? 'active' : ''}`} style={{ border: '1px solid #444', borderRadius: '8px', background: 'transparent' }}>
-                                <div className={`selected-option cursor-pointer ${isDaysOpen ? 'open' : ''}`} style={{ padding: '14px' }} onClick={() => setIsDaysOpen(!isDaysOpen)}>
-                                  <span style={{ color: !extensionDays ? '#888' : (theme === 'dark' ? '#fff' : '#111') }}>{extensionDays || 'Days'}</span>
-                                  <span className="arrow" style={{ color: '#888', transform: 'none' }}>↕</span>
-                                </div>
-                                {isDaysOpen && (
-                                  <ul className="options-list" style={{ background: theme === 'dark' ? '#222' : '#fff', border: '1px solid #444' }}>
-                                    {[...Array(30).keys()].map(i => (
-                                      <li
-                                        key={i + 1}
-                                        className={extensionDays === `${i + 1} Days` ? 'active' : ''}
-                                        onClick={() => {
-                                          setExtensionDays(`${i + 1} Days`);
-                                          setIsDaysOpen(false);
-                                        }}
-                                        style={{ color: theme === 'dark' ? '#fff' : '#111' }}
-                                      >
-                                        {i + 1} Days
-                                      </li>
-                                    ))}
-                                  </ul>
-                                )}
-                              </div>
+                              <input
+                                type="number"
+                                min="1"
+                                placeholder="Days"
+                                value={extensionDays ? parseInt(extensionDays) : ''}
+                                onChange={(e) => setExtensionDays(e.target.value ? `${e.target.value} Days` : '')}
+                                style={{
+                                  width: '100%',
+                                  background: 'transparent',
+                                  border: '1px solid #444',
+                                  borderRadius: '8px',
+                                  padding: '14px',
+                                  color: theme === 'dark' ? '#fff' : '#111',
+                                  outline: 'none',
+                                  fontSize: '15px'
+                                }}
+                              />
                             </div>
                             <div className="cnc-field" style={{ marginBottom: 0 }}>
                               <label className="cnc-label" style={{ fontSize: '14px', fontWeight: '700', color: theme === 'dark' ? '#fff' : '#111', marginBottom: '8px', display: 'block' }}>Why is extension needed?</label>
@@ -631,12 +648,13 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                     <div style={{
                       position: 'absolute',
                       top: 0, left: 0, right: 0, bottom: 0,
-                      background: theme === 'dark' ? 'rgba(20,20,20,0.85)' : 'rgba(255,255,255,0.85)',
+                      background: theme === 'dark' ? 'rgba(20,20,20,0.4)' : 'rgba(255,255,255,0.4)',
                       backdropFilter: 'blur(8px)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       zIndex: 10,
+                      borderRadius: '16px',
                     }}>
                       <div style={{
                         background: theme === 'dark' ? '#1f1f1f' : '#f9f9f9',
@@ -652,7 +670,7 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                         <p style={{ fontSize: '15px', color: theme === 'dark' ? '#aaa' : '#444', marginBottom: resolutionTab === 'cancellation' ? '20px' : '30px', lineHeight: '1.5' }}>
                           This will move the case forward with<br />a timer and guaranteed outcome.
                         </p>
-                        
+
                         {resolutionTab === 'cancellation' && (
                           <div style={{ marginBottom: '30px' }}>
                             <span style={{ color: '#ff3333', fontWeight: '700', fontSize: '14px', display: 'block', marginBottom: '6px' }}>If you click confirm</span>
@@ -661,7 +679,7 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                         )}
 
                         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
-                          <button 
+                          <button
                             onClick={() => setResolutionStep(2)}
                             style={{
                               padding: '12px',
@@ -676,7 +694,7 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                           >
                             Cancel
                           </button>
-                          <button 
+                          <button
                             onClick={() => { setIsResolutionModalOpen(false); setResolutionStep(1); }}
                             style={{
                               padding: '12px',
@@ -699,8 +717,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
                 </div>
               </div>
-            ) : (
-              <div className="ms-wrap">
+            )}
+
+            <div className="ms-wrap">
               {/* Top tabs */}
               <div className="ms-topbar">
                 <div className="ms-seg">
@@ -1905,7 +1924,6 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                 </>
               )}
             </div>
-            )}
           </div>
         </div>
       </div>
