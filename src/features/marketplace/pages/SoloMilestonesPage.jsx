@@ -22,6 +22,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
   // ✅ VIEW ONLY STATE
   const [isViewOnly, setIsViewOnly] = useState(true);
 
+  // ✅ DELIVER WORK MODAL STATE
+  const [isDeliverModalOpen, setIsDeliverModalOpen] = useState(false);
+
   const contractId = useMemo(() => "AUTO-123456", []);
 
   const [form, setForm] = useState({
@@ -1610,7 +1613,7 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                     <div className="ms-side">
                       <div className="ms-panel ms-panel-action">
                         <div className="ms-panelTitle">Action</div>
-                        <button className="ms-actionBtn lime" type="button">
+                        <button className="ms-actionBtn lime" type="button" onClick={() => setIsDeliverModalOpen(true)}>
                           Upload
                         </button>
                         <button className="ms-actionBtn lime" type="button">
@@ -1684,6 +1687,38 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
           </div>
         </div>
       </div>
+
+      {/* ================= DELIVER WORK MODAL ================= */}
+      {isDeliverModalOpen && (
+        <div className="ms-deliverBg" onClick={() => setIsDeliverModalOpen(false)}>
+          <div className="ms-deliverModal" onClick={(e) => e.stopPropagation()}>
+            <div className="ms-deliverTitle">Deliver work</div>
+            
+            <div className="ms-uploadBox">
+              <img src="/upload-icon.svg" alt="Upload" />
+              <div className="ms-uploadText">
+                <span className="ms-link">Click to upload</span> or Drag or drop file
+              </div>
+              <div className="ms-uploadSub">
+                PDF, JPG, JPEG, PNG less than 10MB.<br/>
+                Ensure your document are in good condition and readable
+              </div>
+            </div>
+
+            <div className="ms-linkInputWrap">
+              <label>Link (optional)</label>
+              <input type="text" placeholder="Website" />
+            </div>
+
+            <div className="ms-deliverFoot">
+              <button className="ms-btn-lime ms-uploadBtn" onClick={() => setIsDeliverModalOpen(false)}>
+                Upload
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ================= CALENDAR MODAL ================= */}
       {calendarConfig && (
         <Calendar

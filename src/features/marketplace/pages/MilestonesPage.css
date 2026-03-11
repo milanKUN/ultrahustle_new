@@ -477,7 +477,7 @@
 }
 
 .ms-panelTitle {
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 800;
   color: #2a2a2a;
   margin-bottom: 8px;
@@ -485,11 +485,11 @@
 
 .ms-panelTitle.small {
   margin-top: 10px;
-  font-size: 11px;
+  font-size: 18px;
 }
 
 .ms-panelSub {
-  font-size: 10px;
+  font-size: 16px;
   color: #666;
   margin-bottom: 10px;
 }
@@ -540,7 +540,7 @@
 }
 
 .ms-descText {
-  font-size: 10px;
+  font-size: 16px;
   color: #666;
   line-height: 1.35;
   margin-bottom: 10px;
@@ -2256,4 +2256,155 @@
     margin-right: 0;
     font-size: 14px;
   }
+}
+
+/* ================= DELIVER WORK MODAL ================= */
+.ms-deliverBg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Lighter bg for light mode */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Light Mode Base Styles */
+.ms-deliverModal {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.ms-deliverTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2a2a2a;
+  text-align: center;
+}
+
+.ms-uploadBox {
+  background: #f9f9f9;
+  border: 1px dashed #dcdcdc;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.ms-uploadBox img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.6;
+}
+
+.ms-uploadText {
+  font-size: 13px;
+  color: #555;
+}
+
+.ms-uploadText .ms-link {
+  color: #3b82f6;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ms-uploadSub {
+  font-size: 10px;
+  color: #777;
+  line-height: 1.4;
+}
+
+.ms-linkInputWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ms-linkInputWrap label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2a2a2a;
+}
+
+.ms-linkInputWrap input {
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  color: #2a2a2a;
+  font-size: 14px;
+  outline: none;
+}
+
+.ms-linkInputWrap input::placeholder {
+  color: #aaa;
+}
+
+.ms-deliverFoot {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.ms-uploadBtn {
+  background: #ceff1b;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0b0b0b;
+  cursor: pointer;
+}
+
+/* Dark Mode Overrides */
+.user-page.dark .ms-deliverBg {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.user-page.dark .ms-deliverModal {
+  background: #333;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.user-page.dark .ms-deliverTitle {
+  color: #fff;
+}
+
+.user-page.dark .ms-uploadBox {
+  background: #222;
+  border-color: #555;
+}
+
+.user-page.dark .ms-uploadBox img {
+  filter: invert(1);
+  opacity: 0.8;
+}
+
+.user-page.dark .ms-uploadText {
+  color: #aaa;
+}
+
+.user-page.dark .ms-linkInputWrap label {
+  color: #eee;
+}
+
+.user-page.dark .ms-linkInputWrap input {
+  border-color: #444;
+  background: transparent;
+  color: #fff;
+}
+
+.user-page.dark .ms-linkInputWrap input::placeholder {
+  color: #666;
 }
