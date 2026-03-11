@@ -832,8 +832,8 @@
 }
 
 .user-page.dark .ms-tag {
-  background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #2B2B2B;
+  border: 1px solid #FEFEFE80;
   color: #eee;
   font-size: 13px;
   padding: 8px 14px;
@@ -855,12 +855,15 @@
   box-shadow: 0 0 0 3px rgba(206, 255, 27, 0.15);
 }
 
-.user-page.dark .ms-eventTitle,
 .user-page.dark .ms-open,
 .user-page.dark .ms-panelTitle,
 .user-page.dark .ms-timeNum,
 .user-page.dark .ms-timeLbl {
   color: var(--d-text);
+}
+
+.user-page.dark .ms-eventTitle {
+  color: #CEFF1B;
 }
 
 .user-page.dark .ms-tag {
