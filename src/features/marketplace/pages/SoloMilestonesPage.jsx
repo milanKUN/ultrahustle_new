@@ -4,7 +4,6 @@ import "./MilestonesPage.css";
 import "./SoloContractListing.css"; // Added
 import UserNavbar from "../../../components/layout/UserNavbar";
 import Sidebar from "../../../components/layout/Sidebar";
-import "../../../Darkuser.css";
 
 export default function MilestoneBoard({ theme = "light", setTheme }) {
   const topTabs = ["Milestones", "Contract", "Details"];
@@ -65,25 +64,32 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
   });
 
   const setFormField = (key, value) => setForm((p) => ({ ...p, [key]: value }));
-  const onChange = (key) => (e) => setForm((p) => ({ ...p, [key]: e.target.value }));
+  const onChange = (key) => (e) =>
+    setForm((p) => ({ ...p, [key]: e.target.value }));
   const onToggle = (key) => () => setForm((p) => ({ ...p, [key]: !p[key] }));
 
   const handlePayoutChange = (id, field, value) => {
     setForm((p) => ({
       ...p,
       teamPayouts: p.teamPayouts.map((pay) =>
-        pay.id === id ? { ...pay, [field]: value } : pay
+        pay.id === id ? { ...pay, [field]: value } : pay,
       ),
     }));
   };
 
   const [deliverables, setDeliverables] = useState([
-    { id: crypto?.randomUUID?.() || String(Date.now()), title: "", format: "", qty: "", acceptance: "" }
+    {
+      id: crypto?.randomUUID?.() || String(Date.now()),
+      title: "",
+      format: "",
+      qty: "",
+      acceptance: "",
+    },
   ]);
 
   const updateDeliverable = (index, key, value) => {
     setDeliverables((p) =>
-      p.map((d, i) => (i === index ? { ...d, [key]: value } : d))
+      p.map((d, i) => (i === index ? { ...d, [key]: value } : d)),
     );
   };
 
@@ -92,26 +98,42 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
       ...p,
       {
         id: crypto?.randomUUID?.() || String(Date.now()),
-        title: "", format: "", qty: "", acceptance: "",
+        title: "",
+        format: "",
+        qty: "",
+        acceptance: "",
       },
     ]);
   };
 
   const removeDeliverable = (id) => {
     if (deliverables.length <= 1) {
-      setDeliverables([{ id: crypto?.randomUUID?.() || String(Date.now()), title: "", format: "", qty: "", acceptance: "" }]);
+      setDeliverables([
+        {
+          id: crypto?.randomUUID?.() || String(Date.now()),
+          title: "",
+          format: "",
+          qty: "",
+          acceptance: "",
+        },
+      ]);
       return;
     }
     setDeliverables((p) => p.filter((d) => d.id !== id));
   };
 
   const [milestones, setMilestones] = useState([
-    { id: crypto?.randomUUID?.() || String(Date.now()), name: "Milestone 1", amount: "", deadline: "" }
+    {
+      id: crypto?.randomUUID?.() || String(Date.now()),
+      name: "Milestone 1",
+      amount: "",
+      deadline: "",
+    },
   ]);
 
   const updateMilestone = (index, key, value) => {
     setMilestones((p) =>
-      p.map((m, i) => (i === index ? { ...m, [key]: value } : m))
+      p.map((m, i) => (i === index ? { ...m, [key]: value } : m)),
     );
   };
 
@@ -134,11 +156,26 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
   const activityLog = useMemo(
     () => [
-      { ts: "2025-11-20 10:00", actor: "Client @acme_corp", action: "Contract Created", details: "Initial draft submitted" },
-      { ts: "2025-11-21 14:30", actor: "Creator @alex_design", action: "Terms Negotiated", details: "Updated milestones and delivery timeline" },
-      { ts: "2025-11-22 09:15", actor: "Client @acme_corp", action: "Contract Approved", details: "Ready for escrow funding" }
+      {
+        ts: "2025-11-20 10:00",
+        actor: "Client @acme_corp",
+        action: "Contract Created",
+        details: "Initial draft submitted",
+      },
+      {
+        ts: "2025-11-21 14:30",
+        actor: "Creator @alex_design",
+        action: "Terms Negotiated",
+        details: "Updated milestones and delivery timeline",
+      },
+      {
+        ts: "2025-11-22 09:15",
+        actor: "Client @acme_corp",
+        action: "Contract Approved",
+        details: "Ready for escrow funding",
+      },
     ],
-    []
+    [],
   );
 
   const [openSelect, setOpenSelect] = useState(null);
@@ -147,7 +184,11 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (openSelect && selectRefs.current[openSelect] && !selectRefs.current[openSelect].contains(event.target)) {
+      if (
+        openSelect &&
+        selectRefs.current[openSelect] &&
+        !selectRefs.current[openSelect].contains(event.target)
+      ) {
         setOpenSelect(null);
       }
     };
@@ -165,26 +206,35 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
     setOpenSelect(null);
   };
 
-  const SoloSelect = ({ id, label, value, options, placeholder = "Select one", onChange }) => {
+  const SoloSelect = ({
+    id,
+    label,
+    value,
+    options,
+    placeholder = "Select one",
+    onChange,
+  }) => {
     const isOpen = openSelect === id;
     const selectedOption = options.find((opt) => opt.value === value);
 
     return (
       <div className="cnc-field" ref={(el) => (selectRefs.current[id] = el)}>
         <label className="cnc-label">{label}</label>
-        <div className={`onboarding-custom-select ${isOpen ? "active" : ""} ${isViewOnly ? "disabled" : ""}`}>
+        <div
+          className={`custom-select ${isOpen ? "active" : ""} ${isViewOnly ? "disabled" : ""}`}
+        >
           <div
-            className={`onboarding-selected-option ${isOpen ? "open" : ""}`}
+            className={`selected-option ${isOpen ? "open" : ""} ${isViewOnly ? "disabled" : ""}`}
             onClick={() => toggleSelect(id)}
           >
             <span className={!value ? "opacity-70" : ""}>
               {selectedOption ? selectedOption.label : placeholder}
             </span>
-            <span className="onboarding-arrow">▼</span>
+            <span className="arrow">▼</span>
           </div>
 
           {!isViewOnly && isOpen && (
-            <ul className="onboarding-options-list">
+            <ul className="options-list">
               {options.map((opt) => (
                 <li
                   key={opt.value}
@@ -373,7 +423,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
       orderNumber: "#123456789",
       orderDate: "Fri Dec 26 2025",
 
-      orderRows: [{ item: "Name", qty: 1, duration: "2 days", price: "$100000" }],
+      orderRows: [
+        { item: "Name", qty: 1, duration: "2 days", price: "$100000" },
+      ],
       subtotal: "$100000",
       serviceFee: "$100",
       total: "$100100",
@@ -401,7 +453,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
   );
 
   return (
-    <div className={`create-team-page user-page ${theme} min-h-screen relative overflow-hidden`}>
+    <div
+      className={`create-team-page user-page ${theme} min-h-screen relative overflow-hidden`}
+    >
       <UserNavbar
         toggleSidebar={() => setSidebarOpen((p) => !p)}
         theme={theme}
@@ -442,7 +496,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
               {/* ✅ CONTRACT TAB */}
               {activeTop === "Contract" && (
-                <div className={`cnc-main w-full ms-contract-override ${isViewOnly ? "is-viewonly" : ""}`}>
+                <div
+                  className={`cnc-main w-full ms-contract-override ${isViewOnly ? "is-viewonly" : ""}`}
+                >
                   <div className="cnc-wrap">
                     {/* Header */}
                     <div className="ms-contract-top mb-6">
@@ -455,7 +511,7 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
                         <div
                           className={`ms-ct-btn lime outline active`}
-                          style={{ cursor: 'default' }}
+                          style={{ cursor: "default" }}
                         >
                           <span className="ms-eye">👁</span>
                           Only View
@@ -464,7 +520,12 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                     </div>
 
                     <div className="relative">
-                      {isViewOnly && <div className="ms-ct-lockOverlay" style={{ zIndex: 100 }} />}
+                      {isViewOnly && (
+                        <div
+                          className="ms-ct-lockOverlay"
+                          style={{ zIndex: 100 }}
+                        />
+                      )}
 
                       {/* Contract Basics */}
                       <div className="cnc-card">
@@ -483,11 +544,19 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                           <div className="cnc-field">
                             <div className="cnc-contract-type-box">
                               <div className="cnc-ct-left">
-                                <span className="cnc-ct-title">Contract Type</span>
-                                <span className="cnc-ct-desc">Solo/ Team service</span>
+                                <span className="cnc-ct-title">
+                                  Contract Type
+                                </span>
+                                <span className="cnc-ct-desc">
+                                  Solo/ Team service
+                                </span>
                               </div>
                               <div className="cnc-ct-right">
-                                <span className={`cnc-ct-status ${!form.soloTeam ? "active" : ""}`}>Solo</span>
+                                <span
+                                  className={`cnc-ct-status ${!form.soloTeam ? "active" : ""}`}
+                                >
+                                  Solo
+                                </span>
                                 <button
                                   type="button"
                                   className={`cnc-switch ${form.soloTeam ? "is-on" : ""} ${isViewOnly ? "opacity-50 pointer-events-none" : ""}`}
@@ -498,26 +567,38 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                 >
                                   <span className="cnc-knob" />
                                 </button>
-                                <span className={`cnc-ct-status ${form.soloTeam ? "active" : ""}`}>Team</span>
+                                <span
+                                  className={`cnc-ct-status ${form.soloTeam ? "active" : ""}`}
+                                >
+                                  Team
+                                </span>
                               </div>
                             </div>
                           </div>
                           <div className="cnc-field">
                             <label className="cnc-label">Contract ID</label>
-                            <input className="cnc-input" value={contractId} readOnly />
+                            <input
+                              className="cnc-input"
+                              value={contractId}
+                              readOnly
+                            />
                           </div>
                         </div>
                       </div>
 
                       {/* Parties Involved */}
                       <div className="cnc-parties-outer-box">
-                        <h2 className="cnc-card-title cnc-title-standalone">Parties Involved</h2>
+                        <h2 className="cnc-card-title cnc-title-standalone">
+                          Parties Involved
+                        </h2>
                         <div className="cnc-parties-wrapper">
                           <div className="cnc-subcard">
                             <div className="cnc-subTitle">Client</div>
                             <div className="cnc-subGrid">
                               <div className="cnc-field">
-                                <label className="cnc-label">Client username</label>
+                                <label className="cnc-label">
+                                  Client username
+                                </label>
                                 <input
                                   className="cnc-input"
                                   placeholder="Client username"
@@ -547,7 +628,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                 />
                               </div>
                               <div className="cnc-field">
-                                <label className="cnc-label">Name and company</label>
+                                <label className="cnc-label">
+                                  Name and company
+                                </label>
                                 <input
                                   className="cnc-input"
                                   placeholder="Name and company"
@@ -561,7 +644,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
                           <div className="cnc-subcard">
                             <div className="cnc-subTitle">
-                              {form.soloTeam ? "Team Details" : "Service Provider"}
+                              {form.soloTeam
+                                ? "Team Details"
+                                : "Service Provider"}
                             </div>
                             <div className="cnc-subGrid">
                               <div className="cnc-field">
@@ -570,7 +655,11 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                 </label>
                                 <input
                                   className="cnc-input"
-                                  placeholder={form.soloTeam ? "Team username" : "Creator username"}
+                                  placeholder={
+                                    form.soloTeam
+                                      ? "Team username"
+                                      : "Creator username"
+                                  }
                                   value={form.creatorUsername}
                                   onChange={onChange("creatorUsername")}
                                   readOnly={isViewOnly}
@@ -582,7 +671,11 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                 </label>
                                 <input
                                   className="cnc-input"
-                                  placeholder={form.soloTeam ? "Team full name" : "Full name"}
+                                  placeholder={
+                                    form.soloTeam
+                                      ? "Team full name"
+                                      : "Full name"
+                                  }
                                   value={form.creatorFullName}
                                   onChange={onChange("creatorFullName")}
                                   readOnly={isViewOnly}
@@ -594,7 +687,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                 </label>
                                 <input
                                   className="cnc-input"
-                                  placeholder={form.soloTeam ? "Team email" : "Email"}
+                                  placeholder={
+                                    form.soloTeam ? "Team email" : "Email"
+                                  }
                                   value={form.creatorEmail}
                                   onChange={onChange("creatorEmail")}
                                   readOnly={isViewOnly}
@@ -602,7 +697,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                               </div>
                               {!form.soloTeam && (
                                 <div className="cnc-field">
-                                  <label className="cnc-label">Name and company</label>
+                                  <label className="cnc-label">
+                                    Name and company
+                                  </label>
                                   <input
                                     className="cnc-input"
                                     placeholder="Country"
@@ -619,7 +716,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
                       {/* Scope and Deliverables */}
                       <div className="cnc-card cnc-card--mt">
-                        <h2 className="cnc-card-title">Scope and Deliverables</h2>
+                        <h2 className="cnc-card-title">
+                          Scope and Deliverables
+                        </h2>
                         <div className="cnc-field">
                           <label className="cnc-label">Project Summary</label>
                           <textarea
@@ -651,35 +750,63 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                   className="cnc-input"
                                   placeholder="Title"
                                   value={d.title}
-                                  onChange={(e) => updateDeliverable(index, "title", e.target.value)}
+                                  onChange={(e) =>
+                                    updateDeliverable(
+                                      index,
+                                      "title",
+                                      e.target.value,
+                                    )
+                                  }
                                   readOnly={isViewOnly}
                                 />
                                 <input
                                   className="cnc-input"
                                   placeholder="Format/file type"
                                   value={d.format}
-                                  onChange={(e) => updateDeliverable(index, "format", e.target.value)}
+                                  onChange={(e) =>
+                                    updateDeliverable(
+                                      index,
+                                      "format",
+                                      e.target.value,
+                                    )
+                                  }
                                   readOnly={isViewOnly}
                                 />
                                 <input
                                   className="cnc-input"
                                   placeholder="Quantity"
                                   value={d.qty}
-                                  onChange={(e) => updateDeliverable(index, "qty", e.target.value)}
+                                  onChange={(e) =>
+                                    updateDeliverable(
+                                      index,
+                                      "qty",
+                                      e.target.value,
+                                    )
+                                  }
                                   readOnly={isViewOnly}
                                 />
                                 <input
                                   className="cnc-input"
                                   placeholder="Acceptance Criteria"
                                   value={d.acceptance}
-                                  onChange={(e) => updateDeliverable(index, "acceptance", e.target.value)}
+                                  onChange={(e) =>
+                                    updateDeliverable(
+                                      index,
+                                      "acceptance",
+                                      e.target.value,
+                                    )
+                                  }
                                   readOnly={isViewOnly}
                                 />
                               </div>
                             </div>
                           ))}
                           {!isViewOnly && (
-                            <button type="button" className="cnc-addBtn mt-2" onClick={addDeliverable}>
+                            <button
+                              type="button"
+                              className="cnc-addBtn mt-2"
+                              onClick={addDeliverable}
+                            >
                               + Add More Deliverables
                             </button>
                           )}
@@ -699,7 +826,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
                       {/* Timeline and Revisions */}
                       <div className="cnc-card cnc-card--mt">
-                        <h2 className="cnc-card-title">Timeline and Revisions</h2>
+                        <h2 className="cnc-card-title">
+                          Timeline and Revisions
+                        </h2>
                         <div className="cnc-timelineGrid">
                           <DateInput
                             label="Initial delivery deadline"
@@ -721,29 +850,39 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                               value: String(n),
                               label: `${n} day${n > 1 ? "s" : ""}`,
                             }))}
-                            onChange={(val) => handleSelectValue("clientReviewWindow", val)}
+                            onChange={(val) =>
+                              handleSelectValue("clientReviewWindow", val)
+                            }
                           />
 
                           <SoloSelect
                             id="includedRevisionRounds"
                             label="Included revision rounds"
                             value={form.includedRevisionRounds}
-                            options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => ({
-                              value: String(n),
-                              label: String(n),
-                            }))}
-                            onChange={(val) => handleSelectValue("includedRevisionRounds", val)}
+                            options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(
+                              (n) => ({
+                                value: String(n),
+                                label: String(n),
+                              }),
+                            )}
+                            onChange={(val) =>
+                              handleSelectValue("includedRevisionRounds", val)
+                            }
                           />
 
                           <SoloSelect
                             id="revisionTurnaroundDays"
                             label="Revision turnaround time (days)"
                             value={form.revisionTurnaroundDays}
-                            options={[1, 2, 3, 4, 5, 7, 10, 14, 21, 30].map((n) => ({
-                              value: String(n),
-                              label: `${n} day${n > 1 ? "s" : ""}`,
-                            }))}
-                            onChange={(val) => handleSelectValue("revisionTurnaroundDays", val)}
+                            options={[1, 2, 3, 4, 5, 7, 10, 14, 21, 30].map(
+                              (n) => ({
+                                value: String(n),
+                                label: `${n} day${n > 1 ? "s" : ""}`,
+                              }),
+                            )}
+                            onChange={(val) =>
+                              handleSelectValue("revisionTurnaroundDays", val)
+                            }
                           />
 
                           <SoloSelect
@@ -753,12 +892,20 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                             options={[
                               { value: "discount_5", label: "5% discount" },
                               { value: "discount_10", label: "10% discount" },
-                              { value: "refund_partial", label: "Partial refund" },
+                              {
+                                value: "refund_partial",
+                                label: "Partial refund",
+                              },
                               { value: "refund_full", label: "Full refund" },
-                              { value: "extend_deadline", label: "Extend deadline" },
+                              {
+                                value: "extend_deadline",
+                                label: "Extend deadline",
+                              },
                             ]}
                             placeholder="Select"
-                            onChange={(val) => handleSelectValue("lateDeliveryConsequence", val)}
+                            onChange={(val) =>
+                              handleSelectValue("lateDeliveryConsequence", val)
+                            }
                           />
                         </div>
                       </div>
@@ -778,7 +925,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                             />
                           </div>
                           <div className="cnc-field">
-                            <label className="cnc-label">Communication SLA</label>
+                            <label className="cnc-label">
+                              Communication SLA
+                            </label>
                             <input
                               className="cnc-input"
                               placeholder="Communication SLA"
@@ -798,7 +947,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                             />
                           </div>
                           <div className="cnc-field">
-                            <label className="cnc-label">Quality standards</label>
+                            <label className="cnc-label">
+                              Quality standards
+                            </label>
                             <input
                               className="cnc-input"
                               placeholder="Quality standards"
@@ -808,7 +959,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                             />
                           </div>
                           <div className="cnc-field">
-                            <label className="cnc-label">Client responsibilities</label>
+                            <label className="cnc-label">
+                              Client responsibilities
+                            </label>
                             <input
                               className="cnc-input"
                               placeholder="Client responsibilities"
@@ -818,7 +971,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                             />
                           </div>
                           <div className="cnc-field">
-                            <label className="cnc-label">Creator/team responsibilities</label>
+                            <label className="cnc-label">
+                              Creator/team responsibilities
+                            </label>
                             <input
                               className="cnc-input"
                               placeholder="Creator/team responsibilities"
@@ -843,7 +998,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                               { value: "milestone", label: "Milestone based" },
                               { value: "hourly", label: "Hourly" },
                             ]}
-                            onChange={(val) => handleSelectValue("paymentType", val)}
+                            onChange={(val) =>
+                              handleSelectValue("paymentType", val)
+                            }
                           />
                           <div className="cnc-field">
                             <label className="cnc-label">Project cost</label>
@@ -872,7 +1029,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
                           {milestones.length > 0 && (
                             <div className="cnc-mil-header">
-                              <label className="cnc-label">Milestone Name</label>
+                              <label className="cnc-label">
+                                Milestone Name
+                              </label>
                               <label className="cnc-label">Amount</label>
                               <label className="cnc-label">Deadline</label>
                               <div />
@@ -886,23 +1045,38 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                   className="cnc-input"
                                   placeholder={`Milestone ${index + 1}`}
                                   value={m.name}
-                                  onChange={(e) => updateMilestone(index, "name", e.target.value)}
+                                  onChange={(e) =>
+                                    updateMilestone(
+                                      index,
+                                      "name",
+                                      e.target.value,
+                                    )
+                                  }
                                   readOnly={isViewOnly}
                                 />
                                 <input
                                   className="cnc-input"
                                   placeholder="$1000"
                                   value={m.amount}
-                                  onChange={(e) => updateMilestone(index, "amount", e.target.value)}
+                                  onChange={(e) =>
+                                    updateMilestone(
+                                      index,
+                                      "amount",
+                                      e.target.value,
+                                    )
+                                  }
                                   readOnly={isViewOnly}
                                 />
                                 <DateInput
                                   label=""
                                   value={m.deadline}
-                                  onOpen={() => setCalendarConfig({
-                                    value: m.deadline,
-                                    onSelect: (val) => updateMilestone(index, "deadline", val)
-                                  })}
+                                  onOpen={() =>
+                                    setCalendarConfig({
+                                      value: m.deadline,
+                                      onSelect: (val) =>
+                                        updateMilestone(index, "deadline", val),
+                                    })
+                                  }
                                 />
                                 {!isViewOnly && (
                                   <button
@@ -918,7 +1092,11 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                             </div>
                           ))}
                           {!isViewOnly && (
-                            <button type="button" className="cnc-addBtn mt-2" onClick={addMilestone}>
+                            <button
+                              type="button"
+                              className="cnc-addBtn mt-2"
+                              onClick={addMilestone}
+                            >
                               + Add Milestone
                             </button>
                           )}
@@ -928,7 +1106,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                       {/* Team Payout Configuration (Conditional) */}
                       {form.soloTeam && (
                         <div className="cnc-card cnc-card--mt cnc-teamPayoutCard">
-                          <h2 className="cnc-card-title">Team Payout Configuration</h2>
+                          <h2 className="cnc-card-title">
+                            Team Payout Configuration
+                          </h2>
                           <div className="cnc-payout-list">
                             {form.teamPayouts.map((payout) => (
                               <div className="cnc-payout-row" key={payout.id}>
@@ -937,7 +1117,13 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                     className="cnc-input cnc-payout-input"
                                     placeholder="Member Name"
                                     value={payout.name}
-                                    onChange={(e) => handlePayoutChange(payout.id, "name", e.target.value)}
+                                    onChange={(e) =>
+                                      handlePayoutChange(
+                                        payout.id,
+                                        "name",
+                                        e.target.value,
+                                      )
+                                    }
                                     readOnly={isViewOnly}
                                   />
                                 </div>
@@ -946,7 +1132,13 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                     className="cnc-input cnc-payout-input"
                                     placeholder="Role"
                                     value={payout.role}
-                                    onChange={(e) => handlePayoutChange(payout.id, "role", e.target.value)}
+                                    onChange={(e) =>
+                                      handlePayoutChange(
+                                        payout.id,
+                                        "role",
+                                        e.target.value,
+                                      )
+                                    }
                                     readOnly={isViewOnly}
                                   />
                                 </div>
@@ -955,7 +1147,13 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                     className="cnc-input cnc-payout-input"
                                     placeholder="Percentage"
                                     value={payout.percentage}
-                                    onChange={(e) => handlePayoutChange(payout.id, "percentage", e.target.value)}
+                                    onChange={(e) =>
+                                      handlePayoutChange(
+                                        payout.id,
+                                        "percentage",
+                                        e.target.value,
+                                      )
+                                    }
                                     readOnly={isViewOnly}
                                   />
                                 </div>
@@ -969,7 +1167,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                       <div className="cnc-confirmArea cnc-card--mt">
                         <div className="cnc-confirmRow">
                           <div className="cnc-confirmCard">
-                            <div className="cnc-confirmTitle">Final Confirmation (Client)</div>
+                            <div className="cnc-confirmTitle">
+                              Final Confirmation (Client)
+                            </div>
                             <div className="cnc-field">
                               <label className="cnc-label">Full Name</label>
                               <input
@@ -988,20 +1188,39 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                 disabled={isViewOnly}
                               />
                               <span>
-                                I accept and agree to the <a href="#">terms and conditions</a>
+                                I accept and agree to the{" "}
+                                <a href="#">terms and conditions</a>
                               </span>
                             </label>
-                            <button type="button" className="cnc-primaryBtn" disabled={isViewOnly}>
+                            <button
+                              type="button"
+                              className="cnc-primaryBtn"
+                              disabled={isViewOnly}
+                            >
                               Ready to fund escrow
                             </button>
                             <div className="cnc-confirmActions">
-                              <button type="button" className="cnc-ghostBtn" disabled={isViewOnly}>Send for review</button>
-                              <button type="button" className="cnc-ghostBtn" disabled={isViewOnly}>Edit Contract</button>
+                              <button
+                                type="button"
+                                className="cnc-ghostBtn"
+                                disabled={isViewOnly}
+                              >
+                                Send for review
+                              </button>
+                              <button
+                                type="button"
+                                className="cnc-ghostBtn"
+                                disabled={isViewOnly}
+                              >
+                                Edit Contract
+                              </button>
                             </div>
                           </div>
 
                           <div className="cnc-confirmCard">
-                            <div className="cnc-confirmTitle">Final Confirmation (Team)</div>
+                            <div className="cnc-confirmTitle">
+                              Final Confirmation (Team)
+                            </div>
                             <div className="cnc-field">
                               <label className="cnc-label">Team Name</label>
                               <input
@@ -1020,15 +1239,32 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                                 disabled={isViewOnly}
                               />
                               <span>
-                                I accept and agree to the <a href="#">terms and conditions</a>
+                                I accept and agree to the{" "}
+                                <a href="#">terms and conditions</a>
                               </span>
                             </label>
-                            <button type="button" className="cnc-primaryBtn" disabled={isViewOnly}>
+                            <button
+                              type="button"
+                              className="cnc-primaryBtn"
+                              disabled={isViewOnly}
+                            >
                               Accept contract
                             </button>
                             <div className="cnc-confirmActions">
-                              <button type="button" className="cnc-ghostBtn" disabled={isViewOnly}>Cancelled</button>
-                              <button type="button" className="cnc-ghostBtn" disabled={isViewOnly}>Decline</button>
+                              <button
+                                type="button"
+                                className="cnc-ghostBtn"
+                                disabled={isViewOnly}
+                              >
+                                Cancelled
+                              </button>
+                              <button
+                                type="button"
+                                className="cnc-ghostBtn"
+                                disabled={isViewOnly}
+                              >
+                                Decline
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -1074,7 +1310,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                       Ordered from <b>{details.orderedFrom}</b> &nbsp;·&nbsp;
                       Delivery date: {details.deliveryDate}
                     </div>
-                    <div className="msd-muted">Ordered number {details.orderNumber}</div>
+                    <div className="msd-muted">
+                      Ordered number {details.orderNumber}
+                    </div>
                   </div>
 
                   <div className="msd-card">
@@ -1120,7 +1358,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                   <div className="msd-card">
                     <div className="msd-cardHead">
                       <div className="msd-cardTitle">Order extension</div>
-                      <div className="msd-cardDate">{details.extensionDate}</div>
+                      <div className="msd-cardDate">
+                        {details.extensionDate}
+                      </div>
                     </div>
 
                     <div className="msd-table">
@@ -1148,7 +1388,8 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                   </div>
 
                   <div className="msd-help">
-                    If something appears to be missing or incorrect, please visit our{" "}
+                    If something appears to be missing or incorrect, please
+                    visit our{" "}
                     <a href="#" className="msd-link">
                       resolution center
                     </a>
@@ -1204,9 +1445,16 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                   <div className="ms-cards">
                     <div className="ms-card">
                       <div className="ms-cardTitle">Overall progress</div>
-                      <div className="ms-bar">
-                        <div className="ms-barFill" style={{ width: `${progressPct}%` }} />
+
+                      <div className="ms-progress">
+                        <div className="ms-bar">
+                          <div
+                            className="ms-barFill"
+                            style={{ width: `${progressPct}%` }}
+                          />
+                        </div>
                       </div>
+
                       <div className="ms-sub">
                         {data.completed} of {data.total} milestones completed
                       </div>
@@ -1214,18 +1462,23 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
                     <div className="ms-card">
                       <div className="ms-cardTitle">Timeline</div>
+
                       <div className="ms-item">
-                        ● Start date: <b>{data.startedAt}</b>
+                        <img src="/milestone1.svg" alt="" />
+                        Start date: <b>{data.startedAt}</b>
                       </div>
+
                       <div className="ms-item">
-                        ○ End date: <b>{data.targetAt}</b>
+                        <img src="/milestone2.svg" alt="" />
+                        End date: <b>{data.targetAt}</b>
                       </div>
                     </div>
 
                     <div className="ms-card">
                       <div className="ms-cardTitle">Revisions</div>
                       <div className="ms-item">
-                        Used: <b>{data.revisionsUsed}</b> / {data.revisionsTotal}
+                        Used: <b>{data.revisionsUsed}</b> /{" "}
+                        {data.revisionsTotal}
                       </div>
                     </div>
 
@@ -1237,25 +1490,38 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                   </div>
 
                   <div className="ms-controls">
-                    <div className="ms-dd-wrap" ref={projectRef}>
-                      <button
-                        className={`ms-dd-trigger ${projectOpen ? "open" : ""}`}
+                    <div className="custom-select" ref={projectRef}>
+                      <div
+                        className={`selected-option ${projectOpen ? "open" : ""}`}
                         onClick={() => setProjectOpen(!projectOpen)}
+                        role="button"
+                        tabIndex={0}
                       >
-                        <span>{projectValue}</span>
-                        <span className="ms-dd-arrow">▼</span>
-                      </button>
+                        {projectValue}
+                        <span className="arrow">▼</span>
+                      </div>
 
                       {projectOpen && (
-                        <div className="ms-dd-menu">
-                          <button className="ms-dd-item">Full project</button>
-                          <button className="ms-dd-item disabled" disabled>
+                        <ul className="options-list" role="listbox">
+                          <li
+                            className="ms-dd-item"
+                            onClick={() => setProjectOpen(false)}
+                          >
+                            Full project
+                          </li>
+                          <li
+                            className="ms-dd-item disabled"
+                            style={{ opacity: 0.5, cursor: "not-allowed" }}
+                          >
                             Current milestone
-                          </button>
-                          <button className="ms-dd-item disabled" disabled>
+                          </li>
+                          <li
+                            className="ms-dd-item disabled"
+                            style={{ opacity: 0.5, cursor: "not-allowed" }}
+                          >
                             Previous Milestone
-                          </button>
-                        </div>
+                          </li>
+                        </ul>
                       )}
                     </div>
 
@@ -1282,12 +1548,19 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                   <div className="ms-lower">
                     <div className="ms-feed">
                       {feed.map((it, idx) => (
-                        <div key={idx} className={`ms-event ${it.highlight ? "highlight" : ""}`}>
+                        <div
+                          key={idx}
+                          className={`ms-event ${it.highlight ? "highlight" : ""}`}
+                        >
                           <div className="ms-eventHead">
                             <div className="ms-eventLeft">
                               <div className="ms-eventTitle">{it.title}</div>
                               {it.pill && (
-                                <span className={`ms-miniPill ${it.pill.toLowerCase()}`}>{it.pill}</span>
+                                <span
+                                  className={`ms-miniPill ${it.pill.toLowerCase()}`}
+                                >
+                                  {it.pill}
+                                </span>
                               )}
                             </div>
                             <div className="ms-eventTs">{it.ts}</div>
@@ -1306,7 +1579,11 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                           {it.files?.length ? (
                             <div className="ms-fileRow">
                               {it.files.map((f) => (
-                                <button key={f} className="ms-fileBtn" type="button">
+                                <button
+                                  key={f}
+                                  className="ms-fileBtn"
+                                  type="button"
+                                >
                                   {f} <span className="ms-open">open</span>
                                 </button>
                               ))}
@@ -1316,8 +1593,14 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                           <div className="ms-eventFoot">
                             <div className="ms-chat">{it.chat}</div>
                             <div className="ms-rightFoot">
-                              {it.amount && <div className="ms-amount">{it.amount}</div>}
-                              {it.footerBadge && <span className="ms-badge">{it.footerBadge}</span>}
+                              {it.amount && (
+                                <div className="ms-amount">{it.amount}</div>
+                              )}
+                              {it.footerBadge && (
+                                <span className="ms-badge">
+                                  {it.footerBadge}
+                                </span>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -1340,7 +1623,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
                       <div className="ms-panel ms-panel-revision">
                         <div className="ms-panelTitle">Revision Requested</div>
-                        <div className="ms-panelSub">Client as requested revision for milestone 1</div>
+                        <div className="ms-panelSub">
+                          Client as requested revision for milestone 1
+                        </div>
 
                         <div className="ms-timer">
                           <div className="ms-timeBox">
@@ -1359,11 +1644,14 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
                         <div className="ms-panelTitle small">Description</div>
                         <div className="ms-descText">
-                          Lorem ipsum is simply dummy text of the printing and typesetting industry...
+                          Lorem ipsum is simply dummy text of the printing and
+                          typesetting industry...
                         </div>
 
                         <div className="ms-tagRow">
-                          <span className="ms-tag">Milestone: Design phase</span>
+                          <span className="ms-tag">
+                            Milestone: Design phase
+                          </span>
                         </div>
 
                         <div className="ms-fileRow">
@@ -1415,17 +1703,29 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
 function Calendar({ onClose, onSelect, initialDate }) {
   const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   const today = new Date();
 
   // Parse initialDate if exists (DD-MM-YYYY)
   const parseInit = () => {
-    if (!initialDate) return { month: today.getMonth(), year: today.getFullYear() };
+    if (!initialDate)
+      return { month: today.getMonth(), year: today.getFullYear() };
     const parts = initialDate.split("-");
-    if (parts.length !== 3) return { month: today.getMonth(), year: today.getFullYear() };
+    if (parts.length !== 3)
+      return { month: today.getMonth(), year: today.getFullYear() };
     return { month: parseInt(parts[1]) - 1, year: parseInt(parts[2]) };
   };
 
@@ -1482,14 +1782,20 @@ function Calendar({ onClose, onSelect, initialDate }) {
         <div className="bg-white dark:bg-[#2B2B2B] w-full h-full rounded-lg p-3 flex flex-col text-black dark:text-[#f0f0f0] calendar-inner">
           {/* YEAR DROPDOWN */}
           <div className="relative mb-6 z-20 w-full" ref={yearRef}>
-            <div className={`onboarding-custom-select ${openYear ? "active" : ""}`}>
+            <div
+              className={`onboarding-custom-select ${openYear ? "active" : ""}`}
+            >
               <div
                 className={`onboarding-selected-option ${openYear ? "open" : ""}`}
                 onClick={(e) => {
                   e.stopPropagation();
                   setOpenYear(!openYear);
                 }}
-                style={{ background: "#CEFF1B", color: "black", fontWeight: "bold" }}
+                style={{
+                  background: "#CEFF1B",
+                  color: "black",
+                  fontWeight: "bold",
+                }}
               >
                 <span>{year} :</span>
                 <span className="onboarding-arrow">▼</span>
@@ -1566,9 +1872,10 @@ function Calendar({ onClose, onSelect, initialDate }) {
                     onSelect(formatted);
                   }}
                   className={`mx-auto w-7 h-7 rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 font-bold
-                    ${isSelected
-                      ? "bg-[#CEFF1B] text-black shadow-[0_0_10px_rgba(206,255,27,0.4)]"
-                      : "text-black dark:text-gray-300 hover:bg-[#CEFF1B] hover:text-black"
+                    ${
+                      isSelected
+                        ? "bg-[#CEFF1B] text-black shadow-[0_0_10px_rgba(206,255,27,0.4)]"
+                        : "text-black dark:text-gray-300 hover:bg-[#CEFF1B] hover:text-black"
                     }`}
                 >
                   {day}
