@@ -138,7 +138,7 @@
 
 .ms-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   font-family: Roboto, sans-serif;
   font-size: 16px;
@@ -146,6 +146,16 @@
   font-weight: 400;
   line-height: normal;
   color: #2B2B2B;
+}
+
+.ms-item img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 0.8;
+  margin-top: 1px;
+  /* Nudge for visual center */
 }
 
 .ms-bullet {
@@ -436,9 +446,10 @@
 .ms-badge {
   font-size: 10px;
   padding: 6px 10px;
-  border-radius: 8px;
+  border-radius: 2px;
   border: 1px solid #ceff1b;
-  background: rgba(206, 255, 27, 0.45);
+  background: #CEFF1B;
+  color: black;
 }
 
 /* right side panels */
@@ -787,8 +798,8 @@
 }
 
 .user-page.dark .ms-event {
-  background: rgba(30, 30, 30, 0.6);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(43, 43, 43, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #f0f0f0;
 }
 
@@ -811,7 +822,7 @@
 .user-page.dark .ms-panelSub,
 .user-page.dark .ms-panelTitle.small,
 .user-page.dark .ms-descText {
-  color: var(--d-muted);
+  color: #FEFEFE;
 }
 
 .user-page.dark .ms-pill {
@@ -821,9 +832,12 @@
 }
 
 .user-page.dark .ms-tag {
-  background: #121212;
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #aaa;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #eee;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 8px;
 }
 
 .user-page.dark .ms-pill:hover,
@@ -856,13 +870,17 @@
 }
 
 .user-page.dark .ms-fileBtn {
-  background: #121212;
-  border-color: var(--d-border);
-  color: var(--d-text);
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #eee;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 8px;
 }
 
 .user-page.dark .ms-fileBtn .ms-open {
-  color: var(--d-text);
+  color: #888;
+  margin-left: 4px;
 }
 
 .user-page.dark .ms-panel {
@@ -871,25 +889,59 @@
 }
 
 .user-page.dark .ms-actionBtn {
-  background: #121212;
-  border-color: var(--d-border);
-  color: var(--d-text);
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  font-weight: 500;
 }
 
 .user-page.dark .ms-actionBtn.lime {
   background: var(--accent);
   border-color: var(--accent);
   color: #0b0b0b;
+  font-weight: 600;
+}
+
+/* Dark Mode Tabs consistency */
+.user-page.dark .ms-seg {
+  background: #cfff2e;
 }
 
 .user-page.dark .ms-segBtn {
-  color: var(--d-text);
+  color: #2B2B2B;
 }
 
 .user-page.dark .ms-segBtn.active {
-  background: #121212;
-  color: var(--d-text);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: #ffffff;
+  color: #2B2B2B;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Revision Card - Dark Mode Timer */
+.user-page.dark .ms-timer {
+  background: var(--accent);
+  border-radius: 12px;
+  padding: 15px;
+  gap: 0;
+}
+
+.user-page.dark .ms-timeBox {
+  background: transparent;
+  padding: 0;
+}
+
+.user-page.dark .ms-timeNum,
+.user-page.dark .ms-timeLbl {
+  color: #0b0b0b;
+}
+
+.user-page.dark .ms-timeNum {
+  font-size: 20px;
+}
+
+.user-page.dark .ms-timeLbl {
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .user-page.dark .ms-select {
@@ -970,9 +1022,12 @@
 }
 
 
-/* Override for new buttons layout */
+/* Dropdown row layout */
 .ms-controls {
+  display: flex;
   justify-content: space-between;
+  margin: 10px 0;
+  width: 100%;
   align-items: center;
 }
 
@@ -995,8 +1050,8 @@
   justify-content: space-between;
   padding: 0 14px;
   border-radius: 12px;
-  background: rgba(235, 235, 235, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: #FEFEFE;
+  border: 1px solid black;
   color: #2b2b2b;
   cursor: pointer;
   transition: 0.25s ease;
@@ -1004,9 +1059,9 @@
 }
 
 .user-page.dark .ms-wrap .selected-option {
-  background: rgba(30, 30, 30, 0.6);
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #f0f0f0;
+  background: white;
+  border-color: black;
+  color: #2B2B2B;
 }
 
 .ms-wrap .selected-option.disabled {
@@ -1027,7 +1082,7 @@
 }
 
 .user-page.dark .ms-wrap .arrow {
-  color: #f0f0f0;
+  color: black;
 }
 
 .ms-wrap .selected-option.open .arrow {
