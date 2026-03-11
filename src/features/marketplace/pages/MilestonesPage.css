@@ -793,7 +793,7 @@
 
 .user-page.dark .ms-card {
   background: #1a1a1a;
-  border-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #CEFF1B;
   box-shadow: none;
 }
 
