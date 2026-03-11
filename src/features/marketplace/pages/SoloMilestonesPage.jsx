@@ -25,6 +25,13 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
   // ✅ DELIVER WORK MODAL STATE
   const [isDeliverModalOpen, setIsDeliverModalOpen] = useState(false);
 
+  // ✅ RESOLUTION CENTER MODAL STATE
+  const [isResolutionModalOpen, setIsResolutionModalOpen] = useState(false);
+  const [resolutionTab, setResolutionTab] = useState("extension"); // "extension" or "cancellation"
+  const [resolutionStep, setResolutionStep] = useState(1);
+  const [extensionDays, setExtensionDays] = useState("");
+  const [isDaysOpen, setIsDaysOpen] = useState(false);
+
   const contractId = useMemo(() => "AUTO-123456", []);
 
   const [form, setForm] = useState({
@@ -466,20 +473,234 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
       />
 
       <div className="pt-[85px] flex relative z-10">
-        <Sidebar
-          expanded={sidebarOpen}
-          setExpanded={setSidebarOpen}
-          showSettings={showSettings}
-          setShowSettings={setShowSettings}
-          activeSetting={activeSetting}
-          onSectionChange={(id) => setActiveSetting(id)}
-          theme={theme}
-          setTheme={setTheme}
-        />
+        {!isResolutionModalOpen && (
+          <Sidebar
+            expanded={sidebarOpen}
+            setExpanded={setSidebarOpen}
+            showSettings={showSettings}
+            setShowSettings={setShowSettings}
+            activeSetting={activeSetting}
+            onSectionChange={(id) => setActiveSetting(id)}
+            theme={theme}
+            setTheme={setTheme}
+          />
+        )}
 
         <div className="relative flex-1 min-w-5 overflow-hidden">
           <div className="relative z-10 overflow-y-auto h-[calc(100vh-85px)]">
-            <div className="ms-wrap">
+            {isResolutionModalOpen ? (
+              <div style={{ borderTop: '2px solid #CEFF1B', padding: '50px 20px', minHeight: '100%', display: 'flex', flexDirection: 'column', background: theme === 'dark' ? '#0a0a0a' : '#f5f5f5' }}>
+                <div style={{ maxWidth: '800px', width: '100%', margin: '0 auto', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  
+                  <div className="ms-res-header">
+                    <h2 className="msd-title" style={{ textAlign: 'left', fontWeight: 'bold', color: '#CEFF1B', fontSize: '28px' }}>UltraHustle Resolution Center</h2>
+                    <p className="ms-uploadSub" style={{ textAlign: 'left', fontSize: '15px', marginTop: '12px', color: theme === 'dark' ? '#eee' : '#333' }}>Predictable outcomes. Timer-driven. No hidden actions.</p>
+                  </div>
+
+                  {resolutionStep === 1 ? (
+                    <>
+                      <div className="ms-res-tabs" style={{ display: 'flex', gap: '20px', marginTop: '30px' }}>
+                        <button
+                          onClick={() => setResolutionTab('extension')}
+                          style={{
+                            flex: 1,
+                            padding: '24px 30px',
+                            fontSize: '18px',
+                            background: '#CEFF1B',
+                            border: resolutionTab === 'extension' ? '3px solid #fff' : '3px solid transparent',
+                            borderRadius: '12px',
+                            color: '#111',
+                            textAlign: 'left',
+                            cursor: 'pointer',
+                            fontWeight: '600',
+                            transition: 'all 0.2s',
+                            opacity: resolutionTab === 'cancellation' ? 0.7 : 1
+                          }}
+                        >
+                          Request extension
+                        </button>
+                        <button
+                          onClick={() => setResolutionTab('cancellation')}
+                          style={{
+                            flex: 1,
+                            padding: '24px 30px',
+                            fontSize: '18px',
+                            background: '#CEFF1B',
+                            border: resolutionTab === 'cancellation' ? '3px solid #fff' : '3px solid transparent',
+                            borderRadius: '12px',
+                            color: '#111',
+                            textAlign: 'left',
+                            cursor: 'pointer',
+                            fontWeight: '600',
+                            transition: 'all 0.2s',
+                            opacity: resolutionTab === 'extension' ? 0.7 : 1
+                          }}
+                        >
+                          Request cancellation
+                        </button>
+                      </div>
+
+                      <div className="ms-deliverFoot" style={{ marginTop: '40px', justifyContent: 'flex-end', display: 'flex', gap: '16px' }}>
+                        <button 
+                          style={{ width: '140px', padding: '12px', fontSize: '15px', background: '#CEFF1B', border: 'none', borderRadius: '8px', color: '#111', fontWeight: '700', cursor: 'pointer' }} 
+                          onClick={() => setResolutionStep(2)}
+                        >
+                          Next
+                        </button>
+                        <button 
+                          style={{ width: '140px', padding: '12px', fontSize: '15px', background: '#fff', border: 'none', borderRadius: '8px', color: '#111', fontWeight: '700', cursor: 'pointer' }} 
+                          onClick={() => setIsResolutionModalOpen(false)}
+                        >
+                          Confirm
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div style={{ marginTop: '20px' }}>
+                        {resolutionTab === 'extension' && (
+                          <div className="ms-res-content" style={{
+                            border: '1px solid #CEFF1B',
+                            borderRadius: '16px',
+                            padding: '30px',
+                            marginTop: '10px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '24px'
+                          }}>
+                            <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#111' }}>Extension request</h3>
+                            <div className="cnc-field" style={{ marginBottom: 0, position: 'relative' }}>
+                              <label className="cnc-label" style={{ fontSize: '14px', fontWeight: '700', color: theme === 'dark' ? '#fff' : '#111', marginBottom: '8px', display: 'block' }}>Days</label>
+                              <div className={`custom-select ${isDaysOpen ? 'active' : ''}`} style={{ border: '1px solid #444', borderRadius: '8px', background: 'transparent' }}>
+                                <div className={`selected-option cursor-pointer ${isDaysOpen ? 'open' : ''}`} style={{ padding: '14px' }} onClick={() => setIsDaysOpen(!isDaysOpen)}>
+                                  <span style={{ color: !extensionDays ? '#888' : (theme === 'dark' ? '#fff' : '#111') }}>{extensionDays || 'Days'}</span>
+                                  <span className="arrow" style={{ color: '#888', transform: 'none' }}>↕</span>
+                                </div>
+                                {isDaysOpen && (
+                                  <ul className="options-list" style={{ background: theme === 'dark' ? '#222' : '#fff', border: '1px solid #444' }}>
+                                    {[...Array(30).keys()].map(i => (
+                                      <li
+                                        key={i + 1}
+                                        className={extensionDays === `${i + 1} Days` ? 'active' : ''}
+                                        onClick={() => {
+                                          setExtensionDays(`${i + 1} Days`);
+                                          setIsDaysOpen(false);
+                                        }}
+                                        style={{ color: theme === 'dark' ? '#fff' : '#111' }}
+                                      >
+                                        {i + 1} Days
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </div>
+                            </div>
+                            <div className="cnc-field" style={{ marginBottom: 0 }}>
+                              <label className="cnc-label" style={{ fontSize: '14px', fontWeight: '700', color: theme === 'dark' ? '#fff' : '#111', marginBottom: '8px', display: 'block' }}>Why is extension needed?</label>
+                              <textarea
+                                className="cnc-textarea"
+                                placeholder="Be specific"
+                                style={{ minHeight: '120px', background: 'transparent', border: '1px solid #444', borderRadius: '8px', padding: '14px', color: theme === 'dark' ? '#fff' : '#111' }}
+                              />
+                            </div>
+                          </div>
+                        )}
+
+                        {resolutionTab === 'cancellation' && (
+                          <div className="ms-res-content" style={{
+                            border: '1px solid #CEFF1B',
+                            borderRadius: '16px',
+                            padding: '30px',
+                            marginTop: '10px'
+                          }}>
+                            <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#111' }}>Cancellation request</h3>
+                            <p style={{ marginTop: '10px', fontSize: '15px', color: theme === 'dark' ? '#ccc' : '#444' }}>Please contact support for cancellation.</p>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="ms-deliverFoot" style={{ marginTop: '30px', justifyContent: 'flex-end', display: 'flex' }}>
+                        <button className="ms-btn-lime ms-uploadBtn" style={{ width: '180px', padding: '14px', fontSize: '15px' }} onClick={() => setResolutionStep(3)}>
+                          {resolutionTab === 'extension' ? 'Request extension' : 'Request cancellation'}
+                        </button>
+                      </div>
+                    </>
+                  )}
+
+                  {resolutionStep === 3 && (
+                    <div style={{
+                      position: 'absolute',
+                      top: 0, left: 0, right: 0, bottom: 0,
+                      background: theme === 'dark' ? 'rgba(20,20,20,0.85)' : 'rgba(255,255,255,0.85)',
+                      backdropFilter: 'blur(8px)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      zIndex: 10,
+                    }}>
+                      <div style={{
+                        background: theme === 'dark' ? '#1f1f1f' : '#f9f9f9',
+                        border: '1px solid #CEFF1B',
+                        boxShadow: '0 0 15px rgba(206, 255, 27, 0.15)',
+                        borderRadius: '16px',
+                        padding: '40px',
+                        width: '90%',
+                        maxWidth: '420px',
+                        textAlign: 'center'
+                      }}>
+                        <h3 style={{ fontSize: '22px', fontWeight: '700', marginBottom: '12px', color: theme === 'dark' ? '#fff' : '#111' }}>Confirm action</h3>
+                        <p style={{ fontSize: '15px', color: theme === 'dark' ? '#aaa' : '#444', marginBottom: resolutionTab === 'cancellation' ? '20px' : '30px', lineHeight: '1.5' }}>
+                          This will move the case forward with<br />a timer and guaranteed outcome.
+                        </p>
+                        
+                        {resolutionTab === 'cancellation' && (
+                          <div style={{ marginBottom: '30px' }}>
+                            <span style={{ color: '#ff3333', fontWeight: '700', fontSize: '14px', display: 'block', marginBottom: '6px' }}>If you click confirm</span>
+                            <span style={{ color: theme === 'dark' ? '#aaa' : '#444', fontSize: '13px' }}>Cancellation enters Resolution Active (72h)</span>
+                          </div>
+                        )}
+
+                        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
+                          <button 
+                            onClick={() => setResolutionStep(2)}
+                            style={{
+                              padding: '12px',
+                              background: theme === 'dark' ? '#2a2a2a' : '#eaeaea',
+                              border: '1px solid transparent',
+                              borderRadius: '8px',
+                              fontSize: '15px',
+                              cursor: 'pointer',
+                              color: theme === 'dark' ? '#ccc' : '#444',
+                              flex: 1
+                            }}
+                          >
+                            Cancel
+                          </button>
+                          <button 
+                            onClick={() => { setIsResolutionModalOpen(false); setResolutionStep(1); }}
+                            style={{
+                              padding: '12px',
+                              background: '#CEFF1B',
+                              border: 'none',
+                              borderRadius: '8px',
+                              fontSize: '15px',
+                              fontWeight: '600',
+                              cursor: 'pointer',
+                              color: '#111',
+                              flex: 1
+                            }}
+                          >
+                            Confirm
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                </div>
+              </div>
+            ) : (
+              <div className="ms-wrap">
               {/* Top tabs */}
               <div className="ms-topbar">
                 <div className="ms-seg">
@@ -1619,7 +1840,7 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                         <button className="ms-actionBtn lime" type="button">
                           Message Client
                         </button>
-                        <button className="ms-actionBtn" type="button">
+                        <button className="ms-actionBtn" type="button" onClick={() => setIsResolutionModalOpen(true)}>
                           Resolution Center
                         </button>
                       </div>
@@ -1684,6 +1905,7 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                 </>
               )}
             </div>
+            )}
           </div>
         </div>
       </div>
@@ -1693,14 +1915,14 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
         <div className="ms-deliverBg" onClick={() => setIsDeliverModalOpen(false)}>
           <div className="ms-deliverModal" onClick={(e) => e.stopPropagation()}>
             <div className="ms-deliverTitle">Deliver work</div>
-            
+
             <div className="ms-uploadBox">
               <img src="/upload-icon.svg" alt="Upload" />
               <div className="ms-uploadText">
                 <span className="ms-link">Click to upload</span> or Drag or drop file
               </div>
               <div className="ms-uploadSub">
-                PDF, JPG, JPEG, PNG less than 10MB.<br/>
+                PDF, JPG, JPEG, PNG less than 10MB.<br />
                 Ensure your document are in good condition and readable
               </div>
             </div>
@@ -1730,6 +1952,8 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
           }}
         />
       )}
+
+      {/* Resolution Center logic was moved into the main page content above */}
     </div>
   );
 }
@@ -1907,10 +2131,9 @@ function Calendar({ onClose, onSelect, initialDate }) {
                     onSelect(formatted);
                   }}
                   className={`mx-auto w-7 h-7 rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 font-bold
-                    ${
-                      isSelected
-                        ? "bg-[#CEFF1B] text-black shadow-[0_0_10px_rgba(206,255,27,0.4)]"
-                        : "text-black dark:text-gray-300 hover:bg-[#CEFF1B] hover:text-black"
+                    ${isSelected
+                      ? "bg-[#CEFF1B] text-black shadow-[0_0_10px_rgba(206,255,27,0.4)]"
+                      : "text-black dark:text-gray-300 hover:bg-[#CEFF1B] hover:text-black"
                     }`}
                 >
                   {day}
