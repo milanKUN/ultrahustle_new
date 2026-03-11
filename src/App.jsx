@@ -82,7 +82,7 @@ export default function App() {
           <Route path="/milestones" element={<MilestonesPage theme={theme} setTheme={setTheme} />} />
           <Route path="/solo-milestones" element={<SoloMilestonesPage theme={theme} setTheme={setTheme} />} />
           <Route path="/create-service-listing" element={<CreateServiceListing theme={theme} setTheme={setTheme} />} />
-          <Route path="/create-digital-product" element={<CreateDigitalProduct theme={theme} setTheme={setTheme} />} />
+          <Route path="/create-digital-productssss" element={<CreateDigitalProduct theme={theme} setTheme={setTheme} />} />
           <Route path="/dashboard" element={<Dashboard theme={theme} setTheme={setTheme} />} />
           <Route path="/manage-team" element={<ManageTeam theme={theme} setTheme={setTheme} />} />
           <Route path="/add-listing" element={<AddNewListing theme={theme} setTheme={setTheme} />} />
