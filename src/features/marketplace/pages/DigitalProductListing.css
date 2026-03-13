@@ -410,23 +410,62 @@
     color: #ffffff;
 }
 
+.tsl-detail-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 24px 0 16px;
+    color: var(--tsl-text);
+}
+
+.tsl-tech-tags, 
+.tsl-delivery-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tsl-tech-tag {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tsl-text);
+    background: transparent;
+}
+
+.tsl-delivery-tag {
+    padding: 8px 24px;
+    background: #ceff1b;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #000;
+}
+
+.dark .tsl-tech-tag {
+    border-color: #444;
+    color: #fff;
+}
+
 /* Pricing Card (Sticky) */
 .tsl-pricing-card {
     position: sticky;
     top: 103px;
-    background: var(--tsl-card-bg);
-    border: 1px solid #ceff1b;
-    border-radius: 16px;
-    box-shadow: var(--tsl-card-shadow);
+    background: #f8f8f8;
+    border: 1px solid #daff1b;
+    border-radius: 24px;
+    box-shadow: none;
     overflow: hidden;
+    padding: 32px;
 }
 
 .tsl-pricing-tabs {
     display: flex;
-    background: var(--tsl-lime);
+    background: #ceff1b;
     padding: 6px;
     border-radius: 8px;
-    margin: 16px;
+    margin-bottom: 24px;
     gap: 6px;
 }
 
@@ -450,14 +489,11 @@
 }
 
 .tsl-pricing-content {
-    padding: 24px;
+    padding: 0;
 }
 
 .tsl-price-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 4px;
+    margin-bottom: 16px;
 }
 
 .tsl-price-info {
@@ -466,60 +502,37 @@
 }
 
 .tsl-price-label {
-    font-size: 13px;
-    color: #888;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 4px;
 }
 
 .tsl-price {
-    font-size: 38px;
+    font-size: 34px;
     font-weight: 800;
     color: #1a1a1a;
     display: block;
 }
 
-.tsl-delivery-info {
-    text-align: right;
-    display: flex;
-    flex-direction: column;
-}
-
-.tsl-delivery-label {
-    font-size: 13px;
-    color: #888;
-}
-
-.tsl-delivery-value {
+.tsl-inclusions-title {
     font-size: 18px;
     font-weight: 700;
-    color: #1a1a1a;
-}
-
-.tsl-pkg-desc {
-    font-size: 14px;
-    color: #666;
     margin-bottom: 24px;
-    font-weight: 500;
-}
-
-.tsl-revs {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 20px;
-}
-
-.tsl-inclusions-title,
-.tsl-addons-title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 16px;
     display: block;
     color: #1a1a1a;
+}
+
+.tsl-divider {
+    height: 1.5px;
+    background: #a0a0a0;
+    margin: 20px 0;
 }
 
 .tsl-inclusions-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
     margin-bottom: 32px;
 }
 
@@ -527,119 +540,60 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 15px;
-    color: #666;
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
 }
 
 .tsl-check-circle {
     width: 20px;
     height: 20px;
-    border: 1px solid #1a1a1a;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-}
-
-.tsl-divider {
-    height: 1px;
-    background: #ccc;
-    margin: 32px 0;
-}
-
-/* Add-ons */
-.tsl-addons-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 48px;
-}
-
-.tsl-addon-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.tsl-addon-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.tsl-addon-checkbox {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--tsl-lime);
-    cursor: pointer;
-}
-
-.tsl-addon-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-}
-
-.tsl-addon-info {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    gap: 8px;
-}
-
-.tsl-addon-sub {
-    font-size: 12px;
-    color: #888;
-}
-
-.tsl-addon-price {
-    font-weight: 700;
-    font-size: 14px;
-    color: #333;
+    color: #1a1a1a;
 }
 
 /* sticky card buttons */
 .tsl-pricing-actions {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
 }
 
 .tsl-btn-primary {
     background: #ceff1b;
     color: #000;
-    border: 1px solid black;
+    border: 1px solid #1a1a1a;
     width: 100%;
-    padding: 16px;
+    padding: 14px;
     border-radius: 12px;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
 }
 
 .tsl-btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(206, 255, 27, 0.4);
+    background: #bce618;
 }
 
 .tsl-btn-outline {
-    background: #f8f8f8;
+    background: #f5f5f5;
     color: #000;
-    border: 1px solid #ccc;
+    border: 1px solid #1a1a1a;
     width: 100%;
-    padding: 16px;
+    padding: 14px;
     border-radius: 12px;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 16px;
     cursor: pointer;
     transition: all 0.2s;
 }
 
 .tsl-btn-outline:hover {
-    background: #f0f0f0;
-    border-color: #bbb;
+    background: #ebebeb;
 }
 
 .tsl-page.dark .tsl-pricing-card {
@@ -661,22 +615,16 @@
 }
 
 .tsl-page.dark .tsl-price,
-.tsl-page.dark .tsl-delivery-value,
 .tsl-page.dark .tsl-inclusions-title,
-.tsl-page.dark .tsl-addons-title {
+.tsl-page.dark .tsl-price-label {
     color: #ceff1b;
 }
 
-.tsl-page.dark .tsl-pkg-desc,
-.tsl-page.dark .tsl-inclusion-item,
-.tsl-page.dark .tsl-addon-name,
-.tsl-page.dark .tsl-addon-price,
-.tsl-page.dark .tsl-price-label {
+.tsl-page.dark .tsl-inclusion-item {
     color: #ffffff;
 }
 
 .tsl-page.dark .tsl-check-circle {
-    border-color: #ceff1b;
     color: #ceff1b;
 }
 
@@ -684,20 +632,16 @@
     color: #ceff1b;
 }
 
-.tsl-page.dark .tsl-addon-checkbox {
-    accent-color: #ceff1b;
-}
-
 .tsl-page.dark .tsl-btn-primary {
     background: #ceff1b;
     color: #000000;
-    border: 1px solid #000000;
+    border: 1px solid #1a1a1a;
 }
 
 .tsl-page.dark .tsl-btn-outline {
     background: #1a1a1a;
     color: #ffffff;
-    border: 1px solid #444444;
+    border: 1px solid #ffffff;
 }
 
 .tsl-page.dark .tsl-btn-outline:hover {

@@ -460,32 +460,34 @@ const DigitalProductListing = ({ theme, setTheme }) => {
                                         <p>
                                             He is the best in the game. Always have time to explain to me and made sure I was satisfied at every stage. Don't skip him if you want the best. He's great
                                         </p>
+
+                                        {/* Tools & Tech */}
+                                        <div className="tsl-tech-section">
+                                            <h4 className="tsl-detail-title">Tools & Technologies</h4>
+                                            <div className="tsl-tech-tags">
+                                                {['Notion', 'Tailwind CSS', 'Photoshop', 'Figma', 'Illustrator', 'TypeScript', 'Webflow'].map(tool => (
+                                                    <span key={tool} className="tsl-tech-tag">{tool}</span>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Delivery Format */}
+                                        <div className="tsl-delivery-section">
+                                            <h4 className="tsl-detail-title">Delivery Format</h4>
+                                            <div className="tsl-delivery-tags">
+                                                {['PNG', 'PDF'].map(fmt => (
+                                                    <span key={fmt} className="tsl-delivery-tag">{fmt}</span>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div className="tsl-section">
-                                        <h2>About This Product</h2>
-                                        <p>
-                                            Welcome! I'm a senior UI/UX designer with 8+ years of experience crafting beautiful, user-centered mobile applications. I specialize in creating intuitive interfaces that not only look stunning but are backed by thorough user research and industry best practices.
-                                        </p>
-                                        <p>
-                                            Whether you're launching a startup MVP, redesigning an existing app, or building a complex enterprise solution, I'll help bring your vision to life with modern design principles and pixel-perfect execution.
-                                        </p>
-                                    </div>
+
                                 </div>
 
                                 {/* Right Column (Sticky Pricing) */}
                                 <div className="tsl-pricing-card">
-                                    <div className="tsl-pricing-tabs">
-                                        {Object.keys(packages).map(pkg => (
-                                            <button
-                                                key={pkg}
-                                                className={`tsl-tab ${activeTab === pkg ? 'active' : ''}`}
-                                                onClick={() => setActiveTab(pkg)}
-                                            >
-                                                {pkg}
-                                            </button>
-                                        ))}
-                                    </div>
+
 
                                     <div className="tsl-pricing-content">
                                         <div className="tsl-price-row">
@@ -493,15 +495,9 @@ const DigitalProductListing = ({ theme, setTheme }) => {
                                                 <span className="tsl-price-label">Price</span>
                                                 <span className="tsl-price">${packages[activeTab].price}</span>
                                             </div>
-                                            <div className="tsl-delivery-info">
-                                                <span className="tsl-delivery-label">Delivery</span>
-                                                <span className="tsl-delivery-value">{packages[activeTab].delivery}</span>
-                                            </div>
                                         </div>
 
-                                        <p className="tsl-pkg-desc">{packages[activeTab].desc}</p>
-
-                                        <p className="tsl-revs">{packages[activeTab].revisions} Revisions</p>
+                                        <div className="tsl-divider"></div>
 
                                         <h4 className="tsl-inclusions-title">What's included</h4>
                                         <div className="tsl-inclusions-list">
@@ -517,40 +513,12 @@ const DigitalProductListing = ({ theme, setTheme }) => {
 
                                         <div className="tsl-divider"></div>
 
-                                        <h4 className="tsl-addons-title">Add-ons</h4>
-                                        <div className="tsl-addons-list">
-                                            <div className="tsl-addon-item">
-                                                <div className="tsl-addon-left">
-                                                    <input type="checkbox" className="tsl-addon-checkbox" />
-                                                    <span className="tsl-addon-name">Extra revision</span>
-                                                </div>
-                                                <span className="tsl-addon-price">+$25</span>
-                                            </div>
-                                            <div className="tsl-addon-item">
-                                                <div className="tsl-addon-left">
-                                                    <input type="checkbox" className="tsl-addon-checkbox" />
-                                                    <div className="tsl-addon-info">
-                                                        <span className="tsl-addon-name">Superfast delivery</span>
-                                                        <span className="tsl-addon-sub">-2days</span>
-                                                    </div>
-                                                </div>
-                                                <span className="tsl-addon-price">+$75</span>
-                                            </div>
-                                            <div className="tsl-addon-item">
-                                                <div className="tsl-addon-left">
-                                                    <input type="checkbox" className="tsl-addon-checkbox" />
-                                                    <div className="tsl-addon-info">
-                                                        <span className="tsl-addon-name">Additional 5 screens</span>
-                                                        <span className="tsl-addon-sub">+2days</span>
-                                                    </div>
-                                                </div>
-                                                <span className="tsl-addon-price">+$120</span>
-                                            </div>
-                                        </div>
+
+
 
                                         <div className="tsl-pricing-actions">
-                                            <button className="tsl-btn-primary">Create Contract</button>
-                                            <button className="tsl-btn-outline">Chat first</button>
+                                            <button className="tsl-btn-primary">Buy now</button>
+                                            <button className="tsl-btn-outline">Add to cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -767,54 +735,7 @@ const DigitalProductListing = ({ theme, setTheme }) => {
                                 </div>
                             </section>
 
-                            {/* Compare Packages Section */}
-                            <section className="compare-packages-section">
-                                <div className="compare-header">
-                                    <h3 className="compare-title">Compare Packages</h3>
-                                    <div className="compare-header-line"></div>
-                                </div>
 
-                                <div className="compare-table-container">
-                                    <table className="compare-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Package Features</th>
-                                                <th>Basic</th>
-                                                <th>Standard</th>
-                                                <th>Premium</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {comparisonData.map((row, idx) => (
-                                                <tr key={idx}>
-                                                    <td className="feature-name">{row.feature}</td>
-                                                    <td>
-                                                        {Array.isArray(row.basic) ? (
-                                                            <ul className="compare-list">
-                                                                {row.basic.map((item, i) => <li key={i}>{item}</li>)}
-                                                            </ul>
-                                                        ) : row.basic}
-                                                    </td>
-                                                    <td>
-                                                        {Array.isArray(row.standard) ? (
-                                                            <ul className="compare-list">
-                                                                {row.standard.map((item, i) => <li key={i}>{item}</li>)}
-                                                            </ul>
-                                                        ) : row.standard}
-                                                    </td>
-                                                    <td>
-                                                        {Array.isArray(row.premium) ? (
-                                                            <ul className="compare-list">
-                                                                {row.premium.map((item, i) => <li key={i}>{item}</li>)}
-                                                            </ul>
-                                                        ) : row.premium}
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </section>
 
 
                             {/* Listings Section */}
@@ -972,30 +893,7 @@ const DigitalProductListing = ({ theme, setTheme }) => {
                             </div>
 
 
-                            {/* Members Section */}
-                            <section className="membersWrap">
-                                <div className="membersHeader">
-                                    <h3 className="membersTitle">Members</h3>
-                                    <div className="membersLine" />
-                                </div>
-                                <div className="membersPanel">
-                                    <div className="membersGrid">
-                                        {members.map((m) => (
-                                            <div key={m.id} className="memberCard">
-                                                <div className="memberTop">
-                                                    <div className="avatar" />
-                                                    <div className="memberInfo">
-                                                        <div className="memberName">{m.name}</div>
-                                                        <div className="memberRole">{m.role}</div>
-                                                    </div>
-                                                </div>
-                                                <div className="memberTag">{m.tag}</div>
-                                                <button className="viewBtn" type="button">View Profile</button>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </section>
+
 
                             {/* Detailed Team Card */}
                             <div className="tsl-team-profile-card">

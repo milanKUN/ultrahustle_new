@@ -346,7 +346,7 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
 
                   <div className="csl-grid2">
                     <div className="csl-field">
-                      <label className="csl-label">Listing Title</label>
+                      <label className="csl-label">Product Title</label>
                       <input
                         className="csl-input"
                         placeholder="eg., Professional Logo Design"
@@ -410,9 +410,25 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                     </div>
                   </div>
 
+                  <div className="csl-field">
+                    <label className="csl-label">Product Description</label>
+                    <textarea
+                      className="csl-textarea"
+                      placeholder="Product Description"
+                      value={form.shortDescription}
+                      onChange={(e) => setFormField("shortDescription", e.target.value)}
+                    />
+                  </div>
 
-
-
+                  <div className="csl-field">
+                    <label className="csl-label">About This Product</label>
+                    <textarea
+                      className="csl-textarea"
+                      placeholder="About this product"
+                      value={form.about}
+                      onChange={(e) => setFormField("about", e.target.value)}
+                    />
+                  </div>
 
                   <div className="csl-field">
                     <label className="csl-label">Tags (multi-select)</label>
@@ -567,6 +583,36 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                 </div>
 
                 {/* ================= ADD-ONS + MEDIA ================= */}
+                <div className="am-card">
+                  <h3 className="am-title">
+                    Media
+                  </h3>
+
+                  <div className="am-mediaLabel">Cover Page</div>
+
+                  <div className="am-uploadBox">
+                    {cover ? (
+                      <img src={cover} alt="cover" className="am-preview" />
+                    ) : (
+                      <div className="am-placeholder">
+                        <button className="am-uploadBtn" onClick={() => setUploadStep("grid")}>
+                          Upload Photo
+                        </button>
+                      </div>
+                    )}
+                    <button className="am-removeImg" onClick={() => setCover(null)}>
+                      ×
+                    </button>
+
+                    <input
+                      type="file"
+                      ref={fileRef}
+                      hidden
+                      accept="image/*"
+                      onChange={handleFileChange}
+                    />
+                  </div>
+                </div>
 
 
                 {/* Portfolio Section */}
@@ -584,7 +630,7 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
 
                       {/* Upload Area */}
                       <div className="w-full rounded-[8px] p-8 flex flex-col items-center justify-center cursor-pointer transition-colors border border-transparent"
-                           style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#EBEBEB' }}>
+                        style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#EBEBEB' }}>
                         <svg className="w-6 h-6 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}>
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                         </svg>
@@ -840,7 +886,7 @@ function UploadGrid({ onSelect, onBack, blurred }) {
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-3 gap-4 flex-1 overflow-y-auto pr-2 custom-scroll">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 flex-1 overflow-y-auto pr-2 custom-scroll">
           {Array.from({ length: visibleSlots }).map((_, i) => {
             const file = files[i];
             return (
