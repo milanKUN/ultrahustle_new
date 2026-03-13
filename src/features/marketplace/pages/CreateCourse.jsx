@@ -1,19 +1,21 @@
 import React, { useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import "./CreateDigitalProduct.css";
+import "./CreateCourse.css";
 import UserNavbar from "../../../components/layout/UserNavbar";
 import Sidebar from "../../../components/layout/Sidebar";
-import MyPortfolio from "../../dashboard/components/UserProfile/MyPortfolio";
 import FAQSection from "../components/FAQSection";
+import PreviewVideo from "../components/PreviewVideo";
 import CoverSection from "../components/CoverSection";
 import DeliverablesSection from "../components/DeliverablesSection";
+import LessonSection from "../components/LessonSection";
 import "../../../Darkuser.css";
 import "../../onboarding/components/OnboardingSelect.css";
 
-export default function CreateDigitalProduct({ theme, setTheme }) {
+
+export default function CreateCourse({ theme, setTheme }) {
   /* ================== CONSTANTS ================== */
   const categories = useMemo(
-    () => ["Design", "Development", "Marketing", "Writing"],
+    () => ["Design", "Development", "Marketing", "Writing", "Education", "Business"],
     [],
   );
 
@@ -23,22 +25,19 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
       Development: ["Full Stack", "Frontend", "Backend"],
       Marketing: ["SEO", "Social Media", "Ads"],
       Writing: ["Copywriting", "Blog Writing", "Script Writing"],
+      Education: ["Mathematics", "Science", "Languages"],
+      Business: ["Entrepreneurship", "Management", "Finance"],
     }),
     [],
   );
 
-  const productTypes = useMemo(
-    () => ["Digital Service", "Consultation", "One-time Project", "Monthly Retainer"],
-    [],
-  );
-
-  const teamList = useMemo(
-    () => ["Ultra Hustle Studio", "Design Squad", "Dev Crew"],
+  const courseLevels = useMemo(
+    () => ["Beginner", "Intermediate", "Advanced", "Expert"],
     [],
   );
 
   const deliveryFormats = useMemo(
-    () => ["Google Drive Link", "Figma Link", "ZIP Download", "Notion Page"],
+    () => ["Video Lectures", "Live Sessions", "Downloadable PDF", "Quizzes"],
     [],
   );
 
@@ -81,13 +80,52 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
   const [aiPowered, setAiPowered] = useState(false);
 
   const [form, setForm] = useState({
-    title: "",
     category: "",
     subCategory: "",
     shortDescription: "",
-    about: "",
-    productType: "",
+    prerequisites: "",
+    level: "",
   });
+
+  const [toolsInput, setToolsInput] = useState("");
+  const [tools, setTools] = useState([]);
+
+  const [learningInput, setLearningInput] = useState("");
+  const [learningPoints, setLearningPoints] = useState([]);
+
+  const [languageInput, setLanguageInput] = useState("");
+  const [languages, setLanguages] = useState([]);
+
+  const [previewVideo, setPreviewVideo] = useState(null);
+
+  /* ================== LESSONS STATE ================== */
+  const [lessons, setLessons] = useState([
+    { title: "", description: "", media: null },
+    { title: "", description: "", media: null },
+    { title: "", description: "", media: null },
+  ]);
+
+  const addLesson = () => setLessons([...lessons, { title: "", description: "", media: null }]);
+  const removeLesson = (idx) => setLessons(lessons.filter((_, i) => i !== idx));
+  const updateLesson = (idx, key, value) => {
+    setLessons(lessons.map((l, i) => i === idx ? { ...l, [key]: value } : l));
+  };
+  const uploadLessonMedia = (idx) => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*,video/*';
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => updateLesson(idx, 'media', reader.result);
+        reader.readAsDataURL(file);
+      }
+    };
+    input.click();
+  };
+
+  const languageOptions = ["English", "Hindi", "Spanish", "French", "German"];
 
   const subCategories = form.category ? subCategoriesMap[form.category] || [] : [];
   const setFormField = (key, value) => setForm((p) => ({ ...p, [key]: value }));
@@ -156,7 +194,6 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
   };
 
   const [includedInput, setIncludedInput] = useState("");
-  const [toolsInput, setToolsInput] = useState("");
   const [deliveryFormatInput, setDeliveryFormatInput] = useState("");
 
   const onEnterAdd = (e, fn) => {
@@ -219,6 +256,22 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
     }));
   };
 
+  /* ================== SHARED ADDERS ================== */
+  const addItem = (input, setInput, list, setList) => {
+    const v = input.trim();
+    if (!v) return;
+    if (list.some(x => x.toLowerCase() === v.toLowerCase())) {
+      setInput("");
+      return;
+    }
+    setList([...list, v]);
+    setInput("");
+  };
+
+  const removeItem = (idx, list, setList) => {
+    setList(list.filter((_, i) => i !== idx));
+  };
+
   /* ================== MEDIA + DELIVERABLES ================== */
   const fileRef = useRef(null);
   const [cover, setCover] = useState(null);
@@ -271,9 +324,13 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                 <div className="csl-card">
                   <div className="csl-header">
                     <div>
-                      <h1 className="csl-title">Create Digital Product</h1>
+                      <h1 className="csl-title">Create Course Listing</h1>
                       <p className="csl-subtitle">Fill out each section</p>
                     </div>
+                  </div>
+
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="csl-section m-0">Course Details</h2>
                     <div className="csl-ai">
                       <span className={`csl-ai-pill ${aiPowered ? "active" : ""}`}>
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -288,26 +345,14 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                     </div>
                   </div>
 
-                  <h2 className="csl-section">Basic Details</h2>
-
                   <div className="csl-group-box">
                     <div className="csl-field">
-                      <label className="csl-label">Product title</label>
+                      <label className="csl-label">Course title</label>
                       <input
                         className="csl-input"
                         placeholder="eg., Professional Logo Design"
                         value={form.title}
                         onChange={(e) => setFormField("title", e.target.value)}
-                      />
-                    </div>
-
-                    <div className="csl-field mt-6">
-                      <label className="csl-label">Product Description</label>
-                      <textarea
-                        className="csl-textarea"
-                        placeholder="Product Portfolio"
-                        value={form.shortDescription}
-                        onChange={(e) => setFormField("shortDescription", e.target.value)}
                       />
                     </div>
                   </div>
@@ -318,7 +363,7 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                         <label className="csl-label">Category</label>
                         <CustomSelect
                           value={form.category}
-                          onChange={(val) => setForm({ ...form, category: val, subCategory: "", productType: "" })}
+                          onChange={(val) => setForm({ ...form, category: val, subCategory: "", level: "" })}
                           options={categories}
                           placeholder="Select category"
                         />
@@ -327,7 +372,7 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                         <label className={`csl-label ${!form.category ? "opacity-50" : ""}`}>Sub Category</label>
                         <CustomSelect
                           value={form.subCategory}
-                          onChange={(val) => setForm({ ...form, subCategory: val, productType: "" })}
+                          onChange={(val) => setForm({ ...form, subCategory: val, level: "" })}
                           options={subCategories}
                           placeholder="Select sub category"
                           disabled={!form.category}
@@ -341,9 +386,9 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                       <div className="csl-field">
                         <label className={`csl-label ${!form.subCategory ? "opacity-50" : ""}`}>Product Type</label>
                         <CustomSelect
-                          value={form.productType}
-                          onChange={(val) => setFormField("productType", val)}
-                          options={productTypes}
+                          value={form.level}
+                          onChange={(val) => setFormField("level", val)}
+                          options={courseLevels}
                           placeholder="eg., Digital Service"
                           disabled={!form.subCategory}
                         />
@@ -362,102 +407,119 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                   </div>
 
                   <div className="csl-group-box">
-                    {/* Tags */}
                     <div className="csl-field">
-                      <label className="csl-label">Tags (multi-select)</label>
-                      <div className="csl-input-group">
-                        <input
-                          className="csl-input"
-                          placeholder="eg., Logo, Figma"
-                          value={tagInput}
-                          onChange={(e) => setTagInput(e.target.value)}
-                          onKeyDown={onTagKeyDown}
-                        />
-                        <button type="button" className="csl-add-btn-lime" onClick={addTag}>Add</button>
-                      </div>
-                      {tags.length > 0 && (
-                        <div className="csl-chips-container">
-                          {tags.map((t, i) => (
-                            <div className="csl-tag-chip" key={i}>
-                              {t} <button onClick={() => removeTag(i)}>×</button>
-                            </div>
-                          ))}
-                          <button type="button" className="csl-clear-all" onClick={() => setTags([])} title="Clear all">✕</button>
-                        </div>
-                      )}
+                      <label className="csl-label">Short description</label>
+                      <textarea
+                        className="csl-textarea"
+                        placeholder="Short description"
+                        value={form.shortDescription}
+                        onChange={(e) => setFormField("shortDescription", e.target.value)}
+                      />
                     </div>
+                  </div>
 
-                    {/* Tools */}
-                    <div className="csl-field mt-6">
-                      <label className="csl-label">Tools used</label>
-                      <div className="csl-input-group">
-                        <input
-                          className="csl-input"
-                          placeholder="eg., Figma, Notion"
-                          value={toolsInput}
-                          onChange={(e) => setToolsInput(e.target.value)}
-                          onKeyDown={(e) => onEnterAdd(e, addTool)}
-                        />
-                        <button type="button" className="csl-add-btn-lime" onClick={addTool}>Add</button>
-                      </div>
-                      {!!current.toolsUsed?.length && (
-                        <div className="csl-chips-container">
-                          {current.toolsUsed.map((x, i) => (
+                  <div className="csl-group-box">
+                    <div className="csl-field">
+                      <label className="csl-label">Tools needed</label>
+                      <input
+                        className="csl-input"
+                        placeholder="Tools needed"
+                        value={toolsInput}
+                        onChange={(e) => setToolsInput(e.target.value)}
+                        onKeyDown={(e) => onEnterAdd(e, () => addItem(toolsInput, setToolsInput, tools, setTools))}
+                      />
+                      <p className="csl-hint mt-2">You can add 10 more tools & technologies</p>
+                      {tools.length > 0 && (
+                        <div className="csl-chips-container mt-4">
+                          {tools.map((t, i) => (
                             <div className="csl-tag-chip" key={i}>
-                              {x} <button onClick={() => removeTool(i)}>×</button>
+                              {t} <button onClick={() => removeItem(i, tools, setTools)}>×</button>
                             </div>
                           ))}
-                          <button type="button" className="csl-clear-all" onClick={() => setPkg(p => ({ ...p, [activeTab]: { ...p[activeTab], toolsUsed: [] } }))} title="Clear all">✕</button>
+                          <button type="button" className="csl-clear-all" onClick={() => setTools([])} title="Clear all">✕</button>
                         </div>
                       )}
                     </div>
                   </div>
 
                   <div className="csl-group-box">
-                    {/* Included */}
                     <div className="csl-field">
-                      <label className="csl-label">What's included</label>
+                      <label className="csl-label">Prerequisites</label>
+                      <textarea
+                        className="csl-textarea"
+                        placeholder="No prior design experience required; basic computer skills recommended."
+                        value={form.prerequisites}
+                        onChange={(e) => setFormField("prerequisites", e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="csl-group-box">
+                    <div className="csl-field">
+                      <label className="csl-label">Course includes</label>
                       <input
                         className="csl-input"
-                        placeholder="eg., Source Files"
+                        placeholder="Course includes"
                         value={includedInput}
                         onChange={(e) => setIncludedInput(e.target.value)}
-                        onKeyDown={(e) => onEnterAdd(e, addIncluded)}
+                        onKeyDown={(e) => onEnterAdd(e, () => addItem(includedInput, setIncludedInput, current.included, (val) => setPkgField("included", val)))}
                       />
-                      <button type="button" className="csl-add-btn-lime-below" onClick={addIncluded}>Add</button>
-                      {!!current.included?.length && (
-                        <div className="csl-chips-container" style={{ marginTop: '12px' }}>
-                          {current.included.map((x, i) => (
+                      <button type="button" className="csl-add-btn-lime-below" onClick={() => addItem(includedInput, setIncludedInput, current.included, (val) => setPkgField("included", val))}>+ Add</button>
+                      {current.included.length > 0 && (
+                        <div className="csl-chips-container mt-4">
+                          {current.included.map((item, i) => (
                             <div className="csl-tag-chip" key={i}>
-                              {x} <button onClick={() => removeFromList("included", i)}>×</button>
+                              {item} <button onClick={() => removeItem(i, current.included, (val) => setPkgField("included", val))}>×</button>
                             </div>
                           ))}
-                          <button type="button" className="csl-clear-all" onClick={() => setPkg(p => ({ ...p, [activeTab]: { ...p[activeTab], included: [] } }))} title="Clear all">✕</button>
+                          <button type="button" className="csl-clear-all" onClick={() => setPkgField("included", [])} title="Clear all">✕</button>
                         </div>
                       )}
                     </div>
+                  </div>
 
-                    {/* Delivery Format */}
-                    <div className="csl-field mt-6">
-                      <label className="csl-label">Delivery format</label>
+                  <div className="csl-group-box">
+                    <div className="csl-field">
+                      <label className="csl-label">What you will learn</label>
                       <input
                         className="csl-input"
-                        placeholder="eg., Google Drive Link"
-                        value={deliveryFormatInput}
-                        onChange={(e) => setDeliveryFormatInput(e.target.value)}
-                        onKeyDown={(e) => onEnterAdd(e, addDeliveryFormat)}
+                        placeholder="What you will learn"
+                        value={learningInput}
+                        onChange={(e) => setLearningInput(e.target.value)}
+                        onKeyDown={(e) => onEnterAdd(e, () => addItem(learningInput, setLearningInput, learningPoints, setLearningPoints))}
                       />
-                      <button type="button" className="csl-add-btn-lime-below" onClick={addDeliveryFormat}>Add</button>
-                      {!!current.deliveryFormats?.length && (
-                        <div className="csl-chips-container" style={{ marginTop: '12px' }}>
-                          {current.deliveryFormats.map((x, i) => (
+                      <button type="button" className="csl-add-btn-lime-below" onClick={() => addItem(learningInput, setLearningInput, learningPoints, setLearningPoints)}>+ Add</button>
+                      {learningPoints.length > 0 && (
+                        <div className="csl-chips-container mt-4">
+                          {learningPoints.map((p, i) => (
                             <div className="csl-tag-chip" key={i}>
-                              {x} <button onClick={() => removeDeliveryFormat(i)}>×</button>
+                              {p} <button onClick={() => removeItem(i, learningPoints, setLearningPoints)}>×</button>
                             </div>
                           ))}
-                          <button type="button" className="csl-clear-all" onClick={() => setPkg(p => ({ ...p, [activeTab]: { ...p[activeTab], deliveryFormats: [] } }))} title="Clear all">✕</button>
+                          <button type="button" className="csl-clear-all" onClick={() => setLearningPoints([])} title="Clear all">✕</button>
                         </div>
                       )}
+                    </div>
+                  </div>
+
+                  <div className="csl-group-box">
+                    <div className="csl-field">
+                      <label className="csl-label">Languages</label>
+                      <CustomSelect
+                        value={languageInput}
+                        onChange={(val) => addItem(val, setLanguageInput, languages, setLanguages)}
+                        options={languageOptions}
+                        placeholder="Languages"
+                      />
+                      <p className="csl-hint mt-2">You can add up to 10 Languages</p>
+                      <div className="csl-chips-container mt-4">
+                        {languages.map((l, i) => (
+                          <div className="csl-tag-chip" key={i}>
+                            {l} <button onClick={() => removeItem(i, languages, setLanguages)}>×</button>
+                          </div>
+                        ))}
+                        <button type="button" className="csl-clear-all" onClick={() => setLanguages([])} title="Clear all">✕</button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -468,11 +530,33 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                   onRemoveCover={() => setCover(null)}
                 />
 
+                <LessonSection
+                  lessons={lessons}
+                  onAddLesson={addLesson}
+                  onRemoveLesson={removeLesson}
+                  onUpdateLesson={updateLesson}
+                  onUploadMedia={uploadLessonMedia}
+                />
+
                 <div className="csl-group-box">
-                  <h2 className="csl-section">Portfolio</h2>
-                  <div className="csl-portfolio-wrap">
-                    <MyPortfolio theme={theme} />
-                  </div>
+                  <PreviewVideo
+                    previewImage={previewVideo || undefined}
+                    onUpload={() => {
+                      // Simulate video upload or open file picker
+                      const input = document.createElement('input');
+                      input.type = 'file';
+                      input.accept = 'video/*';
+                      input.onchange = (e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          const url = URL.createObjectURL(file);
+                          setPreviewVideo(url);
+                        }
+                      };
+                      input.click();
+                    }}
+                    onClose={() => setPreviewVideo(null)}
+                  />
                 </div>
 
                 <DeliverablesSection

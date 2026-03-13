@@ -1,9 +1,11 @@
 import React, { useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import "./CreateServiceListing.css";
 import UserNavbar from "../../../components/layout/UserNavbar";
-// import Sidebar from "../../../components/layout/Sidebar";
+import Sidebar from "../../../components/layout/Sidebar";
 import MyPortfolio from "../../dashboard/components/UserProfile/MyPortfolio";
 import FAQSection from "../components/FAQSection";
+import CoverSection from "../components/CoverSection";
 import "../../../Darkuser.css";
 import "../../onboarding/components/OnboardingSelect.css";
 
@@ -45,6 +47,25 @@ export default function CreateServiceListing({ theme, setTheme }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [activeSetting, setActiveSetting] = useState("basic");
+
+  const [uploadStep, setUploadStep] = useState(null); // null | "grid" | "success"
+  const isModalOpen = uploadStep === "grid" || uploadStep === "success";
+
+  // ✅ ESC close + body scroll lock when modal open
+  React.useEffect(() => {
+    if (isModalOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+
+    const onKey = (e) => {
+      if (e.key === "Escape") setUploadStep(null);
+    };
+    window.addEventListener("keydown", onKey);
+
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [isModalOpen]);
 
   React.useEffect(() => {
     setSidebarOpen(true);
@@ -99,11 +120,6 @@ export default function CreateServiceListing({ theme, setTheme }) {
   const [mode, setMode] = useState("Solo"); // Solo | Team
   const [teamName, setTeamName] = useState("");
   const [activeTab, setActiveTab] = useState("Basic");
-  // ✅ Upload modal state (MISSING)
-  const [uploadStep, setUploadStep] = useState(null); // null | "grid" | "success"
-
-  // ✅ Modal open when grid OR success (MISSING)
-  const isModalOpen = uploadStep === "grid" || uploadStep === "success";
 
   const [pkg, setPkg] = useState({
     Basic: {
@@ -288,7 +304,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
 
       <div className={`pt-[85px] flex relative z-10 transition-all duration-300 ${isModalOpen ? "blur-sm pointer-events-none select-none" : ""}`}>
         {/* ✅ SIDEBAR */}
-        {/* <Sidebar
+        <Sidebar
           expanded={sidebarOpen}
           setExpanded={setSidebarOpen}
           showSettings={showSettings}
@@ -297,7 +313,7 @@ export default function CreateServiceListing({ theme, setTheme }) {
           onSectionChange={handleSectionChange}
           theme={theme}
           setTheme={setTheme}
-        /> */}
+        />
 
         {/* ✅ MAIN CONTENT WRAPPER */}
         <div className="relative flex-1 min-w-5 overflow-hidden">
@@ -808,41 +824,29 @@ export default function CreateServiceListing({ theme, setTheme }) {
                       ))}
                     </div>
                   )}
+                </div>
 
-                  <h3 className="am-title" style={{ marginTop: 30 }}>
-                    Media
-                  </h3>
+                <CoverSection 
+                  cover={cover}
+                  onUploadClick={() => setUploadStep("grid")}
+                  onRemoveCover={() => setCover(null)}
+                />
 
-                  <div className="am-mediaLabel">Cover Page</div>
 
-                  <div className="am-uploadBox">
-                    {cover ? (
-                      <img src={cover} alt="cover" className="am-preview" />
-                    ) : (
-                      <div className="am-placeholder">
-                        <button className="am-uploadBtn" onClick={() => setUploadStep("grid")}>
-                          Upload Photo
-                        </button>
-                      </div>
-                    )}
-                    <button className="am-removeImg" onClick={() => setCover(null)}>
-                      ×
-                    </button>
-
-                    <input
-                      type="file"
-                      ref={fileRef}
-                      hidden
-                      accept="image/*"
-                      onChange={handleFileChange}
-                    />
+                <div className="csl-group-box">
+                  <h2 className="csl-wrapper-title">Portfolio</h2>
+                  <div className="csl-portfolio-wrap">
+                    <MyPortfolio theme={theme} />
                   </div>
                 </div>
 
-                {/* Portfolio Section */}
-                <div className="csl-portfolio-wrap">
-                  < MyPortfolio theme={theme} />
-                </div>
+                <input
+                  type="file"
+                  ref={fileRef}
+                  hidden
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
 
                 <FAQSection
                   faqs={faqs}
@@ -856,38 +860,38 @@ export default function CreateServiceListing({ theme, setTheme }) {
         </div>
       </div>
 
-      {/* ================= UPLOAD MODALS ================= */}
-      {
-        isModalOpen && (
+      {/* ================= PORTAL FOR MODALS ================= */}
+      {isModalOpen && createPortal(
+        <div className={`user-page ${theme || 'light'}`}>
+          {/* Backdrop */}
           <div
-            className="fixed inset-0 z-[900] bg-black/30 backdrop-blur-sm"
+            className="fixed inset-0 z-[9998] bg-black/30 backdrop-blur-sm"
             onClick={() => setUploadStep(null)}
           />
-        )
-      }
 
-      {
-        (uploadStep === "grid" || uploadStep === "success") && (
-          <UploadGrid
-            blurred={uploadStep === "success"}
-            onBack={() => setUploadStep(null)}
-            onSelect={(files) => {
-              if (files && files[0]) {
-                const reader = new FileReader();
-                reader.onload = () => setCover(reader.result);
-                reader.readAsDataURL(files[0]);
-              }
-              setUploadStep("success");
-            }}
-          />
-        )
-      }
+          {/* UPLOAD GRID */}
+          {(uploadStep === "grid" || uploadStep === "success") && (
+            <UploadGrid
+              blurred={uploadStep === "success"}
+              onBack={() => setUploadStep(null)}
+              onSelect={(files) => {
+                if (files?.[0]) {
+                  const r = new FileReader(); r.onload = () => setCover(r.result); r.readAsDataURL(files[0]);
+                }
+                setUploadStep("success");
+              }}
+            />
+          )}
 
-      {
-        uploadStep === "success" && (
-          <UploadSuccess onBack={() => setUploadStep(null)} />
-        )
-      }
+          {/* SUCCESS MODAL */}
+          {uploadStep === "success" && (
+            <UploadSuccess
+              onBack={() => setUploadStep(null)}
+            />
+          )}
+        </div>,
+        document.body
+      )}
     </div>
   );
 }
@@ -939,30 +943,29 @@ function CustomSelect({ value, onChange, options, placeholder, disabled = false 
 /* ================= UPLOAD GRID ================= */
 
 function UploadGrid({ onSelect, onBack, blurred }) {
-  const fileRef = React.useRef(null);
-  const [files, setFiles] = React.useState([]);
-  const [visibleSlots] = React.useState(9);
-  const [activeIndex, setActiveIndex] = React.useState(null);
-
-  const openPicker = () => fileRef.current?.click();
+  const fileRef = useRef(null);
+  const [files, setFiles] = useState([]);
+  const activeIndexRef = useRef(null);
 
   const handleFiles = (e) => {
     const selected = Array.from(e.target.files || []);
-    if (activeIndex === null || selected.length === 0) return;
+    if (activeIndexRef.current === null || selected.length === 0) return;
+
     setFiles((prev) => {
       const updated = [...prev];
-      updated[activeIndex] = selected[0];
+      updated[activeIndexRef.current] = selected[0];
       return updated;
     });
-    setActiveIndex(null);
+
+    activeIndexRef.current = null;
     e.target.value = "";
   };
 
   return (
-    <div className="fixed inset-0 z-[950] flex items-center justify-center pointer-events-auto">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto">
       <div
-        className={`upload-card rounded-2xl p-4 w-[95%] max-w-[820px] h-auto max-h-[90vh] flex flex-col bg-white shadow-[0_0_20px_#CEFF1B] transition-all duration-200${blurred ? " blur-sm scale-[0.98] pointer-events-none select-none opacity-95" : ""
-          }`}
+        className={`upload-card rounded-2xl p-4 w-[95%] max-w-[820px] h-auto max-h-[90vh] flex flex-col bg-white dark:bg-[#1A1A1A] shadow-[0_0_20px_#CEFF1B] transition-all duration-200
+        ${blurred ? "blur-sm scale-[0.98] pointer-events-none select-none opacity-95" : ""}`}
       >
         {/* HEADER */}
         <div className="upload-header flex items-center gap-3 mb-3 shrink-0">
@@ -974,7 +977,7 @@ function UploadGrid({ onSelect, onBack, blurred }) {
           >
             <img src="/backarrow.svg" alt="back" />
           </button>
-          <h4 className="text-sm font-medium">Select and upload your file</h4>
+          <h4 className="text-sm font-medium dark:text-white">Select and upload your file</h4>
           <button
             type="button"
             onClick={onBack}
@@ -987,33 +990,39 @@ function UploadGrid({ onSelect, onBack, blurred }) {
 
         {/* GRID */}
         <div className="grid grid-cols-3 gap-4 flex-1 overflow-y-auto pr-2 custom-scroll">
-          {Array.from({ length: visibleSlots }).map((_, i) => {
+          {Array.from({ length: 9 }).map((_, i) => {
             const file = files[i];
             return (
               <div
                 key={i}
-                onClick={() => { setActiveIndex(i); openPicker(); }}
-                className="upload-slot relative h-[110px] rounded-xl flex items-center justify-center cursor-pointer overflow-hidden bg-gray-100"
+                onClick={() => {
+                  activeIndexRef.current = i;
+                  fileRef.current?.click();
+                }}
+                className="upload-slot relative h-[110px] rounded-xl flex items-center justify-center cursor-pointer overflow-hidden bg-gray-100 dark:bg-gray-800"
               >
                 {i === 0 && (
-                  <span className="absolute inset-0 z-10 flex items-center justify-center px-2">
+                  <span className="absolute inset-0 z-10 flex items-center justify-center px-2 pointer-events-none">
                     <span className="bg-[#CEFF1B] text-black font-medium text-[10px] sm:text-xs px-2 py-[3px] rounded max-w-[90%] text-center whitespace-normal leading-tight">
                       Upload Cover Image
                     </span>
                   </span>
                 )}
+
                 {file ? (
-                  <img src={URL.createObjectURL(file)} alt="" className="w-full h-full object-cover" />
+                  <img
+                    src={URL.createObjectURL(file)}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
-                  <>
-                    {i !== 0 && (
-                      <div className="relative">
-                        <img src="/video2.svg" className="w-10 mr-8 mt-2 opacity-60" alt="" />
-                        <img src="/video1.svg" className="w-12 absolute -right-2 -top-3 opacity-60" alt="" />
-                        <div className="absolute bottom-4 right-5 w-6 h-6 rounded-full bg-[#CEFF1B] flex items-center justify-center">+</div>
-                      </div>
-                    )}
-                  </>
+                  i !== 0 && (
+                    <div className="relative pointer-events-none">
+                      <img src="/video2.svg" className="w-10 mr-8 mt-2 opacity-60" alt="" />
+                      <img src="/video1.svg" className="w-12 absolute -right-2 -top-3 opacity-60" alt="" />
+                      <div className="absolute -bottom-1 -right-4 w-6 h-6 rounded-full bg-[#CEFF1B] flex items-center justify-center text-black font-bold">+</div>
+                    </div>
+                  )
                 )}
               </div>
             );
@@ -1025,7 +1034,7 @@ function UploadGrid({ onSelect, onBack, blurred }) {
             <button
               type="button"
               onClick={onBack}
-              className="upload-btn-cancel px-4 py-2 rounded-lg text-sm border border-black"
+              className="upload-btn-cancel px-4 py-2 rounded-lg text-sm border border-black dark:border-white/20 dark:text-white"
             >
               Cancel
             </button>
@@ -1057,14 +1066,16 @@ function UploadGrid({ onSelect, onBack, blurred }) {
 
 function UploadSuccess({ onBack }) {
   return (
-    <div className="fixed inset-0 z-[1001] flex items-center justify-center pointer-events-auto p-4">
+    <div className="fixed inset-0 z-[10001] flex items-center justify-center pointer-events-auto p-4">
       <div className="upload-success-card rounded-2xl w-[90%] max-w-[600px] h-auto min-h-[300px] md:h-[400px] py-10 flex flex-col items-center justify-center shadow-[0_0_20px_#CEFF1B] bg-white dark:bg-[#2B2B2B]">
         <div className="w-24 h-24 bg-[#CEFF1B] rounded-full flex items-center justify-center mb-6">
-          <img src="/right.svg" alt="" />
+          <img src="/right.svg" alt="success" />
         </div>
+
         <h3 className="text-2xl font-semibold mb-8 text-black dark:text-white text-center px-4">
           You have successfully uploaded!
         </h3>
+
         <div className="flex justify-center">
           <button
             type="button"

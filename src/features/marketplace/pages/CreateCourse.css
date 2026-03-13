@@ -149,13 +149,25 @@
 
 .csl-section {
   font-size: 20px;
-  margin: 10px 0 14px;
+  margin: 10px 0 20px;
   color: #222;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.csl-group-box {
+  margin-bottom: 20px;
+}
+
+.csl-group-box:last-child {
+  margin-bottom: 0;
 }
 
 .csl-field {
-  margin-bottom: 14px;
+  margin-bottom: 0px;
+}
+
+.csl-group-box .csl-field + .csl-field {
+  margin-top: 20px;
 }
 
 .csl-label {
