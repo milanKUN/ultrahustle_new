@@ -245,7 +245,7 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
           <div className="relative z-10 overflow-y-auto h-[calc(100vh-85px)]">
             <div className="create-service-container">
               <div className="csl-stack">
-                
+
                 {/* PRIMARY FORM CARD */}
                 <div className="csl-card">
                   <div className="csl-header">
@@ -269,6 +269,7 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
 
                   <h2 className="csl-section">Basic Details</h2>
 
+                <div className="csl-group-box">
                   <div className="csl-field">
                     <label className="csl-label">Product title</label>
                     <input
@@ -279,7 +280,7 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                     />
                   </div>
 
-                  <div className="csl-field">
+                  <div className="csl-field mt-6">
                     <label className="csl-label">Product Description</label>
                     <textarea
                       className="csl-textarea"
@@ -288,7 +289,9 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                       onChange={(e) => setFormField("shortDescription", e.target.value)}
                     />
                   </div>
+                </div>
 
+                <div className="csl-group-box">
                   <div className="csl-grid2">
                     <div className="csl-field">
                       <label className="csl-label">Category</label>
@@ -310,7 +313,9 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                       />
                     </div>
                   </div>
+                </div>
 
+                <div className="csl-group-box">
                   <div className="csl-grid2">
                     <div className="csl-field">
                       <label className={`csl-label ${!form.subCategory ? "opacity-50" : ""}`}>Product Type</label>
@@ -333,7 +338,9 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                       />
                     </div>
                   </div>
+                </div>
 
+                <div className="csl-group-box">
                   {/* Tags */}
                   <div className="csl-field">
                     <label className="csl-label">Tags (multi-select)</label>
@@ -360,7 +367,7 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                   </div>
 
                   {/* Tools */}
-                  <div className="csl-field">
+                  <div className="csl-field mt-6">
                     <label className="csl-label">Tools used</label>
                     <div className="csl-input-group">
                       <input
@@ -383,7 +390,9 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                       </div>
                     )}
                   </div>
+                </div>
 
+                <div className="csl-group-box">
                   {/* Included */}
                   <div className="csl-field">
                     <label className="csl-label">What's included</label>
@@ -408,7 +417,7 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                   </div>
 
                   {/* Delivery Format */}
-                  <div className="csl-field">
+                  <div className="csl-field mt-6">
                     <label className="csl-label">Delivery format</label>
                     <input
                       className="csl-input"
@@ -430,45 +439,88 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                     )}
                   </div>
                 </div>
+                </div>
 
-                {/* MEDIA CARD */}
-                <div className="am-card">
-                  <h3 className="am-title">Media</h3>
-                  <div className="am-mediaLabel">Cover Page</div>
-                  <div className="am-uploadBox">
-                    {cover ? (
-                      <img src={cover} alt="cover" className="am-preview" />
-                    ) : (
-                      <div className="am-placeholder">
-                        <button className="am-uploadBtn" type="button" onClick={() => setUploadStep("grid")}>Upload Photo</button>
-                      </div>
-                    )}
-                    {cover && <button className="am-removeImg" type="button" onClick={() => setCover(null)}>×</button>}
+                <div className="csl-group-box">
+                  {/* MEDIA CARD */}
+                  <div className="am-card" style={{ border: 'none', background: 'transparent', padding: 0, marginTop: 0 }}>
+                    <h3 className="am-title" style={{ marginBottom: '16px' }}>Media</h3>
+                    <div className="am-mediaLabel">Cover Page</div>
+                    <div className="am-uploadBox">
+                      {cover ? (
+                        <img src={cover} alt="cover" className="am-preview" />
+                      ) : (
+                        <div className="am-placeholder">
+                          <button className="am-uploadBtn" type="button" onClick={() => setUploadStep("grid")}>Upload Photo</button>
+                        </div>
+                      )}
+                      {cover && <button className="am-removeImg" type="button" onClick={() => setCover(null)}>×</button>}
+                    </div>
+                  </div>
+
+                  {/* PORTFOLIO */}
+                  <div className="csl-portfolio-wrap mt-8">
+                    <MyPortfolio theme={theme} />
                   </div>
                 </div>
 
-                {/* PORTFOLIO */}
-                <div className="csl-portfolio-wrap">
-                  <MyPortfolio theme={theme} />
-                </div>
+                {/* DELIVERABLES & LINKS WRAPPER */}
+                <div className="csl-deliverables-wrapper">
+                  {/* DELIVERABLES */}
+                  <div className="csl-wrapper-section">
+                    <h3 className="csl-wrapper-title">Upload main deliverables</h3>
+                    {deliverables.map((item, idx) => (
+                      <div key={idx} className="mb-6">
+                        {/* Upload Area */}
+                        <div className="csl-upload-deliverable">
+                          <div className="csl-upload-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                              <polyline points="17 8 12 3 7 8" />
+                              <line x1="12" y1="3" x2="12" y2="15" />
+                            </svg>
+                          </div>
+                          <p className="csl-upload-text">
+                            <span className="text-blue-500">Click to upload</span> or Drag or drop file
+                          </p>
+                          <p className="csl-upload-hint">PDF, JPG, JPEG, PNG less than 10MB.</p>
+                          <p className="csl-upload-hint">Ensure your document are in good condition and readable</p>
+                        </div>
 
-                {/* DELIVERABLES */}
-                <div className="mt-8 border rounded-[12px] p-6 bg-transparent" style={{ borderColor: theme === 'dark' ? '#CEFF1B' : '#ccc' }}>
-                  <h3 className="text-[16px] font-bold mb-4">Upload main deliverables</h3>
-                  {deliverables.map((item, idx) => (
-                    <div key={idx} className="mb-4">
-                      <div className="w-full rounded-[8px] p-8 flex flex-col items-center justify-center cursor-pointer bg-gray-100 dark:bg-[#2A2A2A]">
-                        <p className="text-[13px] text-blue-500">Click to upload or Drag or drop file</p>
+                        {/* Notes Area */}
+                        <div className="csl-notes-area mt-4">
+                          <div className="csl-notes-header">Add Notes</div>
+                          <textarea
+                            placeholder="Type here"
+                            value={item.notes}
+                            onChange={(e) => updateDeliverableNotes(idx, e.target.value)}
+                            className="csl-notes-textarea"
+                          />
+                        </div>
                       </div>
-                      <textarea
-                        placeholder="Add Notes"
-                        value={item.notes}
-                        onChange={(e) => updateDeliverableNotes(idx, e.target.value)}
-                        className="w-full mt-2 p-3 text-[13px] bg-transparent border rounded"
-                      />
+                    ))}
+                    <div className="flex justify-end mb-8">
+                      <button type="button" className="csl-btn-add-more" onClick={addDeliverable}>+ Add more</button>
                     </div>
-                  ))}
-                  <button type="button" className="csl-add-btn-lime" onClick={addDeliverable}>+ Add Deliverable</button>
+                  </div>
+
+                  {/* LINKS */}
+                  <div className="csl-wrapper-section">
+                    <h3 className="csl-wrapper-title">Link</h3>
+                    {links.map((link, idx) => (
+                      <div key={idx} className="mb-4">
+                        <input
+                          className="csl-input"
+                          placeholder="Paste here"
+                          value={link}
+                          onChange={(e) => updateLink(idx, e.target.value)}
+                        />
+                      </div>
+                    ))}
+                    <div className="flex justify-end mt-4">
+                      <button type="button" className="csl-btn-add-more" onClick={addLink}>+ Add more</button>
+                    </div>
+                  </div>
                 </div>
 
                 {/* FAQ */}
