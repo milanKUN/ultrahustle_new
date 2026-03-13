@@ -40,7 +40,7 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
 
   const TABS = ["Basic", "Standard", "Premium"];
 
-  // ✅ Sidebar state (matching CreateTeam.jsx)
+  // ✅ Sidebar state
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [activeSetting, setActiveSetting] = useState("basic");
@@ -67,7 +67,6 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
   });
 
   const subCategories = form.category ? subCategoriesMap[form.category] || [] : [];
-
   const setFormField = (key, value) => setForm((p) => ({ ...p, [key]: value }));
 
   /* ================== TAGS STATE ================== */
@@ -94,53 +93,17 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
     }
   };
 
-  /* ================== SERVICE PROVIDER + PACKAGES STATE ================== */
-  const [mode, setMode] = useState("Solo"); // Solo | Team
+  /* ================== PACKAGE STATE ================== */
+  const [mode, setMode] = useState("Solo");
   const [teamName, setTeamName] = useState("");
   const [activeTab, setActiveTab] = useState("Basic");
-  // ✅ Upload modal state (MISSING)
   const [uploadStep, setUploadStep] = useState(null); // null | "grid" | "success"
-
-  // ✅ Modal open when grid OR success (MISSING)
   const isModalOpen = uploadStep === "grid" || uploadStep === "success";
 
   const [pkg, setPkg] = useState({
-    Basic: {
-      packageName: "",
-      price: "",
-      deliveryDays: "",
-      revisions: "",
-      scope: "",
-      included: [],
-      howItWorks: [],
-      notIncluded: [],
-      toolsUsed: [],
-      deliveryFormat: "",
-    },
-    Standard: {
-      packageName: "",
-      price: "",
-      deliveryDays: "",
-      revisions: "",
-      scope: "",
-      included: [],
-      howItWorks: [],
-      notIncluded: [],
-      toolsUsed: [],
-      deliveryFormat: "",
-    },
-    Premium: {
-      packageName: "",
-      price: "",
-      deliveryDays: "",
-      revisions: "",
-      scope: "",
-      included: [],
-      howItWorks: [],
-      notIncluded: [],
-      toolsUsed: [],
-      deliveryFormat: "",
-    },
+    Basic: { price: "", included: [], toolsUsed: [], deliveryFormats: [] },
+    Standard: { price: "", included: [], toolsUsed: [], deliveryFormats: [] },
+    Premium: { price: "", included: [], toolsUsed: [], deliveryFormats: [] },
   });
 
   const current = pkg[activeTab];
@@ -172,9 +135,8 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
   };
 
   const [includedInput, setIncludedInput] = useState("");
-  const [howInput, setHowInput] = useState("");
-  const [notInput, setNotInput] = useState("");
   const [toolsInput, setToolsInput] = useState("");
+  const [deliveryFormatInput, setDeliveryFormatInput] = useState("");
 
   const onEnterAdd = (e, fn) => {
     if (e.key === "Enter") {
@@ -188,25 +150,13 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
     setIncludedInput("");
   };
 
-  const addHow = () => {
-    addToList("howItWorks", howInput);
-    setHowInput("");
-  };
-
-  const addNot = () => {
-    addToList("notIncluded", notInput);
-    setNotInput("");
-  };
-
   const addTool = () => {
     const v = toolsInput.trim();
     if (!v) return;
-
     if ((current.toolsUsed || []).some((t) => t.toLowerCase() === v.toLowerCase())) {
       setToolsInput("");
       return;
     }
-
     if ((current.toolsUsed || []).length >= 10) return;
 
     setPkg((p) => ({
@@ -221,27 +171,36 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
 
   const removeTool = (idx) => removeFromList("toolsUsed", idx);
 
-  /* ================== ADD-ONS + MEDIA STATE ================== */
+  const addDeliveryFormat = () => {
+    const v = deliveryFormatInput.trim();
+    if (!v) return;
+    if ((current.deliveryFormats || []).some((t) => t.toLowerCase() === v.toLowerCase())) {
+      setDeliveryFormatInput("");
+      return;
+    }
+    setPkg((p) => ({
+      ...p,
+      [activeTab]: {
+        ...p[activeTab],
+        deliveryFormats: [...(p[activeTab].deliveryFormats || []), v],
+      },
+    }));
+    setDeliveryFormatInput("");
+  };
+
+  const removeDeliveryFormat = (idx) => {
+    setPkg((p) => ({
+      ...p,
+      [activeTab]: {
+        ...p[activeTab],
+        deliveryFormats: p[activeTab].deliveryFormats.filter((_, i) => i !== idx),
+      },
+    }));
+  };
+
+  /* ================== MEDIA + DELIVERABLES ================== */
   const fileRef = useRef(null);
-
-  const [addOn, setAddOn] = useState({
-    name: "",
-    price: "",
-    days: "",
-  });
-
-  const [addOns, setAddOns] = useState([]);
   const [cover, setCover] = useState(null);
-
-  const addNewAddOn = () => {
-    if (!addOn.name) return;
-    setAddOns((p) => [...p, addOn]);
-    setAddOn({ name: "", price: "", days: "" });
-  };
-
-  const removeAddOn = (idx) => {
-    setAddOns((p) => p.filter((_, i) => i !== idx));
-  };
 
   const handleFileChange = (e) => {
     const file = e.target.files?.[0];
@@ -251,54 +210,26 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
     reader.readAsDataURL(file);
   };
 
-  /* ================== FAQ STATE ================== */
-  const [faqs, setFaqs] = useState([
-    {
-      q: "",
-      a: "",
-    },
-  ]);
-
-  const addFaq = () => {
-    setFaqs((p) => [...p, { q: "", a: "" }]);
-  };
-
+  const [faqs, setFaqs] = useState([{ q: "", a: "" }]);
+  const addFaq = () => setFaqs([...faqs, { q: "", a: "" }]);
   const updateFaq = (idx, key, value) => {
-    setFaqs((p) =>
-      p.map((item, i) => (i === idx ? { ...item, [key]: value } : item)),
-    );
+    setFaqs(faqs.map((item, i) => (i === idx ? { ...item, [key]: value } : item)));
   };
+  const removeFaq = (idx) => setFaqs(faqs.filter((_, i) => i !== idx));
 
-  const removeFaq = (idx) => {
-    setFaqs((p) => p.filter((_, i) => i !== idx));
-  };
-
-  /* ================== DELIVERABLES STATE ================== */
-  const [deliverables, setDeliverables] = useState([
-    { file: null, notes: "" }
-  ]);
+  const [deliverables, setDeliverables] = useState([{ file: null, notes: "" }]);
   const [links, setLinks] = useState([""]);
-
   const addDeliverable = () => setDeliverables([...deliverables, { file: null, notes: "" }]);
   const updateDeliverableNotes = (idx, notes) => setDeliverables(deliverables.map((d, i) => i === idx ? { ...d, notes } : d));
-
   const addLink = () => setLinks([...links, ""]);
   const updateLink = (idx, value) => setLinks(links.map((l, i) => i === idx ? value : l));
 
   /* ================== RENDER ================== */
   return (
-    <div
-      className={`create-service-page user-page ${theme} min-h-screen relative overflow-hidden`}
-    >
-      {/* ✅ NAVBAR */}
-      <UserNavbar
-        toggleSidebar={() => setSidebarOpen((p) => !p)}
-        isSidebarOpen={sidebarOpen}
-        theme={theme}
-      />
+    <div className={`create-service-page user-page ${theme} min-h-screen relative overflow-hidden`}>
+      <UserNavbar toggleSidebar={() => setSidebarOpen((p) => !p)} isSidebarOpen={sidebarOpen} theme={theme} />
 
       <div className={`pt-[85px] flex relative z-10 transition-all duration-300 ${isModalOpen ? "blur-sm pointer-events-none select-none" : ""}`}>
-        {/* ✅ SIDEBAR */}
         <Sidebar
           expanded={sidebarOpen}
           setExpanded={setSidebarOpen}
@@ -310,20 +241,18 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
           setTheme={setTheme}
         />
 
-        {/* ✅ MAIN CONTENT WRAPPER */}
         <div className="relative flex-1 min-w-5 overflow-hidden">
-          {/* Scrollable Area */}
           <div className="relative z-10 overflow-y-auto h-[calc(100vh-85px)]">
             <div className="create-service-container">
               <div className="csl-stack">
-                {/* ================= BASIC DETAILS CARD ================= */}
+                
+                {/* PRIMARY FORM CARD */}
                 <div className="csl-card">
                   <div className="csl-header">
                     <div>
                       <h1 className="csl-title">Create Digital Product</h1>
                       <p className="csl-subtitle">Fill out each section</p>
                     </div>
-
                     <div className="csl-ai">
                       <span className={`csl-ai-pill ${aiPowered ? "active" : ""}`}>
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -332,11 +261,7 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                         Ai Powered
                       </span>
                       <label className="csl-switch">
-                        <input
-                          type="checkbox"
-                          checked={aiPowered}
-                          onChange={(e) => setAiPowered(e.target.checked)}
-                        />
+                        <input type="checkbox" checked={aiPowered} onChange={(e) => setAiPowered(e.target.checked)} />
                         <span className="csl-slider" />
                       </label>
                     </div>
@@ -344,408 +269,225 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
 
                   <h2 className="csl-section">Basic Details</h2>
 
-                  <div className="csl-grid2">
-                    <div className="csl-field">
-                      <label className="csl-label">Product Title</label>
-                      <input
-                        className="csl-input"
-                        placeholder="eg., Professional Logo Design"
-                        value={form.title}
-                        onChange={(e) => setFormField("title", e.target.value)}
-                      />
-                    </div>
-
-                    <div className="csl-field">
-                      <label className="csl-label">Category</label>
-                      <div className="csl-selectWrap">
-                        <CustomSelect
-                          value={form.category}
-                          onChange={(val) =>
-                            setForm((p) => ({
-                              ...p,
-                              category: val,
-                              subCategory: "",
-                              productType: "",
-                            }))
-                          }
-                          options={categories}
-                          placeholder="Select category"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="csl-grid2">
-
-
-                    <div className="csl-field">
-                      <label className={`csl-label ${!form.category ? "opacity-50" : ""}`}>Sub Category</label>
-                      <div className="csl-selectWrap">
-                        <CustomSelect
-                          value={form.subCategory}
-                          onChange={(val) =>
-                            setForm((p) => ({
-                              ...p,
-                              subCategory: val,
-                              productType: "",
-                            }))
-                          }
-                          options={subCategories}
-                          placeholder="Select sub category"
-                          disabled={!form.category}
-                        />
-                      </div>
-                    </div>
-                    <div className="csl-field">
-                      <label className={`csl-label ${!form.subCategory ? "opacity-50" : ""}`}>Product Type</label>
-                      <div className="csl-selectWrap">
-                        <CustomSelect
-                          value={form.productType}
-                          onChange={(val) => setFormField("productType", val)}
-                          options={productTypes}
-                          placeholder="eg., Digital Service"
-                          disabled={!form.subCategory}
-                        />
-                      </div>
-                    </div>
+                  <div className="csl-field">
+                    <label className="csl-label">Product title</label>
+                    <input
+                      className="csl-input"
+                      placeholder="eg., Professional Logo Design"
+                      value={form.title}
+                      onChange={(e) => setFormField("title", e.target.value)}
+                    />
                   </div>
 
                   <div className="csl-field">
                     <label className="csl-label">Product Description</label>
                     <textarea
                       className="csl-textarea"
-                      placeholder="Product Description"
+                      placeholder="Product Portfolio"
                       value={form.shortDescription}
                       onChange={(e) => setFormField("shortDescription", e.target.value)}
                     />
                   </div>
 
-                  <div className="csl-field">
-                    <label className="csl-label">About This Product</label>
-                    <textarea
-                      className="csl-textarea"
-                      placeholder="About this product"
-                      value={form.about}
-                      onChange={(e) => setFormField("about", e.target.value)}
-                    />
+                  <div className="csl-grid2">
+                    <div className="csl-field">
+                      <label className="csl-label">Category</label>
+                      <CustomSelect
+                        value={form.category}
+                        onChange={(val) => setForm({ ...form, category: val, subCategory: "", productType: "" })}
+                        options={categories}
+                        placeholder="Select category"
+                      />
+                    </div>
+                    <div className="csl-field">
+                      <label className={`csl-label ${!form.category ? "opacity-50" : ""}`}>Sub Category</label>
+                      <CustomSelect
+                        value={form.subCategory}
+                        onChange={(val) => setForm({ ...form, subCategory: val, productType: "" })}
+                        options={subCategories}
+                        placeholder="Select sub category"
+                        disabled={!form.category}
+                      />
+                    </div>
                   </div>
 
+                  <div className="csl-grid2">
+                    <div className="csl-field">
+                      <label className={`csl-label ${!form.subCategory ? "opacity-50" : ""}`}>Product Type</label>
+                      <CustomSelect
+                        value={form.productType}
+                        onChange={(val) => setFormField("productType", val)}
+                        options={productTypes}
+                        placeholder="eg., Digital Service"
+                        disabled={!form.subCategory}
+                      />
+                    </div>
+                    <div className="csl-field">
+                      <label className="csl-label">Price</label>
+                      <input
+                        className="csl-input"
+                        placeholder="Price"
+                        type="number"
+                        value={current.price}
+                        onChange={(e) => setPkgField("price", e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Tags */}
                   <div className="csl-field">
                     <label className="csl-label">Tags (multi-select)</label>
-
-                    <div className="csl-tagsRow">
+                    <div className="csl-input-group">
                       <input
-                        className="csl-input csl-tagInput"
-                        placeholder="eg., type a tag and press Enter"
+                        className="csl-input"
+                        placeholder="eg., Logo, Figma"
                         value={tagInput}
                         onChange={(e) => setTagInput(e.target.value)}
                         onKeyDown={onTagKeyDown}
                       />
-
-                      <button type="button" className="csl-addBtn" onClick={addTag}>
-                        + Add
-                      </button>
+                      <button type="button" className="csl-add-btn-lime" onClick={addTag}>Add</button>
                     </div>
-
                     {tags.length > 0 && (
-                      <div className="csl-chips">
-                        {tags.map((t, idx) => (
-                          <div className="csl-chip" key={`${t}-${idx}`}>
-                            <span className="csl-chipText">{t}</span>
-                            <button
-                              type="button"
-                              className="csl-chipX"
-                              onClick={() => removeTag(idx)}
-                              aria-label="Remove tag"
-                            >
-                              ×
-                            </button>
+                      <div className="csl-chips-container">
+                        {tags.map((t, i) => (
+                          <div className="csl-tag-chip" key={i}>
+                            {t} <button onClick={() => removeTag(i)}>×</button>
                           </div>
                         ))}
-                        <button
-                          className="csl-clear-all"
-                          onClick={() => setTags([])}
-                          title="Clear all"
-                        >×</button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* ================= PRODUCT PROVIDER + PACKAGES ================= */}
-                <div className="sp-card">
-                  <div className="sp-top">
-
-
-
-                  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                  <div className="sp-field">
-                    <label className="sp-label">What's not included</label>
-                    <input
-                      className="sp-input"
-                      value={notInput}
-                      onChange={(e) => setNotInput(e.target.value)}
-                      onKeyDown={(e) => onEnterAdd(e, addNot)}
-                      placeholder="eg., Printing"
-                    />
-                    <button type="button" className="sp-addMini" onClick={addNot}>
-                      + <span>Add</span>
-                    </button>
-
-                    {!!current.notIncluded?.length && (
-                      <div className="sp-chipRow" style={{ position: "relative" }}>
-                        {current.notIncluded.map((x, idx) => (
-                          <div className="sp-chip" key={`${x}-${idx}`}>
-                            {x}
-                            <button className="sp-chipX" type="button" onClick={() => removeFromList("notIncluded", idx)}>
-                              ×
-                            </button>
-                          </div>
-                        ))}
-                        <button
-                          className="csl-clear-all"
-                          onClick={() => setPkg(p => ({
-                            ...p,
-                            [activeTab]: { ...p[activeTab], notIncluded: [] }
-                          }))}
-                          title="Clear all"
-                        >×</button>
+                        <button type="button" className="csl-clear-all" onClick={() => setTags([])} title="Clear all">✕</button>
                       </div>
                     )}
                   </div>
 
-                  <div className="sp-field">
-                    <label className="sp-label">Tools used</label>
-                    <div className="sp-toolsRow">
+                  {/* Tools */}
+                  <div className="csl-field">
+                    <label className="csl-label">Tools used</label>
+                    <div className="csl-input-group">
                       <input
-                        className="sp-input"
+                        className="csl-input"
+                        placeholder="eg., Figma, Notion"
                         value={toolsInput}
                         onChange={(e) => setToolsInput(e.target.value)}
                         onKeyDown={(e) => onEnterAdd(e, addTool)}
-                        placeholder="eg., Figma, Notion"
                       />
-                      <button type="button" className="sp-addBtnRight" onClick={addTool}>
-                        + Add
-                      </button>
+                      <button type="button" className="csl-add-btn-lime" onClick={addTool}>Add</button>
                     </div>
-                    <div className="sp-hint">You can add 10 tools</div>
-
                     {!!current.toolsUsed?.length && (
-                      <div className="sp-chipRow" style={{ position: "relative" }}>
-                        {current.toolsUsed.map((x, idx) => (
-                          <div className="sp-chip" key={`${x}-${idx}`}>
-                            {x}
-                            <button className="sp-chipX" type="button" onClick={() => removeTool(idx)}>
-                              ×
-                            </button>
+                      <div className="csl-chips-container">
+                        {current.toolsUsed.map((x, i) => (
+                          <div className="csl-tag-chip" key={i}>
+                            {x} <button onClick={() => removeTool(i)}>×</button>
                           </div>
                         ))}
-                        <button
-                          className="csl-clear-all"
-                          onClick={() => setPkg(p => ({
-                            ...p,
-                            [activeTab]: { ...p[activeTab], toolsUsed: [] }
-                          }))}
-                          title="Clear all"
-                        >×</button>
+                        <button type="button" className="csl-clear-all" onClick={() => setPkg(p => ({ ...p, [activeTab]: { ...p[activeTab], toolsUsed: [] } }))} title="Clear all">✕</button>
                       </div>
                     )}
-
-                    <div className="sp-field">
-                      <label className="sp-label">Delivery format</label>
-                      <div className="sp-selectWrap">
-                        <CustomSelect
-                          value={current.deliveryFormat}
-                          onChange={(val) => setPkgField("deliveryFormat", val)}
-                          options={["Googel drive link", "figma link ", "zip download", "notion page"]}
-                          placeholder="Select format"
-                        />
-                      </div>
-                    </div>
                   </div>
 
+                  {/* Included */}
+                  <div className="csl-field">
+                    <label className="csl-label">What's included</label>
+                    <input
+                      className="csl-input"
+                      placeholder="eg., Source Files"
+                      value={includedInput}
+                      onChange={(e) => setIncludedInput(e.target.value)}
+                      onKeyDown={(e) => onEnterAdd(e, addIncluded)}
+                    />
+                    <button type="button" className="csl-add-btn-lime-below" onClick={addIncluded}>Add</button>
+                    {!!current.included?.length && (
+                      <div className="csl-chips-container" style={{ marginTop: '12px' }}>
+                        {current.included.map((x, i) => (
+                          <div className="csl-tag-chip" key={i}>
+                            {x} <button onClick={() => removeFromList("included", i)}>×</button>
+                          </div>
+                        ))}
+                        <button type="button" className="csl-clear-all" onClick={() => setPkg(p => ({ ...p, [activeTab]: { ...p[activeTab], included: [] } }))} title="Clear all">✕</button>
+                      </div>
+                    )}
+                  </div>
 
+                  {/* Delivery Format */}
+                  <div className="csl-field">
+                    <label className="csl-label">Delivery format</label>
+                    <input
+                      className="csl-input"
+                      placeholder="eg., Google Drive Link"
+                      value={deliveryFormatInput}
+                      onChange={(e) => setDeliveryFormatInput(e.target.value)}
+                      onKeyDown={(e) => onEnterAdd(e, addDeliveryFormat)}
+                    />
+                    <button type="button" className="csl-add-btn-lime-below" onClick={addDeliveryFormat}>Add</button>
+                    {!!current.deliveryFormats?.length && (
+                      <div className="csl-chips-container" style={{ marginTop: '12px' }}>
+                        {current.deliveryFormats.map((x, i) => (
+                          <div className="csl-tag-chip" key={i}>
+                            {x} <button onClick={() => removeDeliveryFormat(i)}>×</button>
+                          </div>
+                        ))}
+                        <button type="button" className="csl-clear-all" onClick={() => setPkg(p => ({ ...p, [activeTab]: { ...p[activeTab], deliveryFormats: [] } }))} title="Clear all">✕</button>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
-                {/* ================= ADD-ONS + MEDIA ================= */}
+                {/* MEDIA CARD */}
                 <div className="am-card">
-                  <h3 className="am-title">
-                    Media
-                  </h3>
-
+                  <h3 className="am-title">Media</h3>
                   <div className="am-mediaLabel">Cover Page</div>
-
                   <div className="am-uploadBox">
                     {cover ? (
                       <img src={cover} alt="cover" className="am-preview" />
                     ) : (
                       <div className="am-placeholder">
-                        <button className="am-uploadBtn" onClick={() => setUploadStep("grid")}>
-                          Upload Photo
-                        </button>
+                        <button className="am-uploadBtn" type="button" onClick={() => setUploadStep("grid")}>Upload Photo</button>
                       </div>
                     )}
-                    <button className="am-removeImg" onClick={() => setCover(null)}>
-                      ×
-                    </button>
-
-                    <input
-                      type="file"
-                      ref={fileRef}
-                      hidden
-                      accept="image/*"
-                      onChange={handleFileChange}
-                    />
+                    {cover && <button className="am-removeImg" type="button" onClick={() => setCover(null)}>×</button>}
                   </div>
                 </div>
 
-
-                {/* Portfolio Section */}
+                {/* PORTFOLIO */}
                 <div className="csl-portfolio-wrap">
-                  < MyPortfolio theme={theme} />
+                  <MyPortfolio theme={theme} />
                 </div>
 
-                {/* ================= MAIN DELIVERABLES ================= */}
-                <div className="mt-8 border rounded-[12px] p-6 lg:p-8 bg-transparent" style={{ borderColor: theme === 'dark' ? '#CEFF1B' : '#dff87f' }}>
+                {/* DELIVERABLES */}
+                <div className="mt-8 border rounded-[12px] p-6 bg-transparent" style={{ borderColor: theme === 'dark' ? '#CEFF1B' : '#ccc' }}>
+                  <h3 className="text-[16px] font-bold mb-4">Upload main deliverables</h3>
                   {deliverables.map((item, idx) => (
-                    <div key={idx} className="mb-6 last:mb-0">
-                      <h3 className="text-[16px] font-bold mb-4" style={{ color: theme === 'dark' ? '#F4F4F4' : '#333' }}>
-                        Upload main deliverables
-                      </h3>
-
-                      {/* Upload Area */}
-                      <div className="w-full rounded-[8px] p-8 flex flex-col items-center justify-center cursor-pointer transition-colors border border-transparent"
-                        style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#EBEBEB' }}>
-                        <svg className="w-6 h-6 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}>
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                        </svg>
-                        <p className="text-[13px] text-center" style={{ color: theme === 'dark' ? '#d1d5db' : '#4b5563' }}>
-                          <span className="text-[#3b82f6] font-medium">Click to upload</span> or Drag or drop file
-                        </p>
-                        <p className="text-[10px] mt-1 text-center leading-tight" style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}>
-                          PDF, JPG, JPEG, PNG less than 10MB.<br />
-                          Ensure your document are in good condition and readable
-                        </p>
+                    <div key={idx} className="mb-4">
+                      <div className="w-full rounded-[8px] p-8 flex flex-col items-center justify-center cursor-pointer bg-gray-100 dark:bg-[#2A2A2A]">
+                        <p className="text-[13px] text-blue-500">Click to upload or Drag or drop file</p>
                       </div>
-
-                      {/* Add Notes Area */}
-                      <div className="mt-4 rounded-[6px] border overflow-hidden" style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#EBEBEB', borderColor: theme === 'dark' ? 'transparent' : '#d1d5db' }}>
-                        <div className="px-4 py-3 text-[14px] font-bold border-b" style={{ borderColor: theme === 'dark' ? '#3b3b3b' : '#d1d5db', color: theme === 'dark' ? '#F4F4F4' : '#333' }}>
-                          Add Notes
-                        </div>
-                        <textarea
-                          placeholder="Type here"
-                          value={item.notes}
-                          onChange={(e) => updateDeliverableNotes(idx, e.target.value)}
-                          className="w-full bg-transparent p-4 text-[13px] outline-none resize-none min-h-[90px]"
-                          style={{ color: theme === 'dark' ? '#F4F4F4' : '#333' }}
-                        />
-                      </div>
-
-                      <div className="flex justify-end mt-4">
-                        <button
-                          type="button"
-                          onClick={addDeliverable}
-                          className="px-5 py-[6px] bg-[#CEFF1B] border border-gray-400 dark:border-transparent text-black font-bold flex items-center gap-1 rounded-[6px] text-[13px] shadow-sm hover:brightness-105 transition-all"
-                        >
-                          + Add more
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-
-                  {links.map((link, idx) => (
-                    <div key={`link-${idx}`} className="mt-2 text-left">
-                      <label className="block text-[14px] font-bold mb-2" style={{ color: theme === 'dark' ? '#F4F4F4' : '#333' }}>Link</label>
-                      <input
-                        type="text"
-                        placeholder="Paste here"
-                        value={link}
-                        onChange={(e) => updateLink(idx, e.target.value)}
-                        className="w-full p-2.5 rounded-[6px] border text-[13px] outline-none focus:border-[#CEFF1B]"
-                        style={{ backgroundColor: theme === 'dark' ? '#2A2A2A' : '#FFFFFF', borderColor: theme === 'dark' ? '#3b3b3b' : '#d1d5db', color: theme === 'dark' ? '#F4F4F4' : '#333' }}
+                      <textarea
+                        placeholder="Add Notes"
+                        value={item.notes}
+                        onChange={(e) => updateDeliverableNotes(idx, e.target.value)}
+                        className="w-full mt-2 p-3 text-[13px] bg-transparent border rounded"
                       />
-                      <div className="flex justify-end mt-4">
-                        <button
-                          type="button"
-                          onClick={addLink}
-                          className="px-5 py-[6px] bg-[#CEFF1B] border border-gray-400 dark:border-transparent text-black font-bold flex items-center gap-1 rounded-[6px] text-[13px] shadow-sm hover:brightness-105 transition-all"
-                        >
-                          + Add more
-                        </button>
-                      </div>
                     </div>
                   ))}
+                  <button type="button" className="csl-add-btn-lime" onClick={addDeliverable}>+ Add Deliverable</button>
                 </div>
 
-                {/* ================= FAQ ================= */}
+                {/* FAQ */}
                 <div className="faq-wrap">
                   <h3 className="faq-title">FAQs</h3>
-
                   {faqs.map((item, idx) => (
                     <div className="faq-card" key={idx}>
                       <div className="faq-card-top">
                         <div className="faq-number">FAQ #{idx + 1}</div>
-
-                        <button
-                          type="button"
-                          className="faq-trash"
-                          onClick={() => removeFaq(idx)}
-                          aria-label="Delete FAQ"
-                          title="Delete"
-                        >
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M3 6h18"></path>
-                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                          </svg>
-                        </button>
+                        <button type="button" className="faq-trash" onClick={() => removeFaq(idx)}>✕</button>
                       </div>
-
-                      <div className="faq-field">
-                        <label className="faq-label">Question</label>
-                        <input
-                          className="faq-input"
-                          placeholder="Type your question"
-                          value={item.q}
-                          onChange={(e) => updateFaq(idx, "q", e.target.value)}
-                        />
-                      </div>
-
-                      <div className="faq-field">
-                        <label className="faq-label">Answer</label>
-                        <input
-                          className="faq-input"
-                          placeholder="Type the answer"
-                          value={item.a}
-                          onChange={(e) => updateFaq(idx, "a", e.target.value)}
-                        />
-                      </div>
-
-                      <button type="button" className="faq-add" onClick={addFaq}>
-                        + Add
-                      </button>
+                      <input className="faq-input mb-2" placeholder="Question" value={item.q} onChange={(e) => updateFaq(idx, "q", e.target.value)} />
+                      <input className="faq-input" placeholder="Answer" value={item.a} onChange={(e) => updateFaq(idx, "a", e.target.value)} />
                     </div>
                   ))}
+                  <button type="button" className="faq-add" onClick={addFaq}>+ Add FAQ</button>
                 </div>
-                {/* ================= ACTIONS ================= */}
+
+                {/* ACTIONS */}
                 <div className="faq-actions">
                   <button type="button" className="faq-draft">Save as Draft</button>
                   <button type="button" className="faq-save">Save</button>
@@ -756,79 +498,42 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
         </div>
       </div>
 
-      {/* ================= UPLOAD MODALS ================= */}
-      {
-        isModalOpen && (
-          <div
-            className="fixed inset-0 z-[900] bg-black/30 backdrop-blur-sm"
-            onClick={() => setUploadStep(null)}
-          />
-        )
-      }
-
-      {
-        (uploadStep === "grid" || uploadStep === "success") && (
-          <UploadGrid
-            blurred={uploadStep === "success"}
-            onBack={() => setUploadStep(null)}
-            onSelect={(files) => {
-              if (files && files[0]) {
-                const reader = new FileReader();
-                reader.onload = () => setCover(reader.result);
-                reader.readAsDataURL(files[0]);
-              }
-              setUploadStep("success");
-            }}
-          />
-        )
-      }
-
-      {
-        uploadStep === "success" && (
-          <UploadSuccess onBack={() => setUploadStep(null)} />
-        )
-      }
+      {/* MODALS */}
+      {isModalOpen && <div className="fixed inset-0 z-[900] bg-black/30 backdrop-blur-sm" onClick={() => setUploadStep(null)} />}
+      {(uploadStep === "grid" || uploadStep === "success") && (
+        <UploadGrid
+          blurred={uploadStep === "success"}
+          onBack={() => setUploadStep(null)}
+          onSelect={(files) => {
+            if (files?.[0]) {
+              const r = new FileReader(); r.onload = () => setCover(r.result); r.readAsDataURL(files[0]);
+            }
+            setUploadStep("success");
+          }}
+        />
+      )}
+      {uploadStep === "success" && <UploadSuccess onBack={() => setUploadStep(null)} />}
     </div>
   );
 }
 
-/* ================= REUSABLE CUSTOM SELECT ================= */
-
 function CustomSelect({ value, onChange, options, placeholder, disabled = false }) {
-  const [open, setOpen] = React.useState(false);
-  const ref = React.useRef(null);
-
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
   React.useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    const fn = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener("mousedown", fn); return () => document.removeEventListener("mousedown", fn);
   }, []);
-
   return (
     <div className={`onboarding-custom-select ${open ? "active" : ""} ${disabled ? "opacity-50 pointer-events-none" : ""}`} ref={ref}>
-      <div
-        className={`onboarding-selected-option ${open ? "open" : ""}`}
-        onClick={(e) => {
-          e.stopPropagation();
-          if (!disabled) setOpen(!open);
-        }}
-      >
+      <div className="onboarding-selected-option" onClick={() => !disabled && setOpen(!open)}>
         <span className={!value ? "opacity-70" : ""}>{value || placeholder}</span>
         <span className="onboarding-arrow">▼</span>
       </div>
       {open && (
         <ul className="onboarding-options-list dark:bg-[#1E1E1E]">
-
           {options.map((opt) => (
-            <li
-              key={opt}
-              className={value === opt ? "active" : ""}
-              onClick={() => { onChange(opt); setOpen(false); }}
-            >
-              {opt}
-            </li>
+            <li key={opt} className={value === opt ? "active" : ""} onClick={() => { onChange(opt); setOpen(false); }}>{opt}</li>
           ))}
         </ul>
       )}
@@ -836,144 +541,40 @@ function CustomSelect({ value, onChange, options, placeholder, disabled = false 
   );
 }
 
-/* ================= UPLOAD GRID ================= */
-
 function UploadGrid({ onSelect, onBack, blurred }) {
-  const fileRef = React.useRef(null);
-  const [files, setFiles] = React.useState([]);
-  const [visibleSlots] = React.useState(9);
-  const [activeIndex, setActiveIndex] = React.useState(null);
-
-  const openPicker = () => fileRef.current?.click();
-
-  const handleFiles = (e) => {
-    const selected = Array.from(e.target.files || []);
-    if (activeIndex === null || selected.length === 0) return;
-    setFiles((prev) => {
-      const updated = [...prev];
-      updated[activeIndex] = selected[0];
-      return updated;
-    });
-    setActiveIndex(null);
-    e.target.value = "";
-  };
-
+  const fileRef = useRef(null);
+  const [files, setFiles] = useState([]);
   return (
-    <div className="fixed inset-0 z-[950] flex items-center justify-center pointer-events-auto">
-      <div
-        className={`upload-card rounded-2xl p-4 w-[95%] max-w-[820px] h-auto max-h-[90vh] flex flex-col bg-white shadow-[0_0_20px_#CEFF1B] transition-all duration-200${blurred ? " blur-sm scale-[0.98] pointer-events-none select-none opacity-95" : ""
-          }`}
-      >
-        {/* HEADER */}
-        <div className="upload-header flex items-center gap-3 mb-3 shrink-0">
-          <button
-            type="button"
-            onClick={onBack}
-            className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-gray-100"
-            title="Back"
-          >
-            <img src="/backarrow.svg" alt="back" />
-          </button>
-          <h4 className="text-sm font-medium">Select and upload your file</h4>
-          <button
-            type="button"
-            onClick={onBack}
-            className="ml-auto w-9 h-9 rounded-full flex items-center justify-center hover:bg-[#CEFF1B]"
-            title="Close"
-          >
-            ✕
-          </button>
+    <div className="fixed inset-0 z-[950] flex items-center justify-center">
+      <div className={`upload-card rounded-2xl p-6 w-[95%] max-w-[800px] bg-white shadow-xl ${blurred ? "blur-sm" : ""}`}>
+        <div className="flex justify-between mb-4">
+          <h4 className="text-lg font-bold">Upload your file</h4>
+          <button onClick={onBack}>✕</button>
         </div>
-
-        {/* GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 flex-1 overflow-y-auto pr-2 custom-scroll">
-          {Array.from({ length: visibleSlots }).map((_, i) => {
-            const file = files[i];
-            return (
-              <div
-                key={i}
-                onClick={() => { setActiveIndex(i); openPicker(); }}
-                className="upload-slot relative h-[110px] rounded-xl flex items-center justify-center cursor-pointer overflow-hidden bg-gray-100"
-              >
-                {i === 0 && (
-                  <span className="absolute inset-0 z-10 flex items-center justify-center px-2">
-                    <span className="bg-[#CEFF1B] text-black font-medium text-[10px] sm:text-xs px-2 py-[3px] rounded max-w-[90%] text-center whitespace-normal leading-tight">
-                      Upload Cover Image
-                    </span>
-                  </span>
-                )}
-                {file ? (
-                  <img src={URL.createObjectURL(file)} alt="" className="w-full h-full object-cover" />
-                ) : (
-                  <>
-                    {i !== 0 && (
-                      <div className="relative">
-                        <img src="/video2.svg" className="w-10 mr-8 mt-2 opacity-60" alt="" />
-                        <img src="/video1.svg" className="w-12 absolute -right-2 -top-3 opacity-60" alt="" />
-                        <div className="absolute bottom-4 right-5 w-6 h-6 rounded-full bg-[#CEFF1B] flex items-center justify-center">+</div>
-                      </div>
-                    )}
-                  </>
-                )}
-              </div>
-            );
-          })}
+        <div className="grid grid-cols-3 gap-4">
+          {Array.from({ length: 9 }).map((_, i) => (
+            <div key={i} className="h-32 bg-gray-100 rounded-xl flex items-center justify-center cursor-pointer" onClick={() => fileRef.current.click()}>
+              {files[i] ? <img src={URL.createObjectURL(files[i])} alt="" className="w-full h-full object-cover rounded-xl" /> : "+"}
+            </div>
+          ))}
         </div>
-
-        <div className="flex justify-end items-center mt-3 shrink-0">
-          <div className="flex gap-3">
-            <button
-              type="button"
-              onClick={onBack}
-              className="upload-btn-cancel px-4 py-2 rounded-lg text-sm border border-black"
-            >
-              Cancel
-            </button>
-            {files.filter(Boolean).length > 0 && (
-              <button
-                type="button"
-                onClick={() => onSelect(files.filter(Boolean))}
-                className="upload-btn-confirm px-5 py-2 rounded-lg text-sm font-medium bg-[#CEFF1B] border border-black"
-              >
-                Upload
-              </button>
-            )}
-          </div>
+        <div className="flex justify-end mt-4">
+          <button onClick={onBack} className="mr-2">Cancel</button>
+          <button onClick={() => onSelect(files.filter(Boolean))} className="bg-[#CEFF1B] px-4 py-2 rounded">Upload</button>
         </div>
-
-        <input
-          ref={fileRef}
-          type="file"
-          accept="image/*,video/*"
-          onChange={handleFiles}
-          className="hidden"
-        />
+        <input ref={fileRef} type="file" hidden onChange={(e) => setFiles([...files, e.target.files[0]])} />
       </div>
     </div>
   );
 }
 
-/* ================= UPLOAD SUCCESS ================= */
-
 function UploadSuccess({ onBack }) {
   return (
-    <div className="fixed inset-0 z-[1001] flex items-center justify-center pointer-events-auto p-4">
-      <div className="upload-success-card rounded-2xl w-[90%] max-w-[600px] h-auto min-h-[300px] md:h-[400px] py-10 flex flex-col items-center justify-center shadow-[0_0_20px_#CEFF1B] bg-white dark:bg-[#2B2B2B]">
-        <div className="w-24 h-24 bg-[#CEFF1B] rounded-full flex items-center justify-center mb-6">
-          <img src="/right.svg" alt="" />
-        </div>
-        <h3 className="text-2xl font-semibold mb-8 text-black dark:text-white text-center px-4">
-          You have successfully uploaded!
-        </h3>
-        <div className="flex justify-center">
-          <button
-            type="button"
-            onClick={onBack}
-            className="upload-btn-confirm px-12 py-3 rounded-lg bg-[#CEFF1B] border border-black font-semibold text-black transition-transform hover:scale-105"
-          >
-            Back
-          </button>
-        </div>
+    <div className="fixed inset-0 z-[1001] flex items-center justify-center p-4">
+      <div className="upload-success-card rounded-2xl w-[90%] max-w-[500px] bg-white dark:bg-[#2B2B2B] p-10 flex flex-col items-center">
+        <div className="w-16 h-16 bg-[#CEFF1B] rounded-full flex items-center justify-center mb-6">✓</div>
+        <h3 className="text-xl font-bold mb-6">Uploaded Successfully!</h3>
+        <button onClick={onBack} className="bg-[#CEFF1B] px-10 py-2 rounded">Back</button>
       </div>
     </div>
   );

@@ -204,8 +204,15 @@
 .csl-input,
 .sp-input,
 .am-input,
-.faq-input {
-  height: 40px;
+.faq-input,
+.onboarding-selected-option {
+  height: 40px !important;
+  box-sizing: border-box !important;
+  padding: 0 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  font-size: 14px !important;
+  line-height: normal !important;
 }
 
 .csl-input::placeholder,
@@ -1270,8 +1277,153 @@
 
 .user-page.dark .faq-draft {
   background: transparent !important;
-  border: 1px solid #ffffff !important;
-  color: #ffffff !important;
+  color: #fff !important;
+}
+
+.user-page.dark .sp-input::placeholder {
+  color: #666 !important;
+}
+
+/* ================= NEW FORM LAYOUT STYLES ================= */
+.csl-input-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.csl-add-btn-lime {
+    background: #CEFF1B;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.csl-add-btn-lime:hover {
+    background: #bdff1b;
+    transform: translateY(-1px);
+}
+
+.csl-add-btn-lime-below {
+    background: #CEFF1B;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 12px;
+    width: fit-content;
+}
+
+.csl-chips-container {
+    background: #2A2A2A;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 48px;
+    border: 1px solid #333;
+    position: relative;
+}
+
+.csl-tag-chip {
+    background: rgba(206, 255, 27, 0.1);
+    border: 1px solid rgba(206, 255, 27, 0.3);
+    color: #CEFF1B;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.csl-tag-chip button {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.csl-tag-chip button:hover {
+    color: #fff;
+}
+
+.csl-grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .csl-grid2 {
+        grid-template-columns: 1fr;
+    }
+    .csl-input-group {
+        flex-direction: column;
+    }
+    .csl-add-btn-lime {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Delivery Format New Design */
+.sp-delivery-row {
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.sp-add-delivery-btn {
+  background: #CEFF1B !important;
+  color: #1a1a1a !important;
+  border: 1px solid #1a1a1a !important;
+  border-radius: 8px !important;
+  padding: 10px 20px !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  margin-top: 12px !important;
+  transition: all 0.2s ease !important;
+  width: fit-content !important;
+}
+
+.sp-add-delivery-btn:hover {
+  background: #bdff1b !important;
+  transform: translateY(-1px) !important;
+}
+
+.user-page.dark .sp-input {
+  background: #000 !important;
+  border: 1px solid #333 !important;
+  color: #fff !important;
+}
+
+.user-page.dark .sp-input::placeholder {
+  color: #666 !important;
 }
 
 .user-page.dark .csl-caret,
@@ -1333,3 +1485,31 @@
   border: 1px solid #ffffff !important;
   color: #ffffff !important;
 }
+
+/* Clear All Buttons */
+.csl-clear-all {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+    z-index: 10;
+}
+
+.csl-clear-all:hover {
+    color: #CEFF1B;
+}
+
+.csl-chips-container {
+    padding-right: 40px !important; /* Space for the clear button */
+}
