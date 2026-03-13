@@ -1235,23 +1235,6 @@
 .user-page.dark .sp-addBtnRight,
 .user-page.dark .am-addBtn,
 .user-page.dark .am-uploadBtn,
-.user-page.dark .faq-add,
-.user-page.dark .faq-save {
-  background-color: #CEFF1B !important;
-  color: #000000 !important;
-  border: 1px solid #000000 !important;
-}
-
-.user-page.dark .faq-card {
-  background: #141414 !important;
-  border: 2px solid #CEFF1B !important;
-}
-
-.user-page.dark .faq-draft {
-  background: transparent !important;
-  border: 1px solid #ffffff !important;
-  color: #ffffff !important;
-}
 
 .user-page.dark .csl-caret,
 .user-page.dark .sp-caret {

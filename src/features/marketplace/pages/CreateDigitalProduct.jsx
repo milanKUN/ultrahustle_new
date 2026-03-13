@@ -3,6 +3,7 @@ import "./CreateDigitalProduct.css";
 import UserNavbar from "../../../components/layout/UserNavbar";
 import Sidebar from "../../../components/layout/Sidebar";
 import MyPortfolio from "../../dashboard/components/UserProfile/MyPortfolio";
+import FAQSection from "../components/FAQSection";
 import "../../../Darkuser.css";
 import "../../onboarding/components/OnboardingSelect.css";
 
@@ -523,27 +524,15 @@ export default function CreateDigitalProduct({ theme, setTheme }) {
                   </div>
                 </div>
 
-                {/* FAQ */}
-                <div className="faq-wrap">
-                  <h3 className="faq-title">FAQs</h3>
-                  {faqs.map((item, idx) => (
-                    <div className="faq-card" key={idx}>
-                      <div className="faq-card-top">
-                        <div className="faq-number">FAQ #{idx + 1}</div>
-                        <button type="button" className="faq-trash" onClick={() => removeFaq(idx)}>✕</button>
-                      </div>
-                      <input className="faq-input mb-2" placeholder="Question" value={item.q} onChange={(e) => updateFaq(idx, "q", e.target.value)} />
-                      <input className="faq-input" placeholder="Answer" value={item.a} onChange={(e) => updateFaq(idx, "a", e.target.value)} />
-                    </div>
-                  ))}
-                  <button type="button" className="faq-add" onClick={addFaq}>+ Add FAQ</button>
-                </div>
-
-                {/* ACTIONS */}
-                <div className="faq-actions">
-                  <button type="button" className="faq-draft">Save as Draft</button>
-                  <button type="button" className="faq-save">Save</button>
-                </div>
+                <FAQSection 
+                  faqs={faqs} 
+                  onAddFaq={addFaq} 
+                  onUpdateFaq={updateFaq} 
+                  onRemoveFaq={removeFaq} 
+                  showFooter={true}
+                  onSave={() => console.log("Save")}
+                  onSaveDraft={() => console.log("Draft")}
+                />
               </div>
             </div>
           </div>

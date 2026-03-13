@@ -237,6 +237,17 @@
   outline: none;
 }
 
+.user-page.dark .csl-input:focus,
+.user-page.dark .csl-textarea:focus,
+.user-page.dark .sp-input:focus,
+.user-page.dark .sp-textarea:focus,
+.user-page.dark .am-input:focus,
+.user-page.dark .faq-input:focus,
+.user-page.dark .onboarding-custom-select.active .onboarding-selected-option {
+  border-color: transparent !important;
+  box-shadow: 0 0 15px #CEFF1B !important;
+}
+
 
 .user-page.dark .csl-input,
 .user-page.dark .csl-textarea,
@@ -411,7 +422,7 @@
 }
 
 .user-page.dark .csl-clear-all {
-  color: #CEFF1B;
+  color: white !important;
   border-left: 1px solid #CEFF1B;
 }
 
@@ -1689,3 +1700,8 @@
 .user-page.dark .csl-wrapper-title {
   color: #fff;
 }
+
+.btn-save-primary:hover {
+  background: #bdff1b;
+  box-shadow: 0 0 10px rgba(206, 255, 27, 0.3);
+}
