@@ -40,6 +40,9 @@ import CreateCourse from "./features/marketplace/pages/CreateCourse";
 import CourseListing from "./features/marketplace/pages/CourseListing";
 import OrderDeliverables from "./features/marketplace/pages/OrderDeliverables";
 import CourseDeliverables from "./features/marketplace/pages/CourseDeliverables";
+import WebinarDeliverables from "./features/marketplace/pages/WebinarDeliverables";
+import WebinarListing from "./features/marketplace/pages/WebinarListing";
+import CreateWebinar from "./features/marketplace/pages/CreateWebinar";
 
 
 export default function App() {
@@ -100,6 +103,9 @@ export default function App() {
           <Route path="/course-listing" element={<CourseListing theme={theme} setTheme={setTheme} />} />
           <Route path="/order-deliverables" element={<OrderDeliverables theme={theme} setTheme={setTheme} />} />
           <Route path="/course-deliverables" element={<CourseDeliverables theme={theme} setTheme={setTheme} />} />
+          <Route path="/webinar-deliverables" element={<WebinarDeliverables theme={theme} setTheme={setTheme} />} />
+          <Route path="/webinar-listing" element={<WebinarListing theme={theme} setTheme={setTheme} />} />
+          <Route path="/create-webinar" element={<CreateWebinar theme={theme} setTheme={setTheme} />} />
         </Routes>
       </div>
     </Router>

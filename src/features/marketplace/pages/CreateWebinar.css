@@ -1351,11 +1351,11 @@
 .csl-add-btn-lime-below {
   background: #CEFF1B;
   color: #1a1a1a;
-  border: none;
+  border: 1px solid #000;
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 8px 24px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 18px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -1364,46 +1364,52 @@
   width: fit-content;
 }
 
+.csl-add-btn-lime-below:hover {
+  background: #bdff1b;
+  transform: translateY(-1px);
+}
+
 .csl-chips-container {
   background: #fff;
+  border: 1px solid #000;
   border-radius: 8px;
   padding: 12px;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
   min-height: 48px;
   position: relative;
+  margin-top: 8px;
 }
 
 .user-page.dark .csl-chips-container {
-  background: #5E5E5E;
-  border: 1px solid #333;
+  background: transparent;
+  border: 1px solid #CEFF1B;
 }
 
 .csl-tag-chip {
-  background: transparent;
-  border: 1px solid grey;
-  color: #2B2B2B;
+  background: #fff;
+  border: 1px solid #E2E2E2;
+  color: #1a1a1a;
   border-radius: 6px;
-  padding: 4px 10px;
+  padding: 6px 12px;
   font-size: 13px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .user-page.dark .csl-tag-chip {
-  background: rgba(206, 255, 27, 0.05);
-  border: 1px solid #CEFF1B;
-  color: #CEFF1B;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  color: #fff;
 }
 
 .csl-tag-chip button {
   background: transparent;
   border: none;
-  color: inherit;
-  font-size: 16px;
-  line-height: 1;
+  color: #777;
   cursor: pointer;
   padding: 0;
   display: flex;
@@ -1599,4 +1605,90 @@
 .btn-save-primary:hover {
   background: #bdff1b;
   box-shadow: 0 0 10px rgba(206, 255, 27, 0.3);
+}
+
+/* Agenda Section Styles */
+.csl-agenda-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.csl-agenda-item {
+  border: 1px solid #CEFF1B;
+  border-radius: 20px;
+  padding: 30px;
+  position: relative;
+  background: var(--csl-card);
+}
+
+.user-page.dark .csl-agenda-item {
+  background: #1A1A1A;
+  border-color: #333;
+}
+
+.csl-agenda-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.csl-agenda-num {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--csl-text);
+}
+
+.csl-trash-btn {
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.csl-trash-btn:hover {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
+.csl-add-btn-lime-below {
+  background: #CEFF1B;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  margin-top: 10px;
+}
+
+.csl-add-btn-lime-below:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(206, 255, 27, 0.3);
+}
+
+/* Schedule Section Styles */
+.csl-schedule-box {
+  border: 1px solid #CEFF1B;
+  border-radius: 20px;
+  padding: 30px;
+  background: var(--csl-card);
+}
+
+.user-page.dark .csl-schedule-box {
+  background: #1A1A1A;
+  border-color: #333;
 }

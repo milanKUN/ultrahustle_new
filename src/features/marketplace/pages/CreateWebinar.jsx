@@ -1,13 +1,16 @@
 import React, { useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import "./CreateCourse.css";
+import {
+  X,
+  Play,
+  Trash2,
+} from 'lucide-react';
+import "./CreateWebinar.css";
 import UserNavbar from "../../../components/layout/UserNavbar";
 import Sidebar from "../../../components/layout/Sidebar";
 import FAQSection from "../components/FAQSection";
-import PreviewVideo from "../components/PreviewVideo";
 import CoverSection from "../components/CoverSection";
 import DeliverablesSection from "../components/DeliverablesSection";
-import LessonSection from "../components/LessonSection";
 import "../../../Darkuser.css";
 import "../../onboarding/components/OnboardingSelect.css";
 
@@ -97,6 +100,26 @@ export default function CreateCourse({ theme, setTheme }) {
   const [languages, setLanguages] = useState([]);
 
   const [previewVideo, setPreviewVideo] = useState(null);
+
+  /* ================== AGENDA STATE ================== */
+  const [agenda, setAgenda] = useState([{ id: 1, time: "", topic: "", description: "" }]);
+
+  const addAgendaItem = () => setAgenda([...agenda, { id: Date.now(), time: "", topic: "", description: "" }]);
+  const updateAgendaItem = (idx, key, value) => {
+    setAgenda(agenda.map((item, i) => i === idx ? { ...item, [key]: value } : item));
+  };
+  const removeAgendaItem = (idx) => setAgenda(agenda.filter((_, i) => i !== idx));
+
+  /* ================== SCHEDULE STATE ================== */
+  const [schedule, setSchedule] = useState({
+    date: "",
+    startTime: "",
+    duration: "",
+    timezone: "Asia/Kolkata (GST)",
+    link: ""
+  });
+
+  const updateSchedule = (key, value) => setSchedule({ ...schedule, [key]: value });
 
   /* ================== LESSONS STATE ================== */
   const [lessons, setLessons] = useState([
@@ -324,13 +347,13 @@ export default function CreateCourse({ theme, setTheme }) {
                 <div className="csl-card">
                   <div className="csl-header">
                     <div>
-                      <h1 className="csl-title">Create Course Listing</h1>
+                      <h1 className="csl-title">Create Webinar Listing</h1>
                       <p className="csl-subtitle">Fill out each section</p>
                     </div>
                   </div>
 
                   <div className="flex justify-between items-center mb-6">
-                    <h2 className="csl-section m-0">Course Details</h2>
+                    <h2 className="csl-section m-0">Webinar Details</h2>
                     <div className="csl-ai">
                       <span className={`csl-ai-pill ${aiPowered ? "active" : ""}`}>
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -347,7 +370,7 @@ export default function CreateCourse({ theme, setTheme }) {
 
                   <div className="csl-group-box">
                     <div className="csl-field">
-                      <label className="csl-label">Course title</label>
+                      <label className="csl-label">Webinar title</label>
                       <input
                         className="csl-input"
                         placeholder="eg., Professional Logo Design"
@@ -397,7 +420,7 @@ export default function CreateCourse({ theme, setTheme }) {
                         <label className="csl-label">Ticket price</label>
                         <input
                           className="csl-input"
-                          placeholder="Price"
+                          placeholder="Ticket price"
                           type="number"
                           value={current.price}
                           onChange={(e) => setPkgField("price", e.target.value)}
@@ -456,7 +479,7 @@ export default function CreateCourse({ theme, setTheme }) {
 
                   <div className="csl-group-box">
                     <div className="csl-field">
-                      <label className="csl-label">Course includes</label>
+                      <label className="csl-label">Key outcomes</label>
                       <input
                         className="csl-input"
                         placeholder="Course includes"
@@ -524,40 +547,117 @@ export default function CreateCourse({ theme, setTheme }) {
                   </div>
                 </div>
 
+                {/* Agenda Section */}
+                <div className="csl-card">
+                  <h2 className="csl-section">Agenda</h2>
+                  <div className="csl-agenda-stack">
+                    {agenda.map((item, idx) => (
+                      <div key={item.id} className="csl-agenda-item">
+                        <div className="csl-agenda-header">
+                          <span className="csl-agenda-num">Agenda item {idx + 1}</span>
+                          <button onClick={() => removeAgendaItem(idx)} className="csl-trash-btn">
+                            <Trash2 size={20} />
+                          </button>
+                        </div>
+                        <div className="csl-grid2">
+                          <div className="csl-field">
+                            <label className="csl-label">Time/Duration</label>
+                            <input
+                              className="csl-input"
+                              placeholder="Time/Duration"
+                              value={item.time}
+                              onChange={(e) => updateAgendaItem(idx, "time", e.target.value)}
+                            />
+                          </div>
+                          <div className="csl-field">
+                            <label className="csl-label">Topic name</label>
+                            <input
+                              className="csl-input"
+                              placeholder="Topic name"
+                              value={item.topic}
+                              onChange={(e) => updateAgendaItem(idx, "topic", e.target.value)}
+                            />
+                          </div>
+                        </div>
+                        <div className="csl-field mt-4">
+                          <label className="csl-label">Description</label>
+                          <textarea
+                            className="csl-textarea h-[100px]"
+                            placeholder="A brief and brand assets. Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                            value={item.description}
+                            onChange={(e) => updateAgendaItem(idx, "description", e.target.value)}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                    <button className="csl-add-btn-lime-below" onClick={addAgendaItem}>
+                      + Add
+                    </button>
+                  </div>
+                </div>
+
+                {/* Schedule Section */}
+                <div className="csl-card">
+                  <h2 className="csl-section">Schedule</h2>
+                  <div className="csl-schedule-box">
+                    <div className="csl-grid2">
+                      <div className="csl-field">
+                        <label className="csl-label">Date</label>
+                        <input
+                          type="date"
+                          className="csl-input"
+                          value={schedule.date}
+                          onChange={(e) => updateSchedule("date", e.target.value)}
+                        />
+                      </div>
+                      <div className="csl-field">
+                        <label className="csl-label">Start time</label>
+                        <input
+                          type="time"
+                          className="csl-input"
+                          value={schedule.startTime}
+                          onChange={(e) => updateSchedule("startTime", e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="csl-grid2 mt-4">
+                      <div className="csl-field">
+                        <label className="csl-label">Duration (minutes)</label>
+                        <input
+                          type="number"
+                          className="csl-input"
+                          placeholder="Duration"
+                          value={schedule.duration}
+                          onChange={(e) => updateSchedule("duration", e.target.value)}
+                        />
+                      </div>
+                      <div className="csl-field">
+                        <label className="csl-label">Timezone</label>
+                        <input
+                          className="csl-input"
+                          placeholder="Asia/Kolkata (GST)"
+                          value={schedule.timezone}
+                          onChange={(e) => updateSchedule("timezone", e.target.value)}
+                        />
+                      </div>
+                    </div>
+                    <div className="csl-field mt-4">
+                      <label className="csl-label">Webinar link</label>
+                      <input
+                        className="csl-input"
+                        placeholder="Url"
+                        value={schedule.link}
+                        onChange={(e) => updateSchedule("link", e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+
                 <CoverSection
                   cover={cover}
                   onUploadClick={() => setUploadStep("grid")}
                   onRemoveCover={() => setCover(null)}
                 />
-
-                <LessonSection
-                  lessons={lessons}
-                  onAddLesson={addLesson}
-                  onRemoveLesson={removeLesson}
-                  onUpdateLesson={updateLesson}
-                  onUploadMedia={uploadLessonMedia}
-                />
-
-                <div className="csl-group-box">
-                  <PreviewVideo
-                    previewImage={previewVideo || undefined}
-                    onUpload={() => {
-                      // Simulate video upload or open file picker
-                      const input = document.createElement('input');
-                      input.type = 'file';
-                      input.accept = 'video/*';
-                      input.onchange = (e) => {
-                        const file = e.target.files[0];
-                        if (file) {
-                          const url = URL.createObjectURL(file);
-                          setPreviewVideo(url);
-                        }
-                      };
-                      input.click();
-                    }}
-                    onClose={() => setPreviewVideo(null)}
-                  />
-                </div>
 
                 <DeliverablesSection
                   deliverables={deliverables}
