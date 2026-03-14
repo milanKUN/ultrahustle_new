@@ -3,11 +3,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 32px;
-    padding: 32px;
-    background: var(--cl-card-bg);
-    border: 1.5px solid #ceff1b;
-    border-radius: 24px;
+    padding: 48px;
+    background: #F7F7F7;
+    border: 1px solid #ceff1b;
+    border-radius: 32px;
     margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.user-page.dark .cl-team-profile-card {
+    background: #1A1A1A;
+    border-color: #333;
 }
 
 .cl-profile-left {
@@ -51,15 +57,25 @@
     font-size: 24px;
     font-weight: 700;
     margin: 0;
+    color: #1a1a1a;
+}
+
+.user-page.dark .cl-profile-title-box h3 {
+    color: #ffffff;
 }
 
 .cl-location {
-    color: var(--cl-muted);
-    font-size: 14px;
+    color: #666;
+    font-size: 15px;
     margin: 4px 0;
     display: flex;
     align-items: center;
     gap: 6px;
+    font-weight: 500;
+}
+
+.user-page.dark .cl-location {
+    color: #aaa;
 }
 
 .cl-rating-row {
@@ -79,25 +95,40 @@
 }
 
 .cl-profile-details h4 {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin: 32px 0 16px;
+    color: #000;
+}
+
+.user-page.dark .cl-profile-details h4 {
+    color: #ffffff;
 }
 
 .cl-profile-details p {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.6;
-    color: var(--cl-muted);
+    color: #444;
+    font-weight: 500;
+}
+
+.user-page.dark .cl-profile-details p {
+    color: #ccc;
 }
 
 .cl-languages-section {
-    margin-top: 20px;
+    margin-top: 32px;
 }
 
 .cl-languages-section h5 {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    color: #000;
+}
+
+.user-page.dark .cl-languages-section h5 {
+    color: #ffffff;
 }
 
 .cl-lang-tags {
@@ -106,29 +137,44 @@
 }
 
 .cl-lang-tags span {
-    padding: 8px 24px;
-    border-radius: 12px;
-    font-size: 14px;
-    color: var(--cl-text);
+    padding: 10px 32px;
+    border-radius: 14px;
+    font-size: 15px;
+    background: #f0f0f0;
+    color: #555;
+    font-weight: 600;
 }
 
 .user-page.dark .cl-lang-tags span {
-    background: #ffffff;
-    color: #000000;
+    background: #252525;
+    color: #ccc;
 }
 
 .cl-full-profile-btn {
-    margin-top: 24px;
-    background: var(--cl-lime);
+    margin-top: 32px;
+    background: #CEFF1B;
     color: #000;
-    border: none;
-    padding: 14px 48px;
+    border: 1px solid #888;
+    padding: 14px 0;
     border-radius: 12px;
     font-weight: 700;
     font-size: 15px;
     cursor: pointer;
-    width: fit-content;
-    border: 1px solid black;
+    width: 100%;
+    max-width: 240px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.cl-full-profile-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(206, 255, 27, 0.3);
+}
+
+.user-page.dark .cl-full-profile-btn {
+    background: #CEFF1B !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
 }
 
 .cl-profile-right {
@@ -146,77 +192,97 @@
 .cl-stat-card {
     background: #ffffff;
     border: 1px solid #ddd;
-    padding: 24px;
-    border-radius: 12px;
+    padding: 24px 32px;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.user-page.dark .cl-stat-card {
+    background: #252525;
+    border-color: #333;
 }
 
 .stat-header {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     color: #666;
 }
 
-.stat-icon-svg {
-    opacity: 0.6;
+.user-page.dark .stat-header {
+    color: #aaa;
 }
 
-.user-page.dark .stat-icon-svg {
-    color: #ffffff !important;
-    opacity: 1;
+.stat-icon-svg {
+    stroke-width: 1.5px;
 }
 
 .stat-label {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
 }
 
 .stat-value {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
-    color: #1a1a1a;
-    text-align: left;
-    align-self: flex-start;
-    display: block;
-    width: 100%;
+    color: #000;
+    line-height: 1;
+}
+
+.user-page.dark .cl-stat-card .stat-value {
+    color: #ffffff;
 }
 
 .cl-skills-panel {
-    background: #FFF;
-    border: 1px solid #ddd;
-    padding: 32px;
-    border-radius: 20px;
+    background: #F7F7F7;
+    border: 1px solid #aaa;
+    padding: 32px 40px;
+    border-radius: 24px;
+}
+
+.user-page.dark .cl-skills-panel {
+    background: #1A1A1A;
+    border-color: #333;
 }
 
 .cl-skills-panel h4 {
     margin-bottom: 24px;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
+    color: #1a1a1a;
+}
+
+.user-page.dark .cl-skills-panel h4 {
+    color: #ffffff;
 }
 
 .cl-skills-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
 }
 
 .cl-skill-tag {
-    padding: 10px 20px;
-    background: #ceff1b;
+    padding: 10px 18px;
+    background: #CEFF1B;
     color: #000;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    border: 1px solid #888;
+}
+
+.user-page.dark .cl-skill-tag {
+    border-color: #000;
 }
 
 .user-page.dark .cl-stat-card {
-    background: #1e1e1e;
-    border-color: #ceff1b;
+    background: #252525;
+    border-color: #333;
 }
 
 .user-page.dark .cl-stat-card .stat-value {
@@ -225,19 +291,7 @@
 
 .user-page.dark .cl-skills-panel {
     background: #1a1a1a;
-    border-color: #ceff1b;
-}
-
-/* Headings color in dark mode */
-.user-page.dark .cl-profile-title-box h3,
-.user-page.dark .cl-profile-details h4,
-.user-page.dark .cl-languages-section h5,
-.user-page.dark .cl-skills-panel h4 {
-    color: #ceff1b !important;
-}
-
-.user-page.dark .cl-skills-panel h4 {
-    color: #fff;
+    border-color: #333;
 }
 
 /* Responsive */

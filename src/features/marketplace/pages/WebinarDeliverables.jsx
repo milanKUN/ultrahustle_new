@@ -1,24 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { 
-    Calendar, 
-    Clock, 
-    Globe, 
-    CalendarPlus, 
-    Video, 
-    Package, 
-    Download, 
-    ExternalLink, 
-    FileText, 
-    ChevronLeft, 
-    Star, 
-    ChevronUp, 
-    ChevronDown, 
-    Check 
+import {
+    Calendar,
+    Clock,
+    Globe,
+    CalendarPlus,
+    Video,
+    Package,
+    Download,
+    ExternalLink,
+    FileText,
+    ChevronLeft,
+    Star,
+    ChevronUp,
+    ChevronDown,
+    Check,
+    MonitorPlay
 } from 'lucide-react';
 import './WebinarDeliverables.css';
 import UserNavbar from '../../../components/layout/UserNavbar';
 import Sidebar from '../../../components/layout/Sidebar';
 import DetailedTeamCard from '../components/DetailedTeamCard';
+import OrderDetailsSection from '../components/OrderDetailsSection';
+import NotesModal from '../components/NotesModal';
 
 const WebinarDeliverables = ({ theme, setTheme }) => {
     const [sidebarOpen, setSidebarOpen] = useState(() => {
@@ -26,6 +29,7 @@ const WebinarDeliverables = ({ theme, setTheme }) => {
         return saved ? JSON.parse(saved) : false;
     });
     const [showSettings, setShowSettings] = useState(false);
+    const [selectedNote, setSelectedNote] = useState(null);
 
     useEffect(() => {
         localStorage.setItem("sidebarOpen", JSON.stringify(sidebarOpen));
@@ -108,7 +112,7 @@ const WebinarDeliverables = ({ theme, setTheme }) => {
     };
 
     const toggleSessionMark = (id) => {
-        setSessions(prev => prev.map(session => 
+        setSessions(prev => prev.map(session =>
             session.id === id ? { ...session, watched: !session.watched } : session
         ));
     };
@@ -141,16 +145,15 @@ const WebinarDeliverables = ({ theme, setTheme }) => {
                                 </div>
                                 <div className="wd-header-actions">
                                     <button className="wd-webinar-btn">
-                                        <Video size={18} />
+                                        <MonitorPlay size={18} />
                                         <span>Go to webinar</span>
                                     </button>
                                     <button className="wd-calendar-btn">
-                                        <CalendarPlus size={18} />
+                                        <ExternalLink size={18} />
                                         <span>Add to calendar</span>
                                     </button>
                                 </div>
                             </div>
-
                             {/* Schedule Grid */}
                             <div className="wd-schedule-grid">
                                 <div className="wd-schedule-card">
@@ -181,6 +184,7 @@ const WebinarDeliverables = ({ theme, setTheme }) => {
                                     </div>
                                 </div>
                             </div>
+
 
                             {/* Content Info Section */}
                             <div className="wd-info-section">
@@ -237,7 +241,7 @@ const WebinarDeliverables = ({ theme, setTheme }) => {
                                                             {session.watched ? 'Watched' : 'Segment'}
                                                         </span>
                                                     </div>
-                                                    <button 
+                                                    <button
                                                         className={`wd-mark-btn ${session.watched ? 'unmark' : 'mark'}`}
                                                         onClick={() => toggleSessionMark(session.id)}
                                                     >
@@ -246,6 +250,12 @@ const WebinarDeliverables = ({ theme, setTheme }) => {
                                                 </div>
                                                 <h3 className="wd-session-title">{session.title}</h3>
                                                 <p className="wd-session-desc">{session.description}</p>
+                                                <button
+                                                    className="wd-notes-btn"
+                                                    onClick={() => setSelectedNote({ title: session.title, content: session.description })}
+                                                >
+                                                    View note
+                                                </button>
                                             </div>
                                         </div>
                                     ))}
@@ -280,9 +290,12 @@ const WebinarDeliverables = ({ theme, setTheme }) => {
                                                         {item.type === 'download' ? <Download size={18} /> : <ExternalLink size={18} />}
                                                         {item.buttonText}
                                                     </button>
-                                                    <button className="wd-action-btn secondary">
+                                                    <button
+                                                        className="wd-action-btn secondary"
+                                                        onClick={() => setSelectedNote({ title: item.title, content: "This is a dummy note for the deliverable. You can add more details here.  " })}
+                                                    >
                                                         <FileText size={18} />
-                                                        View Notes
+                                                        View note
                                                     </button>
                                                 </div>
                                             </div>
@@ -346,8 +359,8 @@ const WebinarDeliverables = ({ theme, setTheme }) => {
                                                     <Star
                                                         key={s}
                                                         size={20}
-                                                        fill={s <= 4 ? "#CEFF1B" : "#444"}
-                                                        stroke={s <= 4 ? "#CEFF1B" : "#444"}
+                                                        fill={s <= 4 ? (theme === 'dark' ? "#CEFF1B" : "#FFE100") : "#444"}
+                                                        stroke={s <= 4 ? (theme === 'dark' ? "#CEFF1B" : "#FFE100") : "#444"}
                                                     />
                                                 ))}
                                             </div>
@@ -360,49 +373,18 @@ const WebinarDeliverables = ({ theme, setTheme }) => {
                             </div>
 
                             {/* Order Details Section */}
-                            <div className="wd-details-section">
-                                <div className="wd-header-row">
-                                    <h2>Order Details</h2>
-                                    <div className="wd-header-line"></div>
-                                </div>
-
-                                <div className="wd-order-card">
-                                    <div className="wd-card-header">
-                                        <span className="wd-card-title">Your Order</span>
-                                        <span className="wd-card-date">Fri Dec 26 2025</span>
-                                    </div>
-                                    <div className="wd-table">
-                                        <div className="wd-table-header">
-                                            <div className="wd-col-item">Item</div>
-                                            <div className="wd-col-qty">Qty.</div>
-                                            <div className="wd-col-duration">Duration</div>
-                                            <div className="wd-col-price">Price</div>
-                                        </div>
-                                        <div className="wd-table-row">
-                                            <div className="wd-col-item">Name</div>
-                                            <div className="wd-col-qty">1</div>
-                                            <div className="wd-col-duration">2 days</div>
-                                            <div className="wd-col-price">$100000</div>
-                                        </div>
-                                        <div className="wd-table-row subtotal">
-                                            <div className="wd-col-item">Subtotal</div>
-                                            <div className="wd-col-price">$100000</div>
-                                        </div>
-                                        <div className="wd-table-row fee">
-                                            <div className="wd-col-item">Service fee</div>
-                                            <div className="wd-col-price">$100</div>
-                                        </div>
-                                        <div className="wd-table-row total">
-                                            <div className="wd-col-item">Total</div>
-                                            <div className="wd-col-price">$100100</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <OrderDetailsSection prefix="wd" />
                         </div>
                     </div>
                 </div>
             </div>
+            <NotesModal
+                isOpen={!!selectedNote}
+                onClose={() => setSelectedNote(null)}
+                title={selectedNote?.title}
+                content={selectedNote?.content}
+                theme={theme}
+            />
         </div>
     );
 };

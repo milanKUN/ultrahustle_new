@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Package, Download, ExternalLink, FileText, ChevronLeft, Star, ChevronUp, ChevronDown, Play, Check } from 'lucide-react';
+import { Package, Download, ExternalLink, FileText, ChevronLeft, Star, ChevronUp, ChevronDown, Play, Check, DollarSign } from 'lucide-react';
 import './CourseDeliverables.css';
 import UserNavbar from '../../../components/layout/UserNavbar';
 import Sidebar from '../../../components/layout/Sidebar';
 import DetailedTeamCard from '../components/DetailedTeamCard';
+import OrderDetailsSection from '../components/OrderDetailsSection';
+import NotesModal from '../components/NotesModal';
 
 const CourseDeliverables = ({ theme, setTheme }) => {
     const [sidebarOpen, setSidebarOpen] = useState(() => {
@@ -11,6 +13,7 @@ const CourseDeliverables = ({ theme, setTheme }) => {
         return saved ? JSON.parse(saved) : false;
     });
     const [showSettings, setShowSettings] = useState(false);
+    const [selectedNote, setSelectedNote] = useState(null);
 
     useEffect(() => {
         localStorage.setItem("sidebarOpen", JSON.stringify(sidebarOpen));
@@ -139,7 +142,7 @@ const CourseDeliverables = ({ theme, setTheme }) => {
                                 </div>
                                 <div className="cd-info-card">
                                     <div className="cd-info-icon lime">
-                                        <span className="cd-currency-icon">$</span>
+                                        <DollarSign size={32} />
                                     </div>
                                     <div className="cd-info-text">
                                         <span className="cd-info-label">Price</span>
@@ -279,9 +282,12 @@ const CourseDeliverables = ({ theme, setTheme }) => {
                                                         {item.type === 'download' ? <Download size={18} /> : <ExternalLink size={18} />}
                                                         {item.buttonText}
                                                     </button>
-                                                    <button className="cd-action-btn secondary">
+                                                    <button
+                                                        className="cd-action-btn secondary"
+                                                        onClick={() => setSelectedNote({ title: item.title, content: "This is a dummy note for the deliverable. You can add more details here." })}
+                                                    >
                                                         <FileText size={18} />
-                                                        View Notes
+                                                        View note
                                                     </button>
                                                 </div>
                                             </div>
@@ -344,8 +350,8 @@ const CourseDeliverables = ({ theme, setTheme }) => {
                                                     <Star
                                                         key={s}
                                                         size={20}
-                                                        fill={s <= 4 ? "#CEFF1B" : "#444"}
-                                                        stroke={s <= 4 ? "#CEFF1B" : "#444"}
+                                                        fill={s <= 4 ? (theme === 'dark' ? "#CEFF1B" : "#FFE100") : "#444"}
+                                                        stroke={s <= 4 ? (theme === 'dark' ? "#CEFF1B" : "#FFE100") : "#444"}
                                                     />
                                                 ))}
                                             </div>
@@ -358,76 +364,19 @@ const CourseDeliverables = ({ theme, setTheme }) => {
                             </div>
 
                             {/* Order Details Section */}
-                            <div className="cd-details-section">
-                                <div className="cd-review-header">
-                                    <h2>Order Details</h2>
-                                    <div className="cd-header-line"></div>
-                                </div>
-
-                                {/* Your Order Card */}
-                                <div className="cd-order-card">
-                                    <div className="cd-card-header">
-                                        <span className="cd-card-title">Your Order</span>
-                                        <span className="cd-card-date">Fri Dec 26 2025</span>
-                                    </div>
-                                    <div className="cd-table">
-                                        <div className="cd-table-header">
-                                            <div className="cd-col-item">Item</div>
-                                            <div className="cd-col-qty">Qty.</div>
-                                            <div className="cd-col-duration">Duration</div>
-                                            <div className="cd-col-price">Price</div>
-                                        </div>
-                                        <div className="cd-table-row">
-                                            <div className="cd-col-item">Name</div>
-                                            <div className="cd-col-qty">1</div>
-                                            <div className="cd-col-duration">2 days</div>
-                                            <div className="cd-col-price">$100000</div>
-                                        </div>
-                                        <div className="cd-table-row subtotal">
-                                            <div className="cd-col-item">Subtotal</div>
-                                            <div className="cd-col-price">$100000</div>
-                                        </div>
-                                        <div className="cd-table-row fee">
-                                            <div className="cd-col-item">Service fee</div>
-                                            <div className="cd-col-price">$100</div>
-                                        </div>
-                                        <div className="cd-table-row total">
-                                            <div className="cd-col-item">Total</div>
-                                            <div className="cd-col-price">$100100</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Order Extension Card */}
-                                <div className="cd-order-card">
-                                    <div className="cd-card-header">
-                                        <span className="cd-card-title">Order extension</span>
-                                        <span className="cd-card-date">Fri Dec 26 2025</span>
-                                    </div>
-                                    <div className="cd-table">
-                                        <div className="cd-table-header">
-                                            <div className="cd-col-item">Item</div>
-                                            <div className="cd-col-qty">Qty.</div>
-                                            <div className="cd-col-duration">Duration</div>
-                                            <div className="cd-col-price">Price</div>
-                                        </div>
-                                        <div className="cd-table-row">
-                                            <div className="cd-col-item">Extend duration</div>
-                                            <div className="cd-col-qty">1</div>
-                                            <div className="cd-col-duration">1 day</div>
-                                            <div className="cd-col-price">$100</div>
-                                        </div>
-                                        <div className="cd-table-row total">
-                                            <div className="cd-col-item">Total</div>
-                                            <div className="cd-col-price">$100200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <OrderDetailsSection prefix="cd" />
                         </div>
                     </div>
                 </div>
             </div>
+
+            <NotesModal
+                isOpen={!!selectedNote}
+                onClose={() => setSelectedNote(null)}
+                title={selectedNote?.title}
+                content={selectedNote?.content}
+                theme={theme}
+            />
         </div>
     );
 };

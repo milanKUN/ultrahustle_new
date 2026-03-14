@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Package, Download, ExternalLink, FileText, ChevronLeft, Star, ChevronUp, ChevronDown } from 'lucide-react';
+import { Package, Download, ExternalLink, FileText, ChevronLeft, Star, ChevronUp, ChevronDown, DollarSign } from 'lucide-react';
 import './OrderDeliverables.css';
 import UserNavbar from '../../../components/layout/UserNavbar';
 import Sidebar from '../../../components/layout/Sidebar';
 import DetailedTeamCard from '../components/DetailedTeamCard';
+import OrderDetailsSection from '../components/OrderDetailsSection';
+import NotesModal from '../components/NotesModal';
 
 const OrderDeliverables = ({ theme, setTheme }) => {
     const [sidebarOpen, setSidebarOpen] = useState(() => {
@@ -11,6 +13,7 @@ const OrderDeliverables = ({ theme, setTheme }) => {
         return saved ? JSON.parse(saved) : false;
     });
     const [showSettings, setShowSettings] = useState(false);
+    const [selectedNote, setSelectedNote] = useState(null);
 
     useEffect(() => {
         localStorage.setItem("sidebarOpen", JSON.stringify(sidebarOpen));
@@ -67,11 +70,11 @@ const OrderDeliverables = ({ theme, setTheme }) => {
 
     return (
         <div className={`user-page order-deliverables-page ${theme} min-h-screen relative overflow-hidden`}>
-            <UserNavbar 
+            <UserNavbar
                 toggleSidebar={() => setSidebarOpen((p) => !p)}
                 theme={theme}
             />
-            
+
             <div className="pt-[85px] flex relative z-10">
                 <Sidebar
                     expanded={sidebarOpen}
@@ -100,7 +103,7 @@ const OrderDeliverables = ({ theme, setTheme }) => {
                             <div className="od-info-grid">
                                 <div className="od-info-card">
                                     <div className="od-info-icon">
-                                        <Package size={24} />
+                                        <Package size={32} />
                                     </div>
                                     <div className="od-info-text">
                                         <span className="od-info-label">Order ID</span>
@@ -109,7 +112,7 @@ const OrderDeliverables = ({ theme, setTheme }) => {
                                 </div>
                                 <div className="od-info-card">
                                     <div className="od-info-icon">
-                                        <Package size={24} />
+                                        <Package size={32} />
                                     </div>
                                     <div className="od-info-text">
                                         <span className="od-info-label">Purchased</span>
@@ -118,7 +121,7 @@ const OrderDeliverables = ({ theme, setTheme }) => {
                                 </div>
                                 <div className="od-info-card">
                                     <div className="od-info-icon lime">
-                                        <span className="od-currency-icon">$</span>
+                                        <DollarSign size={32} />
                                     </div>
                                     <div className="od-info-text">
                                         <span className="od-info-label">Price</span>
@@ -155,9 +158,12 @@ const OrderDeliverables = ({ theme, setTheme }) => {
                                                         {item.type === 'download' ? <Download size={18} /> : <ExternalLink size={18} />}
                                                         {item.buttonText}
                                                     </button>
-                                                    <button className="od-action-btn secondary">
+                                                    <button
+                                                        className="od-action-btn secondary"
+                                                        onClick={() => setSelectedNote({ title: item.title, content: "This is a dummy note for the deliverable. You can add more details here." })}
+                                                    >
                                                         <FileText size={18} />
-                                                        View Notes
+                                                        View note
                                                     </button>
                                                 </div>
                                             </div>
@@ -220,8 +226,8 @@ const OrderDeliverables = ({ theme, setTheme }) => {
                                                     <Star
                                                         key={s}
                                                         size={20}
-                                                        fill={s <= 4 ? "#CEFF1B" : "#444"}
-                                                        stroke={s <= 4 ? "#CEFF1B" : "#444"}
+                                                        fill={s <= 4 ? (theme === 'dark' ? "#CEFF1B" : "#FFE100") : "#444"}
+                                                        stroke={s <= 4 ? (theme === 'dark' ? "#CEFF1B" : "#FFE100") : "#444"}
                                                     />
                                                 ))}
                                             </div>
@@ -234,76 +240,19 @@ const OrderDeliverables = ({ theme, setTheme }) => {
                             </div>
 
                             {/* Order Details Section */}
-                            <div className="od-details-section">
-                                <div className="od-review-header">
-                                    <h2>Order Details</h2>
-                                    <div className="od-header-line"></div>
-                                </div>
-
-                                {/* Your Order Card */}
-                                <div className="od-order-card">
-                                    <div className="od-card-header">
-                                        <span className="od-card-title">Your Order</span>
-                                        <span className="od-card-date">Fri Dec 26 2025</span>
-                                    </div>
-                                    <div className="od-table">
-                                        <div className="od-table-header">
-                                            <div className="od-col-item">Item</div>
-                                            <div className="od-col-qty">Qty.</div>
-                                            <div className="od-col-duration">Duration</div>
-                                            <div className="od-col-price">Price</div>
-                                        </div>
-                                        <div className="od-table-row">
-                                            <div className="od-col-item">Name</div>
-                                            <div className="od-col-qty">1</div>
-                                            <div className="od-col-duration">2 days</div>
-                                            <div className="od-col-price">$100000</div>
-                                        </div>
-                                        <div className="od-table-row subtotal">
-                                            <div className="od-col-item">Subtotal</div>
-                                            <div className="od-col-price">$100000</div>
-                                        </div>
-                                        <div className="od-table-row fee">
-                                            <div className="od-col-item">Service fee</div>
-                                            <div className="od-col-price">$100</div>
-                                        </div>
-                                        <div className="od-table-row total">
-                                            <div className="od-col-item">Total</div>
-                                            <div className="od-col-price">$100100</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Order Extension Card */}
-                                <div className="od-order-card">
-                                    <div className="od-card-header">
-                                        <span className="od-card-title">Order extension</span>
-                                        <span className="od-card-date">Fri Dec 26 2025</span>
-                                    </div>
-                                    <div className="od-table">
-                                        <div className="od-table-header">
-                                            <div className="od-col-item">Item</div>
-                                            <div className="od-col-qty">Qty.</div>
-                                            <div className="od-col-duration">Duration</div>
-                                            <div className="od-col-price">Price</div>
-                                        </div>
-                                        <div className="od-table-row">
-                                            <div className="od-col-item">Extend duration</div>
-                                            <div className="od-col-qty">1</div>
-                                            <div className="od-col-duration">1 day</div>
-                                            <div className="od-col-price">$100</div>
-                                        </div>
-                                        <div className="od-table-row total">
-                                            <div className="od-col-item">Total</div>
-                                            <div className="od-col-price">$100200</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <OrderDetailsSection prefix="od" />
                         </div>
                     </div>
                 </div>
             </div>
+
+            <NotesModal
+                isOpen={!!selectedNote}
+                onClose={() => setSelectedNote(null)}
+                title={selectedNote?.title}
+                content={selectedNote?.content}
+                theme={theme}
+            />
         </div>
     );
 };

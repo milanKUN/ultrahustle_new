@@ -3,7 +3,7 @@
 }
 
 .od-container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 32px;
 }
@@ -72,13 +72,14 @@
 }
 
 .od-info-card {
-    background: #ffffff;
+    background: #F7F7F7;
     border: 1px solid #CEFF1B;
-    border-radius: 20px;
-    padding: 24px;
+    border-radius: 28px;
+    padding: 24px 32px;
     display: flex;
     align-items: center;
     gap: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
 .dark .od-info-card {
@@ -87,14 +88,20 @@
 }
 
 .od-info-icon {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     background: #CEFF1B;
-    border-radius: 12px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000;
+    color: #444;
+}
+
+.od-info-icon svg {
+    width: 32px;
+    height: 32px;
+    stroke-width: 1.5px;
 }
 
 .od-info-icon.lime {
@@ -109,22 +116,29 @@
 .od-info-text {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    text-align: right;
+    justify-content: flex-end;
 }
 
 .od-info-label {
     font-size: 13px;
-    color: #666;
-    margin-bottom: 4px;
+    color: #444;
+    font-weight: 600;
+    margin-bottom: 2px;
+    text-transform: none;
 }
 
 .dark .od-info-label {
-    color: #aaa;
+    color: #ccc;
 }
 
 .od-info-value {
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #444;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
 }
 
 .dark .od-info-value {
@@ -441,156 +455,4 @@
     color: #ccc;
 }
 
-/* Order Details Section */
-.od-details-section {
-    margin-top: 50px;
-}
 
-.od-order-card {
-    background: rgba(238, 238, 238, 0.6);
-    border: 1px solid #CEFF1B;
-    border-radius: 20px;
-    padding: 0;
-    margin-bottom: 24px;
-    overflow: hidden;
-}
-
-.dark .od-order-card {
-    background: #1A1A1A;
-    border-color: #333;
-}
-
-.od-card-header {
-    background: rgba(206, 255, 27, 0.05);
-    padding: 16px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #CEFF1B;
-}
-
-.dark .od-card-header {
-    background: rgba(255, 255, 255, 0.02);
-    border-bottom-color: #333;
-}
-
-.od-card-title {
-    font-weight: 700;
-    font-size: 18px;
-    color: #1a1a1a;
-}
-
-.dark .od-card-title {
-    color: #ffffff;
-}
-
-.od-card-date {
-    font-size: 16px;
-    color: #666;
-    font-weight: 500;
-}
-
-.dark .od-card-date {
-    color: #aaa;
-}
-
-.od-table {
-    width: 100%;
-}
-
-.od-table-header {
-    display: flex;
-    padding: 16px 24px;
-    background: rgba(206, 255, 27, 0.02);
-    border-bottom: 1px solid #CEFF1B;
-    font-weight: 700;
-    color: #1a1a1a;
-    font-size: 14px;
-}
-
-.dark .od-table-header {
-    background: transparent;
-    border-bottom-color: #333;
-    color: #ffffff;
-}
-
-.od-table-row {
-    display: flex;
-    padding: 20px 24px;
-    border-bottom: 1px solid rgba(206, 255, 27, 0.2);
-    font-weight: 500;
-    color: #333;
-    background: #fff;
-}
-
-.dark .od-table-row {
-    background: #1e1e1e;
-    border-bottom-color: #333;
-    color: #ccc;
-}
-
-.od-table-row.subtotal,
-.od-table-row.fee,
-.od-table-row.total {
-    background: rgba(206, 255, 27, 0.03);
-}
-
-.dark .od-table-row.subtotal,
-.dark .od-table-row.fee,
-.dark .od-table-row.total {
-    background: rgba(255, 255, 255, 0.01);
-}
-
-.od-table-row.total {
-    border-bottom: none;
-    font-weight: 700;
-    color: #1a1a1a;
-    background: rgba(206, 255, 27, 0.08);
-}
-
-.dark .od-table-row.total {
-    background: rgba(206, 255, 27, 0.05);
-    color: #ffffff;
-}
-
-.od-col-item { flex: 2; }
-.od-col-qty { flex: 1; text-align: center; }
-.od-col-duration { flex: 1; text-align: center; }
-.od-col-price { flex: 1; text-align: right; }
-
-.od-table-row.subtotal .od-col-item,
-.od-table-row.fee .od-col-item,
-.od-table-row.total .od-col-item {
-    flex: 4;
-}
-
-@media (max-width: 768px) {
-    .od-card-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-    
-    .od-table-header {
-        display: none;
-    }
-    
-    .od-table-row {
-        flex-direction: column;
-        gap: 12px;
-    }
-    
-    .od-col-qty, .od-col-duration, .od-col-price {
-        text-align: left;
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .od-col-qty::before { content: "Qty: "; font-weight: 700; }
-    .od-col-duration::before { content: "Duration: "; font-weight: 700; }
-    .od-col-price::before { content: "Price: "; font-weight: 700; }
-    
-    .od-table-row.subtotal .od-col-price::before { content: "Subtotal: "; }
-    .od-table-row.fee .od-col-price::before { content: "Fee: "; }
-    .od-table-row.total .od-col-price::before { content: "Total: "; }
-}

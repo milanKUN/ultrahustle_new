@@ -3,7 +3,7 @@
 }
 
 .cd-container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 32px;
 }
@@ -72,13 +72,14 @@
 }
 
 .cd-info-card {
-    background: #ffffff;
+    background: #F7F7F7;
     border: 1px solid #CEFF1B;
-    border-radius: 20px;
-    padding: 24px;
+    border-radius: 28px;
+    padding: 24px 32px;
     display: flex;
     align-items: center;
     gap: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
 .dark .cd-info-card {
@@ -87,14 +88,20 @@
 }
 
 .cd-info-icon {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     background: #CEFF1B;
-    border-radius: 12px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000;
+    color: #444;
+}
+
+.cd-info-icon svg {
+    width: 32px;
+    height: 32px;
+    stroke-width: 1.5px;
 }
 
 .cd-info-icon.lime {
@@ -109,22 +116,33 @@
 .cd-info-text {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    text-align: right;
+    justify-content: flex-end;
 }
 
 .cd-info-label {
     font-size: 13px;
-    color: #666;
-    margin-bottom: 4px;
+    color: #444;
+    font-weight: 600;
+    margin-bottom: 2px;
+    text-transform: none;
 }
 
 .dark .cd-info-label {
-    color: #aaa;
+    color: #ccc;
 }
 
 .cd-info-value {
-    font-size: 22px;
+    font-size: 28px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #444;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+.dark .cd-info-value {
+    color: #ffffff;
 }
 
 .dark .cd-info-value {
@@ -710,193 +728,4 @@
 .dark .cd-faq-answer {
     background: #242424;
     color: #ccc;
-}
-
-/* Order Details Section */
-.cd-details-section {
-    margin-top: 50px;
-}
-
-.cd-order-card {
-    background: rgba(238, 238, 238, 0.6);
-    border: 1px solid #CEFF1B;
-    border-radius: 20px;
-    padding: 0;
-    margin-bottom: 24px;
-    overflow: hidden;
-}
-
-.dark .cd-order-card {
-    background: #1A1A1A;
-    border-color: #333;
-}
-
-.cd-card-header {
-    background: rgba(206, 255, 27, 0.05);
-    padding: 16px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #CEFF1B;
-}
-
-.dark .cd-card-header {
-    background: rgba(255, 255, 255, 0.02);
-    border-bottom-color: #333;
-}
-
-.cd-card-title {
-    font-weight: 700;
-    font-size: 18px;
-    color: #1a1a1a;
-}
-
-.dark .cd-card-title {
-    color: #ffffff;
-}
-
-.cd-card-date {
-    font-size: 16px;
-    color: #666;
-    font-weight: 500;
-}
-
-.dark .cd-card-date {
-    color: #aaa;
-}
-
-.cd-table {
-    width: 100%;
-}
-
-.cd-table-header {
-    display: flex;
-    padding: 16px 24px;
-    background: rgba(206, 255, 27, 0.02);
-    border-bottom: 1px solid #CEFF1B;
-    font-weight: 700;
-    color: #1a1a1a;
-    font-size: 14px;
-}
-
-.dark .cd-table-header {
-    background: transparent;
-    border-bottom-color: #333;
-    color: #ffffff;
-}
-
-.cd-table-row {
-    display: flex;
-    padding: 20px 24px;
-    border-bottom: 1px solid rgba(206, 255, 27, 0.2);
-    font-weight: 500;
-    color: #333;
-    background: #fff;
-}
-
-.dark .cd-table-row {
-    background: #1e1e1e;
-    border-bottom-color: #333;
-    color: #ccc;
-}
-
-.cd-table-row.subtotal,
-.cd-table-row.fee,
-.cd-table-row.total {
-    background: rgba(206, 255, 27, 0.03);
-}
-
-.dark .cd-table-row.subtotal,
-.dark .cd-table-row.fee,
-.dark .cd-table-row.total {
-    background: rgba(255, 255, 255, 0.01);
-}
-
-.cd-table-row.total {
-    border-bottom: none;
-    font-weight: 700;
-    color: #1a1a1a;
-    background: rgba(206, 255, 27, 0.08);
-}
-
-.dark .cd-table-row.total {
-    background: rgba(206, 255, 27, 0.05);
-    color: #ffffff;
-}
-
-.cd-col-item {
-    flex: 2;
-}
-
-.cd-col-qty {
-    flex: 1;
-    text-align: center;
-}
-
-.cd-col-duration {
-    flex: 1;
-    text-align: center;
-}
-
-.cd-col-price {
-    flex: 1;
-    text-align: right;
-}
-
-.cd-table-row.subtotal .cd-col-item,
-.cd-table-row.fee .cd-col-item,
-.cd-table-row.total .cd-col-item {
-    flex: 4;
-}
-
-@media (max-width: 768px) {
-    .cd-card-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-
-    .cd-table-header {
-        display: none;
-    }
-
-    .cd-table-row {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .cd-col-qty,
-    .cd-col-duration,
-    .cd-col-price {
-        text-align: left;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .cd-col-qty::before {
-        content: "Qty: ";
-        font-weight: 700;
-    }
-
-    .cd-col-duration::before {
-        content: "Duration: ";
-        font-weight: 700;
-    }
-
-    .cd-col-price::before {
-        content: "Price: ";
-        font-weight: 700;
-    }
-
-    .cd-table-row.subtotal .cd-col-price::before {
-        content: "Subtotal: ";
-    }
-
-    .cd-table-row.fee .cd-col-price::before {
-        content: "Fee: ";
-    }
-
-    .cd-table-row.total .cd-col-price::before {
-        content: "Total: ";
-    }
 }

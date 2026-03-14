@@ -49,7 +49,7 @@ const DetailedTeamCard = ({
                 </div>
 
                 <div className="cl-profile-details">
-                    <h4>Details</h4>
+                    <h4>About me</h4>
                     <p>{description}</p>
 
                     <div className="cl-languages-section">

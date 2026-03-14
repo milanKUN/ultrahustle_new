@@ -3,22 +3,22 @@
 }
 
 .wd-container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 32px;
 }
 
 /* Header Card */
 .wd-header-card {
-    background: #ffffff;
+    background: #F7F7F7;
     border: 1px solid #CEFF1B;
-    border-radius: 24px;
-    padding: 32px 40px;
+    border-radius: 32px;
+    padding: 40px 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 32px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .dark .wd-header-card {
@@ -27,11 +27,12 @@
 }
 
 .wd-header-content h1 {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #000;
     margin-bottom: 8px;
     max-width: 800px;
+    letter-spacing: -0.5px;
 }
 
 .dark .wd-header-content h1 {
@@ -39,8 +40,9 @@
 }
 
 .wd-header-content p {
-    font-size: 16px;
+    font-size: 18px;
     color: #666;
+    font-weight: 500;
 }
 
 .dark .wd-header-content p {
@@ -54,16 +56,16 @@
 
 .wd-webinar-btn {
     background: #CEFF1B;
-    border: 1px solid #000;
+    border: 1px solid #888;
     color: #000;
-    padding: 12px 24px;
+    padding: 14px 28px;
     border-radius: 12px;
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: 700;
+    font-size: 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     transition: all 0.2s ease;
 }
 
@@ -73,28 +75,28 @@
 }
 
 .wd-calendar-btn {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    color: #1a1a1a;
-    padding: 12px 24px;
+    background: #F7F7F7;
+    border: 1px solid #999;
+    color: #000;
+    padding: 14px 28px;
     border-radius: 12px;
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: 700;
+    font-size: 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     transition: all 0.2s ease;
 }
 
 .dark .wd-calendar-btn {
     background: #242424;
-    border-color: #333;
+    border-color: #444;
     color: #ffffff;
 }
 
 .wd-calendar-btn:hover {
-    border-color: #CEFF1B;
+    border-color: #666;
     transform: translateY(-2px);
 }
 
@@ -107,13 +109,14 @@
 }
 
 .wd-schedule-card {
-    background: #ffffff;
+    background: #F7F7F7;
     border: 1px solid #CEFF1B;
-    border-radius: 20px;
-    padding: 24px;
+    border-radius: 28px;
+    padding: 24px 32px;
     display: flex;
     align-items: center;
     gap: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
 .dark .wd-schedule-card {
@@ -122,35 +125,51 @@
 }
 
 .wd-icon-box {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     background: #CEFF1B;
-    border-radius: 12px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000;
+    color: #444;
+}
+
+.wd-icon-box svg {
+    width: 32px;
+    height: 32px;
+    stroke-width: 1.5px;
 }
 
 .wd-schedule-info {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    text-align: right;
+    justify-content: flex-end;
 }
 
 .wd-label {
     font-size: 13px;
-    color: #666;
-    margin-bottom: 4px;
+    color: #444;
+    font-weight: 600;
+    margin-bottom: 2px;
 }
 
 .dark .wd-label {
-    color: #aaa;
+    color: #ccc;
 }
 
 .wd-value {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #444;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+.dark .wd-value {
+    color: #ffffff;
 }
 
 .dark .wd-value {
@@ -364,10 +383,29 @@
     font-size: 15px;
     color: #666;
     margin: 0;
+    margin-bottom: 12px;
 }
 
-.dark .wd-session-desc {
-    color: #aaa;
+.wd-notes-btn {
+    background: transparent;
+    border: 1px solid #CEFF1B;
+    color: #1a1a1a;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dark .wd-notes-btn {
+    color: #ffffff;
+    border-color: #333;
+}
+
+.wd-notes-btn:hover {
+    background: #CEFF1B;
+    color: #000;
 }
 
 /* Resources Section */
@@ -622,111 +660,7 @@
     transition: all 0.2s ease;
 }
 
-/* Order Details */
-.wd-details-section {
-    margin-bottom: 40px;
-}
 
-.wd-order-card {
-    background: rgba(238, 238, 238, 0.6);
-    border: 1px solid #CEFF1B;
-    border-radius: 20px;
-    padding: 0;
-    overflow: hidden;
-}
-
-.dark .wd-order-card {
-    background: #1A1A1A;
-    border-color: #333;
-}
-
-.wd-card-header {
-    background: rgba(206, 255, 27, 0.05);
-    padding: 16px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #CEFF1B;
-}
-
-.dark .wd-card-header {
-    background: rgba(255, 255, 255, 0.02);
-    border-bottom: 1px solid #333;
-}
-
-.wd-card-title {
-    font-weight: 700;
-    font-size: 18px;
-    color: #1a1a1a;
-}
-
-.dark .wd-card-title {
-    color: #ffffff;
-}
-
-.wd-card-date {
-    font-size: 15px;
-    color: #666;
-}
-
-.dark .wd-card-date {
-    color: #aaa;
-}
-
-.wd-table {
-    width: 100%;
-}
-
-.wd-table-header {
-    display: flex;
-    padding: 16px 24px;
-    background: rgba(206, 255, 27, 0.02);
-    border-bottom: 1px solid #CEFF1B;
-    font-weight: 700;
-    color: #1a1a1a;
-    font-size: 14px;
-}
-
-.dark .wd-table-header {
-    background: transparent;
-    border-bottom: 1px solid #333;
-    color: #ffffff;
-}
-
-.wd-table-row {
-    display: flex;
-    padding: 20px 24px;
-    border-bottom: 1px solid rgba(206, 255, 27, 0.1);
-    font-weight: 500;
-    color: #333;
-}
-
-.dark .wd-table-row {
-    border-bottom-color: #333;
-    color: #ccc;
-}
-
-.wd-table-row.total {
-    border-bottom: none;
-    font-weight: 700;
-    color: #1a1a1a;
-    background: rgba(206, 255, 27, 0.05);
-}
-
-.dark .wd-table-row.total {
-    color: #ffffff;
-}
-
-.wd-col-item { flex: 2; }
-.wd-col-qty { flex: 1; text-align: center; }
-.wd-col-duration { flex: 1; text-align: center; }
-.wd-col-price { flex: 1; text-align: right; }
-
-.wd-table-row.subtotal .wd-col-item,
-.wd-table-row.fee .wd-col-item,
-.wd-table-row.total .wd-col-item {
-    flex: 4;
-}
 
 /* Responsive */
 @media (max-width: 992px) {
