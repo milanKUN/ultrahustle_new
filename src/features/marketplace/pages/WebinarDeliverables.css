@@ -663,6 +663,12 @@
 
 
 /* Responsive */
+@media (max-width: 1200px) {
+    .wd-container {
+        padding: 24px;
+    }
+}
+
 @media (max-width: 992px) {
     .wd-schedule-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -670,13 +676,22 @@
 }
 
 @media (max-width: 768px) {
+    .wd-container {
+        padding: 16px;
+    }
+
     .wd-header-card {
         flex-direction: column;
         text-align: center;
         gap: 24px;
-        padding: 24px;
+        padding: 32px 24px;
+        border-radius: 24px;
     }
     
+    .wd-header-content h1 {
+        font-size: 24px;
+    }
+
     .wd-header-actions {
         width: 100%;
         flex-direction: column;
@@ -689,6 +704,23 @@
 
     .wd-schedule-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .wd-schedule-card {
+        padding: 20px;
+    }
+
+    .wd-value {
+        font-size: 20px;
+    }
+
+    .wd-sessions-container, .wd-files-list-container {
+        padding: 16px;
+    }
+
+    .wd-session-card, .wd-file-item {
+        padding: 16px;
     }
 
     .wd-file-item {
@@ -699,14 +731,78 @@
     
     .wd-file-actions {
         width: 100%;
+        flex-direction: column;
+        gap: 10px;
     }
     
     .wd-action-btn {
-        flex: 1;
+        width: 100%;
         justify-content: center;
     }
     
     .wd-info-grid-2 {
         grid-template-columns: 1fr;
+    }
+
+    .wd-faq-question {
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+
+    .wd-faq-answer, .wd-review-card {
+        padding: 20px;
+    }
+
+    .wd-review-footer {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+
+    .wd-post-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .wd-header-content h1 {
+        font-size: 20px;
+    }
+
+    .wd-header-card {
+        padding: 24px 16px;
+    }
+
+    .wd-session-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .wd-mark-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .wd-session-title {
+        font-size: 18px;
+    }
+
+    .wd-section-title, .wd-header-row h2 {
+        font-size: 18px;
+    }
+
+    .wd-info-title {
+        font-size: 18px;
+    }
+
+    .wd-icon-box {
+        width: 48px;
+        height: 48px;
+    }
+
+    .wd-icon-box svg {
+        width: 24px;
+        height: 24px;
     }
 }
