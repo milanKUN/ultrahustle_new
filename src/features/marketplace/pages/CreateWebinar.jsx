@@ -821,7 +821,7 @@ function UploadGrid({ onSelect, onBack, blurred }) {
                     <div className="relative pointer-events-none">
                       <img src="/video2.svg" className="w-10 mr-8 mt-2 opacity-60" alt="" />
                       <img src="/video1.svg" className="w-12 absolute -right-2 -top-3 opacity-60" alt="" />
-                      <div className="absolute -bottom-1 -right-4 w-6 h-6 rounded-full bg-[#CEFF1B] flex items-center justify-center text-black font-bold">+</div>
+                      <div className="absolute bottom-4 right-6 w-6 h-6 rounded-full bg-[#CEFF1B] flex items-center justify-center text-black font-bold">+</div>
                     </div>
                   )
                 )}

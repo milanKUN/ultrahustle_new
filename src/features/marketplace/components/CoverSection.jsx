@@ -11,8 +11,8 @@ const CoverSection = ({ cover, onUploadClick, onRemoveCover }) => {
           {cover ? (
             <div className="cover-preview-wrapper">
               <img src={cover} alt="cover preview" className="cover-preview" />
-              <button 
-                className="cover-remove-btn" 
+              <button
+                className="cover-remove-btn"
                 onClick={onRemoveCover}
                 type="button"
               >
@@ -21,8 +21,8 @@ const CoverSection = ({ cover, onUploadClick, onRemoveCover }) => {
             </div>
           ) : (
             <div className="cover-placeholder">
-              <button 
-                className="cover-upload-btn" 
+              <button
+                className="cover-upload-btn"
                 onClick={onUploadClick}
                 type="button"
               >
