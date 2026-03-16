@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import UserNavbar from "../../../components/layout/UserNavbar";
 import Sidebar from "../../../components/layout/Sidebar";
 import "./MyListings.css";
@@ -91,6 +92,7 @@ const TrashIcon = () => (
 );
 
 export default function MyListings({ theme = "light", setTheme }) {
+    const navigate = useNavigate();
     const [sidebarOpen, setSidebarOpen] = useState(() => {
         const saved = localStorage.getItem("sidebarOpen");
         return saved ? JSON.parse(saved) : true;
@@ -187,7 +189,15 @@ export default function MyListings({ theme = "light", setTheme }) {
                         <main className="mylis-main w-full">
 
                             {/* Header */}
-                            <h1 className="mylis-title">My Listings</h1>
+                            <div className="mylis-header-row">
+                                <h1 className="mylis-title">My Listings</h1>
+                                <button 
+                                    className="mylis-add-btn"
+                                    onClick={() => navigate("/add-listing")}
+                                >
+                                    + Add New Listing
+                                </button>
+                            </div>
                             <p className="mylis-subtitle">
                                 One place to manage products, services, courses, webinars, and teams.
                             </p>
@@ -254,8 +264,24 @@ export default function MyListings({ theme = "light", setTheme }) {
 
                             {/* Grid */}
                             <div className="mylis-grid">
-                                {listings.map((item) => (
-                                    <div className={`mylis-card ${openDropdown === item.id ? 'active-dropdown' : ''}`} key={item.id}>
+                                {listings.map((item) => {
+                                    const getRoute = () => {
+                                        switch (activeTab) {
+                                            case "Products": return "/digital-product-listing";
+                                            case "Services": return "/team-service-listing";
+                                            case "Courses": return "/course-listing";
+                                            case "Webinar": return "/webinar-listing";
+                                            case "Teams": return "/team-profile";
+                                            default: return "/marketplace";
+                                        }
+                                    };
+
+                                    return (
+                                        <div 
+                                            className={`mylis-card ${openDropdown === item.id ? 'active-dropdown' : ''}`} 
+                                            key={item.id}
+                                            onClick={() => navigate(getRoute())}
+                                        >
                                         <div className="mylis-card-img-wrap">
                                             <img src={item.img} alt={item.title} className="mylis-card-img" />
                                         </div>
@@ -302,9 +328,10 @@ export default function MyListings({ theme = "light", setTheme }) {
                                                 {item.status}
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
+                                        </div>
+                                        );
+                                    })}
+                                </div>
 
                         </main>
                     </div>

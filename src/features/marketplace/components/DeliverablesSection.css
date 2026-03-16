@@ -131,7 +131,7 @@
 .deliverables-add-btn {
   background: #CEFF1B;
   color: #000;
-  border: none;
+  border: 1px solid black;
   border-radius: 8px;
   padding: 8px 24px;
   font-weight: 700;

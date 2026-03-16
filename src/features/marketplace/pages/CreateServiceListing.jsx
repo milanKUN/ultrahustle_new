@@ -972,12 +972,12 @@ function UploadGrid({ onSelect, onBack, blurred }) {
           <button
             type="button"
             onClick={onBack}
-            className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-gray-100"
+            className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-gray-100 shrink-0"
             title="Back"
           >
             <img src="/backarrow.svg" alt="back" />
           </button>
-          <h4 className="text-sm font-medium dark:text-white">Select and upload your file</h4>
+          <h4 className="text-sm font-medium text-black dark:text-black">Select and upload your file</h4>
           <button
             type="button"
             onClick={onBack}

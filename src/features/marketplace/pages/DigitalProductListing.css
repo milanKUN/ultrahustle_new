@@ -1807,4 +1807,6 @@
 
 .tsl-page.dark .tsl-expand-btn {
     color: #000 !important;
+/* FAQ Section replaced by FAQAccordion component */
+
 }

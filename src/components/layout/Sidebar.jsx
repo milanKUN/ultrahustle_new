@@ -32,6 +32,7 @@ const CREATOR_ITEMS = [
     children: [
       { label: "View Products", icon: Package, path: "/marketplace" },
       { label: "Add New Listings", icon: FilePlus, path: "/add-listing" },
+      { label: "My Listing", icon: CiSaveDown1, path: "/my-listings" },
     ],
   },
   {
@@ -382,11 +383,7 @@ export default function Sidebar({
                       <span className="ml-4">{item.label}</span>
 
                       {item.children && (
-                        <ChevronDown
-                          size={14}
-                          className={`ml-auto transition-transform ${openMenu === item.label ? "rotate-180" : ""
-                            }`}
-                        />
+                        <span className="ml-auto" style={{ fontSize: '10px' }}>▼</span>
                       )}
                     </button>
 

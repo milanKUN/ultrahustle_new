@@ -1,5 +1,6 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import {
     Share2,
     Flag,
@@ -23,6 +24,7 @@ import '../../dashboard/pages/TeamProfileLight.css';
 import MobileBottomNav from "../../../components/layout/MobileBottomNav";
 
 const TeamServiceListing = ({ theme, setTheme }) => {
+    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('Basic');
     const [activeImg, setActiveImg] = useState(0);
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -372,6 +374,13 @@ const TeamServiceListing = ({ theme, setTheme }) => {
                     <div className="overflow-y-auto h-[calc(100vh-85px)]">
                         <div className={`tsl-page ${theme}`}>
                             <div className="tsl-header">
+                                <div 
+                                    className="cl-back-link" 
+                                    onClick={() => navigate('/my-listings')}
+                                    style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--mylis-muted)', marginBottom: '10px', fontSize: '14px' }}
+                                >
+                                    <ChevronLeft size={16} /> Back to My Listings
+                                </div>
                                 <h1 className="tsl-title">I will design online course cover and digital product mockup bundle</h1>
                                 <div className="tsl-header-actions">
                                     <button className="tsl-icon-btn"><Share2 size={20} /></button>

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import {
     Share2,
     Flag,
@@ -27,8 +28,10 @@ import '../../../Darkuser.css';
 import '../../dashboard/pages/TeamProfileLight.css';
 import MobileBottomNav from "../../../components/layout/MobileBottomNav";
 import DetailedTeamCard from '../components/DetailedTeamCard';
+import FAQAccordion from '../components/FAQAccordion';
 
 const WebinarListing = ({ theme, setTheme }) => {
+    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('Basic');
     const [activeImg, setActiveImg] = useState(0);
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -45,7 +48,6 @@ const WebinarListing = ({ theme, setTheme }) => {
     const [favorites, setFavorites] = useState(new Set());
     const [mainTab, setMainTab] = useState('listings');
     const [filter, setFilter] = useState('All');
-    const [activeFaq, setActiveFaq] = useState(null);
     const recommendedGridRef = useRef(null);
     const moreFromSarahGridRef = useRef(null);
 
@@ -387,6 +389,13 @@ const WebinarListing = ({ theme, setTheme }) => {
                     <div className="overflow-y-auto h-[calc(100vh-85px)]">
                         <div className={`cl-page ${theme}`}>
                             <div className="cl-header">
+                                <div 
+                                    className="cl-back-link" 
+                                    onClick={() => navigate('/my-listings')}
+                                    style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--mylis-muted)', marginBottom: '10px', fontSize: '14px' }}
+                                >
+                                    <ChevronLeft size={16} /> Back to My Listings
+                                </div>
                                 <h1 className="cl-title">I will design online course cover and digital product mockup bundle</h1>
                                 <div className="cl-header-actions">
                                     <button className="cl-icon-btn"><Share2 size={20} /></button>
@@ -738,38 +747,7 @@ const WebinarListing = ({ theme, setTheme }) => {
 
                             <DetailedTeamCard />
 
-                            {/* FAQ Section */}
-                            <section className="faq-section">
-                                <div className="faq-header">
-                                    <h3 className="faq-title">Frequently Asked Questions</h3>
-                                    <div className="faq-header-line"></div>
-                                </div>
-
-                                <div className="faq-container">
-                                    {faqData.map((faq, index) => (
-                                        <div
-                                            key={index}
-                                            className={`faq-item ${activeFaq === index ? 'active' : ''}`}
-                                        >
-                                            <button
-                                                className="faq-question"
-                                                onClick={() => setActiveFaq(activeFaq === index ? null : index)}
-                                            >
-                                                <span>{faq.question}</span>
-                                                <ChevronDown
-                                                    size={20}
-                                                    style={{ transform: activeFaq === index ? 'rotate(180deg)' : 'rotate(0)' }}
-                                                />
-                                            </button>
-                                            {activeFaq === index && (
-                                                <div className="faq-answer">
-                                                    <p>{faq.answer}</p>
-                                                </div>
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                            </section>
+                            <FAQAccordion faqData={faqData} theme={theme} />
 
                             {/* Reviews Section */}
                             <section className="reviews-section">

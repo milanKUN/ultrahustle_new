@@ -1,5 +1,6 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import {
     Share2,
     Flag,
@@ -21,8 +22,10 @@ import UserNavbar from '../../../components/layout/UserNavbar';
 import '../../../Darkuser.css';
 import '../../dashboard/pages/TeamProfileLight.css';
 import MobileBottomNav from "../../../components/layout/MobileBottomNav";
+import FAQAccordion from '../components/FAQAccordion';
 
 const DigitalProductListing = ({ theme, setTheme }) => {
+    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('Basic');
     const [activeImg, setActiveImg] = useState(0);
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -39,7 +42,6 @@ const DigitalProductListing = ({ theme, setTheme }) => {
     const [favorites, setFavorites] = useState(new Set());
     const [mainTab, setMainTab] = useState('listings');
     const [filter, setFilter] = useState('All');
-    const [activeFaq, setActiveFaq] = useState(null);
     const recommendedGridRef = useRef(null);
     const moreFromSarahGridRef = useRef(null);
 
@@ -372,6 +374,13 @@ const DigitalProductListing = ({ theme, setTheme }) => {
                     <div className="overflow-y-auto h-[calc(100vh-85px)]">
                         <div className={`tsl-page ${theme}`}>
                             <div className="tsl-header">
+                                <div
+                                    className="cl-back-link"
+                                    onClick={() => navigate('/my-listings')}
+                                    style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--mylis-muted)', marginBottom: '10px', fontSize: '14px' }}
+                                >
+                                    <ChevronLeft size={16} /> Back to My Listings
+                                </div>
                                 <h1 className="tsl-title">I will design online course cover and digital product mockup bundle</h1>
                                 <div className="tsl-header-actions">
                                     <button className="tsl-icon-btn"><Share2 size={20} /></button>
@@ -921,7 +930,7 @@ const DigitalProductListing = ({ theme, setTheme }) => {
                                     </div>
 
                                     <div className="tsl-profile-details">
-                                        <h4>Details</h4>
+                                        <h4>About Me</h4>
                                         <p>Hi! I'm Sarah, a senior UI/UX designer with over 8 years of experience creating beautiful and functional mobile applications. I've worked with startups, agencies, and Fortune 500 companies to deliver exceptional user experiences.</p>
 
                                         <div className="tsl-languages-section">
@@ -979,38 +988,7 @@ const DigitalProductListing = ({ theme, setTheme }) => {
                                 </div>
                             </div>
 
-                            {/* FAQ Section */}
-                            <section className="faq-section">
-                                <div className="faq-header">
-                                    <h3 className="faq-title">Frequently Asked Questions</h3>
-                                    <div className="faq-header-line"></div>
-                                </div>
-
-                                <div className="faq-container">
-                                    {faqData.map((faq, index) => (
-                                        <div
-                                            key={index}
-                                            className={`faq-item ${activeFaq === index ? 'active' : ''}`}
-                                        >
-                                            <button
-                                                className="faq-question"
-                                                onClick={() => setActiveFaq(activeFaq === index ? null : index)}
-                                            >
-                                                <span>{faq.question}</span>
-                                                <ChevronDown
-                                                    size={20}
-                                                    style={{ transform: activeFaq === index ? 'rotate(180deg)' : 'rotate(0)' }}
-                                                />
-                                            </button>
-                                            {activeFaq === index && (
-                                                <div className="faq-answer">
-                                                    <p>{faq.answer}</p>
-                                                </div>
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                            </section>
+                            <FAQAccordion faqData={faqData} theme={theme} />
 
                             {/* Reviews Section */}
                             <section className="reviews-section">

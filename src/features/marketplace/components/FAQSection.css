@@ -108,7 +108,7 @@
 .add-btn {
   margin-top: 15px;
   background: #CEFF1B;
-  border: none;
+  border: 1px solid black;
   padding: 10px 24px;
   border-radius: 8px;
   font-weight: 700;
@@ -152,7 +152,7 @@
 .save-btn {
   padding: 10px 40px;
   border-radius: 8px;
-  border: none;
+  border: 1px solid black;
   background: #CEFF1B;
   color: #000;
   font-weight: 700;

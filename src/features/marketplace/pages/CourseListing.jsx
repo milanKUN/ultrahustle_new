@@ -1,5 +1,6 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import {
     Share2,
     Flag,
@@ -25,6 +26,7 @@ import MobileBottomNav from "../../../components/layout/MobileBottomNav";
 import DetailedTeamCard from '../components/DetailedTeamCard';
 
 const CourseListing = ({ theme, setTheme }) => {
+    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('Basic');
     const [activeImg, setActiveImg] = useState(0);
     const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -374,6 +376,13 @@ const CourseListing = ({ theme, setTheme }) => {
                     <div className="overflow-y-auto h-[calc(100vh-85px)]">
                         <div className={`cl-page ${theme}`}>
                             <div className="cl-header">
+                                <div 
+                                    className="cl-back-link" 
+                                    onClick={() => navigate('/my-listings')}
+                                    style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--mylis-muted)', marginBottom: '10px', fontSize: '14px' }}
+                                >
+                                    <ChevronLeft size={16} /> Back to My Listings
+                                </div>
                                 <h1 className="cl-title">I will design online course cover and digital product mockup bundle</h1>
                                 <div className="cl-header-actions">
                                     <button className="cl-icon-btn"><Share2 size={20} /></button>

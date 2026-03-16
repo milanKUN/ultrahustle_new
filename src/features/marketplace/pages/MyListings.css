@@ -27,11 +27,35 @@
 }
 
 /* Header Section */
+.mylis-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.mylis-add-btn {
+    background: var(--mylis-accent);
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.mylis-add-btn:hover {
+    box-shadow: 0 0 15px rgba(206, 255, 27, 0.6);
+    transform: translateY(-2px);
+}
+
 .mylis-title {
     font-size: 28px;
     font-weight: 800;
     color: var(--mylis-text);
-    margin-bottom: 8px;
+    margin-bottom: 0;
 }
 
 .mylis-subtitle {
@@ -212,6 +236,7 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     z-index: 1;
+    cursor: pointer;
 }
 
 .mylis-card.active-dropdown {
