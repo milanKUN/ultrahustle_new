@@ -12,7 +12,7 @@ import {
   ChevronLeft,
   Users,
   MessageCircle,
-  TrendingUp,
+  Activity,
   Maximize2,
   Package,
   FilePlus,
@@ -54,8 +54,8 @@ const CREATOR_ITEMS = [
   { label: "Message", icon: MessageCircle, path: "/messages" },
   {
     label: "Growth Tools",
-    icon: TrendingUp,
-    children: [{ label: "Analytics & Earning", icon: TrendingUp, path: "/analytics" }],
+    icon: Activity,
+    children: [{ label: "Analytics & Earning", icon: Activity, path: "/analytics" }],
   },
   {
     label: "Settings",
@@ -249,7 +249,8 @@ export default function Sidebar({
                     title={item.label}
                   >
                     <item.icon
-                      size={18}
+                      size={21}
+                      strokeWidth={2.8}
                       style={{ color: isActive ? "#000" : "var(--text)" }}
                     />
                   </button>
@@ -379,7 +380,7 @@ export default function Sidebar({
                             : "var(--text)",
                       }}
                     >
-                      <item.icon size={18} />
+                      <item.icon size={21} strokeWidth={2.8} />
                       <span className="ml-4">{item.label}</span>
 
                       {item.children && (
@@ -407,7 +408,7 @@ export default function Sidebar({
                                 color: isSubActive ? "#000" : "var(--text)",
                               }}
                             >
-                              {Icon && <Icon size={16} />}
+                              {Icon && <Icon size={18} strokeWidth={2.8} />}
                               <span>{sub.label}</span>
                             </div>
                           );
