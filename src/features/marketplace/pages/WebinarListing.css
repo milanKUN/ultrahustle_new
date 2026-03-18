@@ -536,7 +536,7 @@
 
 .dark .webinar-ticket-card {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
 }
 
@@ -715,7 +715,7 @@
 
 .dark .cl-agenda-container {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .cl-agenda-card {
@@ -731,7 +731,7 @@
 
 .dark .cl-agenda-card {
     background: #242424;
-    border-color: rgba(206, 255, 27, 0.2);
+    border-color: #CEFF1B;
 }
 
 .cl-agenda-badge {

@@ -23,7 +23,7 @@
 
 .dark .cd-header-card {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .cd-header-content h1 {
@@ -84,7 +84,7 @@
 
 .dark .cd-info-card {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .cd-info-icon {
@@ -273,7 +273,7 @@
 
 .dark .cd-video-container {
     background: #1A1A1A;
-    border-color: rgba(206, 255, 27, 0.4);
+    border-color: #CEFF1B;
 }
 
 .cd-video-placeholder {
@@ -344,7 +344,7 @@
 
 .dark .cd-lesson-card {
     background: #1A1A1A;
-    border-color: rgba(206, 255, 27, 0.4);
+    border-color: #CEFF1B;
 }
 
 .cd-lesson-card:hover {
@@ -441,7 +441,7 @@
 
 .dark .cd-files-list-container {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .cd-files-list {
@@ -462,7 +462,7 @@
 
 .dark .cd-file-item {
     background: #242424;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .cd-file-info h3 {
@@ -615,7 +615,7 @@
 
 .dark .cd-review-card {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .cd-review-text {
@@ -688,7 +688,7 @@
 
 .dark .cd-faq-item {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .cd-faq-question {

@@ -23,7 +23,7 @@
 
 .dark .wd-header-card {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .wd-header-content h1 {
@@ -121,7 +121,7 @@
 
 .dark .wd-schedule-card {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .wd-icon-box {
@@ -280,7 +280,7 @@
 
 .dark .wd-sessions-container {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .wd-session-card {
@@ -292,7 +292,7 @@
 
 .dark .wd-session-card {
     background: #242424;
-    border-color: rgba(206, 255, 27, 0.2);
+    border-color: #CEFF1B;
 }
 
 .wd-session-header {
@@ -429,7 +429,7 @@
 
 .dark .wd-files-list-container {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .wd-files-list {
@@ -450,7 +450,7 @@
 
 .dark .wd-file-item {
     background: #242424;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .wd-file-info h3 {
@@ -575,7 +575,7 @@
 
 .dark .wd-faq-item {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .wd-faq-question {
@@ -622,7 +622,7 @@
 
 .dark .wd-review-card {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .wd-review-text {

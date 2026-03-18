@@ -46,7 +46,7 @@
 .dark [class*="-order-card"],
 .user-page.dark [class*="-order-card"] {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 [class*="-card-header"] {
@@ -97,7 +97,7 @@
 .dark [class*="-tr"],
 .user-page.dark [class*="-tr"] {
     color: #ccc;
-    border-bottom-color: #333;
+    border-bottom-color: #CEFF1B;
 }
 
 [class*="-tr"]:not([class*="-th"]):hover {
@@ -117,7 +117,7 @@
 
 .dark [class*="-th"],
 .user-page.dark [class*="-th"] {
-    border-bottom-color: #333;
+    border-bottom-color: #CEFF1B;
     color: #ffffff;
 }
 
@@ -125,17 +125,17 @@
     border-bottom: 0;
 }
 
-[class*="-tr"] > div {
+[class*="-tr"]>div {
     display: flex;
     align-items: center;
 }
 
-[class*="-tr"] > div:not(:first-child) {
+[class*="-tr"]>div:not(:first-child) {
     justify-content: center;
     text-align: center;
 }
 
-[class*="-tr"] > div:first-child {
+[class*="-tr"]>div:first-child {
     justify-content: flex-start;
     text-align: left;
 }
@@ -172,17 +172,25 @@
         display: none;
     }
 
-    [class*="-tr"] > div {
+    [class*="-tr"]>div {
         justify-content: space-between !important;
         text-align: left !important;
     }
 
-    [class*="-tr"] > div::before {
+    [class*="-tr"]>div::before {
         font-weight: 700;
         margin-right: 10px;
     }
 
-    [class*="-tr"]:not([class*="-sum"]):not([class*="-total"]) > div:nth-child(2)::before { content: "Qty: "; }
-    [class*="-tr"]:not([class*="-sum"]):not([class*="-total"]) > div:nth-child(3)::before { content: "Duration: "; }
-    [class*="-tr"]:not([class*="-sum"]):not([class*="-total"]) > div:nth-child(4)::before { content: "Price: "; }
+    [class*="-tr"]:not([class*="-sum"]):not([class*="-total"])>div:nth-child(2)::before {
+        content: "Qty: ";
+    }
+
+    [class*="-tr"]:not([class*="-sum"]):not([class*="-total"])>div:nth-child(3)::before {
+        content: "Duration: ";
+    }
+
+    [class*="-tr"]:not([class*="-sum"]):not([class*="-total"])>div:nth-child(4)::before {
+        content: "Price: ";
+    }
 }

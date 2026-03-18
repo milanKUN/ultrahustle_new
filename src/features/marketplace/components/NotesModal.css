@@ -27,7 +27,7 @@
 
 .dark .nm-modal {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .nm-header {
@@ -40,7 +40,7 @@
 }
 
 .dark .nm-header {
-    border-bottom-color: #333;
+    border-bottom-color: #CEFF1B;
 }
 
 .nm-header-title {

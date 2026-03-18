@@ -23,7 +23,7 @@
 
 .dark .od-header-card {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .od-header-content h1 {
@@ -84,7 +84,7 @@
 
 .dark .od-info-card {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .od-info-icon {
@@ -166,7 +166,7 @@
 
 .dark .od-files-list-container {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .od-files-list {
@@ -187,7 +187,7 @@
 
 .dark .od-file-item {
     background: #242424;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .od-file-info h3 {
@@ -328,7 +328,7 @@
 }
 
 .dark .od-header-line {
-    background: #333;
+    background: #CEFF1B;
 }
 
 .od-review-card {
@@ -340,7 +340,7 @@
 
 .dark .od-review-card {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .od-review-text {
@@ -413,7 +413,7 @@
 
 .dark .od-faq-item {
     background: #1A1A1A;
-    border-color: #333;
+    border-color: #CEFF1B;
 }
 
 .od-faq-question {
