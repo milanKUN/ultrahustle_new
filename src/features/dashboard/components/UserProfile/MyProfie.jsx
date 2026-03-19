@@ -59,7 +59,7 @@ export default function ProfileForm({ theme }) {
           {/* RIGHT */}
           <button
             onClick={() => setOpenFriends(true)}
-            className="flex px-6 py-2.5 font-medium bg-[#CEFF1B] rounded-lg border border-[#2B2B2B] items-center justify-center gap-2 hover:opacity-90 self-start md:self-center"
+            className="flex px-6 py-2 font-medium bg-[#CEFF1B] rounded-lg border border-[#2B2B2B] items-center justify-center gap-2 hover:opacity-90 self-start md:self-center"
           >
             <img src="/Vector.svg" alt="Friends" className="w-5 h-5" />
             Friend List
@@ -278,7 +278,7 @@ function FriendListModal({ onClose }) {
             placeholder="Search here"
             className="
               w-full
-              px-5 py-2.5
+              px-5 py-2
               text-sm text-left
               bg-white
               rounded-full border border-gray-300

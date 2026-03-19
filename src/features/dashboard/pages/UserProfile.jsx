@@ -1539,7 +1539,7 @@ function ActivityCalendar({ onClose, activityDates, theme }) {
               onClick={() => changeYear("prev")}
               className="flex w-8 h-8 md:w-6 md:h-6 sm:w-8 sm:h-8 items-center justify-center hover:bg-black/10 rounded-full transition-colors"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
             </button>
 
             <div className={`onboarding-custom-select ${openYear ? "active" : ""}`} style={{ width: "140px" }} ref={yearRef}>
@@ -1611,7 +1611,7 @@ function ActivityCalendar({ onClose, activityDates, theme }) {
               onClick={() => changeYear("next")}
               className="flex w-8 h-8 md:w-6 md:h-6 sm:w-8 sm:h-8 items-center justify-center hover:bg-black/10 rounded-full transition-colors"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
             </button>
           </div>
 

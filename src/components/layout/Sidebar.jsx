@@ -250,7 +250,7 @@ export default function Sidebar({
                   >
                     <item.icon
                       size={21}
-                      strokeWidth={2.8}
+                      strokeWidth={2.0}
                       style={{ color: isActive ? "#000" : "var(--text)" }}
                     />
                   </button>
@@ -380,7 +380,7 @@ export default function Sidebar({
                             : "var(--text)",
                       }}
                     >
-                      <item.icon size={21} strokeWidth={2.8} />
+                      <item.icon size={21} strokeWidth={2.0} />
                       <span className="ml-4">{item.label}</span>
 
                       {item.children && (
@@ -408,7 +408,7 @@ export default function Sidebar({
                                 color: isSubActive ? "#000" : "var(--text)",
                               }}
                             >
-                              {Icon && <Icon size={18} strokeWidth={2.8} />}
+                              {Icon && <Icon size={18} strokeWidth={2.0} />}
                               <span>{sub.label}</span>
                             </div>
                           );

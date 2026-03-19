@@ -63,7 +63,7 @@ export default function ReviewsAndTeams() {
                     </div>
                   </div>
 
-                  <span className="text-xs text-gray-400">{r.date}</span>
+                  <span className="text-sm text-gray-400">{r.date}</span>
                 </div>
 
                 <p className="mt-3 text-sm text-gray-600 leading-relaxed">
@@ -81,7 +81,7 @@ export default function ReviewsAndTeams() {
 
         {/* ACTIONS */}
         <div className="flex justify-end gap-3 mt-6">
-           <button className="px-4 py-2 rounded-lg text-sm border border-black">
+          <button className="px-4 py-2 rounded-lg text-sm border border-black">
             Discard
           </button>
           <button className="px-4 py-2 bg-[#CEFF1B] rounded-lg text-sm font-medium border border-black">
@@ -136,8 +136,8 @@ export default function ReviewsAndTeams() {
                   border-1 border-black
                   bg-transparent
                   rounded-md
-                  px-3 py-1.5
-                  text-xs
+                  px-3 py-2
+                  text-sm
                   outline-none
                   focus:border-gray-400
                 "
@@ -156,8 +156,8 @@ export default function ReviewsAndTeams() {
                       border-1 border-black
                       rounded-md
                       bg-transparent
-                      px-3 py-1.5
-                      text-xs
+                      px-3 py-2
+                      text-sm
                       outline-none
                       focus:border-gray-400
                     "
@@ -169,13 +169,12 @@ export default function ReviewsAndTeams() {
                         <div
                           className="
                       flex items-center gap-2
-                      border-1 border-black
+                      border border-black
                       rounded-md
                       bg-transparent
-                      px-3 py-1.5
-                      text-xs
+                      px-3 py-2
+                      text-sm
                       text-gray-600
-                      bg-white
                     "
                         >
                           👥 12 members
@@ -190,12 +189,12 @@ export default function ReviewsAndTeams() {
 
           {/* ACTION BUTTONS */}
           <div className="flex justify-end gap-3 mt-6">
-           <button className="px-4 py-2 rounded-lg text-sm border border-black">
-            Discard
-          </button>
-          <button className="px-4 py-2 bg-[#CEFF1B] rounded-lg text-sm font-medium border border-black">
-            Save Changes
-          </button>
+            <button className="px-4 py-2 rounded-lg text-sm border border-black">
+              Discard
+            </button>
+            <button className="px-4 py-2 bg-[#CEFF1B] rounded-lg text-sm font-medium border border-black">
+              Save Changes
+            </button>
           </div>
         </div>
       </section>

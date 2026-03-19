@@ -25,7 +25,7 @@ const LessonSection = ({ lessons, onAddLesson, onRemoveLesson, onUpdateLesson, o
                                             className="lesson-remove-btn" 
                                             onClick={() => onUpdateLesson(index, 'media', null)}
                                         >
-                                            <X size={12} strokeWidth={3} />
+                                            <X size={12} strokeWidth={2.0} />
                                         </button>
                                     </div>
                                 </>
@@ -66,7 +66,7 @@ const LessonSection = ({ lessons, onAddLesson, onRemoveLesson, onUpdateLesson, o
 
             <div className="lesson-section-footer">
                 <button className="lesson-add-more-btn" onClick={onAddLesson}>
-                    <Plus size={18} strokeWidth={3} />
+                    <Plus size={18} strokeWidth={2.0} />
                     Add more
                 </button>
             </div>

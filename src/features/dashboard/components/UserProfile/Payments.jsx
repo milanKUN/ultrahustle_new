@@ -9,7 +9,7 @@ function Payments({ theme }) {
   const [showCardNumber, setShowCardNumber] = useState(false);
 
   return (
-    <div className=" -mt-16 from-gray-100 to-lime-50 rounded-xl p-6">
+    <div className=" -mt-14 from-gray-100 to-lime-50 rounded-xl p-6">
       {/* ================= HEADER ================= */}
       <div className="flex items-center gap-4 mb-6">
         <h3 className="text-xl font-semibold whitespace-nowrap">
@@ -111,16 +111,15 @@ function Payments({ theme }) {
               inputMode="numeric"
               maxLength={16}
               onInput={(e) => e.target.value = e.target.value.replace(/[^0-9]/g, '')}
-              className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
+              className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-8 text-sm focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
               placeholder="**** **** **** 2345"
             />
-            <button
-              type="button"
+            <span
               onClick={() => setShowCardNumber(!showCardNumber)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 focus:outline-none"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer p-0 m-0 bg-transparent flex items-center justify-center"
             >
-              {showCardNumber ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-            </button>
+              {showCardNumber ? <EyeOff className="w-5 h-5" strokeWidth={1.2} /> : <Eye className="w-5 h-5" strokeWidth={1.2} />}
+            </span>
           </div>
         </div>
 
@@ -158,18 +157,19 @@ function Payments({ theme }) {
 
             <span
               onClick={() => setOpenCalendar(true)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer p-0 m-0 bg-transparent flex items-center justify-center h-auto w-auto"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="1.2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className="w-5 h-5"
               >
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                 <line x1="16" y1="2" x2="16" y2="6" />
@@ -283,17 +283,17 @@ function Payments({ theme }) {
 
           <div>
             <label className="block mb-1 font-medium">Phone Number</label>
-            <div className="flex items-center border border-black rounded-md px-3 py-2 gap-2 focus-within:shadow-[0_0_15px_#CEFF1B] focus-within:!border-transparent">
-              <span className="text-sm text-gray-700">India</span>
+            <div className="flex items-center border border-black rounded-md px-3 py-2 gap-2 text-sm focus-within:shadow-[0_0_15px_#CEFF1B] focus-within:!border-transparent">
+              <span className="text-gray-700">India</span>
               <span className="text-gray-400">|</span>
-              <span className="text-sm text-gray-700">+91</span>
+              <span className="text-gray-700">+91</span>
               <input
                 type="tel"
                 inputMode="numeric"
                 placeholder="XXXXXXXXXX"
                 maxLength={10}
                 onInput={(e) => e.target.value = e.target.value.replace(/[^0-9]/g, '')}
-                className="flex-1 outline-none border-none bg-transparent text-sm pl-2 focus:outline-none focus:ring-0"
+                className="flex-1 outline-none border-none bg-transparent text-sm pl-2 focus:outline-none focus:ring-0 py-0"
               />
             </div>
           </div>

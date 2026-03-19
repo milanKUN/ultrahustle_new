@@ -876,7 +876,7 @@ const WebinarListing = ({ theme, setTheme }) => {
                                                                 />
                                                                 <path
                                                                     stroke="#FFF"
-                                                                    strokeWidth="3"
+                                                                    strokeWidth="2"
                                                                     strokeLinecap="round"
                                                                     strokeLinejoin="round"
                                                                     d="M8 12.5l3 3 5-5"
@@ -942,7 +942,7 @@ const WebinarListing = ({ theme, setTheme }) => {
                                                                 />
                                                                 <path
                                                                     stroke="#FFF"
-                                                                    strokeWidth="3"
+                                                                    strokeWidth="2"
                                                                     strokeLinecap="round"
                                                                     strokeLinejoin="round"
                                                                     d="M8 12.5l3 3 5-5"

@@ -7,9 +7,9 @@ export default function Security() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
-    <div className="">
+    <div className="p-4 md:p-0">
       {/* ================= Security ================= */}
-      <div className="mb-8 -mt-14 pb-10">
+      <div className="mb-8 md:-mt-14 pb-6 md:pb-10">
         <div className="flex items-center gap-4 mb-6">
           <h3 className="text-xl font-semibold whitespace-nowrap">
             Security
@@ -29,13 +29,12 @@ export default function Security() {
                 placeholder="********"
                 className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
               />
-              <button
-                type="button"
+              <span
                 onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 focus:outline-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer p-0 m-0 bg-transparent flex items-center justify-center h-auto w-auto"
               >
-                {showCurrentPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              </button>
+                {showCurrentPassword ? <EyeOff className="w-5 h-5" strokeWidth={1.2} /> : <Eye className="w-5 h-5" strokeWidth={1.2} />}
+              </span>
             </div>
           </div>
 
@@ -48,13 +47,12 @@ export default function Security() {
                 placeholder="********"
                 className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
               />
-              <button
-                type="button"
+              <span
                 onClick={() => setShowNewPassword(!showNewPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 focus:outline-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer p-0 m-0 bg-transparent flex items-center justify-center h-auto w-auto"
               >
-                {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              </button>
+                {showNewPassword ? <EyeOff className="w-5 h-5" strokeWidth={1.2} /> : <Eye className="w-5 h-5" strokeWidth={1.2} />}
+              </span>
             </div>
           </div>
 
@@ -69,19 +67,18 @@ export default function Security() {
                 placeholder="********"
                 className="w-full bg-transparent border border-black rounded-md px-3 py-2 pr-10 text-sm outline-none focus:outline-none focus:!border-transparent focus:ring-0 focus:shadow-[0_0_15px_#CEFF1B]"
               />
-              <button
-                type="button"
+              <span
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 focus:outline-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer p-0 m-0 bg-transparent flex items-center justify-center h-auto w-auto"
               >
-                {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              </button>
+                {showConfirmPassword ? <EyeOff className="w-5 h-5" strokeWidth={1.2} /> : <Eye className="w-5 h-5" strokeWidth={1.2} />}
+              </span>
             </div>
           </div>
 
           {/* Button */}
-          <div className="flex items-end">
-            <button className="ml-auto border border-black bg-[#CEFF1B] text-[#2B2B2B] text-sm px-6 py-2 rounded-md font-semibold">
+          <div className="flex items-end justify-center md:justify-end">
+            <button className="w-full md:w-auto border border-black bg-[#CEFF1B] text-[#2B2B2B] text-sm px-6 py-2 rounded-md font-semibold">
               Confirm Password
             </button>
           </div>
@@ -98,29 +95,29 @@ export default function Security() {
         </div>
         <p className="mb-4 text-[16px] ">Currently login</p>
 
-        {/* Current Session */}
-        <div className="flex bg-transparent border border-black items-center justify-between rounded-md p-4 mb-3">
+        {/* Device Item */}
+        <div className="flex flex-col sm:flex-row bg-[#F2F2F2] border border-black items-start sm:items-center justify-between rounded-md p-6 mb-4 gap-4">
           <div>
-            <p className="text-[16px] font-medium">Windows</p>
-            <p className="text-[16px] text-gray-500">Chennai, Tamil Nadu, India</p>
-            <p className="text-[16px] text-black flex items-center gap-1 dark:text-white">
-              <span className="text-[#0FB400]">●</span>
+            <p className="text-[18px] font-medium mb-1">Windows</p>
+            <p className="text-[14px] text-gray-500 mb-1">Chennai, Tamil Nadu, India</p>
+            <p className="text-[14px] text-[#0FB400] flex items-center gap-1 font-medium">
+              <span>●</span>
               Your Current Session
             </p>
           </div>
-          <button className="bg-[#FF0000] border border-black text-white text-xs px-4 py-1.5 rounded-lg font-medium">
+          <button className="bg-[#FF0000] border border-black text-white text-sm px-6 py-2 rounded font-medium w-full sm:w-auto hover:bg-red-600 transition-colors">
             Log out
           </button>
         </div>
 
         {/* Other Device */}
-        <div className="flex bg-transparent border border-black items-center justify-between rounded-md p-4">
+        <div className="flex flex-col sm:flex-row bg-[#F2F2F2] border border-black items-start sm:items-center justify-between rounded-md p-6 gap-4">
           <div>
-            <p className="text-[16px] font-medium">1 session on iPhone16</p>
-            <p className="text-[16px] text-gray-500">Chennai, Tamil Nadu, India</p>
-            <p className="text-[16px] text-gray-400">30 minutes ago</p>
+            <p className="text-[18px] font-medium mb-1">1 session on iPhone16</p>
+            <p className="text-[14px] text-gray-500 mb-1">Chennai, Tamil Nadu, India</p>
+            <p className="text-[14px] text-gray-400">30 minutes ago</p>
           </div>
-          <button className="bg-[#FF0000] border border-black text-white text-xs px-4 py-1.5 rounded-lg font-medium">
+          <button className="bg-[#FF0000] border border-black text-white text-sm px-6 py-2 rounded font-medium w-full sm:w-auto hover:bg-red-600 transition-colors">
             Log out
           </button>
         </div>

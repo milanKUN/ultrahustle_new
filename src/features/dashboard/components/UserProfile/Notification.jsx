@@ -3,15 +3,12 @@ import { useState } from "react";
 const Toggle = ({ enabled, onChange }) => (
   <button
     onClick={onChange}
-    className={`w-[55px] h-[24px] rounded-full relative transition duration-200 flex items-center bg-[#5C5C5CA8]`}
-    style={{ minWidth: 48, minHeight: 28 }}
+    className="w-[48px] h-[24px] rounded-full relative transition-colors duration-200 flex items-center bg-[#8B8B8B]"
   >
-    <span
-      className={`absolute left-1 w-6 h-6 rounded-full shadow-md transition-transform duration-200 ${enabled
-          ? "translate-x-full bg-[#CEFF1B]"
-          : "translate-x-0 bg-[#5B5B5B]"
-        }`}
-      style={{ minWidth: 24, minHeight: 24 }}
+    <div
+      className={`absolute w-5 h-5 rounded-full shadow-sm transition-all duration-200 ${
+        enabled ? "translate-x-[24px] bg-[#CEFF1B]" : "translate-x-[4px] bg-[#4D4D4D]"
+      }`}
     />
   </button>
 );

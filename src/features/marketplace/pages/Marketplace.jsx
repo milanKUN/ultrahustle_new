@@ -2309,7 +2309,7 @@ export default function Marketplace({ theme, setTheme }) {
                                             type="button"
                                             onClick={() => scrollChips("left")}
                                         >
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round">
                                                 <polyline points="15 18 9 12 15 6"></polyline>
                                             </svg>
                                         </button>
@@ -2323,7 +2323,7 @@ export default function Marketplace({ theme, setTheme }) {
                                                         onClick={() => handleChipClick(chip.label)}
                                                     >
                                                         {chip.label}
-                                                        <svg className="mp-chipIcon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                        <svg className="mp-chipIcon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round">
                                                             <polyline points="6 9 12 15 18 9"></polyline>
                                                         </svg>
                                                     </button>
@@ -2336,7 +2336,7 @@ export default function Marketplace({ theme, setTheme }) {
                                             type="button"
                                             onClick={() => scrollChips("right")}
                                         >
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round">
                                                 <polyline points="9 18 15 12 9 6"></polyline>
                                             </svg>
                                         </button>
@@ -2366,7 +2366,7 @@ export default function Marketplace({ theme, setTheme }) {
                                                                     />
                                                                     <path
                                                                         stroke="#FFF"
-                                                                        strokeWidth="3"
+                                                                        strokeWidth="2"
                                                                         strokeLinecap="round"
                                                                         strokeLinejoin="round"
                                                                         d="M8 12.5l3 3 5-5"
@@ -2399,7 +2399,7 @@ export default function Marketplace({ theme, setTheme }) {
                                                         <div className="mp-price">Price: ₹ 24,000</div>
                                                         <button className="mp-cta" type="button">
                                                             {p.cta}
-                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
+                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
                                                                 <polyline points="9 18 15 12 9 6"></polyline>
                                                             </svg>
                                                         </button>
@@ -2415,7 +2415,7 @@ export default function Marketplace({ theme, setTheme }) {
                                         aria-label="Previous"
                                         onClick={() => scrollGridRef(gridRef, "left")}
                                     >
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round">
                                             <polyline points="15 18 9 12 15 6"></polyline>
                                         </svg>
                                     </button>
@@ -2426,7 +2426,7 @@ export default function Marketplace({ theme, setTheme }) {
                                         aria-label="Next"
                                         onClick={() => scrollGridRef(gridRef, "right")}
                                     >
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round">
                                             <polyline points="9 18 15 12 9 6"></polyline>
                                         </svg>
                                     </button>
@@ -2463,7 +2463,7 @@ export default function Marketplace({ theme, setTheme }) {
                                                                     />
                                                                     <path
                                                                         stroke="#FFF"
-                                                                        strokeWidth="3"
+                                                                        strokeWidth="2"
                                                                         strokeLinecap="round"
                                                                         strokeLinejoin="round"
                                                                         d="M8 12.5l3 3 5-5"
@@ -2496,7 +2496,7 @@ export default function Marketplace({ theme, setTheme }) {
                                                         <div className="mp-price">{p.priceLabel}</div>
                                                         <button className="mp-cta" type="button">
                                                             {p.cta}
-                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
+                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
                                                                 <polyline points="9 18 15 12 9 6"></polyline>
                                                             </svg>
                                                         </button>
@@ -2507,13 +2507,13 @@ export default function Marketplace({ theme, setTheme }) {
                                     </div>
 
                                     <button className="mp-floatArrow left" type="button" aria-label="Previous" onClick={() => scrollGridRef(logoGridRef, "left")}>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round">
                                             <polyline points="15 18 9 12 15 6"></polyline>
                                         </svg>
                                     </button>
 
                                     <button className="mp-floatArrow right" type="button" aria-label="Next" onClick={() => scrollGridRef(logoGridRef, "right")}>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round">
                                             <polyline points="9 18 15 12 9 6"></polyline>
                                         </svg>
                                     </button>
@@ -2551,7 +2551,7 @@ export default function Marketplace({ theme, setTheme }) {
                                                                     />
                                                                     <path
                                                                         stroke="#FFF"
-                                                                        strokeWidth="3"
+                                                                        strokeWidth="2"
                                                                         strokeLinecap="round"
                                                                         strokeLinejoin="round"
                                                                         d="M8 12.5l3 3 5-5"
@@ -2584,7 +2584,7 @@ export default function Marketplace({ theme, setTheme }) {
                                                         <div className="mp-price">{p.priceLabel}</div>
                                                         <button className="mp-cta" type="button">
                                                             {p.cta}
-                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
+                                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round" className="mp-ctaIcon">
                                                                 <polyline points="9 18 15 12 9 6"></polyline>
                                                             </svg>
                                                         </button>
@@ -2595,13 +2595,13 @@ export default function Marketplace({ theme, setTheme }) {
                                     </div>
 
                                     <button className="mp-floatArrow left" type="button" aria-label="Previous" onClick={() => scrollGridRef(webGridRef, "left")}>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round">
                                             <polyline points="15 18 9 12 15 6"></polyline>
                                         </svg>
                                     </button>
 
                                     <button className="mp-floatArrow right" type="button" aria-label="Next" onClick={() => scrollGridRef(webGridRef, "right")}>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.0" strokeLinecap="round" strokeLinejoin="round">
                                             <polyline points="9 18 15 12 9 6"></polyline>
                                         </svg>
                                     </button>

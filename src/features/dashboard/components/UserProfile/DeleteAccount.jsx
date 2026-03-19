@@ -27,12 +27,12 @@ export default function DeleteAccount() {
       </p>
 
       {/* WARNING BOX */}
-   <div className="w-full border border-black dark:border-[#2a2f3a] rounded-md p-3 text-sm sm:text-[16px] text-black dark:text-white mb-8 sm:mb-10">
-  <p>
-    This will delete your profile, listings, messages, teams, and all
-    associated data.
-  </p>
-</div>
+      <div className="w-full border border-black dark:border-[#2a2f3a] rounded-md p-3 text-sm sm:text-[16px] text-black dark:text-white mb-8 sm:mb-10">
+        <p>
+          This will delete your profile, listings, messages, teams, and all
+          associated data.
+        </p>
+      </div>
 
       {/* DANGER BUTTON */}
       <div className="flex justify-end">

@@ -124,7 +124,7 @@ export default function PersonalInformation({ theme }) {
                   placeholder="username"
                   onFocus={() => setFocusedId("username")}
                   onBlur={() => setFocusedId(null)}
-                  className="flex-1 bg-transparent border-none outline-none focus:outline-none focus:ring-0"
+                  className="flex-1 bg-transparent border-none outline-none focus:outline-none focus:ring-0 py-0"
                 />
               </div>
             </div>
@@ -144,18 +144,19 @@ export default function PersonalInformation({ theme }) {
 
                 <span
                   onClick={() => setOpenCalendar(true)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 cursor-pointer p-0 m-0 bg-transparent flex items-center justify-center h-auto w-auto"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="1.2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    className="w-5 h-5"
                   >
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                     <line x1="16" y1="2" x2="16" y2="6" />
@@ -172,12 +173,12 @@ export default function PersonalInformation({ theme }) {
             <div>
               <Label>Phone Number</Label>
               <div
-                className={`flex items-center border border-black rounded-md px-3 py-2 gap-2 transition-shadow ${focusedId === "phone" ? "shadow-[0_0_15px_#CEFF1B] !border-transparent" : ""
+                className={`flex items-center border border-black rounded-md px-3 py-2 gap-2 text-sm transition-shadow ${focusedId === "phone" ? "shadow-[0_0_15px_#CEFF1B] !border-transparent" : ""
                   }`}
               >
-                <span className="text-sm text-gray-700">India</span>
+                <span className="text-gray-700">India</span>
                 <span className="text-gray-400">|</span>
-                <span className="text-sm text-gray-700">+91</span>
+                <span className="text-gray-700">+91</span>
                 <input
                   type="tel"
                   inputMode="numeric"
@@ -186,7 +187,7 @@ export default function PersonalInformation({ theme }) {
                   onInput={(e) => e.target.value = e.target.value.replace(/[^0-9]/g, '')}
                   onFocus={() => setFocusedId("phone")}
                   onBlur={() => setFocusedId(null)}
-                  className="flex-1 outline-none border-none bg-transparent text-sm pl-2 focus:outline-none focus:ring-0"
+                  className="flex-1 outline-none border-none bg-transparent text-sm pl-2 focus:outline-none focus:ring-0 py-0"
                 />
               </div>
             </div>

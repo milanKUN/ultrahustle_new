@@ -513,7 +513,7 @@ const DigitalProductListing = ({ theme, setTheme }) => {
                                             {packages[activeTab].inclusions.map((item, idx) => (
                                                 <div key={idx} className="tsl-inclusion-item">
                                                     <div className="tsl-check-circle">
-                                                        <Check size={12} strokeWidth={3} />
+                                                        <Check size={12} strokeWidth={2.0} />
                                                     </div>
                                                     <span>{item}</span>
                                                 </div>
@@ -1117,7 +1117,7 @@ const DigitalProductListing = ({ theme, setTheme }) => {
                                                                 />
                                                                 <path
                                                                     stroke="#FFF"
-                                                                    strokeWidth="3"
+                                                                    strokeWidth="2"
                                                                     strokeLinecap="round"
                                                                     strokeLinejoin="round"
                                                                     d="M8 12.5l3 3 5-5"
@@ -1183,7 +1183,7 @@ const DigitalProductListing = ({ theme, setTheme }) => {
                                                                 />
                                                                 <path
                                                                     stroke="#FFF"
-                                                                    strokeWidth="3"
+                                                                    strokeWidth="2"
                                                                     strokeLinecap="round"
                                                                     strokeLinejoin="round"
                                                                     d="M8 12.5l3 3 5-5"

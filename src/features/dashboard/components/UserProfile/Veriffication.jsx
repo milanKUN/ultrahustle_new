@@ -21,9 +21,9 @@ export default function Verification() {
       {/* HEADER */}
       <div className="flex items-center gap-4 mb-6">
         <h3 className="text-xl font-semibold whitespace-nowrap">
-          Verification
+          Verification (Use Automated KYC Service)
         </h3>
-        <div className="flex-1 h-px bg-[#2B2B2B]" />
+        <div className="flex-1 h-px bg-[#D9D9D9]" />
       </div>
 
       {/* IDENTITY VERIFICATION */}
@@ -76,10 +76,10 @@ export default function Verification() {
 
       {/* ACTION BUTTONS */}
       <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4 mt-8 sm:mt-10 w-full">
-        <button className="px-4 py-2 rounded-lg text-sm border border-black w-full sm:w-auto">
+        <button className="px-10 py-2 rounded-lg text-sm border border-black bg-[#F4F6F2] hover:bg-gray-100 w-full sm:w-auto">
           Discard
         </button>
-        <button className="px-4 py-2 bg-[#CEFF1B] rounded-lg text-sm font-medium border border-black w-full sm:w-auto">
+        <button className="px-10 py-2 bg-[#CEFF1B] rounded-lg text-sm font-bold border border-black w-full sm:w-auto">
           Confirm
         </button>
       </div>
@@ -94,16 +94,16 @@ function TabButton({ label, active, onClick }) {
     <button
       onClick={onClick}
       className={`
-        px-3 sm:px-4
+        px-6
         py-2
-        text-xs
+        text-sm
         rounded-md
         border
         transition
         whitespace-nowrap
         ${active
-          ? "bg-[#CEFF1B] border-black text-black"
-          : "bg-transparent border-gray-300 text-gray-600 hover:bg-gray-50"
+          ? "bg-[#CEFF1B] border-black text-black font-medium"
+          : "bg-[#F4F6F2] border-gray-200 text-gray-500 hover:bg-gray-100"
         }
       `}
     >
@@ -124,29 +124,29 @@ function UploadBox({ title, full }) {
       <div
         className={`
           w-full
-          border border-gray-300
-          rounded-lg
+          border border-gray-200
+          rounded-xl
           text-center
-          bg-transparent
-          hover:bg-gray-200
+          bg-[#F8F9FA]
+          hover:bg-gray-100
           transition
           cursor-pointer
-          ${full ? "p-6 sm:p-10" : "p-4 sm:p-6"}
+          ${full ? "p-10" : "p-8"}
         `}
       >
-        <Upload className="mx-auto mb-3 text-gray-500" size={22} />
+        <Upload className="mx-auto mb-4 text-gray-400" size={32} strokeWidth={1.5} />
 
         <p className="text-sm font-medium text-[#155DFC] break-words">
-          Click to upload
+          <span className="underline">Click to upload</span>
           <span className="text-gray-600 font-normal">
             {" "}or Drag or drop file
           </span>
         </p>
 
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-gray-400 mt-3">
           PDF, JPG, JPEG, PNG less than 10MB.
         </p>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-400 mt-1">
           Ensure your document are in good condition and readable
         </p>
       </div>
