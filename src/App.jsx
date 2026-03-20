@@ -27,8 +27,10 @@ import PublicUserProfile from "./features/dashboard/pages/PublicUserProfile";
 import SoloContractListing from "./features/marketplace/pages/SoloContractListing";
 import Dashboard from "./features/dashboard/pages/Dashboard";
 import ManageTeam from "./features/dashboard/pages/ManageTeam";
-import MilestonesPage from "./features/marketplace/pages/MilestonesPage";
+// import MilestonesPage from "./features/marketplace/pages/MilestonesPage";
 import SoloMilestonesPage from "./features/marketplace/pages/SoloMilestonesPage";
+import ClientMilestonesPage from "./features/marketplace/pages/ClientMilestonesPage";
+
 import CreateServiceListing from "./features/marketplace/pages/CreateServiceListing";
 import CreateDigitalProduct from "./features/marketplace/pages/CreateDigitalProduct";
 import AddNewListing from "./features/marketplace/pages/AddNewListing";
@@ -43,6 +45,7 @@ import CourseDeliverables from "./features/marketplace/pages/CourseDeliverables"
 import WebinarDeliverables from "./features/marketplace/pages/WebinarDeliverables";
 import WebinarListing from "./features/marketplace/pages/WebinarListing";
 import CreateWebinar from "./features/marketplace/pages/CreateWebinar";
+import ClientContractListing from "./features/marketplace/pages/ClientContractListing";
 
 
 export default function App() {
@@ -88,8 +91,11 @@ export default function App() {
           <Route path="/user-profile" element={<UserProfile theme={theme} setTheme={setTheme} />} />
           <Route path="/public-user-profile" element={<PublicUserProfile theme={theme} setTheme={setTheme} />} />
           <Route path="/contracts-listing" element={<SoloContractListing theme={theme} setTheme={setTheme} />} />
-          <Route path="/milestones" element={<MilestonesPage theme={theme} setTheme={setTheme} />} />
+          <Route path="/client-contracts-listing" element={<ClientContractListing theme={theme} setTheme={setTheme} />} />
+          {/* <Route path="/milestones" element={<MilestonesPage theme={theme} setTheme={setTheme} />} /> */}
           <Route path="/solo-milestones" element={<SoloMilestonesPage theme={theme} setTheme={setTheme} />} />
+          <Route path="/client-milestones" element={<ClientMilestonesPage theme={theme} setTheme={setTheme} />} />
+
           <Route path="/create-service-listing" element={<CreateServiceListing theme={theme} setTheme={setTheme} />} />
           <Route path="/create-digital-product" element={<CreateDigitalProduct theme={theme} setTheme={setTheme} />} />
           <Route path="/dashboard" element={<Dashboard theme={theme} setTheme={setTheme} />} />

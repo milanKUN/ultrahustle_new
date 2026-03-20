@@ -1,11 +1,11 @@
 // ... same imports
 import React, { useMemo, useState, useRef, useEffect } from "react";
-import "./MilestonesPage.css";
+import "./ClientMilestonesPage.css";
 import "./SoloContractListing.css"; // Added
 import UserNavbar from "../../../components/layout/UserNavbar";
 import Sidebar from "../../../components/layout/Sidebar";
 
-export default function MilestoneBoard({ theme = "light", setTheme }) {
+export default function ClientMilestoneBoard({ theme = "light", setTheme }) {
   const topTabs = ["Milestones", "Contract", "Details"];
   const statusTabs = [
     "All",
@@ -33,6 +33,8 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
   const [isDaysOpen, setIsDaysOpen] = useState(false);
   const [cancelReason, setCancelReason] = useState("");
   const [cancelOther, setCancelOther] = useState("");
+  const [isRevisionModalOpen, setIsRevisionModalOpen] = useState(false);
+  const [revisionDesc, setRevisionDesc] = useState("");
 
   const contractId = useMemo(() => "AUTO-123456", []);
 
@@ -325,8 +327,9 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
     () => ({
       completed: 1,
       total: 5,
-      startedAt: "Thu Nov 20 2025",
-      targetAt: "Sat Jan 10 2026",
+      startedAt: "Nov 20, 2025",
+      targetAt: "Jan 10, 2026",
+
       revisionsUsed: 2,
       revisionsTotal: 3,
       nextActionTitle: "Deliver Milestone 2 by Fri",
@@ -1716,47 +1719,7 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                     </a>
                   </div>
 
-                  <div className="msd-grid">
-                    <div className="msd-card msd-mini">
-                      <div className="msd-miniTitle">Milestone- details</div>
-                      <div className="msd-miniRow">
-                        <span>Amount</span>
-                        <span>{details.milestone.amount}</span>
-                      </div>
-                      <div className="msd-miniRow">
-                        <span>Deadline</span>
-                        <span>{details.milestone.deadline}</span>
-                      </div>
-                      <div className="msd-miniRow">
-                        <span>Platform fee 20% (demo)</span>
-                        <span>{details.milestone.platformFee}</span>
-                      </div>
-                      <div className="msd-miniRow strong">
-                        <span>Net amount:</span>
-                        <span>{details.milestone.netAmount}</span>
-                      </div>
-                    </div>
 
-                    <div className="msd-card msd-mini">
-                      <div className="msd-miniTitle">Split</div>
-
-                      <div className="msd-table">
-                        <div className="msd-tr msd-th msd-splitHead">
-                          <div>Members</div>
-                          <div>Percentage</div>
-                          <div className="right">Amount</div>
-                        </div>
-
-                        {details.split.map((r, i) => (
-                          <div className="msd-tr" key={i}>
-                            <div>{r.member}</div>
-                            <div>{r.pct}</div>
-                            <div className="right">{r.amount}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
                 </div>
               )}
 
@@ -1784,14 +1747,18 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                     <div className="ms-card">
                       <div className="ms-cardTitle">Timeline</div>
 
-                      <div className="ms-item">
-                        <img src="/milestone1.svg" alt="" />
-                        Start date: <b>{data.startedAt}</b>
+                      <div className="ms-item" style={{ alignItems: 'flex-start', gap: '8px' }}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '2px' }}>
+                          <rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        <span>Project start: <b>{data.startedAt}</b></span>
                       </div>
 
-                      <div className="ms-item">
-                        <img src="/milestone2.svg" alt="" />
-                        End date: <b>{data.targetAt}</b>
+                      <div className="ms-item" style={{ alignItems: 'flex-start', gap: '8px' }}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '2px' }}>
+                          <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        <span>Target completion: <b>{data.targetAt}</b></span>
                       </div>
                     </div>
 
@@ -1805,8 +1772,7 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
 
                     <div className="ms-card">
                       <div className="ms-cardTitle">Next action</div>
-                      <div className="ms-item">{data.nextActionTitle}</div>
-                      <div className="ms-sub">{data.nextActionDate}</div>
+                      <div className="ms-item">Accept &amp; Release Escrow to start the next milestone</div>
                     </div>
                   </div>
 
@@ -1929,23 +1895,27 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                     </div>
 
                     <div className="ms-side">
+                      {/* Action Panel */}
                       <div className="ms-panel ms-panel-action">
                         <div className="ms-panelTitle">Action</div>
-                        <button className="ms-actionBtn lime" type="button" onClick={() => setIsDeliverModalOpen(true)}>
-                          Upload
+                        <button className="ms-actionBtn lime" type="button">
+                          Accept &amp; Release Escrow
                         </button>
                         <button className="ms-actionBtn lime" type="button">
-                          Message Client
+                          Message Creator
+                        </button>
+                        <button className="ms-actionBtn lime" type="button" onClick={() => setIsRevisionModalOpen(true)}>
+                          Request revision
                         </button>
                         <button className="ms-actionBtn" type="button" onClick={() => setIsResolutionModalOpen(true)}>
                           Resolution Center
                         </button>
                       </div>
 
+                      {/* Extension Request Card */}
                       <div className="ms-panel ms-panel-revision">
-                        <div className="ms-panelTitle">Revision Requested</div>
-                        <div className="ms-panelSub">
-                          Client as requested revision for milestone 1
+                        <div className="ms-panelSub" style={{ marginBottom: '14px' }}>
+                          (Creator Name) has requested additional time to complete this milestone.
                         </div>
 
                         <div className="ms-timer">
@@ -1963,39 +1933,55 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
                           </div>
                         </div>
 
-                        <div className="ms-panelTitle small">Description</div>
-                        <div className="ms-descText">
-                          Lorem ipsum is simply dummy text of the printing and
-                          typesetting industry...
+                        <div className="ms-panelSub" style={{ marginBottom: '14px' }}>
+                          Please review and respond within the time window
                         </div>
 
-                        <div className="ms-tagRow">
-                          <span className="ms-tag">
-                            Milestone: Design phase
-                          </span>
-                        </div>
-
-                        <div className="ms-fileRow">
-                          <button className="ms-fileBtn" type="button">
-                            Home.fig <span className="ms-open">open</span>
+                        <div style={{ display: 'flex', gap: '10px', marginBottom: '16px' }}>
+                          <button className="ms-actionBtn" type="button" style={{ flex: 1 }}>
+                            Decline
                           </button>
-                          <button className="ms-fileBtn" type="button">
-                            dashboard.fig <span className="ms-open">open</span>
-                          </button>
-                          <button className="ms-fileBtn" type="button">
-                            preview.pdf <span className="ms-open">open</span>
-                          </button>
-                          <button className="ms-fileBtn" type="button">
-                            Deadline: 2025-12-15
+                          <button className="ms-actionBtn lime" type="button" style={{ flex: 1 }}>
+                            Accept
                           </button>
                         </div>
 
-                        <button className="ms-actionBtn lime" type="button">
-                          Accept revision
-                        </button>
-                        <button className="ms-actionBtn" type="button">
-                          Cancel revision
-                        </button>
+                        {/* Days box */}
+                        <div style={{
+                          border: '1.5px solid #CEFF1B',
+                          borderRadius: '10px',
+                          padding: '12px 14px',
+                          marginBottom: '10px'
+                        }}>
+                          <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '4px' }}>Days</div>
+                          <div style={{ fontSize: '15px' }}>12</div>
+                        </div>
+
+                        {/* Why box */}
+                        <div style={{
+                          border: '1.5px solid #CEFF1B',
+                          borderRadius: '10px',
+                          padding: '12px 14px',
+                          marginBottom: '14px'
+                        }}>
+                          <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '6px' }}>Why is extension needed?</div>
+                          <div className="ms-descText" style={{ margin: 0 }}>
+                            I need additional time to incorporate recent feedback and ensure the final design meets the expected quality.
+                          </div>
+                        </div>
+
+                        {/* Red consequence notes */}
+                        <div style={{ fontSize: '13px', lineHeight: '1.8', color: '#e53e3e' }}>
+                          <div style={{ marginBottom: '8px' }}>
+                            <b>If you accept</b>, the milestone deadline will be extended by the requested number of days.
+                          </div>
+                          <div style={{ marginBottom: '8px' }}>
+                            <b>If you deny</b>, the original deadline remains unchanged.
+                          </div>
+                          <div>
+                            <b>If the timer expires with no action</b>, the system will deny the request.
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2031,6 +2017,89 @@ export default function MilestoneBoard({ theme = "light", setTheme }) {
             <div className="ms-deliverFoot">
               <button className="ms-btn-lime ms-uploadBtn" onClick={() => setIsDeliverModalOpen(false)}>
                 Upload
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ================= REQUEST REVISION MODAL ================= */}
+      {isRevisionModalOpen && (
+        <div
+          style={{
+            position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 9999,
+            background: 'rgba(0,0,0,0.15)',
+            backdropFilter: 'blur(10px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px'
+          }}
+          onClick={() => setIsRevisionModalOpen(false)}
+        >
+          <div
+            style={{
+              background: theme === 'dark' ? '#1a1a1a' : '#fff',
+              borderRadius: '16px',
+              padding: '36px 32px',
+              maxWidth: '560px', width: '100%',
+              boxShadow: '0 0 30px rgba(206,255,27,0.35)',
+              position: 'relative'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 style={{ textAlign: 'center', fontSize: '20px', fontWeight: '700', marginBottom: '24px', color: theme === 'dark' ? '#fff' : '#111' }}>Request Revision</h2>
+
+            {/* Description */}
+            <div style={{ marginBottom: '16px' }}>
+              <label style={{ fontSize: '14px', fontWeight: '700', display: 'block', marginBottom: '8px', color: theme === 'dark' ? '#fff' : '#111' }}>Description</label>
+              <textarea
+                placeholder="Description"
+                value={revisionDesc}
+                onChange={(e) => setRevisionDesc(e.target.value)}
+                style={{
+                  width: '100%', minHeight: '100px',
+                  background: theme === 'dark' ? '#2a2a2a' : '#f7f7f7',
+                  border: `1px solid ${theme === 'dark' ? '#444' : '#ddd'}`,
+                  borderRadius: '8px', padding: '12px 14px',
+                  fontSize: '14px', color: theme === 'dark' ? '#eee' : '#222',
+                  outline: 'none', resize: 'vertical', boxSizing: 'border-box'
+                }}
+              />
+            </div>
+
+            {/* Upload area */}
+            <div style={{
+              background: theme === 'dark' ? '#2a2a2a' : '#f5f5f5',
+              border: `1px solid ${theme === 'dark' ? '#444' : '#ddd'}`,
+              borderRadius: '8px', padding: '28px 20px',
+              textAlign: 'center', marginBottom: '28px', cursor: 'pointer'
+            }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={theme === 'dark' ? '#aaa' : '#666'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ margin: '0 auto 8px' }}>
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" y1="3" x2="12" y2="15" />
+              </svg>
+              <div style={{ fontSize: '13px' }}>
+                <span style={{ color: '#3b82f6', fontWeight: '600', cursor: 'pointer' }}>Click to upload</span>
+                {' '}or Drag or drop file
+              </div>
+              <div style={{ fontSize: '12px', color: theme === 'dark' ? '#888' : '#888', marginTop: '6px' }}>
+                PDF, JPG, JPEG, PNG less than 10MB.<br />
+                Ensure your document are in good condition and readable
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
+              <button
+                onClick={() => setIsRevisionModalOpen(false)}
+                style={{ padding: '10px 28px', fontSize: '14px', background: 'transparent', border: '1px solid #ccc', borderRadius: '8px', color: theme === 'dark' ? '#eee' : '#333', cursor: 'pointer', fontWeight: '500' }}
+              >
+                Cancel
+              </button>
+              <button
+                style={{ padding: '10px 28px', fontSize: '14px', background: '#CEFF1B', border: 'none', borderRadius: '8px', color: '#111', fontWeight: '700', cursor: 'pointer' }}
+                onClick={() => setIsRevisionModalOpen(false)}
+              >
+                Request
               </button>
             </div>
           </div>
