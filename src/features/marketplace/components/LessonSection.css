@@ -189,9 +189,8 @@
 }
 
 .lesson-input:focus {
-  outline: none;
-  border-color: #dbf132;
-  box-shadow: 0 0 0 2px rgba(219, 241, 50, 0.1);
+  border-color: transparent;
+  box-shadow: 0 0 15px #CEFF1B;
 }
 
 .lesson-textarea {
@@ -213,9 +212,8 @@
 }
 
 .lesson-textarea:focus {
-  outline: none;
-  border-color: #dbf132;
-  box-shadow: 0 0 0 2px rgba(219, 241, 50, 0.1);
+  border-color: transparent;
+  box-shadow: 0 0 15px #CEFF1B;
 }
 
 .lesson-section-footer {
@@ -227,7 +225,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #dbf132;
+  background: #ceff1b;
   color: #000;
   border: none;
   border-radius: 8px;
@@ -237,10 +235,7 @@
   transition: all 0.2s;
 }
 
-.lesson-add-more-btn:hover {
-  background: #c8dc2e;
-  transform: translateY(-1px);
-}
+
 
 @media (max-width: 768px) {
   .lesson-grid {

@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import {
   X,
@@ -120,6 +120,16 @@ export default function CreateCourse({ theme, setTheme }) {
   });
 
   const updateSchedule = (key, value) => setSchedule({ ...schedule, [key]: value });
+
+  const [openCalendar, setOpenCalendar] = useState(false);
+  const timeInputRef = useRef(null);
+
+  const formatTime = (val) => {
+    if (!val) return "";
+    const [h, m] = val.split(":");
+    const hr = parseInt(h);
+    return `${hr > 12 ? hr - 12 : hr || 12}:${m} ${hr >= 12 ? "PM" : "AM"}`;
+  };
 
   /* ================== LESSONS STATE ================== */
   const [lessons, setLessons] = useState([
@@ -601,23 +611,63 @@ export default function CreateCourse({ theme, setTheme }) {
                   <h2 className="csl-section">Schedule</h2>
                   <div className="csl-schedule-box">
                     <div className="csl-grid2">
+                      {/* Date field — custom calendar popup */}
                       <div className="csl-field">
                         <label className="csl-label">Date</label>
-                        <input
-                          type="date"
-                          className="csl-input"
-                          value={schedule.date}
-                          onChange={(e) => updateSchedule("date", e.target.value)}
-                        />
+                        <div style={{ position: "relative" }}>
+                          <input
+                            type="text"
+                            readOnly
+                            className="csl-input"
+                            style={{ paddingRight: "40px", cursor: "pointer" }}
+                            placeholder="DD-MM-YYYY"
+                            value={schedule.date}
+                            onClick={() => setOpenCalendar(true)}
+                          />
+                          <span
+                            onClick={() => setOpenCalendar(true)}
+                            style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", color: "#9ca3af", cursor: "pointer", display: "flex", alignItems: "center" }}
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                              <line x1="16" y1="2" x2="16" y2="6" />
+                              <line x1="8" y1="2" x2="8" y2="6" />
+                              <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                          </span>
+                        </div>
                       </div>
+
+                      {/* Start time field — hidden native picker + display input */}
                       <div className="csl-field">
                         <label className="csl-label">Start time</label>
-                        <input
-                          type="time"
-                          className="csl-input"
-                          value={schedule.startTime}
-                          onChange={(e) => updateSchedule("startTime", e.target.value)}
-                        />
+                        <div style={{ position: "relative" }}>
+                          <input
+                            type="text"
+                            readOnly
+                            className="csl-input"
+                            style={{ paddingRight: "40px", cursor: "pointer" }}
+                            placeholder="HH:MM AM/PM"
+                            value={formatTime(schedule.startTime)}
+                            onClick={() => timeInputRef.current?.showPicker?.() || timeInputRef.current?.click()}
+                          />
+                          <input
+                            ref={timeInputRef}
+                            type="time"
+                            style={{ position: "absolute", opacity: 0, pointerEvents: "none", width: 0, height: 0, top: 0, right: 0 }}
+                            value={schedule.startTime}
+                            onChange={(e) => updateSchedule("startTime", e.target.value)}
+                          />
+                          <span
+                            onClick={() => timeInputRef.current?.showPicker?.() || timeInputRef.current?.click()}
+                            style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", color: "#9ca3af", cursor: "pointer", display: "flex", alignItems: "center" }}
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                              <circle cx="12" cy="12" r="10" />
+                              <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div className="csl-grid2 mt-4">
@@ -712,6 +762,20 @@ export default function CreateCourse({ theme, setTheme }) {
               onBack={() => setUploadStep(null)}
             />
           )}
+        </div>,
+        document.body
+      )}
+
+      {/* ================= CALENDAR PORTAL ================= */}
+      {openCalendar && createPortal(
+        <div className={`user-page ${theme || 'light'}`}>
+          <WebinarCalendar
+            onClose={() => setOpenCalendar(false)}
+            onSelect={(date) => {
+              updateSchedule("date", date);
+              setOpenCalendar(false);
+            }}
+          />
         </div>,
         document.body
       )}
@@ -883,6 +947,128 @@ function UploadSuccess({ onBack }) {
           >
             Back
           </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WebinarCalendar({ onClose, onSelect }) {
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+
+  const today = new Date();
+  const [year, setYear] = useState(today.getFullYear());
+  const [month, setMonth] = useState(today.getMonth());
+  const [openYear, setOpenYear] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const yearRef = useRef(null);
+
+  const years = Array.from({ length: 101 }, (_, i) => 1950 + i);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (yearRef.current && !yearRef.current.contains(event.target)) {
+        setOpenYear(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const totalDays = new Date(year, month + 1, 0).getDate();
+  const prevMonthDays = new Date(year, month, 0).getDate();
+
+  const changeMonth = (dir) => {
+    if (dir === "prev") {
+      if (month === 0) { setMonth(11); setYear((y) => y - 1); }
+      else setMonth((m) => m - 1);
+    } else {
+      if (month === 11) { setMonth(0); setYear((y) => y + 1); }
+      else setMonth((m) => m + 1);
+    }
+  };
+
+  const formatDate = (d) =>
+    `${String(d).padStart(2, "0")}-${String(month + 1).padStart(2, "0")}-${year}`;
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] bg-black/20 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center cursor-pointer"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white dark:bg-[#2B2B2B] w-[95%] max-w-[335px] h-[350px] rounded-xl p-3 shadow-lg cursor-default"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="bg-white dark:bg-[#2B2B2B] w-full h-full rounded-lg p-3 flex flex-col text-black">
+          {/* YEAR DROPDOWN */}
+          <div className="relative mb-6 z-20 w-full" ref={yearRef}>
+            <div className={`onboarding-custom-select ${openYear ? "active" : ""}`}>
+              <div
+                className={`onboarding-selected-option ${openYear ? "open" : ""}`}
+                onClick={(e) => { e.stopPropagation(); setOpenYear(!openYear); }}
+                style={{ background: "#CEFF1B", color: "black", fontWeight: "bold" }}
+              >
+                <span>{year} :</span>
+                <span className="onboarding-arrow">▼</span>
+              </div>
+              {openYear && (
+                <ul className="onboarding-options-list dark:bg-[#1E1E1E]">
+                  {years.map((y) => (
+                    <li
+                      key={y}
+                      className={y === year ? "active" : ""}
+                      onClick={() => { setYear(y); setOpenYear(false); }}
+                    >
+                      {y}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+
+          {/* MONTH NAV */}
+          <div className="flex justify-between items-center text-sm font-medium -mt-2 mb-2 px-1">
+            <span onClick={() => changeMonth("prev")} className="cursor-pointer text-lg">‹</span>
+            <span>{months[month]} {year}</span>
+            <span onClick={() => changeMonth("next")} className="cursor-pointer text-lg">›</span>
+          </div>
+
+          {/* WEEK LABELS */}
+          <div className="grid grid-cols-7 text-[10px] text-gray-600 mb-2">
+            {["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"].map((d) => (
+              <div key={d} className="text-center">{d}</div>
+            ))}
+          </div>
+
+          {/* DAYS */}
+          <div className="grid grid-cols-7 gap-2 text-sm flex-1">
+            {Array.from({ length: firstDay }).map((_, i) => (
+              <div key={i} className="text-center text-gray-400">
+                {prevMonthDays - firstDay + i + 1}
+              </div>
+            ))}
+            {Array.from({ length: totalDays }).map((_, i) => {
+              const day = i + 1;
+              const formatted = formatDate(day);
+              const isSelected = selectedDate === formatted;
+              return (
+                <div
+                  key={day}
+                  onClick={() => { setSelectedDate(formatted); onSelect(formatted); }}
+                  className={`mx-auto w-7 h-7 rounded-full flex items-center justify-center cursor-pointer transition
+                    ${isSelected ? "bg-[#CEFF1B] text-black font-bold" : "hover:bg-[#CEFF1B] hover:text-black"}`}
+                >
+                  {day}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

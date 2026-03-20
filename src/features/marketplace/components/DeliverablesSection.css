@@ -125,7 +125,8 @@
 }
 
 .deliverable-input:focus {
-  border-color: #CEFF1B;
+  border-color: transparent;
+  box-shadow: 0 0 15px #CEFF1B;
 }
 
 .deliverables-add-btn {
@@ -141,10 +142,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.deliverables-add-btn:hover {
-  background: #bdff1b;
-  transform: translateY(-1px);
-}
 
 .deliverables-add-btn:active {
   transform: translateY(0);
